@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Carousel (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${carousel}" method="POST" enctype="multipart/form-data">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{carousel.title}" />
+							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{carousel.title}" autofocus >
+							<ul><li class="cooperror" th:errors="*{title}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{carousel.description}" />
+							<input type="text" class="form-control required" th:field="*{description}" th:placeholder="#{carousel.description}">
+							<ul><li class="cooperror" th:errors="*{description}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{carousel.pubEndDate}" />
+							<input type="date" class="form-control required" th:field="*{pubEndDate}" th:placeholder="#{carousel.pubEndDate}">
+							<ul><li class="cooperror" th:errors="*{pubEndDate}" /></ul>
+						</div>
+						<div class="col-md-9">
+							<label class="form-label text-primary" th:text="#{carousel.file}" />
+							<input type="file" class="form-control required" th:field="*{file}" th:placeholder="#{carousel.file}">
+							<ul><li class="cooperror" th:errors="*{file}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

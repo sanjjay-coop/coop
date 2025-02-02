@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Sponsorship Application</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+					
+				<div class="row g-3">
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{sponsorship.title}" />
+						<span class="form-control" th:text="${sponsorshipApplication.sponsorship.title}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{sponsorship.description}" />
+						<span class="form-control" th:utext="${sponsorshipApplication.sponsorship.description}"></span>
+					</div>
+					<div class="col-md-12">
+			    		<label class="form-label text-primary" th:text="#{sponsorshipApplication.name}" />
+						<span class="form-control" th:text="${sponsorshipApplication.name}"></span>
+			    	</div>
+					<div class="col-md-6">
+			    		<label class="form-label text-primary" th:text="#{sponsorshipApplication.address}" />
+						<span class="form-control" th:text="${sponsorshipApplication.address}"></span>
+			    	</div>
+					<div class="col-md-4">
+						<label class="form-label text-primary" th:text="#{sponsorshipApplication.city}" />
+						<span class="form-control" th:text="${sponsorshipApplication.city}"></span>
+					</div>
+					<div class="col-md-2">
+						<label class="form-label text-primary" th:text="#{sponsorshipApplication.pin}" />
+						<span class="form-control" th:text="${sponsorshipApplication.pin}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{sponsorshipApplication.state}" />
+						<span class="form-control" th:text="${sponsorshipApplication.state}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{sponsorshipApplication.country}" />
+						<span class="form-control" th:text="${sponsorshipApplication.country}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{sponsorshipApplication.reasonsForApplication}" />
+						<span class="form-control" th:text="${sponsorshipApplication.reasonsForApplication}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{sponsorshipApplication.educationAndExperience}" />
+						<span class="form-control" th:text="${sponsorshipApplication.educationAndExperience}"></span>
+					</div>
+					<div class="col-md-6">
+			    		<label class="form-label text-primary" th:text="#{sponsorshipApplication.mobile}" />
+						<span class="form-control" th:text="${sponsorshipApplication.mobile}"></span>
+			    	</div>
+					<div class="col-md-6">
+			    		<label class="form-label text-primary" th:text="#{sponsorshipApplication.email}" />
+						<span class="form-control" th:text="${sponsorshipApplication.email}"></span>
+			    	</div>
+					<div class="col-md-2">
+						<label class="form-label text-primary" th:text="#{sponsorshipApplication.status}" />
+						<span class="form-control" th:text="${sponsorshipApplication.status}"></span>
+					</div>
+			  	</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

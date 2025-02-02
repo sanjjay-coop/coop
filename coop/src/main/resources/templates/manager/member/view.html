@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Member (View Record)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/member/list/current}" th:if="${#ctx.session.listMember_type == 'list'}">To Member List</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/member/search/list}" th:if="${#ctx.session.listMember_type == 'search'}">To Member Search result</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/member/edit/{orderId}(orderId=${member.id})}">Edit Member</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/member/delete/{orderId}(orderId=${member.id})}" onclick="return confirm('Are you sure?')">Delete Member</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/member/changePassword/{orderId}(orderId=${member.id})}">Change Password</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/receipt/addNew/{orderId}(orderId=${member.id})}">Add Receipt</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row g-3">
+					<div class="col-md-3">
+						<img class="border rounded rounded-3" height="125px;" th:src="@{/home/profile/file/photo/{memId}(memId=${member.memId})}" alt="Profile Photo"/>
+					</div>
+					<div class="col-md-3">
+				    	<label class="form-label text-primary" th:text="#{member.memId}"/>
+				    	<span class="form-control" th:text="${member.memId}"></span>
+				    </div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.name}"/>
+						<span class="form-control" th:text="${member.name}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{member.residenceAddress}"/>
+						<span class="form-control" th:text="${member.residenceAddress}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{member.officeAddress}"/>
+						<span class="form-control" th:text="${member.officeAddress}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.aadhaar}"/>
+						<span class="form-control" th:text="${member.aadhaar}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.gender}"/>
+						<span class="form-control" th:text="${member.gender.name}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.memType}"/>
+						<span class="form-control" th:text="${member.memType.name}">
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.educationLevel}"/>
+						<span class="form-control" th:text="${member.educationLevel.name}" th:if="${member.educationLevel!=null}" />
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.memGroup}"/>
+						<span class="form-control" th:if="${member.memGroup}" th:text="${member.memGroup.label}">
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.dateOfBirth}"/>
+						<span class="form-control" th:text="${#dates.format(member.dateOfBirth, 'dd/MM/yyyy')}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.mobile}"/>
+						<span class="form-control" th:text="${member.mobile}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.email}"/>
+						<span class="form-control" th:text="${member.email}">
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.subStartDate}"/>
+						<span class="form-control" th:text="${#dates.format(member.subStartDate, 'dd/MM/yyyy')}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.subEndDate}"/>
+						<span class="form-control" th:text="${#dates.format(member.subEndDate, 'dd/MM/yyyy')}">
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.profilePublic}"/>
+						<span class="form-control" th:text="${member.profilePublic}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.maritalStatus}"/>
+						<span class="form-control" th:text="${member.maritalStatus.status}" th:if="${member.maritalStatus!=null}" />
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.occupation}"/>
+						<span class="form-control" th:text="${member.occupation.name}" th:if="${member.occupation!=null}" />
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.roles}"/>
+						<span class="form-control" th:each="role : ${member.roles}">
+							<div th:text="${role.code}"></div>
+						</span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.offDesignation}"/>
+						<span class="form-control" th:text="${member.offDesignation}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{member.offName}"/>
+						<span class="form-control" th:text="${member.offName}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.education}"/>
+						<span class="form-control" th:utext="${member.education}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{member.experience}"/>
+						<span class="form-control" th:utext="${member.experience}"></span>
+					</div>
+				</div>
+				 
+				<br/>
+				 	
+				<h3 th:if="${member.receipts!=null and !member.receipts.isEmpty()}">Member (Receipts)</h3>
+				
+				<table class="table" th:if="${member.receipts!=null and !member.receipts.isEmpty()}">
+								
+					<thead>
+						<th th:text="#{id}"></th>
+						<th th:text="#{receipt.receiptDate}"></th>
+						<th th:text="#{receipt.receiptNumber}"></th>
+						<th th:text="#{receipt.details}"></th>
+						<th th:text="#{receipt.amount}" style="text-align: right;"></th>
+						<th width="40px;" th:text="#{receipt.document}"></th>
+						<th width="15px;"></th>
+					</thead>
+									
+					<tbody>
+						<tr th:each="ob : ${member.receipts}">
+	       					<td th:text="${ob.id}"></td>
+							<td th:text="${#dates.format(ob.receiptDate, 'dd/MM/yyyy')}"></td>
+							<td th:text="${ob.receiptNumber}"></td>
+	       					<td th:text="${ob.details}"></td>
+							<td th:text="${ob.amount}" style="text-align: right;"></td>
+							<td>
+								<a class="nav-link" th:href="@{/manager/payment/receipt/{orderId}(orderId=${ob.id})}">
+							      	<img th:src="@{/images/bootstrap-icons/image.svg}" alt="Edit"/>
+							    </a>
+							</td>
+							<td>
+								<a class="nav-link" th:href="@{/manager/member/{memId}/receipt/delete/{orderId}(orderId=${ob.id}, memId=${member.id})}" onclick="return confirm('Are you sure?')">
+							      	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

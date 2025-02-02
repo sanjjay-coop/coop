@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Request for Funding</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${funding}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{funding.name}" />
+							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{funding.name}">
+				  			<ul><li class="cooperror" th:errors="*{name}" /></ul>
+						</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{funding.address}" />
+				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{funding.address}">
+				      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+				    	</div>
+						<div class="col-md-4">
+							<label class="form-label text-primary" th:text="#{funding.city}" />
+							<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{funding.city}">
+					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+						</div>
+						<div class="col-md-2">
+							<label class="form-label text-primary" th:text="#{funding.pin}" />
+							<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{funding.pin}">
+					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{funding.state}" />
+							<input type="text" class="form-control required" th:field="*{state}" th:placeholder="#{funding.state}">
+					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{funding.country}" />
+							<input type="text" class="form-control required" th:field="*{country}" th:placeholder="#{funding.country}">
+					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+						</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{funding.email}" />
+				    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{funding.email}">
+				      		<ul><li class="cooperror" th:errors="*{email}" /></ul>
+				    	</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{funding.mobile}" />
+				    		<input type="text" class="form-control required" th:field="*{mobile}" th:placeholder="#{funding.mobile}">
+				      		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
+				    	</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{funding.amountRequested}" />
+				    		<input type="text" class="form-control required amount" th:field="*{amountRequested}" th:placeholder="#{funding.amountRequested}">
+				      		<ul><li class="cooperror" th:errors="*{amountRequested}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{funding.purpose}" />
+							<textarea class="form-control required" rows="5" th:field="*{purpose}" th:placeholder="#{funding.purpose}"></textarea>
+					  		<ul><li class="cooperror" th:errors="*{purpose}" /></ul>
+						</div>
+						<div class="col-md-12">
+				    		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Contacts</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				<br/><br/>
+				<div th:each="ob : ${listContact}">
+        			<h3 th:text="${ob.name}"></h3>
+        			<p th:text="${ob.designation}"></p>
+        			<p th:text="${ob.address}"></p>
+        			<p th:text="${ob.email}"></p>
+        			<p th:text="${ob.phone}"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

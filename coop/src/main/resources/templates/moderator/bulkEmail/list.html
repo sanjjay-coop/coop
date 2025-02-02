@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+			<div class="col-12">
+				
+				<h3 class="fw-bold">BulkEmail</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+			
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/bulkEmail/addNew}">Add New Message</a>
+						</div>
+					</div>
+				</div>
+
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{id}"></th>
+						<th th:text="#{bulkEmail.subject}"></th>
+						<th th:text="#{bulkEmail.bcc}"></th>
+						<th th:text="#{bulkEmail.message}"></th>
+						<th th:text="#{bulkEmail.status}"></th>
+						<th th:text="#{bulkEmail.dateSent}"></th>
+						<th style="width: 15px;"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listBulkEmail}">
+        					<td th:text="${ob.id}"></td>
+        					<td th:text="${ob.subject}"></td>
+        					<td th:text="${ob.bcc}"></td>
+							<td th:utext="${ob.htmlString}"></td>		
+							<td th:utext="${ob.status}"></td>	
+							<td th:text="${#dates.format(ob.dateSent, 'dd/MM/yyyy hh:mm:ss')}"></td>
+							<td>
+								<a class="nav-link" th:href="@{/moderator/bulkEmail/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')">
+							      	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot></tfoot>
+				</table>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/bulkEmail/list}">First</a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/bulkEmail/list/previous}">Previous</a></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/bulkEmail/list/next}">Next</a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/bulkEmail/list/last}">Last</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

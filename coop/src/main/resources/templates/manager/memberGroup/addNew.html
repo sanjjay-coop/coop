@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Member Group (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${memberGroup}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{memberGroup.name}" />
+							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{memberGroup.name}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+						</div><div class="col-md-6"></div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{memberGroup.parentGroup}" />
+							<select class="form-select" th:field="*{parentGroup}">
+								<option value="0" label="--Select--" />
+								<option th:each="p : ${listMemberGroup}" th:value="${p.id}" th:text="${p.label}" th:if="${p.id != memberGroup.id}"/>
+							</select>
+							<ul><li class="cooperror" th:errors="*{parentGroup}" /></ul>
+						</div>
+						<div class="col-md-12">
+					  		<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Contact (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${contact}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{contact.name}" />
+							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{contact.name}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{contact.designation}" />
+							<input type="text" class="form-control required" th:field="*{designation}" th:placeholder="#{contact.designation}">
+					  		<ul><li class="cooperror" th:errors="*{designation}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{contact.address}" />
+							<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{contact.address}">
+					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{contact.email}" />
+							<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{contact.email}">
+					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{contact.phone}" />
+							<input type="text" class="form-control required" th:field="*{phone}" th:placeholder="#{contact.phone}">
+					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
+						</div>
+						<div class="col-md-12">
+					  		<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+				
+				<br/>
+				
+				<h3 class="fw-bold">Contact (List All)</h3>
+				
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{contact.name}"></th>
+						<th th:text="#{contact.designation}"></th>
+						<th th:text="#{contact.address}"></th>
+						<th th:text="#{contact.email}"></th>
+						<th th:text="#{contact.phone}"></th>
+						<th style="width: 15px;"></th>
+						<th style="width: 15px;"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listContact}">
+        					<td th:text="${ob.name}"></td>
+							<td th:text="${ob.designation}"></td>
+        					<td th:text="${ob.address}"></td>
+							<td th:text="${ob.email}"></td>
+							<td th:text="${ob.phone}"></td>
+        					<td>
+        						<a class="nav-link" th:href="@{/manager/contact/edit/{orderId}(orderId=${ob.id})}">
+						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Update"/>
+						        </a>
+        					</td>
+        					<td>
+		        				<a class="nav-link" th:href="@{/manager/contact/delete/{orderId}(orderId=${ob.id})}">
+						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+						        </a>
+        					</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

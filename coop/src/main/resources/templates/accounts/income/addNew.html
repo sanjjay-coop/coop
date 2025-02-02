@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Income (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${income}" method="POST">
+					
+					<div class="row g-3">
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{income.amount}" />
+					   		<input type="text" class="form-control required amount" th:field="*{amount}" th:placeholder="#{income.amount}" autofocus >
+					    	<ul><li class="cooperror" th:errors="*{amount}" /></ul>
+					    </div>
+						<div class="col-md-4">
+							<label class="form-label text-primary" th:text="#{income.headOfAccount}" />
+							<select class="form-select required" th:field="*{headOfAccount}">
+								<option th:each="p : ${listHeadOfAccount}" th:value="${p.id}" th:text="${p.name + ' [' + p.code + ']'}" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{headOfAccount}" /></ul>
+						</div>
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{income.narration}" />
+				    		<input type="text" class="form-control required" th:field="*{narration}" th:placeholder="#{income.narration}" >
+				      		<ul><li class="cooperror" th:errors="*{narration}" /></ul>
+				    	</div>
+						<div class="col-md-2">
+							<label class="form-label text-primary" th:text="#{income.modeOfReceipt}" />
+							<select class="form-select required" th:field="*{modeOfReceipt}">
+								<option th:value="Cash" th:text="Cash" />
+								<option th:value="Cheque" th:text="Cheque" />
+								<option th:value="Online" th:text="Online" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{modeOfReceipt}" /></ul>
+						</div>
+						<div class="col-md-3">
+				    		<label class="form-label text-primary" th:text="#{income.receivedFrom}" />
+				    		<input type="text" class="form-control required" th:field="*{receivedFrom}" th:placeholder="#{income.receivedFrom}" >
+				      		<ul><li class="cooperror" th:errors="*{receivedFrom}" /></ul>
+				    	</div>
+						<div class="col-md-2">
+				    		<label class="form-label text-primary" th:text="#{income.transactionDate}" />
+				    		<input type="date" class="form-control required" th:field="*{transactionDate}" th:placeholder="#{income.transactionDate}" >
+				      		<ul><li class="cooperror" th:errors="*{transactionDate}" /></ul>
+				    	</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{income.receiptNumber}" />
+							<input type="text" class="form-control required" th:field="*{receiptNumber}" th:placeholder="#{income.receiptNumber}" >
+					  		<ul><li class="cooperror" th:errors="*{receiptNumber}" /></ul>
+						</div>
+						<div class="col-md-2">
+							<label class="form-label text-primary" th:text="#{income.receiptDate}" />
+							<input type="date" class="form-control required" th:field="*{receiptDate}" th:placeholder="#{income.receiptDate}" >
+					  		<ul><li class="cooperror" th:errors="*{receiptDate}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

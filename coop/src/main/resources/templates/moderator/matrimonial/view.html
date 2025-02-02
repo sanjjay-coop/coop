@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+			
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Matrimonial (View Details)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+						<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/matrimonial/list/current}">Back to List</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/matrimonial/disable/{orderId}(orderId=${matrimonial.id})}" th:if="${matrimonial.enabled}">Disable</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/matrimonial/enable/{orderId}(orderId=${matrimonial.id})}" th:unless="${matrimonial.enabled}">Enable</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/matrimonial/delete/{orderId}(orderId=${matrimonial.id})}" onclick="return confirm('Are you sure?')">Delete Record</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row g-3">
+					<div class="col-md-12">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.description}" />
+				   		<span class="form-control" th:text="${matrimonial.description}" />
+				   	</div>
+					<div class="col-md-4">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.age}" />
+				   		<span class="form-control" th:text="${matrimonial.age}" />
+				   	</div>
+					<div class="col-md-4">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.education}" />
+				   		<span class="form-control" th:text="${matrimonial.educationLevel.name}" />
+				   	</div>
+					<div class="col-md-4">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.occupation}" />
+				   		<span class="form-control" th:text="${matrimonial.occupation.name}" />
+				   	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.mobile}" />
+				   		<span class="form-control" th:text="${matrimonial.mobile}" />
+				   	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.email}" />
+				   		<span class="form-control" th:text="${matrimonial.email}" />
+				   	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.lookingFor}" />
+				   		<span class="form-control" th:text="${matrimonial.lookingFor}" />
+				   	</div>
+					<div class="col-md-12">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.expDescription}" />
+				   		<span class="form-control" th:text="${matrimonial.expDescription}" />
+				   	</div>
+					<div class="col-md-4">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.expEducation}" />
+				   		<span class="form-control" th:text="${matrimonial.expEducationLevel.name}" />
+				   	</div>
+					<div class="col-md-4">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.expOccupation}" />
+				   		<span class="form-control" th:text="${matrimonial.expOccupation.name}" />
+				   	</div>
+					<div class="col-md-2">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.expMinAge}" />
+				   		<span class="form-control" th:text="${matrimonial.expMinAge}" />
+				   	</div>
+					<div class="col-md-2">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.expMaxAge}" />
+				   		<span class="form-control" th:text="${matrimonial.expMaxAge}" />
+				   	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.enabled}" />
+				   		<span class="form-control" th:text="${matrimonial.enabled}" />
+				   	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.addDate}" />
+				   		<span class="form-control" th:text="${#dates.format(matrimonial.addDate, 'dd/MM/yyyy')}" />
+				   	</div>
+					<div class="col-md-12">
+				   		<label class="form-label text-primary" th:text="#{matrimonial.owner}" />
+				   		<span class="form-control" th:text="${matrimonial.owner.name}" />
+				   	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Sponsorship (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${sponsorship}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{sponsorship.title}" />
+							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{sponsorship.title}" autofocus >
+							<ul><li class="cooperror" th:errors="*{title}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{sponsorship.description}" />
+							<textarea class="widgEditor form-control" rows="5" th:field="*{description}" th:placeholder="#{sponsorship.description}"></textarea>
+							<ul><li class="cooperror" th:errors="*{description}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{sponsorship.pubDate}" />
+							<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{sponsorship.pubDate}">
+							<ul><li class="cooperror" th:errors="*{pubDate}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{sponsorship.expDate}" />
+							<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{sponsorship.expDate}">
+							<ul><li class="cooperror" th:errors="*{expDate}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{sponsorship.lastDate}" />
+							<input type="date" class="form-control required" th:field="*{lastDate}" th:placeholder="#{sponsorship.lastDate}">
+							<ul><li class="cooperror" th:errors="*{lastDate}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+			
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Business (Details)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/business/list/current}">Back to List</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/business/disable/{orderId}(orderId=${business.id})}" th:if="${business.enabled}">Disable</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/business/enable/{orderId}(orderId=${business.id})}" th:unless="${business.enabled}">Enable</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/business/delete/{orderId}(orderId=${business.id})}" onclick="return confirm('Are you sure?')">Delete Record</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row g-3">
+					<div class="col-md-12">
+			    		<label class="form-label text-primary" th:text="#{business.businessName}" />
+			    		<span class="form-control" th:text="${business.businessName}"></span>
+			    	</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{business.description}" />
+						<span class="form-control" th:text="${business.description}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{business.address}" />
+						<span class="form-control" th:text="${business.address}"></span>
+					</div>
+					<div class="col-md-4">
+						<label class="form-label text-primary" th:text="#{business.city}" />
+						<span class="form-control" th:text="${business.city}"></span>
+					</div>
+					<div class="col-md-2">
+						<label class="form-label text-primary" th:text="#{business.pin}" />
+						<span class="form-control" th:text="${business.pin}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{business.state}" />
+						<span class="form-control" th:text="${business.state}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{business.country}" />
+						<span class="form-control" th:text="${business.country}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{business.contactName}" />
+						<span class="form-control" th:text="${business.contactName}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{business.contactPhone}" />
+						<span class="form-control" th:text="${business.contactPhone}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{business.contactEmail}" />
+						<span class="form-control" th:text="${business.contactEmail}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{business.url}" />
+						<span class="form-control" th:text="${business.url}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{business.keywords}" />
+						<span class="form-control" th:text="${business.keywords}"></span>
+					</div>
+					<div class="col-md-3">
+				   		<label class="form-label text-primary" th:text="#{business.enabled}" />
+				   		<span class="form-control" th:text="${business.enabled}" />
+				   	</div>
+					<div class="col-md-3">
+				   		<label class="form-label text-primary" th:text="#{business.addDate}" />
+				   		<span class="form-control" th:text="${#dates.format(business.addDate, 'dd/MM/yyyy')}" />
+				   	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{business.owner}" />
+				   		<span class="form-control" th:text="${business.owner.name}" />
+				   	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

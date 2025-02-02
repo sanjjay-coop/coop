@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Search Title</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				<br/>
+				<form th:action= "${servletRequest.requestURI}" th:object="${simpleSearchForm}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{ssf.searchString}" />
+				    		<input type="text" class="form-control required" th:field="*{searchString}" th:placeholder="#{ssf.searchString}">
+				      		<ul><li class="cooperror" th:errors="*{searchString}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+					</div>		  	
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

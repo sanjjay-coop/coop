@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Title (Search Result)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{title.accessionNumber}"></th>
+						<th th:text="#{title.uniformTitle}"></th>
+						<th th:text="#{title.authors}"></th>
+						<th style="width: 15px;"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listTitle}">
+        					<td th:text="${ob.accessionNumber}"></td>
+							<td th:text="${ob.uniformTitle}"></td>
+							<td th:text="${ob.authors}"></td>
+							<td>
+								<a class="nav-link" th:href="@{/home/title/view/{orderId}(orderId=${ob.id})}">
+							      	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}" alt="View Record"/>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+					
+					<tfoot>
+						
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

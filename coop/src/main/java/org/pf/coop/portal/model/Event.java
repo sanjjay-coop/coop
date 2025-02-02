@@ -1,0 +1,137 @@
+package org.pf.coop.portal.model;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="tab_event")
+public class Event implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5025830286885689199L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "key_event")
+	@SequenceGenerator(name="key_event", 
+		sequenceName="seq_key_event",
+		allocationSize=1)
+	private Long id;
+	
+	@Column(name="f_title", length=500, nullable=false)
+	private String title;
+	
+	@Column(columnDefinition = "TEXT", name="f_description", nullable=false)
+	private String description;
+	
+	@Column(name="f_start_date", nullable=false)
+	private Date startDate;
+	
+	@Column(name="f_end_date", nullable=false)
+	private Date endDate;
+	
+	@Column(name="f_publish", nullable=false)
+	private Boolean publish;
+	
+	@ManyToOne
+	@JoinColumn(name="f_event_type", nullable=false)
+	private EventType eventType;
+	
+	@OneToMany(fetch = FetchType.EAGER, targetEntity=EventUpdate.class, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name="f_event")
+	@OrderBy("updateDate DESC")
+	private Set<EventUpdate> updates = new HashSet<EventUpdate>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Boolean getPublish() {
+		return publish;
+	}
+
+	public void setPublish(Boolean publish) {
+		this.publish = publish;
+	}
+
+	public EventType getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(EventType eventType) {
+		this.eventType = eventType;
+	}
+
+	
+	public Set<EventUpdate> getUpdates() {
+		return updates;
+	}
+
+	public void setUpdates(Set<EventUpdate> updates) {
+		this.updates = updates;
+	}
+
+	@Override
+	public String toString() {
+		return "Event [" + (id != null ? "id=" + id + ", " : "") + (title != null ? "title=" + title + ", " : "")
+				+ (description != null ? "description=" + description + ", " : "")
+				+ (startDate != null ? "startDate=" + startDate + ", " : "")
+				+ (endDate != null ? "endDate=" + endDate + ", " : "")
+				+ (publish != null ? "publish=" + publish + ", " : "")
+				+ (eventType != null ? "eventType=" + eventType : "") + "]";
+	}
+	
+}

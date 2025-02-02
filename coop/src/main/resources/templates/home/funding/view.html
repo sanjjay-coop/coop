@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+			
+			<div class="col-12">
+			
+				<h3 class="fw-bold">View Application</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/list}">Back to List</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row g-3">
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{funding.name}" />
+						<span class="form-control" th:text="${funding.name}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{funding.address}" />
+						<span class="form-control" th:text="${funding.address}"></span>
+					</div>
+					<div class="col-md-4">
+						<label class="form-label text-primary" th:text="#{funding.city}" />
+						<span class="form-control" th:text="${funding.city}"></span>
+					</div>
+					<div class="col-md-2">
+						<label class="form-label text-primary" th:text="#{funding.pin}" />
+						<span class="form-control" th:text="${funding.pin}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{funding.state}" />
+						<span class="form-control" th:text="${funding.state}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{funding.country}" />
+						<span class="form-control" th:text="${funding.country}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{funding.email}" />
+						<span class="form-control" th:text="${funding.email}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{funding.mobile}" />
+						<span class="form-control" th:text="${funding.mobile}"></span>
+					</div>
+					<div class="col-md-4">
+						<label class="form-label text-primary" th:text="#{funding.amountRequested}" />
+						<span class="form-control" th:text="${funding.amountRequested}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{funding.purpose}" />
+						<span class="form-control" th:text="${funding.purpose}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{funding.applicationDate}" />
+						<span class="form-control" th:text="${#dates.format(funding.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{funding.status}" />
+						<span class="form-control" th:text="${funding.status}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{funding.amountSanctioned}" />
+						<span class="form-control" th:text="${funding.amountSanctioned}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{funding.sanctionDate}" />
+						<span class="form-control" th:text="${#dates.format(funding.sanctionDate, 'dd/MM/yyyy hh:mm:ss')}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

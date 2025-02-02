@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Menu Item (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${menuItem}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{menuItem.title}" />
+							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{menuItem.title}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{title}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{menuItem.location}" />
+							<select class="form-select required" th:field="*{location}">
+								<option th:value="left" th:text="left" />
+								<option th:value="top" th:text="top" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{location}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{menuItem.itemType}" />
+							<select class="form-select required" th:field="*{itemType}">
+								<option th:value="category" th:text="Category" />
+								<option th:value="url" th:text="URL" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{itemType}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{menuItem.category}" />
+							<select class="form-select" th:field="*{category}">
+								<option th:each="p : ${listCategory}" th:value="${p.id}" th:text="${p.name}" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{category}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{menuItem.url}" />
+							<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{menuItem.url}" >
+					  		<ul><li class="cooperror" th:errors="*{url}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{menuItem.newPage}" />
+							<select class="form-select" th:field="*{newPage}">
+								<option th:value="0" th:text="FALSE" />
+								<option th:value="1" th:text="TRUE" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{newPage}" /></ul>
+						</div>
+						<div class="col-md-12">
+					  		<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

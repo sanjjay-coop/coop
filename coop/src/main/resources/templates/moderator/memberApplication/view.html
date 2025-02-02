@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Member Application (View Record)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/memberApplication/list/current}">To Member Application List</a>
+							<a th:if="${memberApplication.status != true}" class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/memberApplication/confirm/{orderId}(orderId=${memberApplication.id})}" onclick="return confirm('Are you sure?')">Confirm Member</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/memberApplication/delete/{orderId}(orderId=${memberApplication.id})}" onclick="return confirm('Are you sure?')">Delete Record</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row g-3">
+					<div class="col-md-1">
+						<label class="form-label text-primary" th:text="#{salutation}"/>
+						<span class="form-control" th:text="${memberApplication.salutation.name}"></span>
+					</div>
+					<div class="col-md-4">
+						<label class="form-label text-primary" th:text="#{member.firstName}"/>
+						<span class="form-control" th:text="${memberApplication.firstName}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.middleName}"/>
+						<span class="form-control" th:text="${memberApplication.middleName}"></span>
+					</div>
+					<div class="col-md-4">
+						<label class="form-label text-primary" th:text="#{member.lastName}"/>
+						<span class="form-control" th:text="${memberApplication.lastName}"></span>
+					</div>
+					<div class="col-md-4">
+						<label class="form-label text-primary" th:text="#{memberGroup}"/>
+						<span class="form-control" th:text="${memberApplication.memGroup.name}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{gender}"/>
+						<span class="form-control" th:text="${memberApplication.gender.name}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{educationLevel}"/>
+						<span class="form-control" th:text="${memberApplication.educationLevel.name}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.mobile}"/>
+						<span class="form-control" th:text="${memberApplication.mobile}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.email}"/>
+						<span class="form-control" th:text="${memberApplication.email}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.dateOfBirth}"/>
+						<span class="form-control" th:text="${#dates.format(memberApplication.dateOfBirth, 'dd-MM-yyyy')}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.education}"/>
+						<span class="form-control" th:text="${memberApplication.education}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.experience}"/>
+						<span class="form-control" th:text="${memberApplication.experience}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.maritalStatus}"/>
+						<span class="form-control" th:text="${memberApplication.maritalStatus.status}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.aadhaar}"/>
+						<span class="form-control" th:text="${memberApplication.aadhaar}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.occupation}"/>
+						<span class="form-control" th:text="${memberApplication.occupation.name}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" style="font-weight: bold;">Residence Address</label>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.resAddress}"/>
+						<span class="form-control" th:text="${memberApplication.resAddress}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.resCity}"/>
+						<span class="form-control" th:text="${memberApplication.resCity}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.resPin}"/>
+						<span class="form-control" th:text="${memberApplication.resPin}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.resState}"/>
+						<span class="form-control" th:text="${memberApplication.resState}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.resCountry}"/>
+						<span class="form-control" th:text="${memberApplication.resCountry}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" style="font-weight: bold;">Office Address</label>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.offDesignation}"/>
+						<span class="form-control" th:text="${memberApplication.offDesignation}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.offName}"/>
+						<span class="form-control" th:text="${memberApplication.offName}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.offAddress}"/>
+						<span class="form-control" th:text="${memberApplication.offAddress}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{member.offCity}"/>
+						<span class="form-control" th:text="${memberApplication.offCity}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.offPin}"/>
+						<span class="form-control" th:text="${memberApplication.offPin}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.offState}"/>
+						<span class="form-control" th:text="${memberApplication.offState}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{member.offCountry}"/>
+						<span class="form-control" th:text="${memberApplication.offCountry}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" style="font-weight: bold;">Application Status</label>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary">Status</label>
+						<span class="form-control" th:text="${memberApplication.status}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary">Status Date</label>
+						<span class="form-control" th:text="${#dates.format(memberApplication.statusDate, 'dd-MM-yyyy HH:mm:ss')}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

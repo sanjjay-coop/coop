@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Jobs</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="card p-1" th:each="ob : ${listJobAll}">
+					<h5 class="card-header" th:text="${ob.position}"/>
+				  	<div class="card-body">
+						<label style="font-weight: bold;" th:text="#{job.description}" /> : <span th:text="${ob.description}" /><br/> 
+						<label style="font-weight: bold;" th:text="#{job.salary}" /> : <span th:text="${ob.salary}" /> 
+						<label style="font-weight: bold;" th:text="#{job.minimumQualification}" /> : <span th:text="${ob.minimumQualification.name}" /><br/> 
+						<label style="font-weight: bold;" th:text="#{job.firmName}" /> : <span th:text="${ob.firmName}" /> <br/>
+						<label style="font-weight: bold;" th:text="#{job.address}" /> : <span th:text="${ob.address}" /> 
+						<label style="font-weight: bold;" th:text="#{job.city}" /> : <span th:text="${ob.city}" /> 
+						<label style="font-weight: bold;" th:text="#{job.pin}" /> : <span th:text="${ob.pin}" /> 
+						<label style="font-weight: bold;" th:text="#{job.state}" /> : <span th:text="${ob.state}" /> 
+						<label style="font-weight: bold;" th:text="#{job.country}" /> : <span th:text="${ob.country}" /> <br/>
+						<label style="font-weight: bold;" th:text="#{job.contactName}" /> : <span th:text="${ob.contactName}" /> 
+						<label style="font-weight: bold;" th:text="#{job.contactDesignation}" /> : <span th:text="${ob.contactDesignation}" /> 
+						<label style="font-weight: bold;" th:text="#{job.contactPhone}" /> : <span th:text="${ob.contactPhone}" /> 
+						<label style="font-weight: bold;" th:text="#{job.contactEmail}" /> : <span th:text="${ob.contactEmail}" /> 
+						<label style="font-weight: bold;" th:text="#{job.url}" /> : <span th:text="${ob.url}" /> <br/>
+						<label style="font-weight: bold;" th:text="#{job.lastDate}" /> : <span th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}" />	  
+				  	</div>
+				</div>
+				<br/>
+				<nav aria-label="Page navigation example">
+				 	<ul class="pagination">
+				 		<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/all/list}">First</a></li>
+				 		<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/all/list/previous}">Previous</a></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"/></li>
+				 		<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/all/list/next}">Next</a></li>
+				 		<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/all/list/last}">Last</a></li>
+				 	</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

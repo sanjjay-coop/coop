@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Salutation (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${salutation}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{salutation.name}" />
+				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{salutation.name}" autofocus />
+				      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+				
+				<br/>
+				
+				<h3 class="fw-bold">Salutation (List All)</h3>
+				
+				<div class="row">
+					<div class="col-6">
+						<table class="table">
+						
+							<thead>
+								<th th:text="#{salutation.name}"></th>
+								<th style="width: 15px;"></th>
+								<th style="width: 15px;"></th>
+							</thead>
+							
+							<tbody>
+								<tr th:each="ob : ${listSalutation}">
+		        					<td th:text="${ob.name}"></td>
+		        					<td>
+		        						<a class="nav-link" th:href="@{/manager/salutation/edit/{orderId}(orderId=${ob.id})}">
+								          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Edit"/>
+								        </a>
+		        					</td>
+		        					<td>
+				        				<a class="nav-link" th:href="@{/manager/salutation/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')">
+								          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+								        </a>
+		        					</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

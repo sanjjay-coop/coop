@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Article (Edit)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${article}" method="POST">
+					
+					<input type="hidden" class="form-control" th:field="*{id}">
+
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{article.title}" />
+							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{article.title}" autofocus >
+							<ul><li class="cooperror" th:errors="*{title}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{article.content}" />
+							<textarea class="widgEditor form-control" rows="5" th:field="*{content}" th:placeholder="#{article.content}"></textarea>
+							<ul><li class="cooperror" th:errors="*{content}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{article.pubDate}" />
+							<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{article.pubDate}">
+							<ul><li class="cooperror" th:errors="*{pubDate}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{article.expDate}" />
+							<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{article.expDate}">
+							<ul><li class="cooperror" th:errors="*{expDate}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{article.publish}" />
+							<select class="form-select" th:field="*{publish}">
+								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{publish}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{article.categories}" />
+							<ul style="list-style-type: none;">
+								<li th:each="category : ${listCategory}">
+									<input type="checkbox" th:field="*{categories}" th:value="${category.id}" />
+									<label th:for="${#ids.prev('categories')}" 
+											th:text="${category.name}">Heating</label>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

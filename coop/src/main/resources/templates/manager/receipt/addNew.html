@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Receipt (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/member/view/{orderId}(orderId=${receipt.member.id})}">Back to Member View</a>
+						</div>
+					</div>
+				</div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${receipt}" method="POST" enctype="multipart/form-data">
+				  	
+				  	<input type="hidden" class="form-control" th:field="*{member}">
+
+					<div class="row g-3">
+						<div class="col-md-4">
+					    	<label class="form-label text-primary" th:text="#{member.memId}" />
+					    	<span class="form-control" th:text="${receipt.member.memId}"></span>
+					    </div>
+						<div class="col-md-8">
+							<label class="form-label text-primary" th:text="#{member.name}" />
+							<span class="form-control" th:text="${receipt.member.name}"></span>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{receipt.receiptDate}" />
+							<input type="date" class="form-control" th:field="*{receiptDate}" th:placeholder="#{receipt.receiptDate}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{receiptDate}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{receipt.amount}" />
+							<input type="text" class="form-control required amount" th:field="*{amount}" th:placeholder="#{receipt.amount}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{amount}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{receipt.receiptNumber}" />
+							<input type="text" class="form-control required" th:field="*{receiptNumber}" th:placeholder="#{receipt.receiptNumber}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{receiptNumber}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{receipt.details}" />
+							<input type="text" class="form-control required" th:field="*{details}" th:placeholder="#{receipt.details}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{details}" /></ul>
+						</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{receipt.file}" />
+				    		<input type="file" class="form-control" th:field="*{file}" th:placeholder="#{receipt.file}" autofocus >
+				      		<ul><li class="cooperror" th:errors="*{file}" /></ul>
+				    	</div>
+						<div class="col-md-3">
+				    		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

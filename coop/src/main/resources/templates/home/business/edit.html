@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+			
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Business (Edit)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${business}" method="POST">
+				
+					<input type="hidden" class="form-control" th:field="*{id}">
+
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{business.businessName}" />
+							<input type="text" class="form-control required" th:field="*{businessName}" th:placeholder="#{business.businessName}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{businessName}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{business.description}" />
+							<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{business.description}"></textarea>
+					  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{business.address}" />
+							<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{business.address}">
+					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+						</div>
+						<div class="col-md-5">
+							<label class="form-label text-primary" th:text="#{business.city}" />
+							<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{business.city}">
+					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+						</div>
+						<div class="col-md-1">
+							<label class="form-label text-primary" th:text="#{business.pin}" />
+							<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{business.pin}">
+					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{business.state}" />
+							<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{business.state}">
+					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{business.country}" />
+							<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{business.country}">
+					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+						</div>
+						<div class="col-md-9">
+							<label class="form-label text-primary" th:text="#{business.contactName}" />
+							<input type="text" class="form-control" th:field="*{contactName}" th:placeholder="#{business.contactName}">
+					  		<ul><li class="cooperror" th:errors="*{contactName}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{business.contactPhone}" />
+							<input type="text" class="form-control" th:field="*{contactPhone}" th:placeholder="#{business.contactPhone}">
+					  		<ul><li class="cooperror" th:errors="*{contactPhone}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{business.contactEmail}" />
+							<input type="text" class="form-control" th:field="*{contactEmail}" th:placeholder="#{business.contactEmail}">
+					  		<ul><li class="cooperror" th:errors="*{contactEmail}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{business.url}" />
+							<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{business.url}">
+					  		<ul><li class="cooperror" th:errors="*{url}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{business.keywords}" />
+							<textarea class="form-control" rows="5" th:field="*{keywords}" th:placeholder="#{business.keywords}"></textarea>
+					  		<ul><li class="cooperror" th:errors="*{keywords}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

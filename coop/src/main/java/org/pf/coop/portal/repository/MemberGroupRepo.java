@@ -1,0 +1,17 @@
+package org.pf.coop.portal.repository;
+
+import org.pf.coop.portal.model.MemberGroup;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
+
+public interface MemberGroupRepo extends JpaRepository<MemberGroup, Long>{
+
+	public MemberGroup findByName(String name);
+	
+	@Modifying
+	@Transactional
+	@Query("delete from MemberGroup o where o.id = ?1")
+	public void deleteMemberGroup(Long id);
+}

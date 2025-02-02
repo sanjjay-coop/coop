@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Event (Edit)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${event}" method="POST">
+				
+					<input type="hidden" class="form-control" th:field="*{id}">
+
+					<div class="row g-3">
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{event.title}" />
+				    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{event.title}" autofocus >
+				      		<ul><li class="cooperror" th:errors="*{title}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{event.description}" />
+				    		<textarea class="widgEditor form-control" rows="5" th:field="*{description}" th:placeholder="#{event.description}"></textarea>
+				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+				    	</div>
+						<div class="col-md-3">
+				    		<label class="form-label text-primary" th:text="#{event.startDate}" />
+				    		<input type="date" class="form-control required" th:field="*{startDate}" th:placeholder="#{event.startDate}">
+				      		<ul><li class="cooperror" th:errors="*{startDate}" /></ul>
+				    	</div>
+						<div class="col-md-3">
+				    		<label class="form-label text-primary" th:text="#{event.endDate}" />
+				    		<input type="date" class="form-control required" th:field="*{endDate}" th:placeholder="#{event.endDate}">
+				      		<ul><li class="cooperror" th:errors="*{endDate}" /></ul>
+				    	</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{event.publish}" />
+							<select class="form-select" th:field="*{publish}">
+								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{publish}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{event.eventType}" />
+							<select class="form-select" th:field="*{eventType}">
+								<option th:each="p : ${listEventType}" th:value="${p.id}" th:text="${p.name}" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{eventType}" /></ul>
+						</div>
+						<div class="col-md-12">
+				      		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

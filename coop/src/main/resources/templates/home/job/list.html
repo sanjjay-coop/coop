@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Jobs (My List)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/addNew}">Add New Job</a>
+						</div>
+					</div>
+				</div>
+				
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{job.position}"></th>
+						<th th:text="#{job.firmName}"></th>
+						<th style="text-align: right;" th:text="#{job.salary}"></th>
+						<th th:text="#{job.lastDate}"></th>
+						<th th:text="#{job.enabled}"></th>
+						<th style="width: 15px;"></th>
+						<th style="width: 15px;"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listJob}">
+        					<td th:text="${ob.position}"></td>
+							<td th:text="${ob.firmName}"></td>
+        					<td style="text-align: right;" th:text="${ob.salary}"></td>
+        					<td th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></td>
+							<td th:text="${ob.enabled}"></td>
+        					<td>
+        						<a class="nav-link" th:href="@{/home/job/edit/{orderId}(orderId=${ob.id})}">
+						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Edit"/>
+						        </a>
+        					</td>
+        					<td>
+		        				<a class="nav-link" th:href="@{/home/job/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')">
+						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+						        </a>
+        					</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/list}">First</a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/list/previous}">Previous</a></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"/></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/list/next}">Next</a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/list/last}">Last</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

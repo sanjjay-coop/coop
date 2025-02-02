@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold" th:text="${'Articles (Category: ' + category.name + ')' }"></h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+					
+				<div class="card p-1" th:each="article : ${listArticle}">
+					<h5 class="card-header" th:text="${article.title}"></h5>
+				  	<div class="card-body">
+						<p th:utext="${article.content}"></p>
+						<div style="font-size: small;">
+							<b>Categories: </b>
+							<span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
+							<b> Last Update: </b>
+							<span th:text="${#dates.format(article.updateDate, 'dd/MM/yyyy')}"></span>
+						</div>
+				  	</div>
+				</div>
+						
+				<nav aria-label="Page navigation example" th:if="${totalPages > 1}">
+					<ul class="pagination">
+						<li class="page-item" th:if="${!firstPage}">
+							<a class="page-link" th:href="@{/article/blog/{categoryId}(categoryId=${category.id})}">First</a>
+						</li>
+						<li class="page-item" th:if="${!firstPage}">
+							<a class="page-link" th:href="@{/article/blog/{categoryId}/previous(categoryId=${category.id})}">Previous</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"/>
+						</li>
+						<li class="page-item" th:if="${!lastPage}">
+							<a class="page-link" th:href="@{/article/blog/{categoryId}/next(categoryId=${category.id})}">Next</a>
+						</li>
+						<li class="page-item" th:if="${!lastPage}">
+							<a class="page-link" th:href="@{/article/blog/{categoryId}/last(categoryId=${category.id})}">Last</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

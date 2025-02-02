@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Role (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${role}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-4">
+							<label class="form-label text-primary" th:text="#{role.code}" />
+							<input type="text" class="form-control required" th:field="*{code}" th:placeholder="#{role.code}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{code}" /></ul>
+						</div>
+						<div class="col-md-8">
+							<label class="form-label text-primary" th:text="#{role.description}" />
+							<input type="text" class="form-control required" th:field="*{description}" th:placeholder="#{role.description}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+						</div>
+						<div class="col-md-3">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+				
+				<br/>
+				
+				<h3 class="fw-bold">Role (List All)</h3>
+				
+				<div class="row p-2">
+					<div class="col-10">
+						<table class="table">
+						
+							<thead>
+								<th th:text="#{role.code}"></th>
+								<th th:text="#{role.description}"></th>
+								<th style="width: 15px;"></th>
+								<th style="width: 15px;"></th>
+							</thead>
+							
+							<tbody>
+								<tr th:each="ob : ${listRole}">
+		        					<td th:text="${ob.code}"></td>
+									<td th:text="${ob.description}"></td>
+		        					<td>
+		        						<a class="nav-link" th:href="@{/manager/role/edit/{orderId}(orderId=${ob.id})}">
+								          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Edit"/>
+								        </a>
+		        					</td>
+		        					<td>
+				        				<a class="nav-link" th:href="@{/manager/role/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')">
+								          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+								        </a>
+		        					</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

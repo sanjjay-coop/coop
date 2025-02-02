@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Income (Last 50 Payments)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+								
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{id}"></th>
+						<th th:text="#{income.transactionDate}"></th>
+						<th th:text="#{income.amount}"></th>
+						<th th:text="#{income.narration}"></th>
+						<th th:text="#{income.receiptNumber}"></th>
+						<th th:text="#{income.receivedFrom}"></th>
+						<th style="width: 15px;"></th>
+						<th style="width: 15px;"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listIncome}">
+        					<td th:text="${ob.id}"></td>
+							<td th:text="${#dates.format(ob.transactionDate, 'dd/MM/yyyy')}"></td>
+							<td th:text="${ob.amount}"></td>
+        					<td th:text="${ob.narration}"></td>
+							<td th:text="${ob.receiptNumber}"></td>
+							<td th:text="${ob.receivedFrom}"></td>
+        					<td>
+        						<a class="nav-link" th:href="@{/accounts/income/edit/{orderId}(orderId=${ob.id})}">
+						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Edit"/>
+						        </a>
+        					</td>
+        					<td>
+		        				<a class="nav-link" th:href="@{/accounts/income/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')">
+						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+						        </a>
+        					</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

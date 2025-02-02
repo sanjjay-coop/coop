@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Manager Dashboard</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<div class="row p-3 g-3" >
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/advert/list}">
+					   		<img width="25px" th:src="@{/images/advert.png}" alt="List Advertisements"/>
+						</a>
+						Advertisements
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/category/addNew}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/card-list.svg}" alt="Article Category"/>
+						</a>
+						Article Category
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/article/list}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/card-text.svg}" alt="List Articles"/>
+						</a>
+						Articles
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/contact/addNew}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/file-person.svg}" alt="List Members"/>
+						</a>
+						Contacts
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/educationLevel/addNew}">
+					 	  	<img width="25px" th:src="@{/images/bootstrap-icons/stack.svg}" alt="Education Level"/>
+						</a>
+						Education Level
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/eventType/addNew}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/calendar-event-fill.svg}" alt="Event Types"/>
+						</a>
+						Event Types
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/event/list}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/calendar-event.svg}" alt="List Events"/>
+						</a>
+						Events
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/gender/addNew}">
+					   		<img width="25px" th:src="@{/images/gender.png}" alt="Gender"/>
+						</a>
+						Gender
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/language/addNew}">
+						   	<img width="25px" th:src="@{/images/language.png}" alt="Language"/>
+						</a>
+						Language
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/maritalStatus/addNew}">
+						   	<img width="25px" th:src="@{/images/marital-status.png}" alt="Marital Status"/>
+						</a>
+						Marital Status
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/memberGroup/list}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/people-fill.svg}" alt="Member Group"/>
+						</a>
+						Member Groups
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/role/addNew}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/shield.svg}" alt="Roles"/>
+						</a>
+						Member Roles
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/memberType/addNew}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/person-lines-fill.svg}" alt="Member Types"/>
+						</a>
+						Member Types
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/member/list}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/person-fill.svg}" alt="List Members"/>
+						</a>
+						Members
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/menuItem/list}">
+					   		<img width="25px" th:src="@{/images/menuItem.png}" alt="List Menu Items"/>
+						</a>
+						Menu Items
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/messageText/addNew}">
+					   		<img width="25px" th:src="@{/images/bootstrap-icons/chat-right-text.svg}" alt="Message Text"/>
+						</a>
+						Message Text
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/occupation/addNew}">
+						   	<img width="25px" th:src="@{/images/occupation.png}" alt="Occupation"/>
+						</a>
+						Occupation
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/parameters}">
+						   	<img width="25px" th:src="@{/images/bootstrap-icons/gear-fill.svg}" alt="List Members"/>
+						</a>
+						Parameters
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/salutation/addNew}">
+					 	  	<img width="25px" th:src="@{/images/bootstrap-icons/award.svg}" alt="Salutation"/>
+						</a>
+						Salutation
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/member/search}">
+						   	<img width="25px" th:src="@{/images/member-search.png}" alt="Search Members"/>
+						</a>
+						Search Members
+					</div>
+					<div class="col-md-2 text-center">
+						<a class="nav-link" th:href="@{/manager/siteLogo}">
+					   		<img width="25px" th:src="@{/images/site-logo.jpg}" alt="Site logo"/>
+						</a>
+						Site Logo
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

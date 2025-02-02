@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Contacts</h3>
+				
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{contact.name}"></th>
+						<th th:text="#{contact.designation}"></th>
+						<th th:text="#{contact.address}"></th>
+						<th th:text="#{contact.email}"></th>
+						<th th:text="#{contact.phone}"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listContact}">
+        					<td th:text="${ob.name}"></td>
+							<td th:text="${ob.designation}"></td>
+        					<td th:text="${ob.address}"></td>
+							<td th:text="${ob.email}"></td>
+							<td th:text="${ob.phone}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

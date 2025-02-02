@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Application for Funding</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/addNew}">Add New Application</a>
+						</div>
+					</div>
+				</div>
+			
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{funding.name}"></th>
+						<th th:text="#{funding.email}"></th>
+						<th th:text="#{funding.applicationDate}"></th>
+						<th th:text="#{funding.purpose}"></th>
+						<th th:text="#{funding.status}"></th>
+						<th style="width: 15px;"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listFunding}">
+							<td th:text="${ob.name}"></td>
+							<td th:text="${ob.email}"></td>
+							<td th:text="${#dates.format(ob.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></td>
+							<td th:text="${ob.purpose}"></td>
+							<td th:text="${ob.status}"></td>
+							<td>
+								<a class="nav-link" th:href="@{/home/funding/view/{orderId}(orderId=${ob.id})}">
+							      	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}" alt="View"/>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

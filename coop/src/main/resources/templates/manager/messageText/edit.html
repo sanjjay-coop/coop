@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Message Text (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${messageText}" method="POST">
+					
+					<input type="hidden" class="form-control" th:field="*{id}">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{messageText.messageFor}" />
+				    		<input type="text" class="form-control required" th:field="*{messageFor}" th:placeholder="#{messageText.messageFor}" autofocus />
+				      		<ul><li class="cooperror" th:errors="*{messageFor}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{messageText.subject}" />
+							<input type="text" class="form-control required" th:field="*{subject}" th:placeholder="#{messageText.subject}" />
+					  		<ul><li class="cooperror" th:errors="*{subject}" /></ul>
+						</div>
+						<div class="col-md-12">
+					  		<label class="form-label text-primary" th:text="#{messageText.content}" />
+					   		<textarea class="form-control required" rows="10" th:field="*{content}" th:placeholder="#{messageText.content}"></textarea>
+							<ul><li class="cooperror" th:errors="*{content}" /></ul>
+					   	</div>
+						<div class="col-md-12">
+				      		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

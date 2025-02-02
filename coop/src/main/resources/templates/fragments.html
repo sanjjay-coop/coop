@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="html_head">
+	<meta charset="ISO-8859-1">
+	<title>CoOp - Tool for Association of People.</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/widgeEditor/css/widgEditor.css}">
+
+	<script th:src="@{/assets/widgeEditor/scripts/widgEditor.js}"></script>
+	<style>
+		.cooperror {
+			font-size: 10px; 
+			font-style: italic; 
+			color: darkred; 
+			line-height: 12px; 
+			margin: 5px; 
+			list-style-type: none;
+		}
+		
+		.fieldvalue {
+			font-size: 12pt;
+			border-color: rgb(217, 215, 213);
+			border-width: 0pt 0pt 1pt 1pt;
+			border-radius: 2pt;
+			border-style: solid;
+			padding-bottom: 2pt;
+			padding-left: 3pt;
+		}
+
+		.fieldvalueSmall {
+			font-size: 10pt;
+		}
+		
+		.required {
+			background-color: rgb(250, 253, 189);
+		}
+		
+		.amount {
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="container" th:fragment="header">
+		<div class="row p-2">
+			<div class="col-4">
+				<img height="50px;" th:src="@{/siteLogo}" alt="Site logo" class="border rounded rounded-3"/>
+			</div>
+			<div class="col-8 text-end">
+				<div style="font-weight: bold; font-size: 16px;" th:text="${params?.header}"></div>
+				<div style="font-size: 10px; font-style: italic;" th:text="${params?.subHeader}"></div>
+			</div>
+		</div>
+		<div class="row p-2">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="container-fluid">
+				    	<div id="navbarSupportedContent">
+				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				      			<li class="nav-item">
+				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'index'} ? active" th:href="@{/}">
+				          				<img th:src="@{/images/bootstrap-icons/house.svg}" height="20px;"/>
+				          				Home
+				          			</a>
+				        		</li>
+				        		<li class="nav-item" sec:authorize="hasAnyRole('MEMBER','MANAGER')">
+				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/home}">
+				          				<img th:src="@{/images/bootstrap-icons/sun.svg}" height="20px;"/>
+				          				My Dashboard
+				          			</a>
+				        		</li>
+								<li class="nav-item dropdown" sec:authorize="hasAnyRole('ACCOUNTS','MANAGER')">
+									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'accounts'} ? active" th:href="@{/accounts}" role="button" data-bs-toggle="dropdown">
+										<img th:src="@{/images/bootstrap-icons/book-half.svg}" height="20px;"/>
+										Accounts
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" th:href="@{/accounts/income/addNew}">Income</a></li>
+										<li><a class="dropdown-item" th:href="@{/accounts/expenditure/addNew}">Expenditure</a></li>
+									  	<li><a class="dropdown-item" th:href="@{/accounts/headOfAccount/addNew}">Head of Account</a></li>
+										<li><hr class="dropdown-divider"></li>
+										<li><a class="dropdown-item" th:href="@{/accounts/income/listRecent}">Last 50 Receipts</a></li>
+										<li><a class="dropdown-item" th:href="@{/accounts/expenditure/listRecent}">Last 50 Payments</a></li>
+										<li><a class="dropdown-item" th:href="@{/accounts/reports}">Reports</a></li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown" sec:authorize="hasAnyRole('LIBRARY','MANAGER')">
+									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'library'} ? active" th:href="@{/library}" role="button" data-bs-toggle="dropdown">
+										<img th:src="@{/images/bootstrap-icons/bookshelf.svg}" height="20px;"/>
+										Library
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" th:href="@{/library/title/addNew}">Add Title</a></li>
+										<li><a class="dropdown-item" th:href="@{/library/titleType/addNew}">Title Type</a></li>
+									  	<li><a class="dropdown-item" th:href="@{/library/library/addNew}">Library</a></li>
+										<li><a class="dropdown-item" th:href="@{/library}">Search Title</a></li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown" sec:authorize="hasAnyRole('MODERATOR','MANAGER')">
+									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'moderator'} ? active" th:href="@{/moderator}" role="button" data-bs-toggle="dropdown">
+										<img th:src="@{/images/bootstrap-icons/peace.svg}" height="20px;"/>
+										Moderator
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" th:href="@{/moderator/bulkEmail/list}">Bulk Message</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/business/list}">Business</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/carousel/list}">Carousel</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/funding/list}">Funding Appl.</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/invitation/list}">Invitation</a></li>
+									  	<li><a class="dropdown-item" th:href="@{/moderator/job/list}">Job</a></li>
+									  	<li><a class="dropdown-item" th:href="@{/moderator/matrimonial/list}">Matrimonial</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/memberApplication/list}">Member Application</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/sponsorship/list}">Sponsorship</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/sponsorshipApplication/list}">Sponsorship Applications</a></li>
+									</ul>
+								</li>
+				      			<li class="nav-item" sec:authorize="hasRole('MANAGER')">
+				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'manager'} ? active" th:href="@{/manager}">
+				          				<img th:src="@{/images/bootstrap-icons/people-fill.svg}" height="20px;"/>
+				          				Manager
+				          			</a>
+				        		</li>
+								<li class="nav-item">
+									<a class="nav-link small" th:classappend="${viewLeftMenu == 'index'} ? active" th:href="@{/event/list}">
+										<img th:src="@{/images/bootstrap-icons/alarm.svg}" height="20px;"/>
+										Upcoming Events
+									</a>
+								</li>
+								<li class="nav-item" th:each="ob : ${listMenuItemTop}">
+									<a class="nav-link small" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
+										<img th:src="@{/images/bootstrap-icons/link.svg}" height="20px;"/>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
+										<img th:src="@{/images/bootstrap-icons/link.svg}" height="20px;"/>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+										<img th:src="@{/images/bootstrap-icons/link.svg}" height="20px;"/>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+										<img th:src="@{/images/bootstrap-icons/link.svg}" height="20px;"/>
+										<span th:text="${ob.title}"></span>
+									</a>
+								</li>
+								<li class="nav-item small" sec:authorize="!isAuthenticated()">
+									<a class="nav-link" th:href="@{/join}">
+										<img th:src="@{/images/bootstrap-icons/person.svg}" height="20px;"/>
+										Join as Member
+									</a>
+								</li>
+				      			<li class="nav-item small" sec:authorize="!isAuthenticated()">
+				          			<a class="nav-link" th:href="@{/login}">
+				          				<img th:src="@{/images/bootstrap-icons/lock.svg}" height="20px;"/>
+				          				Sign-In
+				          			</a>
+				        		</li>
+								<li class="nav-item small" sec:authorize="isAuthenticated()">
+									<a class="nav-link" th:href="@{/logout}">
+										<img th:src="@{/images/bootstrap-icons/unlock.svg}" height="20px;"/>
+										Sign-Out
+									</a>
+								</li>
+				      		</ul>
+				    	</div>
+				  	</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+	
+		<div class="row">
+		
+			<div class="col-2" th:fragment="left_menu">
+				
+				<nav class="navbar">
+					<ul class="nav flex-column" th:if="${viewLeftMenu == 'index' }" >
+						<h4 style="font-size: 16px; font-weight: bold;">Upcoming Events</h4>
+						<li th:each="event : ${listEvent}">
+							<span style="font-weight: bold; font-size: small;">Title: </span>
+							<a th:href="@{/event/view/{orderId}(orderId=${event.id})}">
+					    		<span th:text="${event.title}" style="font-size: small; text-align: center;"></span><br/>
+							</a>	
+							<span style="font-size: small;">Start Date: </span>
+							<span style="font-size: small;" th:text="${#dates.format(event.startDate, 'dd/MM/yyyy')}"></span><br/>
+							<span style="font-size: small;">End Date: </span>
+							<span style="font-size: small;" th:text="${#dates.format(event.endDate, 'dd/MM/yyyy')}"></span><br/>
+							<br/>
+					  	</li>
+						<li class="nav-item dropdown bg-light" th:each="ob : ${listMenuItemLeft}">
+							<a class="nav-link" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" th:text="${ob.title}"></a>
+							<a class="nav-link" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}" th:text="${ob.title}"></a>
+							<a class="nav-link" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>
+							<a class="nav-link" target="_blank" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>														
+						</li>
+						<li class="nav-item dropdown bg-light">
+							<a class="nav-link" th:href="@{/contacts}">Contacts</a>
+						</li>
+					</ul>
+				</nav>
+				
+				<div th:each="advert : ${listAdvert}">
+					<div th:if="${advert.location == 'left'}" th:utext="${advert.content}"></div>
+				</div>
+			</div>
+			
+			<div class="col-10">
+				
+				<h3 class="fw-bold">Title</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:fragment="footer">
+		<div class="row p-2">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="container-fluid">
+				    	<div id="navbarSupportedContent">
+				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">	
+								<li class="nav-item small">
+									<a class="nav-link small" th:href="@{/open/sponsorship}">
+										<img th:src="@{/images/bootstrap-icons/trophy.svg}" height="20px;"/>
+										Sponsorship
+									</a>
+								</li>	
+								<li class="nav-item small">
+									<a class="nav-link small" th:href="@{/contacts}">
+										<img th:src="@{/images/bootstrap-icons/envelope.svg}" height="20px;"/>
+										Contacts
+									</a>
+								</li>
+								<li class="nav-item small">
+									<a class="nav-link small" th:href="@{/open/privacyPolicy}">
+										<img th:src="@{/images/bootstrap-icons/file-lock.svg}" height="20px;"/>
+										Privacy Policy
+									</a>
+								</li>
+								<li class="nav-item small">
+									<a class="nav-link" th:href="@{/open/termsAndConditions}">
+										<img th:src="@{/images/bootstrap-icons/journal-text.svg}" height="20px;"/>
+										Terms &amp; Conditions
+									</a>
+								</li>
+								<li class="nav-item small">
+									<a class="nav-link" th:href="@{/open/disclaimer}">
+										<img th:src="@{/images/bootstrap-icons/patch-exclamation.svg}" height="20px;"/>
+										Disclaimer
+									</a>
+								</li>
+				      		</ul>
+				    	</div>
+				  	</div>
+				</nav>
+			</div>
+		</div>
+		<div class="row p-2 text-end">
+			<div class="col-12" th:each="advert : ${listAdvert}">
+				<div th:if="${advert.location == 'footer'}" th:utext="${advert.content}"></div>
+			</div>
+			<div class="col-12">
+				<img th:src="@{/images/coop-logo-new.png}" height="25px;">
+				<br/><a href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;"><p th:text="#{copyright}"></p></a>
+			</div>
+			
+			<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+			<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+		</div>
+	</div>
+
+</body>
+</html>

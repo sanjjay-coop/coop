@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Job Vacancy (Edit)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${job}" method="POST">
+				
+					<input type="hidden" class="form-control" th:field="*{id}">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.position}" />
+							<input type="text" class="form-control required" th:field="*{position}" th:placeholder="#{job.position}" autofocus >
+					  		<ul><li class="cooperror" th:errors="*{position}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{job.description}" />
+							<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{job.description}"></textarea>
+					  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+						</div>
+						<div class="col-md-4">
+							<label class="form-label text-primary" th:text="#{job.salary}" />
+							<input style="text-align: right;" type="text" class="form-control required" th:field="*{salary}" th:placeholder="#{job.salary}">
+					  		<ul><li class="cooperror" th:errors="*{salary}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.minimumQualification}" />
+							<select class="form-select" th:field="*{minimumQualification}">
+					            <option th:each="p : ${listEducationLevel}" th:value="${p.id}" th:text="${p.name}" />
+					        </select>
+					        <ul><li class="cooperror" th:errors="*{minimumQualification}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{job.firmName}" />
+							<input type="text" class="form-control required" th:field="*{firmName}" th:placeholder="#{job.firmName}">
+					  		<ul><li class="cooperror" th:errors="*{firmName}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.address}" />
+							<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{job.address}">
+					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+						</div>
+						<div class="col-md-4">
+							<label class="form-label text-primary" th:text="#{job.city}" />
+							<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{job.city}">
+					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+						</div>
+						<div class="col-md-2">
+							<label class="form-label text-primary" th:text="#{job.pin}" />
+							<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{job.pin}">
+					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.state}" />
+							<input type="text" class="form-control required" th:field="*{state}" th:placeholder="#{job.state}">
+					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.country}" />
+							<input type="text" class="form-control required" th:field="*{country}" th:placeholder="#{job.country}">
+					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.contactName}" />
+							<input type="text" class="form-control required" th:field="*{contactName}" th:placeholder="#{job.contactName}">
+					  		<ul><li class="cooperror" th:errors="*{contactName}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.contactDesignation}" />
+							<input type="text" class="form-control required" th:field="*{contactDesignation}" th:placeholder="#{job.contactDesignation}">
+					  		<ul><li class="cooperror" th:errors="*{contactDesignation}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.contactPhone}" />
+							<input type="text" class="form-control required" th:field="*{contactPhone}" th:placeholder="#{job.contactPhone}">
+					  		<ul><li class="cooperror" th:errors="*{contactPhone}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{job.contactEmail}" />
+							<input type="text" class="form-control required" th:field="*{contactEmail}" th:placeholder="#{job.contactEmail}">
+					  		<ul><li class="cooperror" th:errors="*{contactEmail}" /></ul>
+						</div>
+						<div class="col-md-8">
+							<label class="form-label text-primary" th:text="#{job.url}" />
+							<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{job.url}">
+					  		<ul><li class="cooperror" th:errors="*{url}" /></ul>
+						</div>
+						<div class="col-md-4">
+							<label class="form-label text-primary" th:text="#{job.lastDate}" />
+							<input type="date" class="form-control required" th:field="*{lastDate}" th:placeholder="#{job.lastDate}">
+					  		<ul><li class="cooperror" th:errors="*{lastDate}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

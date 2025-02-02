@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Event Update (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${eventUpdate}" method="POST">
+				
+					<input type="hidden" class="form-control" th:field="*{event}">
+
+					<div class="row g-3">
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{event}" />
+				    		<span class="form-control" th:text="${eventUpdate.event.title}"></span>
+				    	</div>
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{eventUpdate.description}" />
+				    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{event.description}"></textarea>
+				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				      		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

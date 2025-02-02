@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Title (Details)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/searchResult}">To Search List</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/edit/{orderId}(orderId=${title.id})}">Edit Title</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/delete/{orderId}(orderId=${title.id})}" onclick="return confirm('Are you sure?')">Delete Title</a>
+						</div>
+					</div>
+				</div>
+								
+				<div class="row g-3">
+					<div class="col-md-3">
+				   		<label class="form-label text-primary" th:text="#{title.accessionNumber}" />
+				      	<span class="form-control" th:text="${title.accessionNumber}"></span>
+				    </div>
+					<div class="col-md-9">
+						<label class="form-label text-primary" th:text="#{title.uniformTitle}"/>
+						<span class="form-control" th:text="${title.uniformTitle}"></span>
+					</div>
+					<div class="col-md-9">
+						<label class="form-label text-primary" th:text="#{title.authors}"/>
+						<span class="form-control" th:text="${title.authors}"></span>
+					</div>
+					<div class="col-md-3">
+						<label class="form-label text-primary" th:text="#{title.titleType}"/>
+						<span class="form-control" th:text="${title.titleType.name}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{title.summary}"/>
+						<span class="form-control" th:text="${title.summary}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{title.library}"/>
+						<span class="form-control" th:text="${title.library.name + ' [' + title.library.shortName + ']'}"></span>
+					</div>
+					<div class="col-md-4" th:if="${co!=null}">
+						<label class="form-label text-primary" th:text="#{checkOut}"/>
+						<span class="form-control" th:text="${co.member.name + ' [' + co.member.memId + ']' }"></span>
+					</div>
+					<div class="col-md-3" th:if="${co!=null}">
+						<label class="form-label text-primary">Issue Date</label>
+						<span class="form-control" th:text="${#dates.format(co.transactionDate, 'dd/MM/yyyy')}"></span>
+					</div>
+					<div class="col-md-3" th:if="${co!=null}">
+						<label class="form-label text-primary">Due Date</label>
+						<span class="form-control" th:text="${#dates.format(co.dueDate, 'dd/MM/yyyy')}"></span>
+					</div>
+					<div class="col-md-2" th:if="${co!=null}">
+						<label class="form-label text-primary">Check-In</label>
+						<a class="form-control btn btn-primary btn-sm" role="button" th:href="@{/library/title/checkIn/{orderId}(orderId=${co.id})}" onclick="return confirm('Are you sure?')">Check-In</a>
+					</div>
+				</div>
+
+				<div class="row" th:if="${co==null}">
+					<br/><br/>
+					<div class="col-12">
+						<br/><br/>
+						<form th:action= "${servletRequest.requestURI}" th:object="${checkOut}" method="POST">
+							<div class="form-group row">
+								<label class="col-6 col-form-label">Issue Title Form</label>
+							</div>
+							<div class="form-group row">
+								<input type="hidden" class="form-control" th:field="*{title}">
+								<label class="col-2 col-form-label" th:text="#{checkOut.member}"/>
+								<div class="col-2">
+									<input type="text" class="form-control required" th:field="*{member.memId}" th:placeholder="#{member.memId}" />
+								</div>
+								<label class="col-2 col-form-label" th:text="#{checkOut.dueDate}"/>
+								<div class="col-3">
+									<input type="date" class="form-control required" th:field="*{dueDate}" th:placeholder="#{checkOut.dueDate}" >
+								</div>
+								<div class="col-3">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

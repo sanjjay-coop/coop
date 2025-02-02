@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Member Application</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{id}"></th>
+						<th th:text="#{member.name}"></th>
+						<th th:text="#{member.email}"></th>
+						<th th:text="#{member.mobile}"></th>
+						<th th:text="#{member.residenceAddress}"></th>
+						<th>Status</th>
+						<th>Status Date</th>
+						<th style="width: 15px;"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listMemberApplication}">
+        					<td th:text="${ob.id}"></td>
+        					<td th:text="${ob.name}"></td>
+        					<td th:text="${ob.email}"></td>
+							<td th:text="${ob.mobile}"></td>	
+							<td th:text="${ob.residenceAddress}"></td>
+							<td th:text="${ob.status}"></td>
+							<td th:text="${#dates.format(ob.statusDate, 'dd-MM-yyyy HH:mm:ss')}"></td>	
+							<td>
+								<a class="nav-link" th:href="@{/moderator/memberApplication/view/{orderId}(orderId=${ob.id})}">
+							       	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}" alt="View Record"/>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list}">First</a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list/previous}">Previous</a></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list/next}">Next</a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list/last}">Last</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

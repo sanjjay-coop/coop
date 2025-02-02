@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Receipts for Payments</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{id}"></th>
+						<th th:text="#{receipt.receiptDate}"></th>
+						<th th:text="#{receipt.receiptNumber}"></th>
+						<th th:text="#{receipt.details}"></th>
+						<th th:text="#{receipt.amount}"></th>
+						<th th:text="#{receipt.document}"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${member.receipts}">
+        					<td th:text="${ob.id}"></td>
+							<td th:text="${#dates.format(ob.receiptDate, 'dd/MM/yyyy')}"></td>
+							<td th:text="${ob.receiptNumber}"></td>
+        					<td th:text="${ob.details}"></td>
+							<td th:text="${ob.amount}" style="text-align: right;"></td>
+							<td>
+								<a target="_blank" class="nav-link" th:href="@{/home/payment/receipt/{orderId}(orderId=${ob.id})}">
+							      	<img th:src="@{/images/bootstrap-icons/image.svg}" alt="Edit"/>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+					
+					<tfoot>
+						<tr th:if="${totalPages > 0}">
+							<td colspan="6" class="text-center">
+								
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

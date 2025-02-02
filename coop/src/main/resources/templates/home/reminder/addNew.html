@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Reminder (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${reminder}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{reminder.title}" />
+				    		<input type="text" class="form-control" th:field="*{title}" th:placeholder="#{reminder.title}" autofocus >
+				      		<ul><li class="cooperror" th:errors="*{title}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{reminder.description}" />
+				    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{reminder.description}"></textarea>
+				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+				    	</div>
+						<div class="col-md-3">
+				    		<label class="form-label text-primary" th:text="#{reminder.remDate}" />
+				    		<input type="date" class="form-control" th:field="*{remDate}" th:placeholder="#{reminder.remDate}">
+				      		<ul><li class="cooperror" th:errors="*{remDate}" /></ul>
+				    	</div>
+						<div class="col-md-3">
+				    		<label class="form-label text-primary" th:text="#{reminder.remDays}" />
+				    		<input type="text" class="form-control" th:field="*{remDays}" th:placeholder="#{reminder.remDays}">
+				      		<ul><li class="cooperror" th:errors="*{remDays}" /></ul>
+				    	</div>
+						<div class="col-md-3">
+							<label class="form-label text-primary" th:text="#{reminder.remByEmail}" />
+							<select class="form-select" th:field="*{remByEmail}">
+								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{remByEmail}" /></ul>
+						</div>
+						<div class="col-md-12">
+				    		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

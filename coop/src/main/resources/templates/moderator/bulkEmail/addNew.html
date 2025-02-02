@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Bulk Email (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${bulkEmail}" method="POST">
+				
+					<div class="row g-3">
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{bulkEmail.subject}" />
+				    		<input type="text" class="form-control required" th:field="*{subject}" th:placeholder="#{bulkEmail.subject}" autofocus >
+				      		<ul><li class="cooperror" th:errors="*{subject}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{bulkEmail.message}" />
+				    		<textarea class="form-control required" rows="5" th:field="*{message}" th:placeholder="#{bulkEmail.message}"></textarea>
+				      		<ul><li class="cooperror" th:errors="*{message}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				    		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

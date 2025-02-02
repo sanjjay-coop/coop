@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+				
+				<h3 class="fw-bold">Business (My List)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row p-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/business/addNew}">Add New Business</a>
+						</div>
+					</div>
+				</div>
+			
+				<table class="table">
+				
+					<thead>
+						<th th:text="#{business.businessName}"></th>
+						<th th:text="#{business.city}"></th>
+						<th th:text="#{business.keywords}"></th>
+						<th th:text="#{business.enabled}"></th>
+						<th style="width: 15px;"></th>
+						<th style="width: 15px;"></th>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob : ${listBusiness}">
+        					<td th:text="${ob.businessName}"></td>
+        					<td th:text="${ob.city}"></td>
+        					<td th:text="${ob.keywords}"></td>
+							<td th:text="${ob.enabled}"></td>
+        					<td>
+        						<a class="nav-link" th:href="@{/home/business/edit/{orderId}(orderId=${ob.id})}">
+						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Edit"/>
+						        </a>
+        					</td>
+        					<td>
+		        				<a class="nav-link" th:href="@{/home/business/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')">
+						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+						        </a>
+        					</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation example">
+				  	<ul class="pagination">
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/business/list}">First</a></li>
+				    	<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/business/list/previous}">Previous</a></li>
+				    	<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"/></li>
+				    	<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/business/list/next}">Next</a></li>
+				    	<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/business/list/last}">Last</a></li>
+				 	</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

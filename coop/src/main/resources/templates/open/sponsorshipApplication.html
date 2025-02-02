@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row p-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold">Sponsorship Application</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${sponsorshipApplication}" method="POST">
+
+					<input type="hidden" class="form-control" th:field="*{sponsorship}">
+					
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label class="form-label" th:text="#{sponsorship.title}" />
+							<span class="form-control" th:text="${sponsorshipApplication.sponsorship.title}"></span>
+							<ul><li class="cooperror" th:errors="*{sponsorship}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label" th:text="#{sponsorship.description}" />
+							<span class="form-control" th:utext="${sponsorshipApplication.sponsorship.description}"></span>
+						</div>
+						<div class="col-md-12">
+				    		<label class="form-label" th:text="#{sponsorshipApplication.name}" />
+				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{sponsorshipApplication.name}">
+				      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+				    	</div>
+						<div class="col-md-6">
+				    		<label class="form-label" th:text="#{sponsorshipApplication.address}" />
+				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{sponsorshipApplication.address}">
+				      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+				    	</div>
+						<div class="col-md-4">
+							<label class="form-label" th:text="#{sponsorshipApplication.city}" />
+							<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{sponsorshipApplication.city}">
+					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+						</div>
+						<div class="col-md-2">
+							<label class="form-label" th:text="#{sponsorshipApplication.pin}" />
+							<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{sponsorshipApplication.pin}">
+					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label" th:text="#{sponsorshipApplication.state}" />
+							<input type="text" class="form-control required" th:field="*{state}" th:placeholder="#{sponsorshipApplication.state}">
+					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label" th:text="#{sponsorshipApplication.country}" />
+							<input type="text" class="form-control required" th:field="*{country}" th:placeholder="#{sponsorshipApplication.country}">
+					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label" th:text="#{sponsorshipApplication.reasonsForApplication}" />
+							<textarea class="form-control required" rows="5" th:field="*{reasonsForApplication}" th:placeholder="#{sponsorshipApplication.reasonsForApplication}"></textarea>
+							<ul><li class="cooperror" th:errors="*{reasonsForApplication}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label" th:text="#{sponsorshipApplication.educationAndExperience}" />
+							<textarea class="form-control required" rows="5" th:field="*{educationAndExperience}" th:placeholder="#{sponsorshipApplication.educationAndExperience}"></textarea>
+							<ul><li class="cooperror" th:errors="*{educationAndExperience}" /></ul>
+						</div>
+						<div class="col-md-6">
+				    		<label class="form-label" th:text="#{sponsorshipApplication.mobile}" />
+				    		<input type="text" class="form-control required" th:field="*{mobile}" th:placeholder="#{sponsorshipApplication.mobile}">
+				      		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
+				    	</div>
+						<div class="col-md-6">
+				    		<label class="form-label" th:text="#{sponsorshipApplication.email}" />
+				    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{sponsorshipApplication.email}">
+				      		<ul><li class="cooperror" th:errors="*{email}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				    		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>
