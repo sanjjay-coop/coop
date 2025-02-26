@@ -22,27 +22,27 @@
 
 					<div class="row g-3">
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{advert.name}" />
+							<label class="form-label text-primary" th:text="#{advert.name}"></label>
 							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{advert.name}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{advert.content}" />
+							<label class="form-label text-primary" th:text="#{advert.content}"></label>
 							<textarea class="form-control required" rows="5" th:field="*{content}" th:placeholder="#{advert.content}"></textarea>
 					  		<ul><li class="cooperror" th:errors="*{content}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{advert.location}" />
+							<label class="form-label text-primary" th:text="#{advert.location}"></label>
 							<input type="text" class="form-control required" th:field="*{location}" th:placeholder="#{advert.location}">
 					  		<ul><li class="cooperror" th:errors="*{location}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{advert.pubDate}" />
+							<label class="form-label text-primary" th:text="#{advert.pubDate}"></label>
 							<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{advert.pubDate}">
 					  		<ul><li class="cooperror" th:errors="*{pubDate}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{advert.expDate}" />
+							<label class="form-label text-primary" th:text="#{advert.expDate}"></label>
 							<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{advert.expDate}">
 					  		<ul><li class="cooperror" th:errors="*{expDate}" /></ul>
 						</div>

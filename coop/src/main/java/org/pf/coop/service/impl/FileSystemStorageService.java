@@ -13,7 +13,6 @@ import org.pf.coop.configProperties.StorageProperties;
 import org.pf.coop.exceptions.StorageException;
 import org.pf.coop.exceptions.StorageFileNotFoundException;
 import org.pf.coop.service.StorageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.util.FileSystemUtils;
@@ -23,7 +22,6 @@ public class FileSystemStorageService implements StorageService {
 
 	private final Path rootLocation;
 
-	@Autowired
 	public FileSystemStorageService(StorageProperties properties) {
         
         if(properties.getLocation().trim().length() == 0){
@@ -67,7 +65,6 @@ public class FileSystemStorageService implements StorageService {
 		catch (IOException e) {
 			throw new StorageException("Failed to read stored files", e);
 		}
-
 	}
 
 	@Override
@@ -86,7 +83,6 @@ public class FileSystemStorageService implements StorageService {
 			else {
 				throw new StorageFileNotFoundException(
 						"Could not read file: " + filename);
-
 			}
 		}
 		catch (MalformedURLException e) {

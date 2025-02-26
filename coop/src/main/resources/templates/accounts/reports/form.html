@@ -19,7 +19,7 @@
 				<form th:action= "${servletRequest.requestURI}" th:object="${reportForm}" method="POST">
 							  	
 				  	<div class="form-group row">
-				    	<label class="col-3 col-form-label" th:text="#{reportForm.startDate}" />
+				    	<label class="col-3 col-form-label" th:text="#{reportForm.startDate}"></label>
 				    	<div class="col-3">
 				      		<input type="date" class="form-control" th:field="*{startDate}" th:placeholder="#{reportForm.startDate}">
 				      		<ul><li class="cooperror" th:errors="*{startDate}" /></ul>
@@ -27,7 +27,7 @@
 					</div>
 				  	
 				  	<div class="form-group row">
-				    	<label class="col-3 col-form-label" th:text="#{reportForm.endDate}" />
+				    	<label class="col-3 col-form-label" th:text="#{reportForm.endDate}"></label>
 				    	<div class="col-3">
 				      		<input type="date" class="form-control" th:field="*{endDate}" th:placeholder="#{reportForm.endDate}">
 				      		<ul><li class="cooperror" th:errors="*{endDate}" /></ul>
@@ -35,7 +35,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label class="col-3 col-form-label" th:text="#{reportForm.reportType}" />
+						<label class="col-3 col-form-label" th:text="#{reportForm.reportType}"></label>
 						<div class="col-3">
 							<select class="form-select required" th:field="*{reportType}">
 								<option value="HTML" th:text="HTML" />

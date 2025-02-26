@@ -27,13 +27,15 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{reminder.title}"></th>
-						<th th:text="#{reminder.description}"></th>
-						<th th:text="#{reminder.remDate}"></th>
-						<th th:text="#{reminder.remDays}"></th>
-						<th th:text="#{reminder.remByEmail}"></th>
-						<th th:text="#{reminder.remBySelf}"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{reminder.title}"></th>
+							<th th:text="#{reminder.description}"></th>
+							<th th:text="#{reminder.remDate}"></th>
+							<th th:text="#{reminder.remDays}"></th>
+							<th th:text="#{reminder.remByEmail}"></th>
+							<th th:text="#{reminder.remBySelf}"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -56,7 +58,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/reminder/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/reminder/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/reminder/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/reminder/list/last}">Last</a></li>
 					</ul>

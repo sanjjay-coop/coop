@@ -22,11 +22,11 @@
 
 					<div class="row g-3">
 						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{event}" />
+				    		<label class="form-label text-primary" th:text="#{event}"></label>
 				    		<span class="form-control" th:text="${eventUpdate.event.title}"></span>
 				    	</div>
 						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{eventUpdate.description}" />
+				    		<label class="form-label text-primary" th:text="#{eventUpdate.description}"></label>
 				    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{event.description}"></textarea>
 				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 				    	</div>

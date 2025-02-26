@@ -27,14 +27,16 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{id}"></th>
-						<th th:text="#{event.title}"></th>
-						<th th:text="#{event.publish}"></th>
-						<th th:text="#{event.startDate}"></th>
-						<th th:text="#{event.endDate}"></th>
-						<th style="width: 15px;"></th>
-						<th style="width: 15px;"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{id}"></th>
+							<th th:text="#{event.title}"></th>
+							<th th:text="#{event.publish}"></th>
+							<th th:text="#{event.startDate}"></th>
+							<th th:text="#{event.endDate}"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -66,7 +68,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/manager/event/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/manager/event/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/manager/event/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/manager/event/list/last}">Last</a></li>
 					</ul>

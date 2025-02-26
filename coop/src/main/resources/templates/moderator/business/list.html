@@ -18,11 +18,13 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{business.businessName}"></th>
-						<th th:text="#{business.city}"></th>
-						<th th:text="#{business.keywords}"></th>
-						<th th:text="#{business.owner}"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{business.businessName}"></th>
+							<th th:text="#{business.city}"></th>
+							<th th:text="#{business.keywords}"></th>
+							<th th:text="#{business.owner}"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -43,7 +45,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/business/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/business/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/business/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/business/list/last}">Last</a></li>
 					</ul>

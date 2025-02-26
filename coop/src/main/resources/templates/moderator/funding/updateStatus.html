@@ -22,72 +22,72 @@
 
 					<div class="row g-3">
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{funding.name}" />
+							<label class="form-label text-primary" th:text="#{funding.name}"></label>
 							<span class="form-control" th:text="${funding.name}"></span>
 							<input type="hidden" class="form-control" th:field="*{name}">
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{funding.address}" />
+							<label class="form-label text-primary" th:text="#{funding.address}"></label>
 							<span class="form-control" th:text="${funding.address}"></span>
 							<input type="hidden" class="form-control" th:field="*{address}">
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{funding.city}" />
+							<label class="form-label text-primary" th:text="#{funding.city}"></label>
 							<span class="form-control" th:text="${funding.city}"></span>
 							<input type="hidden" class="form-control" th:field="*{city}">
 						</div>
 						<div class="col-md-2">
-							<label class="form-label text-primary" th:text="#{funding.pin}" />
+							<label class="form-label text-primary" th:text="#{funding.pin}"></label>
 							<span class="form-control" th:text="${funding.pin}"></span>
 							<input type="hidden" class="form-control" th:field="*{pin}">
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{funding.state}" />
+							<label class="form-label text-primary" th:text="#{funding.state}"></label>
 							<span class="form-control" th:text="${funding.state}"></span>
 							<input type="hidden" class="form-control" th:field="*{state}">
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{funding.country}" />
+							<label class="form-label text-primary" th:text="#{funding.country}"></label>
 							<span class="form-control" th:text="${funding.country}"></span>
 							<input type="hidden" class="form-control" th:field="*{country}">
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{funding.email}" />
+							<label class="form-label text-primary" th:text="#{funding.email}"></label>
 							<span class="form-control" th:text="${funding.email}"></span>
 							<input type="hidden" class="form-control" th:field="*{email}">
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{funding.mobile}" />
+							<label class="form-label text-primary" th:text="#{funding.mobile}"></label>
 							<span class="form-control" th:text="${funding.mobile}"></span>
 							<input type="hidden" class="form-control" th:field="*{mobile}">
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{funding.amountRequested}" />
+							<label class="form-label text-primary" th:text="#{funding.amountRequested}"></label>
 							<span class="form-control" th:text="${funding.amountRequested}"></span>
 							<input type="hidden" class="form-control" th:field="*{amountRequested}">
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{funding.purpose}" />
+							<label class="form-label text-primary" th:text="#{funding.purpose}"></label>
 							<span class="form-control" th:text="${funding.purpose}"></span>
 							<input type="hidden" class="form-control" th:field="*{purpose}">
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{funding.applicationDate}" />
+							<label class="form-label text-primary" th:text="#{funding.applicationDate}"></label>
 							<span class="form-control" th:text="${#dates.format(funding.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></span>
 							<input type="hidden" class="form-control" th:field="*{applicationDate}">
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{funding.amountSanctioned}" />
+							<label class="form-label text-primary" th:text="#{funding.amountSanctioned}"></label>
 							<input type="text" class="form-control required amount" th:field="*{amountSanctioned}" th:placeholder="#{funding.amountSanctioned}">
 							<ul><li class="cooperror" th:errors="*{amountSanctioned}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{funding.sanctionDate}" />
+							<label class="form-label text-primary" th:text="#{funding.sanctionDate}"></label>
 							<input type="date" class="form-control required" th:field="*{sanctionDate}" th:placeholder="#{funding.sanctionDate}">
 							<ul><li class="cooperror" th:errors="*{sanctionDate}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{funding.status}" />
+							<label class="form-label text-primary" th:text="#{funding.status}"></label>
 							<select class="form-select" th:field="*{status}">
 								<option value="APPROVED" label="APPROVED" />
 								<option value="NOT APPROVED" label="NOT APPROVED" />
@@ -96,7 +96,7 @@
 							<ul><li class="cooperror" th:errors="*{status}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{funding.remarks}" />
+							<label class="form-label text-primary" th:text="#{funding.remarks}"></label>
 							<textarea class="form-control required" rows="5" th:field="*{remarks}" th:placeholder="#{funding.remarks}"></textarea>
 					  		<ul><li class="cooperror" th:errors="*{remarks}" /></ul>
 						</div>

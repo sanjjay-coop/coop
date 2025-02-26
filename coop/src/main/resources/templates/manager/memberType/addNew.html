@@ -20,7 +20,7 @@
 
 					<div class="row g-3">
 						<div class="col-md-6">
-							<label class="col-3 col-form-label" th:text="#{memberType.name}" />
+							<label class="col-3 col-form-label" th:text="#{memberType.name}"></label>
 							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{memberType.name}" autofocus />
 					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 						</div>
@@ -39,9 +39,11 @@
 						<table class="table">
 						
 							<thead>
-								<th th:text="#{memberType.name}"></th>
-								<th style="width: 15px;"></th>
-								<th style="width: 15px;"></th>
+								<tr>
+									<th th:text="#{memberType.name}"></th>
+									<th style="width: 15px;"></th>
+									<th style="width: 15px;"></th>
+								</tr>
 							</thead>
 							
 							<tbody>

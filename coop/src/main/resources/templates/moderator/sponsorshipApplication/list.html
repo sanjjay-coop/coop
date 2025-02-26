@@ -19,12 +19,14 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{id}"></th>
-						<th th:text="#{sponsorshipApplication.name}"></th>
-						<th th:text="#{sponsorshipApplication.reasonsForApplication}"></th>
-						<th th:text="#{sponsorshipApplication.applicationDate}"></th>
-						<th th:text="#{sponsorship.title}"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{id}"></th>
+							<th th:text="#{sponsorshipApplication.name}"></th>
+							<th th:text="#{sponsorshipApplication.reasonsForApplication}"></th>
+							<th th:text="#{sponsorshipApplication.applicationDate}"></th>
+							<th th:text="#{sponsorship.title}"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -49,7 +51,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/sponsorshipApplication/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/sponsorshipApplication/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/sponsorshipApplication/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/sponsorshipApplication/list/last}">Last</a></li>
 					</ul>

@@ -12,7 +12,7 @@
 
 			<div class="col-12">
 				
-				<div th:text="${'Data between ' + #dates.format(reportForm.startDate, 'dd/MM/yyyy') + ' - ' + #dates.format(reportForm.endDate, 'dd/MM/yyyy')}" />
+				<div th:text="${'Data between ' + #dates.format(reportForm.startDate, 'dd/MM/yyyy') + ' - ' + #dates.format(reportForm.endDate, 'dd/MM/yyyy')}"></div>
 				<br/>
 				<h3 class="fw-bold">Income (Receipts)</h3>
 				
@@ -21,14 +21,16 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{id}"></th>
-						<th th:text="#{income.transactionDate}"></th>
-						<th th:text="#{income.amount}"></th>
-						<th th:text="#{income.narration}"></th>
-						<th th:text="#{income.receiptNumber}"></th>
-						<th th:text="#{income.receivedFrom}"></th>
-						<th style="width: 15px;"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{id}"></th>
+							<th th:text="#{income.transactionDate}"></th>
+							<th th:text="#{income.amount}"></th>
+							<th th:text="#{income.narration}"></th>
+							<th th:text="#{income.receiptNumber}"></th>
+							<th th:text="#{income.receivedFrom}"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -58,14 +60,16 @@
 				<table class="table">
 								
 					<thead>
-						<th th:text="#{id}"></th>
-						<th th:text="#{expenditure.transactionDate}"></th>
-						<th th:text="#{expenditure.amount}"></th>
-						<th th:text="#{expenditure.narration}"></th>
-						<th th:text="#{expenditure.voucherInvoiceNumber}"></th>
-						<th th:text="#{expenditure.paidTo}"></th>
-						<th style="width: 15px;"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{id}"></th>
+							<th th:text="#{expenditure.transactionDate}"></th>
+							<th th:text="#{expenditure.amount}"></th>
+							<th th:text="#{expenditure.narration}"></th>
+							<th th:text="#{expenditure.voucherInvoiceNumber}"></th>
+							<th th:text="#{expenditure.paidTo}"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 									
 					<tbody>

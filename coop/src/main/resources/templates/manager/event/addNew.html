@@ -20,34 +20,34 @@
 
 					<div class="row g-3">
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{event.title}" />
+							<label class="form-label text-primary" th:text="#{event.title}"></label>
 							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{event.title}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{title}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{event.description}" />
+							<label class="form-label text-primary" th:text="#{event.description}"></label>
 							<textarea class="widgEditor form-control" rows="5" th:field="*{description}" th:placeholder="#{event.description}"></textarea>
 					  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{event.startDate}" />
+							<label class="form-label text-primary" th:text="#{event.startDate}"></label>
 							<input type="date" class="form-control required" th:field="*{startDate}" th:placeholder="#{event.startDate}">
 					  		<ul><li class="cooperror" th:errors="*{startDate}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{event.endDate}" />
+							<label class="form-label text-primary" th:text="#{event.endDate}"></label>
 							<input type="date" class="form-control required" th:field="*{endDate}" th:placeholder="#{event.endDate}">
 					  		<ul><li class="cooperror" th:errors="*{endDate}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{event.publish}" />
+							<label class="form-label text-primary" th:text="#{event.publish}"></label>
 							<select class="form-select" th:field="*{publish}">
 								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{publish}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{event.eventType}" />
+							<label class="form-label text-primary" th:text="#{event.eventType}"></label>
 							<select class="form-select" th:field="*{eventType}">
 								<option th:each="p : ${listEventType}" th:value="${p.id}" th:text="${p.name}" />
 							</select>

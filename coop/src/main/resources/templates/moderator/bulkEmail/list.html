@@ -26,13 +26,15 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{id}"></th>
-						<th th:text="#{bulkEmail.subject}"></th>
-						<th th:text="#{bulkEmail.bcc}"></th>
-						<th th:text="#{bulkEmail.message}"></th>
-						<th th:text="#{bulkEmail.status}"></th>
-						<th th:text="#{bulkEmail.dateSent}"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{id}"></th>
+							<th th:text="#{bulkEmail.subject}"></th>
+							<th th:text="#{bulkEmail.bcc}"></th>
+							<th th:text="#{bulkEmail.message}"></th>
+							<th th:text="#{bulkEmail.status}"></th>
+							<th th:text="#{bulkEmail.dateSent}"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -56,7 +58,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/bulkEmail/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/bulkEmail/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/bulkEmail/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/bulkEmail/list/last}">Last</a></li>
 					</ul>

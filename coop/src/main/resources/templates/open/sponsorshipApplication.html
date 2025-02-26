@@ -22,61 +22,61 @@
 					
 					<div class="row g-3">
 						<div class="col-md-12">
-							<label class="form-label" th:text="#{sponsorship.title}" />
+							<label class="form-label" th:text="#{sponsorship.title}"></label>
 							<span class="form-control" th:text="${sponsorshipApplication.sponsorship.title}"></span>
 							<ul><li class="cooperror" th:errors="*{sponsorship}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label" th:text="#{sponsorship.description}" />
+							<label class="form-label" th:text="#{sponsorship.description}"></label>
 							<span class="form-control" th:utext="${sponsorshipApplication.sponsorship.description}"></span>
 						</div>
 						<div class="col-md-12">
-				    		<label class="form-label" th:text="#{sponsorshipApplication.name}" />
+				    		<label class="form-label" th:text="#{sponsorshipApplication.name}"></label>
 				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{sponsorshipApplication.name}">
 				      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 				    	</div>
 						<div class="col-md-6">
-				    		<label class="form-label" th:text="#{sponsorshipApplication.address}" />
+				    		<label class="form-label" th:text="#{sponsorshipApplication.address}"></label>
 				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{sponsorshipApplication.address}">
 				      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
 				    	</div>
 						<div class="col-md-4">
-							<label class="form-label" th:text="#{sponsorshipApplication.city}" />
+							<label class="form-label" th:text="#{sponsorshipApplication.city}"></label>
 							<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{sponsorshipApplication.city}">
 					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
 						</div>
 						<div class="col-md-2">
-							<label class="form-label" th:text="#{sponsorshipApplication.pin}" />
+							<label class="form-label" th:text="#{sponsorshipApplication.pin}"></label>
 							<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{sponsorshipApplication.pin}">
 					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label" th:text="#{sponsorshipApplication.state}" />
+							<label class="form-label" th:text="#{sponsorshipApplication.state}"></label>
 							<input type="text" class="form-control required" th:field="*{state}" th:placeholder="#{sponsorshipApplication.state}">
 					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label" th:text="#{sponsorshipApplication.country}" />
+							<label class="form-label" th:text="#{sponsorshipApplication.country}"></label>
 							<input type="text" class="form-control required" th:field="*{country}" th:placeholder="#{sponsorshipApplication.country}">
 					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label" th:text="#{sponsorshipApplication.reasonsForApplication}" />
+							<label class="form-label" th:text="#{sponsorshipApplication.reasonsForApplication}"></label>
 							<textarea class="form-control required" rows="5" th:field="*{reasonsForApplication}" th:placeholder="#{sponsorshipApplication.reasonsForApplication}"></textarea>
 							<ul><li class="cooperror" th:errors="*{reasonsForApplication}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label" th:text="#{sponsorshipApplication.educationAndExperience}" />
+							<label class="form-label" th:text="#{sponsorshipApplication.educationAndExperience}"></label>
 							<textarea class="form-control required" rows="5" th:field="*{educationAndExperience}" th:placeholder="#{sponsorshipApplication.educationAndExperience}"></textarea>
 							<ul><li class="cooperror" th:errors="*{educationAndExperience}" /></ul>
 						</div>
 						<div class="col-md-6">
-				    		<label class="form-label" th:text="#{sponsorshipApplication.mobile}" />
+				    		<label class="form-label" th:text="#{sponsorshipApplication.mobile}"></label>
 				    		<input type="text" class="form-control required" th:field="*{mobile}" th:placeholder="#{sponsorshipApplication.mobile}">
 				      		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
 				    	</div>
 						<div class="col-md-6">
-				    		<label class="form-label" th:text="#{sponsorshipApplication.email}" />
+				    		<label class="form-label" th:text="#{sponsorshipApplication.email}"></label>
 				    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{sponsorshipApplication.email}">
 				      		<ul><li class="cooperror" th:errors="*{email}" /></ul>
 				    	</div>

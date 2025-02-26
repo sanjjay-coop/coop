@@ -20,110 +20,110 @@
 
 					<div class="row g-3">
 						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{parameters.siteUrl}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.siteUrl}"></label>
 				    		<input type="text" class="form-control" th:field="*{siteUrl}" th:placeholder="#{parameters.siteUrl}" autofocus >
 				      		<ul><li class="cooperror" th:errors="*{siteUrl}" /></ul>
 				    	</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{parameters.header}" />
+							<label class="form-label text-primary" th:text="#{parameters.header}"></label>
 							<input type="text" class="form-control" th:field="*{header}" th:placeholder="#{parameters.header}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{header}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{parameters.subHeader}" />
+							<label class="form-label text-primary" th:text="#{parameters.subHeader}"></label>
 							<input type="text" class="form-control" th:field="*{subHeader}" th:placeholder="#{parameters.subHeader}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{subHeader}" /></ul>
 						</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{parameters.mailEnable}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.mailEnable}"></label>
 				    		<select class="form-select" th:field="*{mailEnable}">
 					            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 					        </select>
 					        <ul><li class="cooperror" th:errors="*{mailEnable}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{parameters.mailHost}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.mailHost}"></label>
 				    		<input type="text" class="form-control" th:field="*{mailHost}" th:placeholder="#{parameters.mailHost}">
 				      		<ul><li class="cooperror" th:errors="*{mailHost}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{parameters.mailPort}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.mailPort}"></label>
 				    		<input type="text" class="form-control" th:field="*{mailPort}" th:placeholder="#{parameters.mailPort}">
 				      		<ul><li class="cooperror" th:errors="*{mailPort}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{parameters.mailTransportProtocol}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.mailTransportProtocol}"></label>
 				    		<input type="text" class="form-control" th:field="*{mailTransportProtocol}" th:placeholder="#{parameters.mailTransportProtocol}">
 				      		<ul><li class="cooperror" th:errors="*{mailTransportProtocol}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{parameters.mailSmtpPort}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.mailSmtpPort}"></label>
 				    		<input type="text" class="form-control" th:field="*{mailSmtpPort}" th:placeholder="#{parameters.mailSmtpPort}">
 				      		<ul><li class="cooperror" th:errors="*{mailSmtpPort}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{parameters.mailSmtpAuth}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.mailSmtpAuth}"></label>
 				    		<select class="form-select" th:field="*{mailSmtpAuth}">
 					            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 					        </select>
 					        <ul><li class="cooperror" th:errors="*{mailSmtpAuth}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{parameters.mailSmtpStarttlsEnable}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.mailSmtpStarttlsEnable}"></label>
 				    		<select class="form-select" th:field="*{mailSmtpStarttlsEnable}">
 					            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 					        </select>
 					        <ul><li class="cooperror" th:errors="*{mailSmtpStarttlsEnable}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{parameters.mailSmtpStarttlsRequired}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.mailSmtpStarttlsRequired}"></label>
 				    		<select class="form-select" th:field="*{mailSmtpStarttlsRequired}">
 					            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 					        </select>
 					        <ul><li class="cooperror" th:errors="*{mailSmtpStarttlsRequired}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{parameters.mailUsername}" />
+							<label class="form-label text-primary" th:text="#{parameters.mailUsername}"></label>
 							<input type="text" class="form-control" th:field="*{mailUsername}" th:placeholder="#{parameters.mailUsername}">
 							<ul><li class="cooperror" th:errors="*{mailUsername}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{parameters.mailPassword}" />
+							<label class="form-label text-primary" th:text="#{parameters.mailPassword}"></label>
 							<input type="text" class="form-control" th:field="*{mailPassword}" th:placeholder="#{parameters.mailPassword}">
 							<ul><li class="cooperror" th:errors="*{mailPassword}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{parameters.emailDayLimit}" />
+							<label class="form-label text-primary" th:text="#{parameters.emailDayLimit}"></label>
 							<input type="text" class="form-control" th:field="*{emailDayLimit}" th:placeholder="#{parameters.emailDayLimit}">
 							<ul><li class="cooperror" th:errors="*{emailDayLimit}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{parameters.dataDirectory}" />
+							<label class="form-label text-primary" th:text="#{parameters.dataDirectory}"></label>
 							<input type="text" class="form-control" th:field="*dataDirectory}" th:placeholder="#{parameters.dataDirectory}">
 							<ul><li class="cooperror" th:errors="*{dataDirectory}" /></ul>
 						</div>
 						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{parameters.fromEmail}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.fromEmail}"></label>
 				    		<input type="text" class="form-control" th:field="*{fromEmail}" th:placeholder="#{parameters.fromEmail}">
 				      		<ul><li class="cooperror" th:errors="*{fromEmail}" /></ul>
 				    	</div>
 						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{parameters.emailSignature}" />
+				    		<label class="form-label text-primary" th:text="#{parameters.emailSignature}"></label>
 				    		<input type="text" class="form-control" th:field="*{emailSignature}" th:placeholder="#{parameters.emailSignature}">
 				      		<ul><li class="cooperror" th:errors="*{emailSignature}" /></ul>
 				    	</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{parameters.privacyPolicy}" />
+							<label class="form-label text-primary" th:text="#{parameters.privacyPolicy}"></label>
 							<textarea class="widgEditor form-control" rows="5" th:field="*{privacyPolicy}" th:placeholder="#{parameters.privacyPolicy}"></textarea>
 							<ul><li class="cooperror" th:errors="*{privacyPolicy}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{parameters.disclaimer}" />
+							<label class="form-label text-primary" th:text="#{parameters.disclaimer}"></label>
 							<textarea class="widgEditor form-control" rows="5" th:field="*{disclaimer}" th:placeholder="#{parameters.disclaimer}"></textarea>
 							<ul><li class="cooperror" th:errors="*{disclaimer}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{parameters.termsAndConditions}" />
+							<label class="form-label text-primary" th:text="#{parameters.termsAndConditions}"></label>
 							<textarea class="widgEditor form-control" rows="5" th:field="*{termsAndConditions}" th:placeholder="#{parameters.termsAndConditions}"></textarea>
 							<ul><li class="cooperror" th:errors="*{termsAndConditions}" /></ul>
 						</div>

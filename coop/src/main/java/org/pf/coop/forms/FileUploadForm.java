@@ -11,9 +11,16 @@ public class FileUploadForm implements Serializable {
 	 */
 	private static final long serialVersionUID = 5900710433862597600L;
 	
+	private Long objectId;
 	private String description;
 	private MultipartFile file;
 	
+	public Long getObjectId() {
+		return objectId;
+	}
+	public void setObjectId(Long objectId) {
+		this.objectId = objectId;
+	}
 	public String getDescription() {
 		return description;
 	}

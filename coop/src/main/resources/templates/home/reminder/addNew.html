@@ -20,27 +20,27 @@
 
 					<div class="row g-3">
 						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{reminder.title}" />
+				    		<label class="form-label text-primary" th:text="#{reminder.title}"></label>
 				    		<input type="text" class="form-control" th:field="*{title}" th:placeholder="#{reminder.title}" autofocus >
 				      		<ul><li class="cooperror" th:errors="*{title}" /></ul>
 				    	</div>
 						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{reminder.description}" />
+				    		<label class="form-label text-primary" th:text="#{reminder.description}"></label>
 				    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{reminder.description}"></textarea>
 				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{reminder.remDate}" />
+				    		<label class="form-label text-primary" th:text="#{reminder.remDate}"></label>
 				    		<input type="date" class="form-control" th:field="*{remDate}" th:placeholder="#{reminder.remDate}">
 				      		<ul><li class="cooperror" th:errors="*{remDate}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{reminder.remDays}" />
+				    		<label class="form-label text-primary" th:text="#{reminder.remDays}"></label>
 				    		<input type="text" class="form-control" th:field="*{remDays}" th:placeholder="#{reminder.remDays}">
 				      		<ul><li class="cooperror" th:errors="*{remDays}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{reminder.remByEmail}" />
+							<label class="form-label text-primary" th:text="#{reminder.remByEmail}"></label>
 							<select class="form-select" th:field="*{remByEmail}">
 								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 							</select>

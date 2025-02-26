@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head th:fragment="html_head">
 	<meta charset="ISO-8859-1">
 	<title>CoOp - Tool for Association of People.</title>
@@ -178,8 +178,8 @@
 			<div class="col-2" th:fragment="left_menu">
 				
 				<nav class="navbar">
+					<h4 style="font-size: 16px; font-weight: bold;">Upcoming Events</h4>
 					<ul class="nav flex-column" th:if="${viewLeftMenu == 'index' }" >
-						<h4 style="font-size: 16px; font-weight: bold;">Upcoming Events</h4>
 						<li th:each="event : ${listEvent}">
 							<span style="font-weight: bold; font-size: small;">Title: </span>
 							<a th:href="@{/event/view/{orderId}(orderId=${event.id})}">
@@ -267,7 +267,7 @@
 			</div>
 			<div class="col-12">
 				<img th:src="@{/images/coop-logo-new.png}" height="25px;">
-				<br/><a href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;"><p th:text="#{copyright}"></p></a>
+				<br/><a href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;" th:text="#{copyright}"></a>
 			</div>
 			
 			<script th:src="@{/webjars/jquery/jquery.min.js}"></script>

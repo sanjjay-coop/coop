@@ -38,7 +38,7 @@
 							<a class="page-link" th:href="@{/article/blog/{categoryId}/previous(categoryId=${category.id})}">Previous</a>
 						</li>
 						<li class="page-item">
-							<a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"/>
+							<a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a>
 						</li>
 						<li class="page-item" th:if="${!lastPage}">
 							<a class="page-link" th:href="@{/article/blog/{categoryId}/next(categoryId=${category.id})}">Next</a>

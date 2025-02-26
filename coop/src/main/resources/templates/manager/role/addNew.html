@@ -20,12 +20,12 @@
 
 					<div class="row g-3">
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{role.code}" />
+							<label class="form-label text-primary" th:text="#{role.code}"></label>
 							<input type="text" class="form-control required" th:field="*{code}" th:placeholder="#{role.code}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{code}" /></ul>
 						</div>
 						<div class="col-md-8">
-							<label class="form-label text-primary" th:text="#{role.description}" />
+							<label class="form-label text-primary" th:text="#{role.description}"></label>
 							<input type="text" class="form-control required" th:field="*{description}" th:placeholder="#{role.description}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 						</div>
@@ -44,10 +44,12 @@
 						<table class="table">
 						
 							<thead>
-								<th th:text="#{role.code}"></th>
-								<th th:text="#{role.description}"></th>
-								<th style="width: 15px;"></th>
-								<th style="width: 15px;"></th>
+								<tr>
+									<th th:text="#{role.code}"></th>
+									<th th:text="#{role.description}"></th>
+									<th style="width: 15px;"></th>
+									<th style="width: 15px;"></th>
+								</tr>
 							</thead>
 							
 							<tbody>

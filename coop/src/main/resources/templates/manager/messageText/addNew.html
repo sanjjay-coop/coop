@@ -20,17 +20,17 @@
 
 					<div class="row g-3">
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{messageText.messageFor}" />
+							<label class="form-label text-primary" th:text="#{messageText.messageFor}"></label>
 							<input type="text" class="form-control required" th:field="*{messageFor}" th:placeholder="#{messageText.messageFor}" autofocus />
 					  		<ul><li class="cooperror" th:errors="*{messageFor}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{messageText.subject}" />
+							<label class="form-label text-primary" th:text="#{messageText.subject}"></label>
 							<input type="text" class="form-control required" th:field="*{subject}" th:placeholder="#{messageText.subject}" />
 					  		<ul><li class="cooperror" th:errors="*{subject}" /></ul>
 						</div>
 						<div class="col-md-12">
-					  		<label class="form-label text-primary" th:text="#{messageText.content}" />
+					  		<label class="form-label text-primary" th:text="#{messageText.content}"></label>
 					   		<textarea class="form-control required" rows="10" th:field="*{content}" th:placeholder="#{messageText.content}"></textarea>
 							<ul><li class="cooperror" th:errors="*{content}" /></ul>
 					   	</div>
@@ -47,10 +47,12 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{messageText.messageFor}"></th>
-						<th th:text="#{messageText.subject}"></th>
-						<th style="width: 15px;"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{messageText.messageFor}"></th>
+							<th th:text="#{messageText.subject}"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>

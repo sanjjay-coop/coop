@@ -20,37 +20,37 @@
 					
 					<div class="row g-3">
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{title.accessionNumber}" />
+							<label class="form-label text-primary" th:text="#{title.accessionNumber}"></label>
 					   		<input type="text" class="form-control required" th:field="*{accessionNumber}" th:placeholder="#{title.accessionNumber}" autofocus >
 					    	<ul><li class="cooperror" th:errors="*{accessionNumber}" /></ul>
 					    </div>
 						<div class="col-md-9">
-				    		<label class="form-label text-primary" th:text="#{title.uniformTitle}" />
+				    		<label class="form-label text-primary" th:text="#{title.uniformTitle}"></label>
 				      		<input type="text" class="form-control required" th:field="*{uniformTitle}" th:placeholder="#{title.uniformTitle}" >
 				      		<ul><li class="cooperror" th:errors="*{uniformTitle}" /></ul>
 				    	</div>
 						<div class="col-md-9">
-							<label class="form-label text-primary" th:text="#{title.authors}" />
+							<label class="form-label text-primary" th:text="#{title.authors}"></label>
 					  		<input type="text" class="form-control required" th:field="*{authors}" th:placeholder="#{title.authors}" >
 					  		<ul><li class="cooperror" th:errors="*{authors}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{title.titleType}" />
+							<label class="form-label text-primary" th:text="#{title.titleType}"></label>
 							<select class="form-select required" th:field="*{titleType}">
 								<option th:each="p : ${listTitleType}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{titleType}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{title.library}" />
+							<label class="form-label text-primary" th:text="#{title.library}"></label>
 							<select class="form-select required" th:field="*{library}">
 								<option th:each="p : ${listLibrary}" th:value="${p.id}" th:text="${p.name + ' [' + p.shortName + ']'}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{library}" /></ul>
 						</div>
 						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{title.summary}" />
-				      		<textarea class="form-control" th:field="*{summary}" th:placeholder="#{title.summary}" />
+				    		<label class="form-label text-primary" th:text="#{title.summary}"></label>
+				      		<textarea class="form-control" th:field="*{summary}" th:placeholder="#{title.summary}"></textarea>
 				      		<ul><li class="cooperror" th:errors="*{summary}" /></ul>
 				    	</div>
 						<div class="col-12">

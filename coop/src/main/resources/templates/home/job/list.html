@@ -27,13 +27,15 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{job.position}"></th>
-						<th th:text="#{job.firmName}"></th>
-						<th style="text-align: right;" th:text="#{job.salary}"></th>
-						<th th:text="#{job.lastDate}"></th>
-						<th th:text="#{job.enabled}"></th>
-						<th style="width: 15px;"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{job.position}"></th>
+							<th th:text="#{job.firmName}"></th>
+							<th style="text-align: right;" th:text="#{job.salary}"></th>
+							<th th:text="#{job.lastDate}"></th>
+							<th th:text="#{job.enabled}"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -60,7 +62,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"/></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/list/last}">Last</a></li>
 					</ul>

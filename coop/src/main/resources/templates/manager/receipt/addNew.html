@@ -30,35 +30,35 @@
 
 					<div class="row g-3">
 						<div class="col-md-4">
-					    	<label class="form-label text-primary" th:text="#{member.memId}" />
+					    	<label class="form-label text-primary" th:text="#{member.memId}"></label>
 					    	<span class="form-control" th:text="${receipt.member.memId}"></span>
 					    </div>
 						<div class="col-md-8">
-							<label class="form-label text-primary" th:text="#{member.name}" />
+							<label class="form-label text-primary" th:text="#{member.name}"></label>
 							<span class="form-control" th:text="${receipt.member.name}"></span>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{receipt.receiptDate}" />
+							<label class="form-label text-primary" th:text="#{receipt.receiptDate}"></label>
 							<input type="date" class="form-control" th:field="*{receiptDate}" th:placeholder="#{receipt.receiptDate}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{receiptDate}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{receipt.amount}" />
+							<label class="form-label text-primary" th:text="#{receipt.amount}"></label>
 							<input type="text" class="form-control required amount" th:field="*{amount}" th:placeholder="#{receipt.amount}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{amount}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{receipt.receiptNumber}" />
+							<label class="form-label text-primary" th:text="#{receipt.receiptNumber}"></label>
 							<input type="text" class="form-control required" th:field="*{receiptNumber}" th:placeholder="#{receipt.receiptNumber}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{receiptNumber}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{receipt.details}" />
+							<label class="form-label text-primary" th:text="#{receipt.details}"></label>
 							<input type="text" class="form-control required" th:field="*{details}" th:placeholder="#{receipt.details}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{details}" /></ul>
 						</div>
 						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{receipt.file}" />
+				    		<label class="form-label text-primary" th:text="#{receipt.file}"></label>
 				    		<input type="file" class="form-control" th:field="*{file}" th:placeholder="#{receipt.file}" autofocus >
 				      		<ul><li class="cooperror" th:errors="*{file}" /></ul>
 				    	</div>

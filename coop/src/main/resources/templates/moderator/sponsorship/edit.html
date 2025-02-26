@@ -22,27 +22,27 @@
 
 					<div class="row g-3">
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{sponsorship.title}" />
+							<label class="form-label text-primary" th:text="#{sponsorship.title}"></label>
 							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{sponsorship.title}" autofocus >
 							<ul><li class="cooperror" th:errors="*{title}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{sponsorship.description}" />
+							<label class="form-label text-primary" th:text="#{sponsorship.description}"></label>
 							<textarea class="widgEditor form-control" rows="5" th:field="*{description}" th:placeholder="#{sponsorship.description}"></textarea>
 							<ul><li class="cooperror" th:errors="*{description}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{sponsorship.pubDate}" />
+							<label class="form-label text-primary" th:text="#{sponsorship.pubDate}"></label>
 							<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{sponsorship.pubDate}">
 							<ul><li class="cooperror" th:errors="*{pubDate}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{sponsorship.expDate}" />
+							<label class="form-label text-primary" th:text="#{sponsorship.expDate}"></label>
 							<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{sponsorship.expDate}">
 							<ul><li class="cooperror" th:errors="*{expDate}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{sponsorship.lastDate}" />
+							<label class="form-label text-primary" th:text="#{sponsorship.lastDate}"></label>
 							<input type="date" class="form-control required" th:field="*{lastDate}" th:placeholder="#{sponsorship.lastDate}">
 							<ul><li class="cooperror" th:errors="*{lastDate}" /></ul>
 						</div>

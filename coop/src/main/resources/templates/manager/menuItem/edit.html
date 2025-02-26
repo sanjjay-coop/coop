@@ -22,12 +22,12 @@
 
 					<div class="row g-3">
 						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{menuItem.title}" />
+				    		<label class="form-label text-primary" th:text="#{menuItem.title}"></label>
 				    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{menuItem.title}" autofocus >
 				      		<ul><li class="cooperror" th:errors="*{title}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{menuItem.location}" />
+							<label class="form-label text-primary" th:text="#{menuItem.location}"></label>
 							<select class="form-select required" th:field="*{location}">
 								<option th:value="left" th:text="left" />
 								<option th:value="top" th:text="top" />
@@ -35,7 +35,7 @@
 							<ul><li class="cooperror" th:errors="*{location}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{menuItem.itemType}" />
+							<label class="form-label text-primary" th:text="#{menuItem.itemType}"></label>
 							<select class="form-select required" th:field="*{itemType}">
 								<option th:value="category" th:text="Category" />
 								<option th:value="url" th:text="URL" />
@@ -43,19 +43,19 @@
 							<ul><li class="cooperror" th:errors="*{itemType}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{menuItem.category}" />
+							<label class="form-label text-primary" th:text="#{menuItem.category}"></label>
 							<select class="form-select" th:field="*{category}">
 								<option th:each="p : ${listCategory}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{category}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{menuItem.url}" />
+							<label class="form-label text-primary" th:text="#{menuItem.url}"></label>
 				    		<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{menuItem.url}" >
 				      		<ul><li class="cooperror" th:errors="*{url}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{menuItem.newPage}" />
+							<label class="form-label text-primary" th:text="#{menuItem.newPage}"></label>
 							<select class="form-select" th:field="*{newPage}">
 								<option th:value="0" th:text="FALSE" />
 								<option th:value="1" th:text="TRUE" />

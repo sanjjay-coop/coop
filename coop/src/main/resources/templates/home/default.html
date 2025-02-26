@@ -38,7 +38,7 @@
 				
 				<div class="row p-2" style="font-size: 12px;">
 					<div class="col-4">
-						<div class="card">
+						<div class="card h-100">
 							<h5 class="card-header">Businesses</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					<div class="col-4">
-						<div class="card">
+						<div class="card h-100">
 							<h5 class="card-header">Jobs / Vacancies</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<div class="col-4">
-						<div class="card">
+						<div class="card h-100">
 							<h5 class="card-header">Matrimonials</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
@@ -73,12 +73,12 @@
 				</div>
 				<div class="row p-2" style="font-size: 12px;">
 					<div class="col-4">
-						<div class="card">
+						<div class="card h-100">
 							<h5 class="card-header">Latest Articles</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob : ${listArticle}">
-										<a th:href="@{/article/view/{orderId}(orderId=${ob.id})}" th:text="${ob.title}" />
+										<a th:href="@{/article/view/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>
 									</li>
 								</ul>
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/article/list}">List Articles</a>
@@ -86,12 +86,12 @@
 						</div>
 					</div>
 					<div class="col-4">
-						<div class="card">
+						<div class="card h-100">
 							<h5 class="card-header">Latest Events</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob : ${listEvent}">
-										<a th:href="@{/event/view/{orderId}(orderId=${ob.id})}" th:text="${ob.title + ', Start Date: ' + #dates.format(ob.startDate, 'dd/MM/yyyy') + ', End Date: ' + #dates.format(ob.endDate, 'dd/MM/yyyy')}" />
+										<a th:href="@{/event/view/{orderId}(orderId=${ob.id})}" th:text="${ob.title + ', Start Date: ' + #dates.format(ob.startDate, 'dd/MM/yyyy') + ', End Date: ' + #dates.format(ob.endDate, 'dd/MM/yyyy')}"></a>
 									</li>
 								</ul>
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/event/list}">List Events</a>
@@ -99,12 +99,12 @@
 						</div>
 					</div>
 					<div class="col-4">
-						<div class="card">
+						<div class="card h-100">
 							<h5 class="card-header">Latest Members</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob : ${listMember}">
-										<a th:href="@{/home/member/view/{orderId}(orderId=${ob.id})}" th:text="${ob.name + ', ' + ob.resCity + ', ' + ob.resState}" />
+										<a th:href="@{/home/member/view/{orderId}(orderId=${ob.id})}" th:text="${ob.name + ', ' + ob.resCity + ', ' + ob.resState}"></a>
 									</li>
 								</ul>
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/member/search}">Search Member</a>

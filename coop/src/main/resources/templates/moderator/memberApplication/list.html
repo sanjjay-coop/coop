@@ -18,14 +18,16 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{id}"></th>
-						<th th:text="#{member.name}"></th>
-						<th th:text="#{member.email}"></th>
-						<th th:text="#{member.mobile}"></th>
-						<th th:text="#{member.residenceAddress}"></th>
-						<th>Status</th>
-						<th>Status Date</th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{id}"></th>
+							<th th:text="#{member.name}"></th>
+							<th th:text="#{member.email}"></th>
+							<th th:text="#{member.mobile}"></th>
+							<th th:text="#{member.residenceAddress}"></th>
+							<th>Status</th>
+							<th>Status Date</th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -49,7 +51,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list/last}">Last</a></li>
 					</ul>

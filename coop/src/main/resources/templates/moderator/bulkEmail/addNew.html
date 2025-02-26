@@ -20,12 +20,12 @@
 				
 					<div class="row g-3">
 						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{bulkEmail.subject}" />
+				    		<label class="form-label text-primary" th:text="#{bulkEmail.subject}"></label>
 				    		<input type="text" class="form-control required" th:field="*{subject}" th:placeholder="#{bulkEmail.subject}" autofocus >
 				      		<ul><li class="cooperror" th:errors="*{subject}" /></ul>
 				    	</div>
 						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{bulkEmail.message}" />
+				    		<label class="form-label text-primary" th:text="#{bulkEmail.message}"></label>
 				    		<textarea class="form-control required" rows="5" th:field="*{message}" th:placeholder="#{bulkEmail.message}"></textarea>
 				      		<ul><li class="cooperror" th:errors="*{message}" /></ul>
 				    	</div>

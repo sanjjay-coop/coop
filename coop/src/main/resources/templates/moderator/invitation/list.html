@@ -19,13 +19,15 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{invitation.email}"></th>
-						<th th:text="#{invitation.name}"></th>
-						<th th:text="#{invitation.date}"></th>
-						<th>Email Date</th>
-						<th th:text="#{member}"></th>
-						<th th:text="#{invitation.status}"></th>
-						<th></th>
+						<tr>
+							<th th:text="#{invitation.email}"></th>
+							<th th:text="#{invitation.name}"></th>
+							<th th:text="#{invitation.date}"></th>
+							<th>Email Date</th>
+							<th th:text="#{member}"></th>
+							<th th:text="#{invitation.status}"></th>
+							<th></th>
+						</tr>
 					</thead>
 					
 					<tbody>
@@ -48,7 +50,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/invitation/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/invitation/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/invitation/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/invitation/list/last}">Last</a></li>
 					</ul>

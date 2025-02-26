@@ -60,6 +60,8 @@ public class BusinessListController extends HomeBaseController {
 		request.getSession().setAttribute("listBusiness_pageNumber", pageNumber);
 		request.getSession().setAttribute("listBusiness_totalPages", totalPages);
 		
+		model.addAttribute("business", new Business());
+		
 		return "home/business/list";
 	}
 	
@@ -105,6 +107,8 @@ public class BusinessListController extends HomeBaseController {
 			request.getSession().setAttribute("listBusiness_totalPages", totalPages);
 			
 			model.addAttribute("listBusiness", page.getContent());
+			
+			model.addAttribute("business", new Business());
 			
 			return "home/business/list";
 		

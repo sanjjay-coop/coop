@@ -16,19 +16,19 @@
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 			
 				<div class="card p-1" th:each="ob : ${listBusinessAll}">
-					<h5 class="card-header" th:text="${ob.businessName}"/>
+					<h5 class="card-header" th:text="${ob.businessName}"></h5>
 				  	<div class="card-body">
-						<label style="font-weight: bold;" th:text="#{business.description}" /> : <span th:text="${ob.description}" /> 
-						<br/><label style="font-weight: bold;" th:text="#{business.address}" /> : <span th:text="${ob.address}" /> 
-						<label style="font-weight: bold;" th:text="#{business.city}" /> : <span th:text="${ob.city}" /> 
-						<label style="font-weight: bold;" th:text="#{business.pin}" /> : <span th:text="${ob.pin}" /> 
-						<label style="font-weight: bold;" th:text="#{business.state}" /> : <span th:text="${ob.state}" /> 
-						<label style="font-weight: bold;" th:text="#{business.country}" /> : <span th:text="${ob.country}" /> 
-						<br/><label style="font-weight: bold;" th:text="#{business.contactName}" /> : <span th:text="${ob.contactName}" /> 
-						<br/><label style="font-weight: bold;" th:text="#{business.contactPhone}" /> : <span th:text="${ob.contactPhone}" /> 
-						<label style="font-weight: bold;" th:text="#{business.contactEmail}" /> : <span th:text="${ob.contactEmail}" /> 
-						<br/><label style="font-weight: bold;" th:text="#{business.url}" /> : <span th:text="${ob.url}" /> 
-						<br/><label style="font-weight: bold;" th:text="#{business.keywords}" /> : <span th:text="${ob.keywords}" />
+						<label style="font-weight: bold;" th:text="#{business.description}"></label> : <span th:text="${ob.description}"></span> 
+						<br/><label style="font-weight: bold;" th:text="#{business.address}"></label> : <span th:text="${ob.address}"></span>
+						<label style="font-weight: bold;" th:text="#{business.city}"></label> : <span th:text="${ob.city}"></span>
+						<label style="font-weight: bold;" th:text="#{business.pin}"></label> : <span th:text="${ob.pin}"></span>
+						<label style="font-weight: bold;" th:text="#{business.state}"></label> : <span th:text="${ob.state}"></span>
+						<label style="font-weight: bold;" th:text="#{business.country}"></label> : <span th:text="${ob.country}"></span>
+						<br/><label style="font-weight: bold;" th:text="#{business.contactName}"></label> : <span th:text="${ob.contactName}"></span> 
+						<br/><label style="font-weight: bold;" th:text="#{business.contactPhone}"></label> : <span th:text="${ob.contactPhone}"></span> 
+						<label style="font-weight: bold;" th:text="#{business.contactEmail}"></label> : <span th:text="${ob.contactEmail}"></span>
+						<br/><label style="font-weight: bold;" th:text="#{business.url}"></label> : <span th:text="${ob.url}"></span>
+						<br/><label style="font-weight: bold;" th:text="#{business.keywords}"></label> : <span th:text="${ob.keywords}"></span>
 				  	</div>
 				</div>
 				<br/>
@@ -36,7 +36,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/business/all/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/business/all/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"/></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/business/all/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/business/all/list/last}">Last</a></li>
 					</ul>

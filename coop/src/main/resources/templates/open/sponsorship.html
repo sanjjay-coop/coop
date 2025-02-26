@@ -21,7 +21,7 @@
 				  	<div class="card-body">
 						<p th:utext="${sponsorship.description}"></p>
 						<div style="font-size: small;">
-							<b th:text="#{sponsorship.lastDate}"/>
+							<b th:text="#{sponsorship.lastDate}"></b>
 							<span th:text="${': ' + #dates.format(sponsorship.lastDate, 'dd/MM/yyyy')}"></span>
 							<a class="btn btn-primary btn-sm" role="button" th:if="${sponsorship.lastDate.after(#dates.createNow())}" th:href="@{/open/sponsorship/apply/{orderId}(orderId=${sponsorship.id})}">Apply Now</a>
 						</div>

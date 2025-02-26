@@ -25,4 +25,6 @@ public interface BusinessRepo extends JpaRepository<Business, Long>{
 			+ "order by o.id desc "
 			+ "limit 5")
 	public List<Business> listBusinessRecent();
+	
+	public Business findByIdAndOwner(Long id, Member owner);
 }

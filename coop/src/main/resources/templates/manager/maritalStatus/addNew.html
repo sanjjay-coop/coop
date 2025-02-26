@@ -20,7 +20,7 @@
 
 					<div class="row g-3">
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{maritalStatus.status}" />
+							<label class="form-label text-primary" th:text="#{maritalStatus.status}"></label>
 							<input type="text" class="form-control required" th:field="*{status}" th:placeholder="#{maritalStatus.status}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{status}" /></ul>
 						</div>
@@ -37,9 +37,11 @@
 				<table class="table">
 				
 					<thead>
-						<th th:text="#{maritalStatus.status}"></th>
-						<th style="width: 15px;"></th>
-						<th style="width: 15px;"></th>
+						<tr>
+							<th th:text="#{maritalStatus.status}"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+						</tr>
 					</thead>
 					
 					<tbody>

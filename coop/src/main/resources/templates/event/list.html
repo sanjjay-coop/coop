@@ -45,7 +45,7 @@
 							<a class="page-link" th:href="@{/event/list/previous}">Previous</a>
 						</li>
 						<li class="page-item">
-							<a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"/>
+							<a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a>
 						</li>
 						<li class="page-item" th:if="${!lastPage}">
 							<a class="page-link" th:href="@{/event/list/next}">Next</a>

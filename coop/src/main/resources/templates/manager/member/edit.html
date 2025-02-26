@@ -22,113 +22,113 @@
 
 					<div class="row g-3">
 						<div class="col-md-2">
-				    		<label class="form-label text-primary" th:text="#{member.memId}" />
+				    		<label class="form-label text-primary" th:text="#{member.memId}"></label>
 				    		<input type="text" class="form-control required" th:field="*{memId}" th:placeholder="#{member.memId}" autofocus >
 				      		<ul><li class="cooperror" th:errors="*{memId}" /></ul>
 				    	</div>
 						<div class="col-md-1">
-							<label class="form-label text-primary" th:text="#{member.salutation}" />
+							<label class="form-label text-primary" th:text="#{member.salutation}"></label>
 							<select class="form-select required" th:field="*{salutation}">
 								<option th:each="p : ${listSalutation}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{salutation}" /></ul>
 						</div>
 						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{member.firstName}" />
+				    		<label class="form-label text-primary" th:text="#{member.firstName}"></label>
 				    		<input type="text" class="form-control required" th:field="*{firstName}" th:placeholder="#{member.firstName}">
 				      		<ul><li class="cooperror" th:errors="*{firstName}" /></ul>
 				    	</div>
 						<div class="col-md-3">
-					    	<label class="form-label text-primary" th:text="#{member.middleName}" />
+					    	<label class="form-label text-primary" th:text="#{member.middleName}"></label>
 					    	<input type="text" class="form-control" th:field="*{middleName}" th:placeholder="#{member.middleName}">
 					      	<ul><li class="cooperror" th:errors="*{middleName}" /></ul>
 					    </div>
 						<div class="col-md-3">
-					    	<label class="form-label text-primary" th:text="#{member.lastName}" />
+					    	<label class="form-label text-primary" th:text="#{member.lastName}"></label>
 					   	 	<input type="text" class="form-control required" th:field="*{lastName}" th:placeholder="#{member.lastName}">
 					      	<ul><li class="cooperror" th:errors="*{lastName}" /></ul>
 					    </div>
 						<div class="col-md-4">
-					   		<label class="form-label text-primary" th:text="#{member.aadhaar}" />
+					   		<label class="form-label text-primary" th:text="#{member.aadhaar}"></label>
 					    	<input type="text" class="form-control" th:field="*{aadhaar}" th:placeholder="#{member.aadhaar}">
 					      	<ul><li class="cooperror" th:errors="*{aadhaar}" /></ul>
 					    </div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{member.gender}" />
+							<label class="form-label text-primary" th:text="#{member.gender}"></label>
 							<select class="form-select required" th:field="*{gender}">
 								<option th:each="p : ${listGender}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{gender}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{member.maritalStatus}" />
+							<label class="form-label text-primary" th:text="#{member.maritalStatus}"></label>
 							<select class="form-select" th:field="*{maritalStatus}">
 								<option th:each="p : ${listMaritalStatus}" th:value="${p.id}" th:text="${p.status}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{maritalStatus}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{member.occupation}" />
+							<label class="form-label text-primary" th:text="#{member.occupation}"></label>
 							<select class="form-select" th:field="*{occupation}">
 								<option th:each="p : ${listOccupation}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{occupation}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{member.memGroup}" />
+							<label class="form-label text-primary" th:text="#{member.memGroup}"></label>
 							<select class="form-select" th:field="*{memGroup}">
 								<option th:each="p : ${listMemberGroup}" th:value="${p.id}" th:text="${p.label}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{memGroup}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{member.memType}" />
+							<label class="form-label text-primary" th:text="#{member.memType}"></label>
 							<select class="form-select required" th:field="*{memType}">
 								<option th:each="p : ${listMemberType}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{memType}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{member.educationLevel}" />
+							<label class="form-label text-primary" th:text="#{member.educationLevel}"></label>
 							<select class="form-select" th:field="*{educationLevel}">
 								<option th:each="p : ${listEducationLevel}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{educationLevel}" /></ul>
 						</div>
 						<div class="col-md-4">
-					   		<label class="form-label text-primary" th:text="#{member.dateOfBirth}" />
+					   		<label class="form-label text-primary" th:text="#{member.dateOfBirth}"></label>
 					   		<input type="date" class="form-control" th:field="*{dateOfBirth}" th:placeholder="#{member.dateOfBirth}">
 					   		<ul><li class="cooperror" th:errors="*{dateOfBirth}" /></ul>
 					   	</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{member.email}" />
+							<label class="form-label text-primary" th:text="#{member.email}"></label>
 							<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{member.email}">
 							<ul><li class="cooperror" th:errors="*{email}" /></ul>
 						</div>
 						<div class="col-md-6">
-					   		<label class="form-label text-primary" th:text="#{member.mobile}" />
+					   		<label class="form-label text-primary" th:text="#{member.mobile}"></label>
 					   		<input type="text" class="form-control required" th:field="*{mobile}" th:placeholder="#{member.mobile}">
 					   		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
 					   	</div>
 						<div class="col-md-3">
-					   		<label class="form-label text-primary" th:text="#{member.subStartDate}" />
+					   		<label class="form-label text-primary" th:text="#{member.subStartDate}"></label>
 					   		<input type="date" class="form-control required" th:field="*{subStartDate}" th:placeholder="#{member.subStartDate}">
 					   		<ul><li class="cooperror" th:errors="*{subStartDate}" /></ul>
 					   	</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{member.subEndDate}" />
+							<label class="form-label text-primary" th:text="#{member.subEndDate}"></label>
 							<input type="date" class="form-control required" th:field="*{subEndDate}" th:placeholder="#{member.subEndDate}">
 							<ul><li class="cooperror" th:errors="*{subEndDate}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{member.profilePublic}" />
+							<label class="form-label text-primary" th:text="#{member.profilePublic}"></label>
 							<select class="form-select required" th:field="*{profilePublic}">
 								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{profilePublic}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{member.roles}" />
+							<label class="form-label text-primary" th:text="#{member.roles}"></label>
 							<div th:each="role : ${listRole}">
 								<div class="form-check">
 								  <input class="form-check-input" type="checkbox" th:field="*{roles}" th:value="${role.id}" />
@@ -140,27 +140,27 @@
 							<label class="text-center text-primary">Residence Address</label>
 						</div>
 						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{member.resAddress}" />
+				    		<label class="form-label text-primary" th:text="#{member.resAddress}"></label>
 				    		<input type="text" class="form-control" th:field="*{resAddress}" th:placeholder="#{member.resAddress}">
 				      		<ul><li class="cooperror" th:errors="*{resAddress}" /></ul>
 				    	</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{member.resCity}" />
+							<label class="form-label text-primary" th:text="#{member.resCity}"></label>
 							<input type="text" class="form-control" th:field="*{resCity}" th:placeholder="#{member.resCity}">
 					  		<ul><li class="cooperror" th:errors="*{resCity}" /></ul>
 						</div>
 						<div class="col-md-2">
-							<label class="form-label text-primary" th:text="#{member.resPin}" />
+							<label class="form-label text-primary" th:text="#{member.resPin}"></label>
 							<input type="text" class="form-control" th:field="*{resPin}" th:placeholder="#{member.resPin}">
 							<ul><li class="cooperror" th:errors="*{resPin}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{member.resState}" />
+							<label class="form-label text-primary" th:text="#{member.resState}"></label>
 							<input type="text" class="form-control" th:field="*{resState}" th:placeholder="#{member.resState}">
 					  		<ul><li class="cooperror" th:errors="*{resState}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{member.resCountry}" />
+							<label class="form-label text-primary" th:text="#{member.resCountry}"></label>
 							<input type="text" class="form-control" th:field="*{resCountry}" th:placeholder="#{member.resCountry}">
 							<ul><li class="cooperror" th:errors="*{resCountry}" /></ul>
 						</div>
@@ -168,37 +168,37 @@
 							<label class="text-center text-primary">Office Details</label>
 						</div>
 						<div class="col-md-6">
-								<label class="form-label text-primary" th:text="#{member.offDesignation}" />
+								<label class="form-label text-primary" th:text="#{member.offDesignation}"></label>
 							<input type="text" class="form-control" th:field="*{offDesignation}" th:placeholder="#{member.offDesignation}">
 					  		<ul><li class="cooperror" th:errors="*{offDesignation}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{member.offName}" />
+							<label class="form-label text-primary" th:text="#{member.offName}"></label>
 							<input type="text" class="form-control" th:field="*{offName}" th:placeholder="#{member.offName}">
 					  		<ul><li class="cooperror" th:errors="*{offName}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{member.offAddress}" />
+							<label class="form-label text-primary" th:text="#{member.offAddress}"></label>
 							<input type="text" class="form-control" th:field="*{offAddress}" th:placeholder="#{member.offAddress}">
 					  		<ul><li class="cooperror" th:errors="*{offAddress}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{member.offCity}" />
+							<label class="form-label text-primary" th:text="#{member.offCity}"></label>
 							<input type="text" class="form-control" th:field="*{offCity}" th:placeholder="#{member.offCity}">
 					  		<ul><li class="cooperror" th:errors="*{offCity}" /></ul>
 						</div>
 						<div class="col-md-2">
-							<label class="form-label text-primary" th:text="#{member.offPin}" />
+							<label class="form-label text-primary" th:text="#{member.offPin}"></label>
 							<input type="text" class="form-control" th:field="*{offPin}" th:placeholder="#{member.offPin}">
 							<ul><li class="cooperror" th:errors="*{offPin}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{member.offState}" />
+							<label class="form-label text-primary" th:text="#{member.offState}"></label>
 							<input type="text" class="form-control" th:field="*{offState}" th:placeholder="#{member.offState}">
 					  		<ul><li class="cooperror" th:errors="*{offState}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{member.offCountry}" />
+							<label class="form-label text-primary" th:text="#{member.offCountry}"></label>
 							<input type="text" class="form-control" th:field="*{offCountry}" th:placeholder="#{member.offCountry}">
 							<ul><li class="cooperror" th:errors="*{offCountry}" /></ul>
 						</div>

@@ -28,117 +28,117 @@
 
 				<div class="row g-3">
 					<div class="col-md-1">
-						<label class="form-label text-primary" th:text="#{salutation}"/>
+						<label class="form-label text-primary" th:text="#{salutation}"></label>
 						<span class="form-control" th:text="${memberApplication.salutation.name}"></span>
 					</div>
 					<div class="col-md-4">
-						<label class="form-label text-primary" th:text="#{member.firstName}"/>
+						<label class="form-label text-primary" th:text="#{member.firstName}"></label>
 						<span class="form-control" th:text="${memberApplication.firstName}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.middleName}"/>
+						<label class="form-label text-primary" th:text="#{member.middleName}"></label>
 						<span class="form-control" th:text="${memberApplication.middleName}"></span>
 					</div>
 					<div class="col-md-4">
-						<label class="form-label text-primary" th:text="#{member.lastName}"/>
+						<label class="form-label text-primary" th:text="#{member.lastName}"></label>
 						<span class="form-control" th:text="${memberApplication.lastName}"></span>
 					</div>
 					<div class="col-md-4">
-						<label class="form-label text-primary" th:text="#{memberGroup}"/>
+						<label class="form-label text-primary" th:text="#{memberGroup}"></label>
 						<span class="form-control" th:text="${memberApplication.memGroup.name}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{gender}"/>
+						<label class="form-label text-primary" th:text="#{gender}"></label>
 						<span class="form-control" th:text="${memberApplication.gender.name}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{educationLevel}"/>
+						<label class="form-label text-primary" th:text="#{educationLevel}"></label>
 						<span class="form-control" th:text="${memberApplication.educationLevel.name}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.mobile}"/>
+						<label class="form-label text-primary" th:text="#{member.mobile}"></label>
 						<span class="form-control" th:text="${memberApplication.mobile}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.email}"/>
+						<label class="form-label text-primary" th:text="#{member.email}"></label>
 						<span class="form-control" th:text="${memberApplication.email}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.dateOfBirth}"/>
+						<label class="form-label text-primary" th:text="#{member.dateOfBirth}"></label>
 						<span class="form-control" th:text="${#dates.format(memberApplication.dateOfBirth, 'dd-MM-yyyy')}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.education}"/>
+						<label class="form-label text-primary" th:text="#{member.education}"></label>
 						<span class="form-control" th:text="${memberApplication.education}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.experience}"/>
+						<label class="form-label text-primary" th:text="#{member.experience}"></label>
 						<span class="form-control" th:text="${memberApplication.experience}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.maritalStatus}"/>
+						<label class="form-label text-primary" th:text="#{member.maritalStatus}"></label>
 						<span class="form-control" th:text="${memberApplication.maritalStatus.status}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.aadhaar}"/>
+						<label class="form-label text-primary" th:text="#{member.aadhaar}"></label>
 						<span class="form-control" th:text="${memberApplication.aadhaar}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.occupation}"/>
+						<label class="form-label text-primary" th:text="#{member.occupation}"></label>
 						<span class="form-control" th:text="${memberApplication.occupation.name}"></span>
 					</div>
 					<div class="col-md-12">
 						<label class="form-label text-primary" style="font-weight: bold;">Residence Address</label>
 					</div>
 					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{member.resAddress}"/>
+						<label class="form-label text-primary" th:text="#{member.resAddress}"></label>
 						<span class="form-control" th:text="${memberApplication.resAddress}"></span>
 					</div>
 					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{member.resCity}"/>
+						<label class="form-label text-primary" th:text="#{member.resCity}"></label>
 						<span class="form-control" th:text="${memberApplication.resCity}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.resPin}"/>
+						<label class="form-label text-primary" th:text="#{member.resPin}"></label>
 						<span class="form-control" th:text="${memberApplication.resPin}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.resState}"/>
+						<label class="form-label text-primary" th:text="#{member.resState}"></label>
 						<span class="form-control" th:text="${memberApplication.resState}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.resCountry}"/>
+						<label class="form-label text-primary" th:text="#{member.resCountry}"></label>
 						<span class="form-control" th:text="${memberApplication.resCountry}"></span>
 					</div>
 					<div class="col-md-12">
 						<label class="form-label text-primary" style="font-weight: bold;">Office Address</label>
 					</div>
 					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{member.offDesignation}"/>
+						<label class="form-label text-primary" th:text="#{member.offDesignation}"></label>
 						<span class="form-control" th:text="${memberApplication.offDesignation}"></span>
 					</div>
 					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{member.offName}"/>
+						<label class="form-label text-primary" th:text="#{member.offName}"></label>
 						<span class="form-control" th:text="${memberApplication.offName}"></span>
 					</div>
 					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{member.offAddress}"/>
+						<label class="form-label text-primary" th:text="#{member.offAddress}"></label>
 						<span class="form-control" th:text="${memberApplication.offAddress}"></span>
 					</div>
 					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{member.offCity}"/>
+						<label class="form-label text-primary" th:text="#{member.offCity}"></label>
 						<span class="form-control" th:text="${memberApplication.offCity}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.offPin}"/>
+						<label class="form-label text-primary" th:text="#{member.offPin}"></label>
 						<span class="form-control" th:text="${memberApplication.offPin}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.offState}"/>
+						<label class="form-label text-primary" th:text="#{member.offState}"></label>
 						<span class="form-control" th:text="${memberApplication.offState}"></span>
 					</div>
 					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{member.offCountry}"/>
+						<label class="form-label text-primary" th:text="#{member.offCountry}"></label>
 						<span class="form-control" th:text="${memberApplication.offCountry}"></span>
 					</div>
 					<div class="col-md-12">

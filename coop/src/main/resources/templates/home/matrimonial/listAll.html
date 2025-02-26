@@ -17,22 +17,22 @@
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
 				<div class="card p-1" th:each="ob : ${listMatrimonialAll}">
-					<h5 class="card-header" th:text="${ob.lookingFor}"/>
+					<h5 class="card-header" th:text="${ob.lookingFor}"></h5>
 				  	<div class="card-body">
-						<label style="font-weight: bold;" th:text="#{matrimonial.expDescription}" /> : <span th:text="${ob.expDescription}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.expEducation}" /> : <span th:text="${ob.expEducationLevel.name}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.expOccupation}" /> : <span th:text="${ob.expOccupation.name}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.expMinAge}" /> : <span th:text="${ob.expMinAge}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.expMaxAge}" /> : <span th:text="${ob.expMaxAge}" /> 
+						<label style="font-weight: bold;" th:text="#{matrimonial.expDescription}" ></label> : <span th:text="${ob.expDescription}"></span> 
+						<label style="font-weight: bold;" th:text="#{matrimonial.expEducation}" ></label> : <span th:text="${ob.expEducationLevel.name}"></span> 
+						<label style="font-weight: bold;" th:text="#{matrimonial.expOccupation}" ></label> : <span th:text="${ob.expOccupation.name}"></span> 
+						<label style="font-weight: bold;" th:text="#{matrimonial.expMinAge}" ></label> : <span th:text="${ob.expMinAge}"></span> 
+						<label style="font-weight: bold;" th:text="#{matrimonial.expMaxAge}" ></label> : <span th:text="${ob.expMaxAge}"></span> 
 						<br/><br/>
 						<label style="font-weight: bold;">Applicant Details</label>
 						<br/>
-						<label style="font-weight: bold;" th:text="#{matrimonial.description}" /> : <span th:text="${ob.description}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.age}" /> : <span th:text="${ob.age}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.education}" /> : <span th:text="${ob.educationLevel.name}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.occupation}" /> : <span th:text="${ob.occupation.name}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.mobile}" /> : <span th:text="${ob.mobile}" /> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.email}" /> : <span th:text="${ob.email}" />
+						<label style="font-weight: bold;" th:text="#{matrimonial.description}" ></label> : <span th:text="${ob.description}"></span>
+						<label style="font-weight: bold;" th:text="#{matrimonial.age}" ></label> : <span th:text="${ob.age}"></span>
+						<label style="font-weight: bold;" th:text="#{matrimonial.education}" ></label> : <span th:text="${ob.educationLevel.name}"></span> 
+						<label style="font-weight: bold;" th:text="#{matrimonial.occupation}" ></label> : <span th:text="${ob.occupation.name}"></span>
+						<label style="font-weight: bold;" th:text="#{matrimonial.mobile}" ></label> : <span th:text="${ob.mobile}"></span>
+						<label style="font-weight: bold;" th:text="#{matrimonial.email}" ></label> : <span th:text="${ob.email}"></span>
 				  	</div>
 				</div>
 				<br/>
@@ -40,7 +40,7 @@
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/matrimonial/all/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/matrimonial/all/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}" /></li>
+						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/matrimonial/all/list/next}">Next</a></li>
 						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/matrimonial/all/list/last}">Last</a></li>
 					</ul>
