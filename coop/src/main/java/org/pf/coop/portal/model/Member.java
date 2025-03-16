@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +15,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
@@ -25,8 +29,9 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_member")
-public class Member implements Serializable {
+public class Member extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -170,6 +175,9 @@ public class Member implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="f_occupation", nullable=true)
 	private Occupation occupation;
+
+	@Transient
+	private String searchFor;
 	
 	public Long getId() {
 		return id;
@@ -491,6 +499,14 @@ public class Member implements Serializable {
 		this.occupation = occupation;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [" + (id != null ? "id=" + id + ", " : "")
@@ -560,5 +576,29 @@ public class Member implements Serializable {
 				+ (offPin != null ? offPin + ", " : " ")
 				+ (offState != null ? offState + ", " : " ")
 				+ (offCountry != null ? offCountry : " ");
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		this.setSearchString((firstName != null ? firstName + ", " : "")
+				+ (middleName != null ? middleName + ", " : "")
+				+ (lastName != null ? lastName + ", " : "")
+				+ (mobile != null ? mobile + ", " : "")
+				+ (offName != null ? "offName=" + offName + ", " : "")
+				+ (email != null ? "email=" + email + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		this.setSearchString((firstName != null ? firstName + ", " : "")
+				+ (middleName != null ? middleName + ", " : "")
+				+ (lastName != null ? lastName + ", " : "")
+				+ (mobile != null ? mobile + ", " : "")
+				+ (offName != null ? "offName=" + offName + ", " : "")
+				+ (email != null ? "email=" + email + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
 	}
 }

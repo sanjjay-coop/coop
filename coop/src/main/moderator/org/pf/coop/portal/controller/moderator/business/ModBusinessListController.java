@@ -13,8 +13,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -25,43 +28,82 @@ public class ModBusinessListController extends ModeratorBaseController {
 	@Autowired
 	private BusinessRepo businessRepo;
 	
-	@GetMapping("/list")
-	public String listModBusiness(Model model, Principal principal, HttpServletRequest request) {
+	@PostMapping({"/list", "/list/*", "/list/*/*" })
+	public String listBusiness(@ModelAttribute Business business, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		int pageNumber = 0;
-		
-		Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
-		
-		Page<Business> page = this.businessRepo.findAll(pageable);
-		
-		int totalPages = page.getTotalPages();
-		
-		model.addAttribute("listBusiness", page.getContent());
-		
-		model.addAttribute("currentPage", pageNumber + 1);
-		model.addAttribute("totalPages", totalPages);
-		
-		if (pageNumber == 0) model.addAttribute("firstPage", true);
-		else model.addAttribute("firstPage", false);
-		
-		if (pageNumber == (totalPages-1)) {
-			model.addAttribute("lastPage", true);
-		} else {
-			model.addAttribute("lastPage", false);
+		try {
+			
+			request.getSession().setAttribute("moderatorSearch_business", business);
+				
+			return "redirect:/moderator/business/list";
+		} catch (Exception e) {
+			reat.addFlashAttribute("message", e);
+			return "redirect:/home";
 		}
+	}
+	
+	@GetMapping("/list")
+	public String listBusiness(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		request.getSession().setAttribute("listModBusiness_pageNumber", pageNumber);
-		request.getSession().setAttribute("listModBusiness_totalPages", totalPages);
-		
-		return "moderator/business/list";
+		try {
+			
+			int pageNumber = 0;
+			
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
+			
+			Page<Business> page;
+			
+			Business obj = (Business) request.getSession().getAttribute("moderatorSearch_business");
+			
+			if (obj == null) {
+				page = this.businessRepo.findAll(pageable);
+				obj = new Business();
+				obj.setSearchString("");
+			} else {
+				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
+					page = this.businessRepo.findAll(pageable);
+				} else {
+					page = this.businessRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+				}
+			}
+			
+			request.getSession().setAttribute("moderatorSearch_business", obj);
+			model.addAttribute("business", obj);
+			
+			int totalPages = page.getTotalPages();
+			
+			model.addAttribute("listBusiness", page.getContent());
+			
+			model.addAttribute("currentPage", pageNumber + 1);
+			model.addAttribute("totalPages", totalPages);
+			
+			if (pageNumber == 0) model.addAttribute("firstPage", true);
+			else model.addAttribute("firstPage", false);
+			
+			if (pageNumber == (totalPages-1)) {
+				model.addAttribute("lastPage", true);
+			} else {
+				model.addAttribute("lastPage", false);
+			}
+			
+			request.getSession().setAttribute("listBusinessModerator_pageNumber", pageNumber);
+			request.getSession().setAttribute("listBusinessModerator_totalPages", totalPages);
+			
+			return "moderator/business/list";
+			
+		} catch(Exception e) {
+			System.out.println("Error Message: " + e);
+			reat.addFlashAttribute("message", e);
+			return "redirect:/home";
+		}
 	}
 	
 	@GetMapping("/list/{whichPage}")
-	public String listModBusiness(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
+	public String listBusiness(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			int pageNumber = (int) request.getSession().getAttribute("listModBusiness_pageNumber");
-			int totalPages = (int) request.getSession().getAttribute("listModBusiness_totalPages");
+			int pageNumber = (int) request.getSession().getAttribute("listBusinessModerator_pageNumber");
+			int totalPages = (int) request.getSession().getAttribute("listBusinessModerator_totalPages");
 			
 			if ("previous".equals(whichPage)) {
 				if (pageNumber == 0) return "redirect:/moderator/business/list";
@@ -78,7 +120,24 @@ public class ModBusinessListController extends ModeratorBaseController {
 			
 			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
 			
-			Page<Business> page = this.businessRepo.findAll(pageable);
+			Page<Business> page;
+			
+			Business obj = (Business) request.getSession().getAttribute("moderatorSearch_business");
+			
+			if (obj == null) {
+				page = this.businessRepo.findAll(pageable);
+				obj = new Business();
+				obj.setSearchString("");
+			} else {
+				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
+					page = this.businessRepo.findAll(pageable);
+				} else {
+					page = this.businessRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+				}
+			}
+			
+			request.getSession().setAttribute("moderatorSearch_business", obj);
+			model.addAttribute("business", obj);
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
@@ -92,8 +151,8 @@ public class ModBusinessListController extends ModeratorBaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listModBusiness_pageNumber", pageNumber);
-			request.getSession().setAttribute("listModBusiness_totalPages", totalPages);
+			request.getSession().setAttribute("listBusinessModerator_pageNumber", pageNumber);
+			request.getSession().setAttribute("listBusinessModerator_totalPages", totalPages);
 			
 			model.addAttribute("listBusiness", page.getContent());
 			

@@ -4,19 +4,27 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.pf.coop.common.BaseObject;
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_job")
-public class Job implements Serializable {
+public class Job extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -88,6 +96,22 @@ public class Job implements Serializable {
 	
 	@Column(name="f_enabled", nullable=false)
 	private Boolean enabled = false;
+	
+	@Column(name="f_file_name", length=255, nullable=true)
+	private String fileName;
+	
+	@Column(name="f_file_type", length=255, nullable=true)
+	private String fileType;
+	
+	@Lob
+    @Column(name = "f_photo")
+	private byte[] fileData;
+	
+	@Transient
+	private MultipartFile file;
+
+	@Transient
+	private String searchFor;
 	
 	public Long getId() {
 		return id;
@@ -249,6 +273,46 @@ public class Job implements Serializable {
 		this.enabled = enabled;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
+	public byte[] getFileData() {
+		return fileData;
+	}
+
+	public void setFileData(byte[] fileData) {
+		this.fileData = fileData;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	@Override
 	public String toString() {
 		return "Job [" + (id != null ? "id=" + id + ", " : "") + (position != null ? "position=" + position + ", " : "")
@@ -266,6 +330,36 @@ public class Job implements Serializable {
 				+ (description != null ? "description=" + description + ", " : "")
 				+ (owner != null ? "owner=" + owner + ", " : "") + (addDate != null ? "addDate=" + addDate + ", " : "")
 				+ (enabled != null ? "enabled=" + enabled : "") + "]";
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		this.setSearchString((position != null ? "position=" + position + ", " : "")
+				+ (salary != null ? salary + ", " : "")
+				+ (firmName != null ? firmName + ", " : "")
+				+ (city != null ? city + ", " : "")
+				+ (country != null ? country + ", " : "")
+				+ (contactName != null ? contactName + ", " : "")
+				+ (contactPhone != null ? contactPhone + ", " : "")
+				+ (contactEmail != null ? contactEmail + ", " : "")
+				+ (description != null ? "description=" + description + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		this.setSearchString((position != null ? "position=" + position + ", " : "")
+				+ (salary != null ? salary + ", " : "")
+				+ (firmName != null ? firmName + ", " : "")
+				+ (city != null ? city + ", " : "")
+				+ (country != null ? country + ", " : "")
+				+ (contactName != null ? contactName + ", " : "")
+				+ (contactPhone != null ? contactPhone + ", " : "")
+				+ (contactEmail != null ? contactEmail + ", " : "")
+				+ (description != null ? "description=" + description + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
 	}
 	
 }

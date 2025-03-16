@@ -14,5 +14,7 @@ public interface FundingRepo extends JpaRepository<Funding, Long>{
 	Page<Funding> findByApplicant(Member member, Pageable pageable);
 	
 	List<Funding> findByApplicant(Member member, Sort sort);
+	
+	Page<Funding> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 }
 

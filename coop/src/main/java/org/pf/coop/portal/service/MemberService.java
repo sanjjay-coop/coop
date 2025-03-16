@@ -46,6 +46,7 @@ public class MemberService {
 		
 		obj.setPassword(passwordEncoder.encode(obj.getRetypePassword()));
 		
+		obj.setAddDefaults(updateBy);
 		obj = memberRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Member", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -112,6 +113,8 @@ public class MemberService {
 		obj.setSubEndDate(member.getSubEndDate());
 		obj.setSubStartDate(member.getSubStartDate());
 		obj.setRoles(member.getRoles());	
+		
+		obj.setUpdateDefaults(updateBy);
 		obj = memberRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Member", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "UPD");
@@ -148,6 +151,7 @@ public class MemberService {
 		obj.setResPin(member.getResPin());
 		obj.setResState(member.getResState());
 		
+		obj.setUpdateDefaults(updateBy);
 		obj = memberRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Member", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "UPD");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,31 +8,29 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 			<div class="col-12">
 				
-				<h3 class="fw-bold">Businesses</h3>
+				<h3 class="fw-bold pb-3">Businesses</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 			
-				<div class="card p-1" th:each="ob : ${listBusinessAll}">
-					<h5 class="card-header" th:text="${ob.businessName}"></h5>
-				  	<div class="card-body">
-						<label style="font-weight: bold;" th:text="#{business.description}"></label> : <span th:text="${ob.description}"></span> 
-						<br/><label style="font-weight: bold;" th:text="#{business.address}"></label> : <span th:text="${ob.address}"></span>
-						<label style="font-weight: bold;" th:text="#{business.city}"></label> : <span th:text="${ob.city}"></span>
-						<label style="font-weight: bold;" th:text="#{business.pin}"></label> : <span th:text="${ob.pin}"></span>
-						<label style="font-weight: bold;" th:text="#{business.state}"></label> : <span th:text="${ob.state}"></span>
-						<label style="font-weight: bold;" th:text="#{business.country}"></label> : <span th:text="${ob.country}"></span>
-						<br/><label style="font-weight: bold;" th:text="#{business.contactName}"></label> : <span th:text="${ob.contactName}"></span> 
-						<br/><label style="font-weight: bold;" th:text="#{business.contactPhone}"></label> : <span th:text="${ob.contactPhone}"></span> 
-						<label style="font-weight: bold;" th:text="#{business.contactEmail}"></label> : <span th:text="${ob.contactEmail}"></span>
-						<br/><label style="font-weight: bold;" th:text="#{business.url}"></label> : <span th:text="${ob.url}"></span>
-						<br/><label style="font-weight: bold;" th:text="#{business.keywords}"></label> : <span th:text="${ob.keywords}"></span>
-				  	</div>
+				<div class="row py-2">
+					<div class="col-6 my-2" th:each="ob : ${listBusinessAll}">
+						<div class="card h-100">
+							<h5 class="card-header" th:text="${ob.businessName}"></h5>
+						  	<div class="card-body text-center">
+						  		<img th:if="${ob.fileData != null}" class="rounded mx-auto d-block text-center pb-3" style="width: 200px;" th:src="@{/home/business/photo/{orderId}(orderId=${ob.id})}"/>
+						  		<div th:text="${ob.description}"></div>
+						  		<br/><div th:text="'Address: ' + ${ob.address} + ', ' + ${ob.city} + ', ' + ${ob.pin} + ', ' + ${ob.state} + ', ' + ${ob.country}"></div>
+						  		<br/><div th:text="'Contact: ' + ${ob.contactName} + ', ' + ${ob.contactPhone} + ', ' + ${ob.contactEmail}"></div>
+						  		<br/><div th:text="'URL: ' + ${ob.url}"></div>
+						  		<br/><div th:text="'Keywords: ' + ${ob.keywords}"></div>
+						  	</div>
+						</div>
+					</div>
 				</div>
-				<br/>
-				<nav aria-label="Page navigation example">
+				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/business/all/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/business/all/list/previous}">Previous</a></li>

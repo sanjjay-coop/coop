@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,15 +8,15 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold">Business (My List)</h3>
+				<h3 class="fw-bold pb-3">Business (My List)</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-				<div class="row p-3">
+				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/business/addNew}">Add New Business</a>
@@ -24,41 +24,44 @@
 					</div>
 				</div>
 			
-				<div class="row p-2">
-					<div class="col-6" th:each="ob : ${listBusiness}">
+				<div class="row py-2">
+					<div class="col-6 my-2" th:each="ob : ${listBusiness}">
 						<div class="card h-100">
 							<h5 class="card-header" th:text="${ob.businessName}"></h5>
-						  	<div class="card-body">
+						  	<div class="card-body text-center">
+						  		<img th:if="${ob.fileData != null}" class="rounded mx-auto d-block text-center pb-3" style="width: 200px;" th:src="@{/home/business/photo/{orderId}(orderId=${ob.id})}"/>
 						  		<div th:text="${ob.description}"></div>
 						  		<br/><div th:text="'Address: ' + ${ob.address} + ', ' + ${ob.city} + ', ' + ${ob.pin} + ', ' + ${ob.state} + ', ' + ${ob.country}"></div>
 						  		<br/><div th:text="'Contact: ' + ${ob.contactName} + ', ' + ${ob.contactPhone} + ', ' + ${ob.contactEmail}"></div>
 						  		<br/><div th:text="'URL: ' + ${ob.url}"></div>
 						  		<br/><div th:text="'Keywords: ' + ${ob.keywords}"></div>
 								<br/>
-								<form class="form-inline" th:action="${servletRequest.requestURI}" th:object="${business}" method="POST">
-									<input type="hidden" th:field="*{id}"/>
-									<div class="col-auto">
-										<input class="" type="file" th:field="*{file}"/>
-									</div>
-									<div class="col-auto">
-										<button type="submit" class="btn btn-primary">Confirm identity</button>
-									</div>
-								</form>
-								
 								<div class="d-grid gap-2 d-md-block">
 									<a class="btn btn-secondary btn-sm" th:href="@{/home/business/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-								          <img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Edit"/>
+								          <img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>
 								    </a>
 				        			<a class="btn btn-secondary btn-sm" th:href="@{/home/business/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-								          <img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+								          <img th:src="@{/images/bootstrap-icons/trash-fill.svg}"/>
 								    </a>
 								</div>
+								<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${business}" method="POST" enctype="multipart/form-data">
+									<input type="hidden" name="id" th:value="${ob.id}"/>
+									  <div class="col-auto">
+									    <div class="input-group">
+									      <input type="file" class="form-control" th:field="*{file}" />
+									    </div>
+									  </div>
+									
+									  <div class="col-auto">
+									    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+									  </div>
+								</form>
 						  	</div>
 						</div>
 					</div>
 				</div>
 				<div class="row p-2" th:if="${totalPages > 0}">
-					<nav aria-label="Page navigation example">
+					<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 					  	<ul class="pagination">
 							<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/business/list}">First</a></li>
 					    	<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/business/list/previous}">Previous</a></li>

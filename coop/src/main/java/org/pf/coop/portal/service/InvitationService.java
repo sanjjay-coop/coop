@@ -41,6 +41,7 @@ public class InvitationService {
 		obj.setDate(Calendar.getInstance().getTime());
 		obj.setUpdateDate(Calendar.getInstance().getTime());
 		
+		obj.setAddDefaults(updateBy);
 		obj = invitationRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Invitation", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -82,6 +83,7 @@ public class InvitationService {
 		obj.setMember(invitation.getMember());
 		obj.setUpdateDate(Calendar.getInstance().getTime());
 		
+		obj.setUpdateDefaults(updateBy);
 		obj = invitationRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Invitation", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "UPD");

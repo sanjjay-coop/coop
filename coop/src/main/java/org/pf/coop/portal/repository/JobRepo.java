@@ -32,4 +32,6 @@ public interface JobRepo extends JpaRepository<Job, Long>{
 			+ "order by o.id desc "
 			+ "limit 5")
 	public List<Job> listJobRecent();
+	
+	Page<Job> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 }

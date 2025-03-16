@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,14 +8,14 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
 				<div class="row">
-					<div class="offset-md-1 col-md-10 p-4 border border-light rounded-0">
+					<div class="offset-md-1 col-md-10 p-2 border border-light rounded-0">
 						<div id="carouselExampleCaptions" class="carousel slide">
 						  	<div class="carousel-indicators">
 						    	<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 				
-				<div class="card p-2" th:each="article : ${listArticle}">
+				<div class="card p-2 mb-3" th:each="article : ${listArticle}">
 					<h5 class="card-header" th:text="${article.title}"></h5>
 				  	<div class="card-body">
 						<p th:utext="${article.content}"></p>

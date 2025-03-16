@@ -1,5 +1,6 @@
 package org.pf.coop.portal.service;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.pf.coop.portal.repository.AuditRepo;
 import org.pf.coop.portal.repository.JobRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import jakarta.transaction.Transactional;
 
@@ -35,7 +37,14 @@ public class JobService {
 	}
 	
 	@Transactional
-	public TransactionResult addJob(Job obj, String updateBy) {
+	public TransactionResult addJob(Job obj, String updateBy) throws IOException{
+		
+		if (obj.getFile()!=null) {
+			String fileName = StringUtils.cleanPath(obj.getFile().getOriginalFilename());
+			obj.setFileName(fileName);
+			obj.setFileType(obj.getFile().getContentType());
+			obj.setFileData(obj.getFile().getBytes());
+		}
 		
 		obj.setAddDate(Calendar.getInstance().getTime());
 		obj.setEnabled(false);
@@ -68,7 +77,7 @@ public class JobService {
 	
 
 	@Transactional
-	public TransactionResult updateJob(Job job, String updateBy) {
+	public TransactionResult updateJob(Job job, String updateBy) throws IOException {
 		
 		Optional<Job> oe = this.jobRepo.findById(job.getId());
 		
@@ -91,6 +100,14 @@ public class JobService {
 		obj.setPosition(job.getPosition());
 		obj.setSalary(job.getSalary());
 		obj.setUrl(job.getUrl());
+		
+		if (job.getFile()!=null) {
+			String fileName = StringUtils.cleanPath(job.getFile().getOriginalFilename());
+			obj.setFileName(fileName);
+			obj.setFileType(job.getFile().getContentType());
+			obj.setFileData(job.getFile().getBytes());
+		}
+		
 		
 		obj = jobRepo.save(obj);
 		

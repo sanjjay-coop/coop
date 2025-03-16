@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/moderator/sponsorship/delete")
-public class SponsorshipDeleteController extends ModeratorBaseController {
+public class ModSponsorshipDeleteController extends ModeratorBaseController {
 
 	@Autowired
 	private SponsorshipService sponsorshipService;

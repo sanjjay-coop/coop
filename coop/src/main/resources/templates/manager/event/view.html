@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,14 +8,14 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
-				<h3 class="fw-bold">Event (Details)</h3>
+				<h3 class="fw-bold pb-3">Event (Details)</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-				<div class="row p-3">
+				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/list/current}">To Event List</a>
@@ -41,7 +41,7 @@
 					<span th:utext="${eventUpdate.description}" style="text-wrap: wrap;"></span>
 					<br/><span style="font-weight: bold; font-size: small;">Last Update: </span>
 					<span style="font-size: small;" th:text="${#dates.format(eventUpdate.updateDate, 'dd/MM/yyyy HH:mm:ss')}"></span><br/>
-					<a class="nav-link" th:href="@{/manager/eventUpdate/delete/{orderId}(orderId=${eventUpdate.id})}" onclick="return confirm('Are you sure?')">
+					<a class="nav-link" th:href="@{/manager/eventUpdate/delete/{orderId}(orderId=${eventUpdate.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
 						<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete Update"/>
 					</a>
 				</div>

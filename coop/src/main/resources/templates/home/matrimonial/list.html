@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,15 +8,15 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold">Matrimonial (My List)</h3>
+				<h3 class="fw-bold pb-3">Matrimonial (My List)</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-				<div class="row p-3">
+				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/matrimonial/addNew}">Add New Matrimonial</a>
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				
-				<table class="table">
+				<table class="table table-sm table-bordered table-striped">
 				
 					<thead>
 						<tr>
@@ -47,19 +47,19 @@
 							<td th:text="${ob.enabled}"></td>
         					<td>
         						<a class="nav-link" th:href="@{/home/matrimonial/edit/{orderId}(orderId=${ob.id})}">
-						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Edit"/>
+						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>
 						        </a>
         					</td>
         					<td>
 		        				<a class="nav-link" th:href="@{/home/matrimonial/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')">
-						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}"/>
 						        </a>
         					</td>
 						</tr>
 					</tbody>
 				</table>
 				<div class="row p-2 text-align-center" th:if="${totalPages > 0}">
-					<nav aria-label="Page navigation example">
+					<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 						<ul class="pagination">
 							<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/matrimonial/list}">First</a></li>
 							<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/matrimonial/list/previous}">Previous</a></li>

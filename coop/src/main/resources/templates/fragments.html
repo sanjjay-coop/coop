@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head th:fragment="html_head">
-	<meta charset="ISO-8859-1">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CoOp - Tool for Association of People.</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 
 	<link rel="stylesheet" type="text/css" th:href="@{/assets/widgeEditor/css/widgEditor.css}">
-
+	
 	<script th:src="@{/assets/widgeEditor/scripts/widgEditor.js}"></script>
 	<style>
 		.cooperror {
@@ -56,22 +57,22 @@
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<div class="container-fluid">
-				    	<div id="navbarSupportedContent">
+				    	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				      			<li class="nav-item">
+				      			<li class="nav-item small">
 				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'index'} ? active" th:href="@{/}">
 				          				<img th:src="@{/images/bootstrap-icons/house.svg}" height="20px;"/>
 				          				Home
 				          			</a>
 				        		</li>
-				        		<li class="nav-item" sec:authorize="hasAnyRole('MEMBER','MANAGER')">
+				        		<li class="nav-item small" sec:authorize="hasAnyRole('MEMBER','MANAGER')">
 				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/home}">
 				          				<img th:src="@{/images/bootstrap-icons/sun.svg}" height="20px;"/>
 				          				My Dashboard
 				          			</a>
 				        		</li>
-								<li class="nav-item dropdown" sec:authorize="hasAnyRole('ACCOUNTS','MANAGER')">
-									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'accounts'} ? active" th:href="@{/accounts}" role="button" data-bs-toggle="dropdown">
+								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('ACCOUNTS','MANAGER')">
+									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'accounts'} ? active" th:href="@{/accounts}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 										<img th:src="@{/images/bootstrap-icons/book-half.svg}" height="20px;"/>
 										Accounts
 									</a>
@@ -85,7 +86,7 @@
 										<li><a class="dropdown-item" th:href="@{/accounts/reports}">Reports</a></li>
 									</ul>
 								</li>
-								<li class="nav-item dropdown" sec:authorize="hasAnyRole('LIBRARY','MANAGER')">
+								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('LIBRARY','MANAGER')">
 									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'library'} ? active" th:href="@{/library}" role="button" data-bs-toggle="dropdown">
 										<img th:src="@{/images/bootstrap-icons/bookshelf.svg}" height="20px;"/>
 										Library
@@ -97,7 +98,7 @@
 										<li><a class="dropdown-item" th:href="@{/library}">Search Title</a></li>
 									</ul>
 								</li>
-								<li class="nav-item dropdown" sec:authorize="hasAnyRole('MODERATOR','MANAGER')">
+								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('MODERATOR','MANAGER')">
 									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'moderator'} ? active" th:href="@{/moderator}" role="button" data-bs-toggle="dropdown">
 										<img th:src="@{/images/bootstrap-icons/peace.svg}" height="20px;"/>
 										Moderator
@@ -109,39 +110,33 @@
 										<li><a class="dropdown-item" th:href="@{/moderator/funding/list}">Funding Appl.</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/invitation/list}">Invitation</a></li>
 									  	<li><a class="dropdown-item" th:href="@{/moderator/job/list}">Job</a></li>
-									  	<li><a class="dropdown-item" th:href="@{/moderator/matrimonial/list}">Matrimonial</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/memberApplication/list}">Member Application</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/quotation/list}">Quotation</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/sponsorship/list}">Sponsorship</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/sponsorshipApplication/list}">Sponsorship Applications</a></li>
 									</ul>
 								</li>
-				      			<li class="nav-item" sec:authorize="hasRole('MANAGER')">
+				      			<li class="nav-item small" sec:authorize="hasRole('MANAGER')">
 				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'manager'} ? active" th:href="@{/manager}">
 				          				<img th:src="@{/images/bootstrap-icons/people-fill.svg}" height="20px;"/>
 				          				Manager
 				          			</a>
 				        		</li>
-								<li class="nav-item">
-									<a class="nav-link small" th:classappend="${viewLeftMenu == 'index'} ? active" th:href="@{/event/list}">
-										<img th:src="@{/images/bootstrap-icons/alarm.svg}" height="20px;"/>
-										Upcoming Events
-									</a>
-								</li>
-								<li class="nav-item" th:each="ob : ${listMenuItemTop}">
+								<li class="nav-item small" th:each="ob : ${listMenuItemTop}">
 									<a class="nav-link small" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
-										<img th:src="@{/images/bootstrap-icons/link.svg}" height="20px;"/>
+										<img th:src="@{/images/bootstrap-icons/link-45deg.svg}" height="20px;"/>
 										<span th:text="${ob.title}"></span>
 									</a>
 									<a class="nav-link small" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
-										<img th:src="@{/images/bootstrap-icons/link.svg}" height="20px;"/>
+										<img th:src="@{/images/bootstrap-icons/link-45deg.svg}" height="20px;"/>
 										<span th:text="${ob.title}"></span>
 									</a>
 									<a class="nav-link small" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
-										<img th:src="@{/images/bootstrap-icons/link.svg}" height="20px;"/>
+										<img th:src="@{/images/bootstrap-icons/link-45deg.svg}" height="20px;"/>
 										<span th:text="${ob.title}"></span>
 									</a>
 									<a class="nav-link small" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
-										<img th:src="@{/images/bootstrap-icons/link.svg}" height="20px;"/>
+										<img th:src="@{/images/bootstrap-icons/link-45deg.svg}" height="20px;"/>
 										<span th:text="${ob.title}"></span>
 									</a>
 								</li>
@@ -210,7 +205,7 @@
 			
 			<div class="col-10">
 				
-				<h3 class="fw-bold">Title</h3>
+				<h3 class="fw-bold pb-3">Title</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
@@ -225,6 +220,12 @@
 					<div class="container-fluid">
 				    	<div id="navbarSupportedContent">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">	
+								<li class="nav-item small">
+									<a class="nav-link small" th:href="@{/event/list}">
+										<img th:src="@{/images/bootstrap-icons/alarm.svg}" height="20px;"/>
+										Upcoming Events
+									</a>
+								</li>	
 								<li class="nav-item small">
 									<a class="nav-link small" th:href="@{/open/sponsorship}">
 										<img th:src="@{/images/bootstrap-icons/trophy.svg}" height="20px;"/>
@@ -271,7 +272,7 @@
 			</div>
 			
 			<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-			<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+			<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 		</div>
 	</div>
 

@@ -13,8 +13,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -25,46 +28,82 @@ public class ModJobListController extends ModeratorBaseController {
 	@Autowired
 	private JobRepo jobRepo;
 	
-	@GetMapping("/list")
-	public String listJob(Model model, Principal principal, HttpServletRequest request) {
+	@PostMapping({"/list", "/list/*", "/list/*/*" })
+	public String listJob(@ModelAttribute Job job, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		int pageNumber = 0;
-		
-		//if (request.getSession().getAttribute("listModJob_pageNumber")==null) pageNumber = 0;
-		//else pageNumber = (int) request.getSession().getAttribute("listModJob_pageNumber");
-		
-		Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
-		
-		Page<Job> page = this.jobRepo.findAll(pageable);
-		
-		int totalPages = page.getTotalPages();
-		
-		model.addAttribute("listJob", page.getContent());
-		
-		model.addAttribute("currentPage", pageNumber + 1);
-		model.addAttribute("totalPages", totalPages);
-		
-		if (pageNumber == 0) model.addAttribute("firstPage", true);
-		else model.addAttribute("firstPage", false);
-		
-		if (pageNumber == (totalPages-1)) {
-			model.addAttribute("lastPage", true);
-		} else {
-			model.addAttribute("lastPage", false);
+		try {
+			
+			request.getSession().setAttribute("moderatorSearch_job", job);
+				
+			return "redirect:/moderator/job/list";
+		} catch (Exception e) {
+			reat.addFlashAttribute("message", e);
+			return "redirect:/home";
 		}
+	}
+	
+	@GetMapping("/list")
+	public String listJob(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		request.getSession().setAttribute("listModJob_pageNumber", pageNumber);
-		request.getSession().setAttribute("listModJob_totalPages", totalPages);
-		
-		return "moderator/job/list";
+		try {
+			
+			int pageNumber = 0;
+			
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
+			
+			Page<Job> page;
+			
+			Job obj = (Job) request.getSession().getAttribute("moderatorSearch_job");
+			
+			if (obj == null) {
+				page = this.jobRepo.findAll(pageable);
+				obj = new Job();
+				obj.setSearchString("");
+			} else {
+				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
+					page = this.jobRepo.findAll(pageable);
+				} else {
+					page = this.jobRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+				}
+			}
+			
+			request.getSession().setAttribute("moderatorSearch_job", obj);
+			model.addAttribute("job", obj);
+			
+			int totalPages = page.getTotalPages();
+			
+			model.addAttribute("listJob", page.getContent());
+			
+			model.addAttribute("currentPage", pageNumber + 1);
+			model.addAttribute("totalPages", totalPages);
+			
+			if (pageNumber == 0) model.addAttribute("firstPage", true);
+			else model.addAttribute("firstPage", false);
+			
+			if (pageNumber == (totalPages-1)) {
+				model.addAttribute("lastPage", true);
+			} else {
+				model.addAttribute("lastPage", false);
+			}
+			
+			request.getSession().setAttribute("listJobModerator_pageNumber", pageNumber);
+			request.getSession().setAttribute("listJobModerator_totalPages", totalPages);
+			
+			return "moderator/job/list";
+			
+		} catch(Exception e) {
+			System.out.println("Error Message: " + e);
+			reat.addFlashAttribute("message", e);
+			return "redirect:/home";
+		}
 	}
 	
 	@GetMapping("/list/{whichPage}")
 	public String listJob(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			int pageNumber = (int) request.getSession().getAttribute("listModJob_pageNumber");
-			int totalPages = (int) request.getSession().getAttribute("listModJob_totalPages");
+			int pageNumber = (int) request.getSession().getAttribute("listJobModerator_pageNumber");
+			int totalPages = (int) request.getSession().getAttribute("listJobModerator_totalPages");
 			
 			if ("previous".equals(whichPage)) {
 				if (pageNumber == 0) return "redirect:/moderator/job/list";
@@ -81,7 +120,24 @@ public class ModJobListController extends ModeratorBaseController {
 			
 			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
 			
-			Page<Job> page = this.jobRepo.findAll(pageable);
+			Page<Job> page;
+			
+			Job obj = (Job) request.getSession().getAttribute("moderatorSearch_job");
+			
+			if (obj == null) {
+				page = this.jobRepo.findAll(pageable);
+				obj = new Job();
+				obj.setSearchString("");
+			} else {
+				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
+					page = this.jobRepo.findAll(pageable);
+				} else {
+					page = this.jobRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+				}
+			}
+			
+			request.getSession().setAttribute("moderatorSearch_job", obj);
+			model.addAttribute("job", obj);
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
@@ -95,8 +151,8 @@ public class ModJobListController extends ModeratorBaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listModJob_pageNumber", pageNumber);
-			request.getSession().setAttribute("listModJob_totalPages", totalPages);
+			request.getSession().setAttribute("listJobModerator_pageNumber", pageNumber);
+			request.getSession().setAttribute("listJobModerator_totalPages", totalPages);
 			
 			model.addAttribute("listJob", page.getContent());
 			
@@ -107,4 +163,5 @@ public class ModJobListController extends ModeratorBaseController {
 		}
 	}
 }
+
 

@@ -27,4 +27,6 @@ public interface BusinessRepo extends JpaRepository<Business, Long>{
 	public List<Business> listBusinessRecent();
 	
 	public Business findByIdAndOwner(Long id, Member owner);
+	
+	Page<Business> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 }

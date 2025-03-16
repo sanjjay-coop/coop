@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,36 +8,42 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold">Jobs</h3>
+				<h3 class="fw-bold pb-3">Jobs</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-				<div class="card p-1" th:each="ob : ${listJobAll}">
-					<h5 class="card-header" th:text="${ob.position}"></h5>
-				  	<div class="card-body">
-						<label style="font-weight: bold;" th:text="#{job.description}"></label> : <span th:text="${ob.description}"></span><br/> 
-						<label style="font-weight: bold;" th:text="#{job.salary}"></label> : <span th:text="${ob.salary}"></span>
-						<label style="font-weight: bold;" th:text="#{job.minimumQualification}"></label> : <span th:text="${ob.minimumQualification.name}"></span><br/> 
-						<label style="font-weight: bold;" th:text="#{job.firmName}"></label> : <span th:text="${ob.firmName}"></span> <br/>
-						<label style="font-weight: bold;" th:text="#{job.address}"></label> : <span th:text="${ob.address}"></span> 
-						<label style="font-weight: bold;" th:text="#{job.city}"></label> : <span th:text="${ob.city}"></span> 
-						<label style="font-weight: bold;" th:text="#{job.pin}"></label> : <span th:text="${ob.pin}"></span>
-						<label style="font-weight: bold;" th:text="#{job.state}"></label> : <span th:text="${ob.state}"></span>
-						<label style="font-weight: bold;" th:text="#{job.country}"></label> : <span th:text="${ob.country}"></span> <br/>
-						<label style="font-weight: bold;" th:text="#{job.contactName}"></label> : <span th:text="${ob.contactName}"></span> 
-						<label style="font-weight: bold;" th:text="#{job.contactDesignation}"></label> : <span th:text="${ob.contactDesignation}"></span> 
-						<label style="font-weight: bold;" th:text="#{job.contactPhone}"></label> : <span th:text="${ob.contactPhone}"></span> 
-						<label style="font-weight: bold;" th:text="#{job.contactEmail}"></label> : <span th:text="${ob.contactEmail}"></span> 
-						<label style="font-weight: bold;" th:text="#{job.url}"></label> : <span th:text="${ob.url}"></span> <br/>
-						<label style="font-weight: bold;" th:text="#{job.lastDate}"></label> : <span th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></span>	  
-				  	</div>
+				<div class="row py-2">
+					<div class="col-6 my-2" th:each="ob : ${listJobAll}">
+						<div class="card h-100">
+							<h5 class="card-header" th:text="${ob.position}"></h5>
+						  	<div class="card-body">
+								<label class="text-primary" th:text="#{job.description}"></label> : <span th:text="${ob.description}"></span><br/> 
+								<label class="text-primary" th:text="#{job.salary}"></label> : <span th:text="${ob.salary}"></span>
+								<label class="text-primary" th:text="#{job.minimumQualification}"></label> : <span th:text="${ob.minimumQualification.name}"></span><br/> 
+								<label class="text-primary" th:text="#{job.firmName}"></label> : <span th:text="${ob.firmName}"></span> <br/>
+								<label class="text-primary" th:text="#{job.address}"></label> : <span th:text="${ob.address}"></span> 
+								<label class="text-primary" th:text="#{job.city}"></label> : <span th:text="${ob.city}"></span> 
+								<label class="text-primary" th:text="#{job.pin}"></label> : <span th:text="${ob.pin}"></span>
+								<label class="text-primary" th:text="#{job.state}"></label> : <span th:text="${ob.state}"></span>
+								<label class="text-primary" th:text="#{job.country}"></label> : <span th:text="${ob.country}"></span> <br/>
+								<label class="text-primary" th:text="#{job.contactName}"></label> : <span th:text="${ob.contactName}"></span> 
+								<label class="text-primary" th:text="#{job.contactDesignation}"></label> : <span th:text="${ob.contactDesignation}"></span> 
+								<label class="text-primary" th:text="#{job.contactPhone}"></label> : <span th:text="${ob.contactPhone}"></span> 
+								<label class="text-primary" th:text="#{job.contactEmail}"></label> : <span th:text="${ob.contactEmail}"></span> 
+								<label class="text-primary" th:text="#{job.url}"></label> : <span th:text="${ob.url}"></span> <br/>
+								<label class="text-primary" th:text="#{job.lastDate}"></label> : <span th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></span>	  
+								<a th:if="${ob.fileData != null}" class="nav-link" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
+						          	<img th:src="@{/images/bootstrap-icons/download.svg}"/>
+						        </a>
+						  	</div>
+						</div>
+					</div>
 				</div>
-				<br/>
-				<nav aria-label="Page navigation example">
+				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 				 	<ul class="pagination">
 				 		<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/all/list}">First</a></li>
 				 		<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/all/list/previous}">Previous</a></li>

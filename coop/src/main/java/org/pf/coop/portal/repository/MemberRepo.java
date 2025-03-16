@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.pf.coop.portal.model.Member;
 import org.pf.coop.portal.model.MemberGroup;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -30,5 +32,7 @@ public interface MemberRepo extends JpaRepository<Member, Long>{
 	public List<Member> findAllBySubEndDateBetween(Date date1, Date date2);
 	
 	public Optional<Member> findByMemGroup(MemberGroup memGroup);
+	
+	Page<Member> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 	
 }

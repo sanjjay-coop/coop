@@ -18,11 +18,16 @@ import org.pf.coop.portal.repository.JobRepo;
 import org.pf.coop.portal.repository.MatrimonialRepo;
 import org.pf.coop.portal.repository.MemberRepo;
 import org.pf.coop.portal.repository.ReminderRepo;
+import org.pf.coop.portal.service.BusinessService;
+import org.pf.coop.portal.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomeController extends HomeBaseController {
@@ -32,6 +37,12 @@ public class HomeController extends HomeBaseController {
 	
 	@Autowired
 	private BusinessRepo businessRepo;
+	
+	@Autowired
+	private BusinessService businessService;
+	
+	@Autowired
+	private JobService jobService;
 	
 	@Autowired
 	private EventRepo eventRepo;
@@ -90,5 +101,25 @@ public class HomeController extends HomeBaseController {
 		
 		return "home/default";
 		
+	}
+	
+	@GetMapping("/home/business/photo/{id}")
+	public ResponseEntity<byte[]> getBusinessFile(@PathVariable Long id) {
+	    
+		Business business = (Business) this.businessService.getById(id);
+
+	    return ResponseEntity.ok()
+	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + business.getFileName() + "\"")
+	        .body(business.getFileData());
+	}
+	
+	@GetMapping("/home/job/file/{id}")
+	public ResponseEntity<byte[]> getJobFile(@PathVariable Long id) {
+	    
+		Job job = (Job) this.jobService.getById(id);
+
+	    return ResponseEntity.ok()
+	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + job.getFileName() + "\"")
+	        .body(job.getFileData());
 	}
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,27 +8,39 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold">Articles</h3>
+				<h3 class="fw-bold pb-3">Articles</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-				<div class="row p-3">
+				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/article/addNew}">Add New Article</a>
 						</div>
 					</div>
 				</div>
+
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${article}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
 				
-				<table class="table">
+				<table class="table table-sm table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
 							<th th:text="#{article.title}"></th>
 							<th th:text="#{article.publish}"></th>
 							<th th:text="#{article.pubDate}"></th>
@@ -40,25 +52,24 @@
 					
 					<tbody>
 						<tr th:each="ob : ${listArticle}">
-        					<td th:text="${ob.id}"></td>
         					<td th:text="${ob.title}"></td>
 							<td th:text="${ob.publish}"></td>
         					<td th:text="${#dates.format(ob.pubDate, 'dd/MM/yyyy')}"></td>
         					<td th:text="${#dates.format(ob.expDate, 'dd/MM/yyyy')}"></td>
         					<td>
-        						<a class="nav-link" th:href="@{/manager/article/edit/{orderId}(orderId=${ob.id})}">
-						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}" alt="Update"/>
+        						<a class="nav-link" th:href="@{/manager/article/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>
 						        </a>
         					</td>
         					<td>
-		        				<a class="nav-link" th:href="@{/manager/article/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')">
-						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete"/>
+		        				<a class="nav-link" th:href="@{/manager/article/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}"/>
 						        </a>
         					</td>
 						</tr>
 					</tbody>
 				</table>
-				<nav aria-label="Page navigation example">
+				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/manager/article/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/manager/article/list/previous}">Previous</a></li>

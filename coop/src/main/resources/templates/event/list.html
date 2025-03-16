@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,18 +8,18 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold">Upcoming Events</h3>
+				<h3 class="fw-bold pb-3">Upcoming Events</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 					
-				<div class="card p-2" th:each="event : ${listEvent}">
+				<div class="card p-2 mb-3" th:each="event : ${listEvent}">
 					<h5 class="card-header" th:text="${event.title}"></h5>
 				  	<div class="card-body">
-						<pre th:utext="${event.description}" style="text-wrap: wrap;"></pre>
+						<pre class="text-primary" th:utext="${event.description}" style="text-wrap: wrap;"></pre>
 						<div style="font-size: small;">
 							<b>Event Type: </b>
 							<span th:text="${event.eventType.name}"></span>
@@ -28,7 +28,7 @@
 							<b> End Date: </b>
 							<span th:text="${#dates.format(event.endDate, 'dd/MM/yyyy')}"></span>
 						</div>
-						<div th:each="eventUpdate : ${event.updates}" style="margin: 10px; padding: 10px; border:aliceblue solid 1px; border-radius: 10px;">
+						<div th:each="eventUpdate : ${event.updates}" class="text-info" style="margin: 10px; padding: 10px; border:aliceblue solid 1px; border-radius: 10px;">
 							<span th:utext="${eventUpdate.description}"></span>
 							<br/><span style="font-weight: bold; font-size: small;">Last Update: </span>
 							<span style="font-size: small;" th:text="${#dates.format(eventUpdate.updateDate, 'dd/MM/yyyy HH:mm:ss')}"></span><br/>

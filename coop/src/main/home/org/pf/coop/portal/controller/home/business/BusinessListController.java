@@ -2,11 +2,14 @@ package org.pf.coop.portal.controller.home.business;
 
 import java.security.Principal;
 
+import org.pf.coop.common.TransactionResult;
 import org.pf.coop.portal.controller.home.HomeBaseController;
 import org.pf.coop.portal.model.Business;
 import org.pf.coop.portal.model.Member;
 import org.pf.coop.portal.repository.BusinessRepo;
 import org.pf.coop.portal.repository.MemberRepo;
+import org.pf.coop.portal.service.BusinessService;
+import org.pf.coop.portal.validators.BusinessFileValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,9 +17,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -29,6 +36,53 @@ public class BusinessListController extends HomeBaseController {
 	
 	@Autowired
 	private MemberRepo memberRepo;
+	
+	@Autowired
+	private BusinessService businessService;
+	
+	@Autowired
+	private BusinessFileValidator businessFileValidator;
+	
+	@PostMapping({"/list", "/list/*", "/list/*/*"})
+	public String uploadFile(@ModelAttribute Business business,
+			BindingResult result, Model model, RedirectAttributes reat, Principal principal) {
+		
+		Business obj = (Business) this.businessService.getById(business.getId());
+		
+		if (obj==null) {
+			reat.addFlashAttribute("message", "No such record is found.");
+			return "redirect:/home/business/list/current";
+		}
+		
+		if (!obj.getOwner().getMemId().equals(principal.getName())) {
+			reat.addFlashAttribute("message", "The record does not belong to you.");
+			return "redirect:/home/business/list/current";
+		}
+		
+		this.businessFileValidator.validate(business, result);
+		
+		if (result.hasErrors()) {
+			
+			reat.addFlashAttribute("message", "Unable to upload file. File must be PNG and less than 200KB.");
+			return "redirect:/home/business/list/current";
+		}
+		
+		try {
+			TransactionResult tr = this.businessService.updateBusinessPhoto(business.getFile(), business, principal.getName());
+			
+			if (tr == null) {
+				reat.addFlashAttribute("message", "Business photo updation failed. Please try again later.");
+			} else if (tr.isStatus()){
+				reat.addFlashAttribute("message", "Business photo updated successfully.");
+			} else {
+				reat.addFlashAttribute("message", "Business updation failed. Please try again later.");
+			}
+		} catch (Exception e) {
+			reat.addFlashAttribute("message", e.getMessage());
+			System.out.println(e.getMessage());
+		}
+		return "redirect:/home/business/list/current";
+	}
 	
 	@GetMapping("/list")
 	public String listBusiness(Model model, Principal principal, HttpServletRequest request) {

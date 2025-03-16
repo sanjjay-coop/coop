@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/moderator/sponsorshipApplication/view")
-public class SponsorshipApplicationViewController extends ModeratorBaseController {
+public class ModSponsorshipApplicationViewController extends ModeratorBaseController {
 	
 	@Autowired
 	private SponsorshipApplicationService sponsorshipApplicationService;

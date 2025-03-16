@@ -42,6 +42,7 @@ public class ArticleService {
 		obj.setUpdateDate(Calendar.getInstance().getTime());
 		if (obj.getPublish()==null) obj.setPublish(true);
 		
+		obj.setAddDefaults(updateBy);
 		obj = articleRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Article", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -87,6 +88,7 @@ public class ArticleService {
 		obj.setTitle(article.getTitle());
 		obj.setUpdateDate(Calendar.getInstance().getTime());
 		
+		obj.setUpdateDefaults(updateBy);
 		obj = articleRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Article", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "UPD");

@@ -13,8 +13,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -25,46 +28,82 @@ public class ModMemberApplicationListController extends ModeratorBaseController 
 	@Autowired
 	private MemberApplicationRepo memberApplicationRepo;
 	
-	@GetMapping("/list")
-	public String listMemberApplication(Model model, Principal principal, HttpServletRequest request) {
+	@PostMapping({"/list", "/list/*", "/list/*/*" })
+	public String listMemberApplication(@ModelAttribute MemberApplication memberApplication, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		int pageNumber = 0;
-		
-		//if (request.getSession().getAttribute("listModMemberApplication_pageNumber")==null) pageNumber = 0;
-		//else pageNumber = (int) request.getSession().getAttribute("listModMemberApplication_pageNumber");
-		
-		Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
-		
-		Page<MemberApplication> page = this.memberApplicationRepo.findAll(pageable);
-		
-		int totalPages = page.getTotalPages();
-		
-		model.addAttribute("listMemberApplication", page.getContent());
-		
-		model.addAttribute("currentPage", pageNumber + 1);
-		model.addAttribute("totalPages", totalPages);
-		
-		if (pageNumber == 0) model.addAttribute("firstPage", true);
-		else model.addAttribute("firstPage", false);
-		
-		if (pageNumber == (totalPages-1)) {
-			model.addAttribute("lastPage", true);
-		} else {
-			model.addAttribute("lastPage", false);
+		try {
+			
+			request.getSession().setAttribute("moderatorSearch_memberApplication", memberApplication);
+				
+			return "redirect:/moderator/memberApplication/list";
+		} catch (Exception e) {
+			reat.addFlashAttribute("message", e);
+			return "redirect:/home";
 		}
+	}
+	
+	@GetMapping("/list")
+	public String listMemberApplication(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		request.getSession().setAttribute("listModMemberApplication_pageNumber", pageNumber);
-		request.getSession().setAttribute("listModMemberApplication_totalPages", totalPages);
-		
-		return "moderator/memberApplication/list";
+		try {
+			
+			int pageNumber = 0;
+			
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
+			
+			Page<MemberApplication> page;
+			
+			MemberApplication obj = (MemberApplication) request.getSession().getAttribute("moderatorSearch_memberApplication");
+			
+			if (obj == null) {
+				page = this.memberApplicationRepo.findAll(pageable);
+				obj = new MemberApplication();
+				obj.setSearchString("");
+			} else {
+				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
+					page = this.memberApplicationRepo.findAll(pageable);
+				} else {
+					page = this.memberApplicationRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+				}
+			}
+			
+			request.getSession().setAttribute("moderatorSearch_memberApplication", obj);
+			model.addAttribute("memberApplication", obj);
+			
+			int totalPages = page.getTotalPages();
+			
+			model.addAttribute("listMemberApplication", page.getContent());
+			
+			model.addAttribute("currentPage", pageNumber + 1);
+			model.addAttribute("totalPages", totalPages);
+			
+			if (pageNumber == 0) model.addAttribute("firstPage", true);
+			else model.addAttribute("firstPage", false);
+			
+			if (pageNumber == (totalPages-1)) {
+				model.addAttribute("lastPage", true);
+			} else {
+				model.addAttribute("lastPage", false);
+			}
+			
+			request.getSession().setAttribute("listMemberApplicationModerator_pageNumber", pageNumber);
+			request.getSession().setAttribute("listMemberApplicationModerator_totalPages", totalPages);
+			
+			return "moderator/memberApplication/list";
+			
+		} catch(Exception e) {
+			System.out.println("Error Message: " + e);
+			reat.addFlashAttribute("message", e);
+			return "redirect:/home";
+		}
 	}
 	
 	@GetMapping("/list/{whichPage}")
 	public String listMemberApplication(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			int pageNumber = (int) request.getSession().getAttribute("listModMemberApplication_pageNumber");
-			int totalPages = (int) request.getSession().getAttribute("listModMemberApplication_totalPages");
+			int pageNumber = (int) request.getSession().getAttribute("listMemberApplicationModerator_pageNumber");
+			int totalPages = (int) request.getSession().getAttribute("listMemberApplicationModerator_totalPages");
 			
 			if ("previous".equals(whichPage)) {
 				if (pageNumber == 0) return "redirect:/moderator/memberApplication/list";
@@ -81,7 +120,24 @@ public class ModMemberApplicationListController extends ModeratorBaseController 
 			
 			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
 			
-			Page<MemberApplication> page = this.memberApplicationRepo.findAll(pageable);
+			Page<MemberApplication> page;
+			
+			MemberApplication obj = (MemberApplication) request.getSession().getAttribute("moderatorSearch_memberApplication");
+			
+			if (obj == null) {
+				page = this.memberApplicationRepo.findAll(pageable);
+				obj = new MemberApplication();
+				obj.setSearchString("");
+			} else {
+				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
+					page = this.memberApplicationRepo.findAll(pageable);
+				} else {
+					page = this.memberApplicationRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+				}
+			}
+			
+			request.getSession().setAttribute("moderatorSearch_memberApplication", obj);
+			model.addAttribute("memberApplication", obj);
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
@@ -95,8 +151,8 @@ public class ModMemberApplicationListController extends ModeratorBaseController 
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listModMemberApplication_pageNumber", pageNumber);
-			request.getSession().setAttribute("listModMemberApplication_totalPages", totalPages);
+			request.getSession().setAttribute("listMemberApplicationModerator_pageNumber", pageNumber);
+			request.getSession().setAttribute("listMemberApplicationModerator_totalPages", totalPages);
 			
 			model.addAttribute("listMemberApplication", page.getContent());
 			

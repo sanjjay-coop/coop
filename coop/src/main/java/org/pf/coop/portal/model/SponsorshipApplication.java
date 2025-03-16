@@ -3,19 +3,25 @@ package org.pf.coop.portal.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_sponsorship_application")
-public class SponsorshipApplication implements Serializable {
+public class SponsorshipApplication extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -74,6 +80,9 @@ public class SponsorshipApplication implements Serializable {
 	
 	@Column(name="f_status_date", nullable=true)
 	private Date statusDate;
+
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -203,6 +212,14 @@ public class SponsorshipApplication implements Serializable {
 		this.statusDate = statusDate;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "SponsorshipApplication [" + (id != null ? "id=" + id + ", " : "")
@@ -217,6 +234,28 @@ public class SponsorshipApplication implements Serializable {
 				+ (status != null ? "status=" + status + ", " : "")
 				+ (remarks != null ? "remarks=" + remarks + ", " : "")
 				+ (statusDate != null ? "statusDate=" + statusDate : "") + "]";
+	}
+	
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		this.setSearchString((sponsorship != null ? sponsorship + ", " : "")
+				+ (educationAndExperience != null ? "educationAndExperience=" + educationAndExperience + ", " : "")
+				+ (name != null ? "name=" + name + ", " : "")
+				+ (city != null ? "city=" + city + ", " : "")
+				+ (email != null ? "email=" + email + ", " : "") + (mobile != null ? "mobile=" + mobile + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		this.setSearchString((sponsorship != null ? sponsorship + ", " : "")
+				+ (educationAndExperience != null ? "educationAndExperience=" + educationAndExperience + ", " : "")
+				+ (name != null ? "name=" + name + ", " : "")
+				+ (city != null ? "city=" + city + ", " : "")
+				+ (email != null ? "email=" + email + ", " : "") + (mobile != null ? "mobile=" + mobile + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
 	}
 	
 }

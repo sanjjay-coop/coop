@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,14 +8,27 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 			<div class="col-12">
 				
-				<h3 class="fw-bold">Member Application</h3>
+				<h3 class="fw-bold pb-3">Member Application</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${memberApplication}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
 				
-				<table class="table">
+				<table class="table table-sm table-bordered table-striped">
 				
 					<thead>
 						<tr>
@@ -40,14 +53,14 @@
 							<td th:text="${ob.status}"></td>
 							<td th:text="${#dates.format(ob.statusDate, 'dd-MM-yyyy HH:mm:ss')}"></td>	
 							<td>
-								<a class="nav-link" th:href="@{/moderator/memberApplication/view/{orderId}(orderId=${ob.id})}">
-							       	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}" alt="View Record"/>
+								<a class="nav-link" th:href="@{/moderator/memberApplication/view/{orderId}(orderId=${ob.id})}" title="View Record">
+							       	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>
 							    </a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<nav aria-label="Page navigation example">
+				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list}">First</a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/memberApplication/list/previous}">Previous</a></li>

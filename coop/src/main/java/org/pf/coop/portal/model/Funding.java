@@ -4,19 +4,25 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_funding")
-public class Funding implements Serializable {
+public class Funding extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -81,6 +87,9 @@ public class Funding implements Serializable {
 	
 	@Column(name="f_status_date", nullable=true)
 	private Date statusDate;
+
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -226,6 +235,14 @@ public class Funding implements Serializable {
 		this.statusDate = statusDate;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "Funding [" + (id != null ? "id=" + id + ", " : "")
@@ -242,6 +259,26 @@ public class Funding implements Serializable {
 				+ (status != null ? "status=" + status + ", " : "")
 				+ (remarks != null ? "remarks=" + remarks + ", " : "")
 				+ (statusDate != null ? "statusDate=" + statusDate : "") + "]";
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		this.setSearchString((applicant != null ? applicant + ", " : "")
+				+ (purpose != null ? purpose + ", " : "")
+				+ (name != null ? name + ", " : "") 
+				+ (email != null ? email + ", " : "") + (mobile != null ? mobile + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		this.setSearchString((applicant != null ? applicant + ", " : "")
+				+ (purpose != null ? purpose + ", " : "")
+				+ (name != null ? name + ", " : "") 
+				+ (email != null ? email + ", " : "") + (mobile != null ? mobile + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
 	}
 }
 

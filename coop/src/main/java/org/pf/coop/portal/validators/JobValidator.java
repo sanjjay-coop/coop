@@ -8,9 +8,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class JobValidator extends BaseValidator implements Validator {
+	
+	public static final String PNG_MIME_TYPE="application/pdf";
+	public static final long FILE_SIZE_IN_BYTES = 4194304;
 	
 	@Override
 	public boolean supports(Class<?> cls) {
@@ -145,5 +149,17 @@ public class JobValidator extends BaseValidator implements Validator {
 		} else {
 			errors.rejectValue("lastDate", "job.lastDate.required");
 		}
+		
+		MultipartFile file = obj.getFile();
+		
+        if(!file.isEmpty()) {
+        	if(!PNG_MIME_TYPE.equalsIgnoreCase(file.getContentType())){
+        		errors.rejectValue("file", "job.file.type");
+        	}
+        
+	        if(file.getSize() > FILE_SIZE_IN_BYTES){
+	            errors.rejectValue("file", "job.file.size");
+	        }
+        }
 	}
 }

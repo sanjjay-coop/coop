@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,15 +8,15 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold" th:text="${'Articles (Category: ' + category.name + ')' }"></h3>
+				<h3 class="fw-bold pb-3" th:text="${'Articles (Category: ' + category.name + ')' }"></h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 					
-				<div class="card p-1" th:each="article : ${listArticle}">
+				<div class="card p-2 mb-3" th:each="article : ${listArticle}">
 					<h5 class="card-header" th:text="${article.title}"></h5>
 				  	<div class="card-body">
 						<p th:utext="${article.content}"></p>

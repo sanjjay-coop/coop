@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.pf.coop.common.BaseObject;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.Column;
@@ -11,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
@@ -19,8 +22,9 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_business")
-public class Business implements Serializable {
+public class Business extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -92,6 +96,9 @@ public class Business implements Serializable {
 	
 	@Column(name="f_enabled", nullable=false)
 	private Boolean enabled = false;
+
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -253,6 +260,14 @@ public class Business implements Serializable {
 		this.file = file;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "Business [" + (id != null ? "id=" + id + ", " : "")
@@ -272,4 +287,25 @@ public class Business implements Serializable {
 				+ (enabled != null ? "enabled=" + enabled : "") + "]";
 	}
 	
+
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		this.setSearchString((businessName != null ? businessName + ", " : "")
+				+ (city != null ? city + ", " : "")
+				+ (contactName != null ? contactName + ", " : "")
+				+ (contactEmail != null ? "contactEmail=" + contactEmail + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		this.setSearchString((businessName != null ? businessName + ", " : "")
+				+ (city != null ? city + ", " : "")
+				+ (contactName != null ? contactName + ", " : "")
+				+ (contactEmail != null ? "contactEmail=" + contactEmail + ", " : ""));
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
+	}
 }

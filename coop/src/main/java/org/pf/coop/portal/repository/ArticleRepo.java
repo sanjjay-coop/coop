@@ -54,4 +54,6 @@ public interface ArticleRepo extends JpaRepository<Article, Long>{
 			+ "art.publish = TRUE and "
 			+ "cat.name =:categoryName ")
 	public Page<Article> listArticleBlog(Date today, String categoryName, Pageable pageable);
+	
+	Page<Article> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 }

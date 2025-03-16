@@ -1,5 +1,6 @@
 package org.pf.coop.portal.service;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ import org.pf.coop.portal.repository.AuditRepo;
 import org.pf.coop.portal.repository.BusinessRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.transaction.Transactional;
 
@@ -40,6 +43,7 @@ public class BusinessService {
 		obj.setAddDate(Calendar.getInstance().getTime());
 		obj.setEnabled(false);
 		
+		obj.setAddDefaults(updateBy);
 		obj = businessRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Business", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -90,6 +94,7 @@ public class BusinessService {
 		obj.setState(business.getState());
 		obj.setUrl(business.getUrl());
 		
+		obj.setUpdateDefaults(updateBy);
 		obj = businessRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Business", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "UPD");
@@ -116,6 +121,27 @@ public class BusinessService {
 		businessRepo.save(obj);
 
 		return new TransactionResult(true, "Record updated successfully");
+	}
+	
+	@Transactional
+	public TransactionResult updateBusinessPhoto(MultipartFile file, Business o, String updateBy) throws IOException {
+		
+		Business obj = (Business) this.getById(o.getId());
+		
+		if (obj==null || !obj.getOwner().getMemId().equals(updateBy)) {return new TransactionResult(obj, false);}
+		
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		
+		obj.setFileName(fileName);
+		obj.setFileType(file.getContentType());
+		obj.setFileData(file.getBytes());
+		
+		obj = businessRepo.save(obj);
+		
+		audit = new Audit(updateBy, "Business", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "UPDPHOTO");
+		auditRepo.save(audit);
+		
+		return new TransactionResult(obj, true);
 	}
 }
 

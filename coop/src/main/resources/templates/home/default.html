@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,22 +8,22 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
+		
 			<div class="col-12">
 				
-				<h3 class="fw-bold">My Dashboard</h3>
+				<h3 class="fw-bold pb-3">My Dashboard</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-				<div class="row p-3">
+				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/profile}">Profile</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/list}">Funding Request</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/list}">Apply for Fund Request</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/business/list}">My Businesses</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/invitation/list}">My Invitations</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/list}">My Jobs</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/matrimonial/list}">My Matrimonials</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/payments}">My Payments</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/reminder/list}">Reminders</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/title/search}">Search Titles</a>
@@ -36,42 +36,7 @@
 					<div th:text="${ob.reminderMessage}"></div>
 				</div>
 				
-				<div class="row p-2" style="font-size: 12px;">
-					<div class="col-4">
-						<div class="card h-100">
-							<h5 class="card-header">Businesses</h5>
-						  	<div class="card-body">
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listBusiness}" th:text="${ob.businessName + ', ' + ob.city}"></li>
-								</ul>
-								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/business/all/list}">List All Businesses</a>
-						  	</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card h-100">
-							<h5 class="card-header">Jobs / Vacancies</h5>
-						  	<div class="card-body">
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listJob}" th:text="${ob.position + ', ' + ob.city}"></li>
-								</ul>
-								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/job/all/list}">List All Jobs / Vacancies</a>
-						  	</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card h-100">
-							<h5 class="card-header">Matrimonials</h5>
-						  	<div class="card-body">
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listMatrimonial}" th:text="${ob.lookingFor + ', ' + ob.email}"></li>
-								</ul>
-								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/matrimonial/all/list}">List All Matrimonials</a>
-						  	</div>
-						</div>
-					</div>
-				</div>
-				<div class="row p-2" style="font-size: 12px;">
+				<div class="row pb-2" style="font-size: 12px;">
 					<div class="col-4">
 						<div class="card h-100">
 							<h5 class="card-header">Latest Articles</h5>
@@ -108,6 +73,31 @@
 									</li>
 								</ul>
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/member/search}">Search Member</a>
+						  	</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row pb-2" style="font-size: 12px;">
+					<div class="col-4">
+						<div class="card h-100">
+							<h5 class="card-header">Businesses</h5>
+						  	<div class="card-body">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item" th:each="ob : ${listBusiness}" th:text="${ob.businessName + ', ' + ob.city}"></li>
+								</ul>
+								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/business/all/list}">List All Businesses</a>
+						  	</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="card h-100">
+							<h5 class="card-header">Jobs / Vacancies</h5>
+						  	<div class="card-body">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item" th:each="ob : ${listJob}" th:text="${ob.position + ', ' + ob.city}"></li>
+								</ul>
+								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/job/all/list}">List All Jobs / Vacancies</a>
 						  	</div>
 						</div>
 					</div>

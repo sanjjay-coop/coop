@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
@@ -8,15 +8,15 @@
 	</div>
 	
 	<div class="container">
-		<div class="row p-2">
+		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold">Application for Funding</h3>
+				<h3 class="fw-bold pb-3">Application for Funding</h3>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-				<div class="row p-3">
+				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/addNew}">Add New Application</a>
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 			
-				<table class="table">
+				<table class="table table-sm table-bordered table-striped">
 				
 					<thead>
 						<tr>
@@ -45,7 +45,7 @@
 							<td th:text="${ob.purpose}"></td>
 							<td th:text="${ob.status}"></td>
 							<td>
-								<a class="nav-link" th:href="@{/home/funding/view/{orderId}(orderId=${ob.id})}">
+								<a class="nav-link" th:href="@{/home/funding/view/{orderId}(orderId=${ob.id})}" title="View Record">
 							      	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}" alt="View"/>
 							    </a>
 							</td>

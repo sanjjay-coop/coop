@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/moderator/sponsorship/edit")
-public class SponsorshipEditController extends ModeratorBaseController {
+public class ModSponsorshipEditController extends ModeratorBaseController {
 
 	@Autowired
 	private SponsorshipService sponsorshipService;
