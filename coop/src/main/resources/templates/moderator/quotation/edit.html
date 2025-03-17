@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row px-4 py-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold pb-3">Quotation (Edit)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${quotation}" method="POST">
+				
+					<input type="hidden" th:field="*{id}"/>
+
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{quotation.quote}"></label>
+							<input type="text" class="form-control required" th:field="*{quote}" th:placeholder="#{quotation.quote}" autofocus >
+							<ul><li class="cooperror" th:errors="*{quote}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{quotation.author}"></label>
+							<input type="text" class="form-control required" th:field="*{author}" th:placeholder="#{quotation.author}">
+							<ul><li class="cooperror" th:errors="*{author}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{quotation.source}"></label>
+							<input type="text" class="form-control" th:field="*{source}" th:placeholder="#{quotation.source}">
+							<ul><li class="cooperror" th:errors="*{source}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

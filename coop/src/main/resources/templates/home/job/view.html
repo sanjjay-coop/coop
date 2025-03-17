@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row px-4 py-2">
+			
+			<div class="col-12">
+			
+				<h3 class="fw-bold pb-3">Job Vacancy (Details)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row pb-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+						<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/list/current}">Back to List</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row g-3">
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.position}"></label>
+				   		<span class="form-control" th:text="${job.position}"></span>
+				  	</div>
+					<div class="col-md-12">
+				   		<label class="form-label text-primary" th:text="#{job.description}"></label>
+				   		<span class="form-control" th:text="${job.description}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.salary}"></label>
+				   		<span class="form-control" th:text="${job.salary}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.minimumQualification}"></label>
+				   		<span class="form-control" th:text="${job.minimumQualification.name}"></span>
+				  	</div>
+					<div class="col-md-12">
+				   		<label class="form-label text-primary" th:text="#{job.firmName}"></label>
+				   		<span class="form-control" th:text="${job.firmName}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.address}"></label>
+				   		<span class="form-control" th:text="${job.address}"></span>
+				  	</div>
+					<div class="col-md-4">
+				   		<label class="form-label text-primary" th:text="#{job.city}"></label>
+				   		<span class="form-control" th:text="${job.city}"></span>
+				  	</div>
+					<div class="col-md-2">
+				   		<label class="form-label text-primary" th:text="#{job.pin}"></label>
+				   		<span class="form-control" th:text="${job.pin}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.state}"></label>
+				   		<span class="form-control" th:text="${job.state}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.country}"></label>
+				   		<span class="form-control" th:text="${job.country}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.contactName}"></label>
+				   		<span class="form-control" th:text="${job.contactName}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.contactDesignation}"></label>
+				   		<span class="form-control" th:text="${job.contactDesignation}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.contactPhone}"></label>
+				   		<span class="form-control" th:text="${job.contactPhone}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.contactEmail}"></label>
+				   		<span class="form-control" th:text="${job.contactEmail}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.url}"></label>
+				   		<span class="form-control" th:text="${job.url}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.lastDate}"></label>
+				   		<span class="form-control" th:text="${#dates.format(job.lastDate, 'dd/MM/yyyy')}"></span>
+				  	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.enabled}"></label>
+				   		<span class="form-control" th:text="${job.enabled}"></span>
+				   	</div>
+					<div class="col-md-6">
+				   		<label class="form-label text-primary" th:text="#{job.addDate}"></label>
+				   		<span class="form-control" th:text="${#dates.format(job.addDate, 'dd/MM/yyyy')}"></span>
+				   	</div>
+					<div class="col-md-12">
+				   		<label class="form-label text-primary" th:text="#{job.owner}"></label>
+				   		<span class="form-control" th:text="${job.owner.name}"></span>
+				   	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>
