@@ -2,6 +2,7 @@ package org.pf.coop.portal.service;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 import org.pf.coop.common.TransactionResult;
@@ -221,6 +222,17 @@ public class MemberService {
 		auditRepo.save(audit);
 	
 		return new TransactionResult(member, true);
+	}
+	
+	@Transactional
+	public void updateSearchString() {
+		
+		List<Member> listObj = this.memberRepo.findBySearchString(null);
+		
+		for(Member obj : listObj) {
+			obj.setUpdateDefaults("system");
+			this.memberRepo.save(obj);
+		}
 	}
 }
 

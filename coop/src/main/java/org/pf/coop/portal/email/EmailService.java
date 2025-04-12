@@ -50,6 +50,43 @@ public class EmailService {
 		new Thread(myrunnable).start();
 	}
 	
+	// Bulletin (Monthly)
+
+	private void sendEmailMessage(String emails, String bulletin) {
+
+		SimpleMailMessage message = new SimpleMailMessage();
+
+		Parameters params = parametersService.getParameters();
+		
+		if (params.getMailEnable()) {					
+			message.setFrom(params.getFromEmail());
+			message.setTo(params.getFromEmail());
+			message.setBcc(emails.split(", "));
+			message.setSubject("Parivrajaka Foundation: Monthly Bulletin");
+	
+			String msgText = bulletin
+					+ "\n\n" + params.getEmailSignature();
+	
+			message.setText(msgText);
+	
+			try {
+				emailConfiguration.getJavaMailSender().send(message);
+			} catch (Exception e) {
+				System.out.println("Email Error: " + e.getMessage());
+			}
+		}
+	}
+
+	public void sendEmail(String emails, String bulletin) {
+		Runnable myrunnable = new Runnable() {
+		    @Override
+			public void run() {
+		        sendEmailMessage(emails, bulletin); //Call your function
+		    }
+		};
+		new Thread(myrunnable).start();
+	}
+	
 	// Bulk Messaging
 
 	private void sendEmailMessage(BulkEmail bulkEmail) {

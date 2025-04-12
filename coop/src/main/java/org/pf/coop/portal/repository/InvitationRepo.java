@@ -1,5 +1,7 @@
 package org.pf.coop.portal.repository;
 
+import java.util.List;
+
 import org.pf.coop.portal.model.Invitation;
 import org.pf.coop.portal.model.Member;
 import org.springframework.data.domain.Page;
@@ -16,4 +18,5 @@ public interface InvitationRepo extends JpaRepository<Invitation, Long>{
 	
 	Page<Invitation> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 
+	List<Invitation> findBySearchString(String searchString);
 }

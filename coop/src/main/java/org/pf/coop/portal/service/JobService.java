@@ -2,6 +2,7 @@ package org.pf.coop.portal.service;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 import org.pf.coop.common.TransactionResult;
@@ -135,5 +136,16 @@ public class JobService {
 		jobRepo.save(obj);
 
 		return new TransactionResult(true, "Record updated successfully");
+	}
+	
+	@Transactional
+	public void updateSearchString() {
+		
+		List<Job> listObj = this.jobRepo.findBySearchString(null);
+		
+		for(Job obj : listObj) {
+			obj.setUpdateDefaults("system");
+			this.jobRepo.save(obj);
+		}
 	}
 }

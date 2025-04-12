@@ -51,6 +51,7 @@ public class WebSecurityConfig {
                 				"/css/**", 
                 				"/event/**", 
                 				"/help/**", 
+                				"/holiday/**", 
                 				"/images/**", 
                 				"/initialize",  
                 				"/join", 

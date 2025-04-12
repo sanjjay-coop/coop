@@ -2,6 +2,7 @@ package org.pf.coop.portal.service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.pf.coop.common.TransactionResult;
@@ -103,6 +104,17 @@ public class SponsorshipService {
 		auditRepo.save(audit);
 		
 		return new TransactionResult(obj, true);
+	}
+	
+	@Transactional
+	public void updateSearchString() {
+		
+		List<Sponsorship> listObj = this.sponsorshipRepo.findBySearchString(null);
+		
+		for(Sponsorship obj : listObj) {
+			obj.setUpdateDefaults("system");
+			this.sponsorshipRepo.save(obj);
+		}
 	}
 }
 

@@ -1,6 +1,7 @@
 package org.pf.coop.portal.service;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 import org.pf.coop.common.TransactionResult;
@@ -104,5 +105,16 @@ public class FundingService {
 		auditRepo.save(audit);
 		
 		return new TransactionResult(obj, true);
+	}
+	
+	@Transactional
+	public void updateSearchString() {
+		
+		List<Funding> listObj = this.fundingRepo.findBySearchString(null);
+		
+		for(Funding obj : listObj) {
+			obj.setUpdateDefaults("system");
+			this.fundingRepo.save(obj);
+		}
 	}
 }

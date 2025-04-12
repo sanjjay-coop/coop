@@ -15,7 +15,15 @@
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
 				<div class="row">
-					<div class="offset-md-1 col-md-10 p-2 border border-light rounded-0">
+					<div class="col-md-4 p-2 border border-light rounded-0 overflow-scroll" style="height: 500px;">
+						<div class="text-center p-2 g-2 m-2 border border-light rounded-1" th:each="obj : ${listNewsFeedHome}">
+							<div class="text-primary h5" >
+								<a class="text-decoration-none" target="_blank" th:href="${obj.url}" th:text="${obj.title}"></a>
+							</div>							
+							<small class="text-secondary" th:utext="${obj.description}"></small>
+						</div>
+					</div>
+					<div class="col-md-8 p-2 border border-light rounded-0">
 						<div id="carouselExampleCaptions" class="carousel slide">
 						  	<div class="carousel-indicators">
 						    	<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

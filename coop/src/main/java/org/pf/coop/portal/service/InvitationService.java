@@ -1,6 +1,7 @@
 package org.pf.coop.portal.service;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 import org.pf.coop.common.TransactionResult;
@@ -90,6 +91,17 @@ public class InvitationService {
 		auditRepo.save(audit);
 		
 		return new TransactionResult(obj, true);
+	}
+	
+	@Transactional
+	public void updateSearchString() {
+		
+		List<Invitation> listObj = this.invitationRepo.findBySearchString(null);
+		
+		for(Invitation obj : listObj) {
+			obj.setUpdateDefaults("system");
+			this.invitationRepo.save(obj);
+		}
 	}
 }
 

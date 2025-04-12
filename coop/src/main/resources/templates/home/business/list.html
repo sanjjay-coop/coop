@@ -36,6 +36,8 @@
 						  		<br/><div th:text="'URL: ' + ${ob.url}"></div>
 						  		<br/><div th:text="'Keywords: ' + ${ob.keywords}"></div>
 								<br/>
+						  	</div>
+						  	<div class="card-footer">
 								<div class="d-grid gap-2 d-md-block">
 									<a class="btn btn-secondary btn-sm" th:href="@{/home/business/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
 								          <img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>
@@ -56,7 +58,7 @@
 									    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
 									  </div>
 								</form>
-						  	</div>
+							</div>
 						</div>
 					</div>
 				</div>

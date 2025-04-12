@@ -44,6 +44,19 @@ public interface ArticleRepo extends JpaRepository<Article, Long>{
 			+ "limit 5")
 	public List<Article> listArticleRecent(Date today);
 	
+	@Query("select art "
+			+ "from Article art "
+			+ "where "
+			+ "art.pubDate <=:today "
+			+ "and "
+			+ "art.expDate >=:today "
+			+ "and "
+			+ "art.recordAddDate >=:date "
+			+ "and "
+			+ "art.publish = TRUE "
+			+ "order by art.title asc ")
+	public List<Article> listArticleForBulletin(Date date, Date today);
+	
 	public Page<Article> findByPublishAndPubDateLessThanEqualAndExpDateGreaterThanEqual(Boolean publish, Date pubDate, Date expDate, Pageable pageable);
 	
 	@Query("select distinct art from Article art "
@@ -56,4 +69,6 @@ public interface ArticleRepo extends JpaRepository<Article, Long>{
 	public Page<Article> listArticleBlog(Date today, String categoryName, Pageable pageable);
 	
 	Page<Article> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
+	
+	List<Article> findBySearchString(String searchString);
 }

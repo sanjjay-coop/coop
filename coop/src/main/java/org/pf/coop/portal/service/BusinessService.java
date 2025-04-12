@@ -2,6 +2,7 @@ package org.pf.coop.portal.service;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 import org.pf.coop.common.TransactionResult;
@@ -142,6 +143,17 @@ public class BusinessService {
 		auditRepo.save(audit);
 		
 		return new TransactionResult(obj, true);
+	}
+	
+	@Transactional
+	public void updateSearchString() {
+		
+		List<Business> listObj = this.businessRepo.findBySearchString(null);
+		
+		for(Business obj : listObj) {
+			obj.setUpdateDefaults("system");
+			this.businessRepo.save(obj);
+		}
 	}
 }
 

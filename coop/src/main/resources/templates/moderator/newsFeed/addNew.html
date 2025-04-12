@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row px-4 py-2">
+
+			<div class="col-12">
+			
+				<h3 class="fw-bold pb-3">News Feed (Add New)</h3>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${newsFeed}" method="POST">
+
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{newsFeed.title}"></label>
+							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{newsFeed.title}" autofocus >
+							<ul><li class="cooperror" th:errors="*{title}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{newsFeed.description}"></label>
+							<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{newsFeed.description}"></textarea>
+							<ul><li class="cooperror" th:errors="*{description}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<label class="form-label text-primary" th:text="#{newsFeed.url}"></label>
+							<input type="text" class="form-control required" th:field="*{url}" th:placeholder="#{newsFeed.url}" autofocus >
+							<ul><li class="cooperror" th:errors="*{url}" /></ul>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

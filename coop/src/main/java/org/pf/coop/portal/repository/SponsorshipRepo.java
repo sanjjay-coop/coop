@@ -20,5 +20,17 @@ public interface SponsorshipRepo extends JpaRepository<Sponsorship, Long> {
 			+ "order by art.pubDate desc")
 	public List<Sponsorship> listSponsorshipForPublication(Date today);
 	
+	@Query("select art "
+			+ "from Sponsorship art "
+			+ "where "
+			+ "art.pubDate <=:today "
+			+ "and "
+			+ "art.expDate >=:today "
+			+ "and art.recordAddDate >=:date "
+			+ "order by art.pubDate desc")
+	public List<Sponsorship> listSponsorshipForBulletin(Date date, Date today);
+	
 	Page<Sponsorship> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
+	
+	List<Sponsorship> findBySearchString(String searchString);
 }

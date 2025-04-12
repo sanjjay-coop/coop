@@ -35,4 +35,8 @@ public interface MemberRepo extends JpaRepository<Member, Long>{
 	
 	Page<Member> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 	
+	List<Member> findBySearchString(String searchString);
+	
+	public List<Member> findBySubEndDateGreaterThan(Date date);
+	
 }

@@ -1,6 +1,7 @@
 package org.pf.coop.portal.service;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 import java.util.TreeSet;
 
@@ -57,6 +58,7 @@ public class MemberApplicationService {
 		obj.setStatus(false);
 		obj.setStatusDate(Calendar.getInstance().getTime());
 		
+		obj.setAddDefaults(updateBy);
 		obj = memberApplicationRepo.save(obj);
 		
 		audit = new Audit(updateBy, "MemberApplication", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -170,6 +172,8 @@ public class MemberApplicationService {
 		member.setSubStartDate(cal.getTime());
 		member.setSubEndDate(cal1.getTime());
 		
+		member.setAddDefaults(updateBy);
+		
 		this.memberRepo.save(member);
 		
 		obj.setStatus(true);
@@ -181,6 +185,17 @@ public class MemberApplicationService {
 		auditRepo.save(audit);
 		
 		return new TransactionResult(member, true);
+	}
+	
+	@Transactional
+	public void updateSearchString() {
+		
+		List<MemberApplication> listObj = this.memberApplicationRepo.findBySearchString(null);
+		
+		for(MemberApplication obj : listObj) {
+			obj.setUpdateDefaults("system");
+			this.memberApplicationRepo.save(obj);
+		}
 	}
 }
 

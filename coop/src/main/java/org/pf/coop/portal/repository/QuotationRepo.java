@@ -16,4 +16,6 @@ public interface QuotationRepo extends JpaRepository<Quotation, Long>{
 	Page<Quotation> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 	
 	public Quotation findByQuoteIgnoreCase(String quote);
+	
+	List<Quotation> findBySearchString(String searchString);
 }

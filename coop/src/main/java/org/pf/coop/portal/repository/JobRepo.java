@@ -33,5 +33,14 @@ public interface JobRepo extends JpaRepository<Job, Long>{
 			+ "limit 5")
 	public List<Job> listJobRecent();
 	
+	@Query("select o "
+			+ "from Job o "
+			+ "where o.enabled = true "
+			+ "and o.recordAddDate <=:date "
+			+ "order by o.id desc ")
+	public List<Job> listJobForBulletin(Date date);
+	
 	Page<Job> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
+	
+	List<Job> findBySearchString(String searchString);
 }

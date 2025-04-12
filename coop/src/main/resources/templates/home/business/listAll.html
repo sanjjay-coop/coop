@@ -15,6 +15,19 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 			
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${business}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
+				
 				<div class="row py-2">
 					<div class="col-6 my-2" th:each="ob : ${listBusinessAll}">
 						<div class="card h-100">

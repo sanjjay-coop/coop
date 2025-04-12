@@ -7,10 +7,12 @@ import java.util.List;
 import org.pf.coop.portal.model.Article;
 import org.pf.coop.portal.model.Carousel;
 import org.pf.coop.portal.model.Event;
+import org.pf.coop.portal.model.NewsFeed;
 import org.pf.coop.portal.repository.ArticleRepo;
 import org.pf.coop.portal.repository.CarouselRepo;
 import org.pf.coop.portal.repository.EventRepo;
 import org.pf.coop.portal.repository.MemberRepo;
+import org.pf.coop.portal.repository.NewsFeedRepo;
 import org.pf.coop.portal.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,9 @@ public class IndexController extends IndexBaseController {
 	
 	@Autowired
 	private CarouselRepo carouselRepo;
+	
+	@Autowired
+	private NewsFeedRepo newsFeedRepo;
 	
 	@GetMapping("/")
 	public String indexView(Model model, Principal principal) {
@@ -124,5 +129,13 @@ public class IndexController extends IndexBaseController {
 			listCarousel.remove(0);
 			return listCarousel;
 		}
+	}
+	
+
+	@ModelAttribute("listNewsFeedHome")
+	public List<NewsFeed> getNewsFeed(){
+		List<NewsFeed> listNewsFeedHome = this.newsFeedRepo.listNewsFeedRecent();
+
+		return listNewsFeedHome;
 	}
 }

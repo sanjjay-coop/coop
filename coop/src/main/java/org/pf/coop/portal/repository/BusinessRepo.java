@@ -26,7 +26,21 @@ public interface BusinessRepo extends JpaRepository<Business, Long>{
 			+ "limit 5")
 	public List<Business> listBusinessRecent();
 	
+	@Query("select o "
+			+ "from Business o "
+			+ "where o.enabled = true "
+			+ "and "
+			+ "o.recordAddDate >=:date "
+			+ "order by o.businessName asc ")
+	public List<Business> listBusinessForBulletin(Date date);
+	
 	public Business findByIdAndOwner(Long id, Member owner);
 	
 	Page<Business> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
+	
+	List<Business> findBySearchString(String searchString);
+	
+	Page<Business> findByEnabledAndSearchStringContainingIgnoreCase(Boolean enabled, String searchString, Pageable pageable);
+	
+	List<Business> findByEnabledAndSearchString(Boolean enabled, String searchString);
 }
