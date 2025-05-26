@@ -11,7 +11,7 @@
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
-				<h3 class="fw-bold pb-3">Event (Details)</h3>
+				<h4 class="h4 pb-3">Event (Details)</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
@@ -26,7 +26,7 @@
 				</div>
 								
 				<div>
-					<h3 class="bg-light" th:text="${event.title}"></h3>
+					<h4 class="bg-light" th:text="${event.title}"></h4>
 					<pre th:utext="${event.description}" style="text-wrap: wrap;"></pre>
 					<div style="font-size: small;">
 						<b>Event Type: </b>

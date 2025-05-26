@@ -12,7 +12,7 @@
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold pb-3">Title (Details)</h3>
+				<h4 class="h4 pb-3">Title (Details)</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
@@ -31,25 +31,29 @@
 				   		<label class="form-label text-primary" th:text="#{title.accessionNumber}"></label>
 				      	<span class="form-control" th:text="${title.accessionNumber}"></span>
 				    </div>
-					<div class="col-md-9">
-						<label class="form-label text-primary" th:text="#{title.uniformTitle}"></label>
-						<span class="form-control" th:text="${title.uniformTitle}"></span>
-					</div>
-					<div class="col-md-9">
-						<label class="form-label text-primary" th:text="#{title.authors}"></label>
-						<span class="form-control" th:text="${title.authors}"></span>
-					</div>
 					<div class="col-md-3">
 						<label class="form-label text-primary" th:text="#{title.titleType}"></label>
 						<span class="form-control" th:text="${title.titleType.name}"></span>
 					</div>
 					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{title.summary}"></label>
-						<span class="form-control" th:text="${title.summary}"></span>
-					</div>
-					<div class="col-md-12">
 						<label class="form-label text-primary" th:text="#{title.library}"></label>
 						<span class="form-control" th:text="${title.library.name + ' [' + title.library.shortName + ']'}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{title.uniformTitle}"></label>
+						<span class="form-control" th:text="${title.uniformTitle}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{title.authors}"></label>
+						<span class="form-control" th:text="${title.authors}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{title.publisher}"></label>
+						<span class="form-control" th:text="${title.publisher}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{title.summary}"></label>
+						<span class="form-control" th:text="${title.summary}"></span>
 					</div>
 					<div class="col-md-4" th:if="${co!=null}">
 						<label class="form-label text-primary" th:text="#{checkOut}"></label>

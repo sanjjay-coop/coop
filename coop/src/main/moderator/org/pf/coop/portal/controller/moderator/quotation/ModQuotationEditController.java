@@ -68,7 +68,7 @@ public class ModQuotationEditController extends ModeratorBaseController {
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record updated successfully.");
-					return "redirect:/moderator/quotation/list/current";
+					return "redirect:/moderator/quotation/view/"+quotation.getId();
 				} else {
 					reat.addFlashAttribute("message", tr.getMessage());
 					return "redirect:/moderator/quotation/edit/"+quotation.getId();

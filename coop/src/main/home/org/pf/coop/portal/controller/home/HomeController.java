@@ -11,6 +11,7 @@ import org.pf.coop.portal.model.Job;
 import org.pf.coop.portal.model.Matrimonial;
 import org.pf.coop.portal.model.Member;
 import org.pf.coop.portal.model.Reminder;
+import org.pf.coop.portal.model.library.Title;
 import org.pf.coop.portal.repository.ArticleRepo;
 import org.pf.coop.portal.repository.BusinessRepo;
 import org.pf.coop.portal.repository.EventRepo;
@@ -18,6 +19,7 @@ import org.pf.coop.portal.repository.JobRepo;
 import org.pf.coop.portal.repository.MatrimonialRepo;
 import org.pf.coop.portal.repository.MemberRepo;
 import org.pf.coop.portal.repository.ReminderRepo;
+import org.pf.coop.portal.repository.library.TitleRepo;
 import org.pf.coop.portal.service.BusinessService;
 import org.pf.coop.portal.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,9 @@ public class HomeController extends HomeBaseController {
 	@Autowired
 	private ReminderRepo reminderRepo;
 	
+	@Autowired
+	private TitleRepo titleRepo;
+	
 	@ModelAttribute("listArticle")
 	public List<Article> getListArticle(){
 		return (List<Article>) this.articleRepo.listArticleRecent(Calendar.getInstance().getTime());
@@ -87,6 +92,11 @@ public class HomeController extends HomeBaseController {
 	@ModelAttribute("listMatrimonial")
 	public List<Matrimonial> getListMatrimonial(){
 		return (List<Matrimonial>) this.matrimonialRepo.listMatrimonialRecent();
+	}
+	
+	@ModelAttribute("listTitle")
+	public List<Title> getListTitle(){
+		return (List<Title>) this.titleRepo.listTitleRecent();
 	}
 	
 	

@@ -113,6 +113,7 @@
 									  	<li><a class="dropdown-item" th:href="@{/moderator/job/list}">Job</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/memberApplication/list}">Member Application</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/newsFeed/list}">News Feed</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/organization/list}">Organization</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/quotation/list}">Quotation</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/sponsorship/list}">Sponsorship</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/sponsorshipApplication/list}">Sponsorship Applications</a></li>
@@ -213,7 +214,7 @@
 			
 			<div class="col-10">
 				
-				<h3 class="fw-bold pb-3">Title</h3>
+				<h4 class="h4 pb-3">Title</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
@@ -233,7 +234,13 @@
 										<img th:src="@{/images/bootstrap-icons/alarm.svg}" height="20px;"/>
 										Upcoming Events
 									</a>
-								</li>	
+								</li>		
+								<li class="nav-item small">
+									<a class="nav-link small" th:href="@{/open/organization/list}">
+										<img th:src="@{/images/bootstrap-icons/gem.svg}" height="20px;"/>
+										Similar Organizations
+									</a>
+								</li>
 								<li class="nav-item small">
 									<a class="nav-link small" th:href="@{/open/sponsorship}">
 										<img th:src="@{/images/bootstrap-icons/trophy.svg}" height="20px;"/>

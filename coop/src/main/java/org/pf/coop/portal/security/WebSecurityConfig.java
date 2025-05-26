@@ -21,14 +21,14 @@ public class WebSecurityConfig {
 
     @Bean
     AuthenticationProvider authProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
 
-        provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(new BCryptPasswordEncoder());
 
         return provider;
     }
 
+	@SuppressWarnings({ "removal", "deprecation" })
 	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -55,7 +55,8 @@ public class WebSecurityConfig {
                 				"/images/**", 
                 				"/initialize",  
                 				"/join", 
-                				"/join/**", 
+                				"/join/**",
+                				"/newsFeed/**",
                 				"/open/**",
                 				"/resetPassword", 
                 				"/siteLogo", 

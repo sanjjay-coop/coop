@@ -9,10 +9,13 @@ import org.pf.coop.portal.model.Carousel;
 import org.pf.coop.portal.model.Event;
 import org.pf.coop.portal.model.NewsFeed;
 import org.pf.coop.portal.repository.ArticleRepo;
+import org.pf.coop.portal.repository.BusinessRepo;
 import org.pf.coop.portal.repository.CarouselRepo;
 import org.pf.coop.portal.repository.EventRepo;
+import org.pf.coop.portal.repository.JobRepo;
 import org.pf.coop.portal.repository.MemberRepo;
 import org.pf.coop.portal.repository.NewsFeedRepo;
+import org.pf.coop.portal.repository.library.TitleRepo;
 import org.pf.coop.portal.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,13 +38,52 @@ public class IndexController extends IndexBaseController {
 	private ManagerService managerService;
 	
 	@Autowired
+	private BusinessRepo businessRepo;
+	
+	@Autowired
+	private JobRepo jobRepo;
+	
+	@Autowired
 	private MemberRepo memberRepo;
 	
 	@Autowired
 	private CarouselRepo carouselRepo;
 	
 	@Autowired
+	private TitleRepo titleRepo;
+	
+	@Autowired
 	private NewsFeedRepo newsFeedRepo;
+	
+	@ModelAttribute("countArticle")
+	public long getCountArticle(){
+		return this.articleRepo.count();
+	}
+	
+	@ModelAttribute("countBusiness")
+	public long getCountBusiness(){
+		return this.businessRepo.count();
+	}
+	
+	@ModelAttribute("countJob")
+	public long getCountJob(){
+		return this.jobRepo.count();
+	}
+	
+	@ModelAttribute("countNewsFeed")
+	public long getCountNewsFeed(){
+		return this.newsFeedRepo.count();
+	}
+	
+	@ModelAttribute("countMember")
+	public long getCountMember(){
+		return this.memberRepo.count();
+	}
+	
+	@ModelAttribute("countTitle")
+	public long getCountTitle(){
+		return this.titleRepo.count();
+	}
 	
 	@GetMapping("/")
 	public String indexView(Model model, Principal principal) {

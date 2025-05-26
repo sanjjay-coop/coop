@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row px-4 py-2">
+			
+			<div class="col-12">
+			
+				<h4 class="h4 pb-3">Organization (Details)</h4>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row pb-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/organization/list/current}">Back to List</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/organization/edit/{orderId}(orderId=${organization.id})}" >Edit Record</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/organization/delete/{orderId}(orderId=${organization.id})}" onclick="return confirm('Are you sure?')">Delete Record</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row g-3">
+					<div class="col-md-12">
+			    		<label class="form-label text-primary" th:text="#{organization.organizationName}"></label>
+			    		<span class="form-control" th:text="${organization.organizationName}"></span>
+			    	</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{organization.description}"></label>
+						<span class="form-control" th:text="${organization.description}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{organization.address}"></label>
+						<span class="form-control" th:text="${organization.address}"></span>
+					</div>
+					<div class="col-md-4">
+						<label class="form-label text-primary" th:text="#{organization.city}"></label>
+						<span class="form-control" th:text="${organization.city}"></span>
+					</div>
+					<div class="col-md-2">
+						<label class="form-label text-primary" th:text="#{organization.pin}"></label>
+						<span class="form-control" th:text="${organization.pin}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{organization.state}"></label>
+						<span class="form-control" th:text="${organization.state}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{organization.country}"></label>
+						<span class="form-control" th:text="${organization.country}"></span>
+					</div>
+					<div class="col-md-12">
+						<label class="form-label text-primary" th:text="#{organization.contactName}"></label>
+						<span class="form-control" th:text="${organization.contactName}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{organization.contactPhone}"></label>
+						<span class="form-control" th:text="${organization.contactPhone}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{organization.contactEmail}"></label>
+						<span class="form-control" th:text="${organization.contactEmail}"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label text-primary" th:text="#{organization.url}"></label>
+						<span class="form-control" th:text="${organization.url}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

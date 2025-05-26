@@ -12,12 +12,12 @@
 
 			<div class="col-12">
 				
-				<h3 class="fw-bold pb-3">Contacts</h3>
+				<h4 class="h4 pb-3">Contacts</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				<br/><br/>
 				<div th:each="ob : ${listContact}">
-        			<h3 th:text="${ob.name}"></h3>
+        			<h4 class="h4 pb-3" th:text="${ob.name}"></h4>
         			<p th:text="${ob.designation}"></p>
         			<p th:text="${ob.address}"></p>
         			<p th:text="${ob.email}"></p>

@@ -15,4 +15,7 @@ public interface TitleRepo extends JpaRepository<Title, Long>{
 			+ "lower(t.uniformTitle) like %:str% or "
 			+ "lower(t.authors) like %:str% order by t.uniformTitle asc")
 	public List<Title> listTitle(String str);
+	
+	@Query("select t from Title t order by t.id desc limit 5")
+	public List<Title> listTitleRecent();
 }

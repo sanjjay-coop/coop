@@ -15,12 +15,20 @@
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
 				<div class="row">
-					<div class="col-md-4 p-2 border border-light rounded-0 overflow-scroll" style="height: 500px;">
-						<div class="text-center p-2 g-2 m-2 border border-light rounded-1" th:each="obj : ${listNewsFeedHome}">
-							<div class="text-primary h5" >
-								<a class="text-decoration-none" target="_blank" th:href="${obj.url}" th:text="${obj.title}"></a>
-							</div>							
-							<small class="text-secondary" th:utext="${obj.description}"></small>
+					<div class="col-md-4 p-2 border border-light rounded-0" style="max-height: 500px;">
+						<div class="card h-100">
+							<h5 class="card-header">News Feed</h5>
+						  	<div class="card-body overflow-auto">
+								<div class="text-center p-2 g-2 m-2 border border-light rounded-1" th:each="obj : ${listNewsFeedHome}">
+									<div class="text-primary h5" >
+										<a class="text-decoration-none" target="_blank" th:href="${obj.url}" th:text="${obj.title}"></a>
+									</div>							
+									<small class="text-secondary" th:utext="${obj.description}"></small>
+								</div>
+						  	</div>
+						  	<div class="card-footer">
+						  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/newsFeed/list}">News Feed Archive</a>
+						  	</div>
 						</div>
 					</div>
 					<div class="col-md-8 p-2 border border-light rounded-0">
@@ -55,6 +63,57 @@
 						    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						    	<span class="visually-hidden">Next</span>
 						  	</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row p-2">
+					<div class="col-md-2 p-2 rounded-0">
+						<div class="card h-100">
+							<h5 class="card-header">Articles</h5>
+						  	<div class="card-body overflow-auto">
+								<div class="text-center" th:text="${countArticle}"></div>
+						  	</div>
+						</div>
+					</div>
+					<div class="col-md-2 p-2 rounded-0">
+						<div class="card h-100">
+							<h5 class="card-header">Businesses</h5>
+						  	<div class="card-body overflow-auto">
+								<div class="text-center" th:text="${countBusiness}"></div>
+						  	</div>
+						</div>
+					</div>
+					<div class="col-md-2 p-2 rounded-0">
+						<div class="card h-100">
+							<h5 class="card-header">Jobs</h5>
+						  	<div class="card-body overflow-auto">
+								<div class="text-center" th:text="${countJob}"></div>
+						  	</div>
+						</div>
+					</div>
+					<div class="col-md-2 p-2 rounded-0">
+						<div class="card h-100">
+							<h5 class="card-header">Members</h5>
+						  	<div class="card-body overflow-auto">
+								<div class="text-center"  th:text="${countMember}"></div>
+						  	</div>
+						</div>
+					</div>
+					<div class="col-md-2 p-2 rounded-0">
+						<div class="card h-100">
+							<h5 class="card-header">Books, etc.</h5>
+						  	<div class="card-body overflow-auto">
+								<div class="text-center"  th:text="${countTitle}"></div>
+						  	</div>
+						</div>
+					</div>
+					<div class="col-md-2 p-2 rounded-0">
+						<div class="card h-100">
+							<h5 class="card-header">News Feeds</h5>
+						  	<div class="card-body overflow-auto">
+								<div class="text-center" th:text="${countNewsFeed}"></div>
+						  	</div>
 						</div>
 					</div>
 				</div>

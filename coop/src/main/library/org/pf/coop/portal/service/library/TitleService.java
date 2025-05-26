@@ -38,6 +38,7 @@ public class TitleService {
 	@Transactional
 	public TransactionResult addTitle(Title obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
 		obj = titleRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Title", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -76,10 +77,13 @@ public class TitleService {
 		
 		obj.setAccessionNumber(title.getAccessionNumber());
 		obj.setAuthors(title.getAuthors());
+		obj.setPublisher(title.getPublisher());
 		obj.setLibrary(title.getLibrary());
 		obj.setSummary(title.getSummary());
 		obj.setTitleType(title.getTitleType());
 		obj.setUniformTitle(title.getUniformTitle());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = titleRepo.save(obj);
 		

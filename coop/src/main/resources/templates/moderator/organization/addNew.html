@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container">
+		<div class="row px-4 py-2">
+
+			<div class="col-12">
+			
+				<h4 class="h4 pb-3">Organization (Add New)</h4>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${organization}" method="POST">
+				
+					<div class="row g-3">
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{organization.organizationName}"></label>
+				    		<input type="text" class="form-control required" th:field="*{organizationName}" th:placeholder="#{organization.organizationName}" autofocus >
+				      		<ul><li class="cooperror" th:errors="*{organizationName}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{organization.description}"></label>
+				    		<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{organization.description}"></textarea>
+				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+				    	</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{organization.address}"></label>
+				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{organization.address}">
+				      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+				    	</div>
+						<div class="col-md-5">
+							<label class="form-label text-primary" th:text="#{organization.city}"></label>
+							<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{organization.city}">
+					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+						</div>
+						<div class="col-md-1">
+							<label class="form-label text-primary" th:text="#{organization.pin}"></label>
+							<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{organization.pin}">
+					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{organization.state}"></label>
+							<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{organization.state}">
+					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label text-primary" th:text="#{organization.country}"></label>
+							<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{organization.country}">
+					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+						</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{organization.contactName}"></label>
+				    		<input type="text" class="form-control" th:field="*{contactName}" th:placeholder="#{organization.contactName}">
+				      		<ul><li class="cooperror" th:errors="*{contactName}" /></ul>
+				    	</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{organization.contactPost}"></label>
+				    		<input type="text" class="form-control" th:field="*{contactPost}" th:placeholder="#{organization.contactPost}">
+				      		<ul><li class="cooperror" th:errors="*{contactPost}" /></ul>
+				    	</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{organization.contactPhone}"></label>
+				    		<input type="text" class="form-control" th:field="*{contactPhone}" th:placeholder="#{organization.contactPhone}">
+				      		<ul><li class="cooperror" th:errors="*{contactPhone}" /></ul>
+				    	</div>
+						<div class="col-md-6">
+				    		<label class="form-label text-primary" th:text="#{organization.contactEmail}"></label>
+				    		<input type="text" class="form-control" th:field="*{contactEmail}" th:placeholder="#{organization.contactEmail}">
+				      		<ul><li class="cooperror" th:errors="*{contactEmail}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				    		<label class="form-label text-primary" th:text="#{organization.url}"></label>
+				    		<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{organization.url}">
+				      		<ul><li class="cooperror" th:errors="*{url}" /></ul>
+				    	</div>
+						<div class="col-md-12">
+				    		<button type="submit" class="btn btn-primary">Submit</button>
+				    	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

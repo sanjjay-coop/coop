@@ -58,6 +58,12 @@ public class TitleAddValidator extends BaseValidator implements Validator {
 			}
 		}
 		
+		if (obj.getPublisher()!=null) {
+			if (!this.lengthRange(obj.getPublisher(), 0, 1000)) {
+				errors.rejectValue("publisher", "title.publisher.size");
+			}
+		}
+		
 		if (obj.getLibrary()==null) {
 			errors.rejectValue("library", "title.library.required");
 		}

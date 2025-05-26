@@ -12,7 +12,7 @@
 		
 			<div class="col-12">
 				
-				<h3 class="fw-bold pb-3">My Dashboard</h3>
+				<h4 class="h4 pb-3">My Dashboard</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
@@ -26,7 +26,6 @@
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/list}">My Jobs</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/payments}">My Payments</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/reminder/list}">Reminders</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/title/search}">Search Titles</a>
 							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/changePassword}">Change Password</a>
 						</div>
 					</div>
@@ -108,6 +107,19 @@
 						  	</div>
 						  	<div class="card-footer">
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/job/all/list}">List All Jobs / Vacancies</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="card h-100">
+							<h5 class="card-header">Books / Documents</h5>
+						  	<div class="card-body">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item" th:each="ob : ${listTitle}" th:text="${ob.uniformTitle+ ', ' + ob.authors}"></li>
+								</ul>
+						  	</div>
+						  	<div class="card-footer">
+								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/title/search}">Search Titles</a>
 							</div>
 						</div>
 					</div>

@@ -2,19 +2,25 @@ package org.pf.coop.portal.model.library;
 
 import java.io.Serializable;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_library_title")
-public class Title implements Serializable {
+public class Title extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -37,6 +43,9 @@ public class Title implements Serializable {
 	@Column(name="f_authors", length=1000, nullable=false)
 	private String authors;
 	
+	@Column(name="f_publisher", length=1000, nullable=true)
+	private String publisher;
+	
 	@ManyToOne
 	@JoinColumn(name="f_library", nullable=false)
 	private Library library;
@@ -47,6 +56,9 @@ public class Title implements Serializable {
 	
 	@Column(name="f_summary", length=2000, nullable=true)
 	private String summary;
+	
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -80,6 +92,14 @@ public class Title implements Serializable {
 		this.authors = authors;
 	}
 
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
 	public Library getLibrary() {
 		return library;
 	}
@@ -104,15 +124,50 @@ public class Title implements Serializable {
 		this.summary = summary;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "Title [" + (id != null ? "id=" + id + ", " : "")
 				+ (accessionNumber != null ? "accessionNumber=" + accessionNumber + ", " : "")
 				+ (uniformTitle != null ? "uniformTitle=" + uniformTitle + ", " : "")
+				+ (publisher != null ? "publisher=" + publisher + ", " : "")
 				+ (authors != null ? "authors=" + authors + ", " : "")
-				+ (library != null ? "library=" + library + ", " : "")
-				+ (titleType != null ? "titleType=" + titleType + ", " : "")
+				+ (library != null ? "library=" + library.getName() + ", " : "")
+				+ (titleType != null ? "titleType=" + titleType.getName() + ", " : "")
 				+ (summary != null ? "summary=" + summary : "") + "]";
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		this.setSearchString((accessionNumber != null ? accessionNumber + ", " : "")
+				+ (uniformTitle != null ? uniformTitle + ", " : "")
+				+ (publisher != null ? publisher + ", " : "")
+				+ (authors != null ? authors + ", " : "")
+				+ (library != null ? library.getName() + ", " : "")
+				+ (titleType != null ? titleType.getName() + ", " : "")
+				+ (summary != null ? summary : ""));
+		super.setAddDefaults(modifiedBy);
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		this.setSearchString((accessionNumber != null ? accessionNumber + ", " : "")
+				+ (uniformTitle != null ? uniformTitle + ", " : "")
+				+ (publisher != null ? publisher + ", " : "")
+				+ (authors != null ? authors + ", " : "")
+				+ (library != null ? library.getName() + ", " : "")
+				+ (titleType != null ? titleType.getName() + ", " : "")
+				+ (summary != null ? summary : ""));
+		super.setUpdateDefaults(modifiedBy);
 	}
 	
 }

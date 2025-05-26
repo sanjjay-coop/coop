@@ -1,7 +1,8 @@
 package org.pf.coop.common;
 
 public class TransactionResult {
-private Object obj;
+	
+	private Object obj;
 	
 	private boolean status = false;
 	
