@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 			<div class="col-12">
 				
@@ -29,7 +29,7 @@
 				</form>
 				
 				<div class="row py-2">
-					<div class="col-4 my-2" th:each="ob : ${listOrganization}">
+					<div class="col-4 my-2" th:each="ob,iterator : ${listOrganization}">
 						<div class="card h-100">
 							<h5 class="card-header" th:text="${ob.organizationName}"></h5>
 						  	<div class="card-body text-center">

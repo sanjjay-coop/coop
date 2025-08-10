@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,7 +16,7 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-				<div class="card p-1" th:each="ob : ${listMatrimonialAll}">
+				<div class="card p-1" th:each="ob,iterator : ${listMatrimonialAll}">
 					<h5 class="card-header" th:text="${ob.lookingFor}"></h5>
 				  	<div class="card-body">
 						<label style="font-weight: bold;" th:text="#{matrimonial.expDescription}" ></label> : <span th:text="${ob.expDescription}"></span> 

@@ -5,10 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CoOp - Tool for Association of People.</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-
-	<link rel="stylesheet" type="text/css" th:href="@{/assets/widgeEditor/css/widgEditor.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/jquery-ui.min.css}">
 	
-	<script th:src="@{/assets/widgeEditor/scripts/widgEditor.js}"></script>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+	
+	<link type="text/css" rel="stylesheet" th:href="@{/assets/lightGallery/dist/css/lightgallery-bundle.min.css}" />
+
+	<script th:src="@{/assets/lightGallery/dist/lightgallery.min.js}"></script>
+	<script th:src="@{/assets/lightGallery/dist/plugins/thumbnail/lg-thumbnail.min.js}"></script>
+	<script th:src="@{/assets/lightGallery/dist/plugins/zoom/lg-zoom.min.js}"></script>
+	
+	<!-- include summernote css/js-->
+	
+    <link th:href="@{/assets/summernote/summernote-bs5.min.css}" rel="stylesheet">
+    <script th:src="@{/assets/summernote/summernote-bs5.min.js}"></script>
+
 	<style>
 		.cooperror {
 			font-size: 10px; 
@@ -43,36 +57,39 @@
 	</style>
 </head>
 <body>
-	<div class="container" th:fragment="header">
+	<div class="container-fluid" th:fragment="header">
 		<div class="row p-2">
-			<div class="col-4">
-				<img height="50px;" th:src="@{/siteLogo}" alt="Site logo" class="border rounded rounded-3"/>
+			<div class="col-1">
+				<img th:src="@{/siteLogo}" alt="Site logo" class="img-fluid rounded rounded-3"/>
 			</div>
-			<div class="col-8 text-end">
-				<div style="font-weight: bold; font-size: 16px;" th:text="${params?.header}"></div>
-				<div style="font-size: 10px; font-style: italic;" th:text="${params?.subHeader}"></div>
+			<div class="col-6 text-center" th:each="advert : ${listAdvert}">
+				<div th:if="${advert.location == 'top'}" th:utext="${advert.content}"></div>	
+			</div>
+			<div class="col-5 text-end my-auto">
+				<div class="h2" th:text="${params?.header}"></div>
+				<div class="h6" th:text="${params?.subHeader}"></div>
 			</div>
 		</div>
 		<div class="row p-2">
 			<div class="col-12">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-				    	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light rounded-1">
+					<div class="container-fluid px-5">
+				    	<div id="navbarSupportedContentMenu">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				      			<li class="nav-item small">
-				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'index'} ? active" th:href="@{/}">
+				          			<a class="nav-link small ms-2 me-2" th:href="@{/}" th:classappend="${viewLeftMenu == 'home'} ? 'bg-primary bg-opacity-10 rounded-2'" >
 				          				<img th:src="@{/images/bootstrap-icons/house.svg}" height="20px;"/>
 				          				Home
 				          			</a>
 				        		</li>
-				        		<li class="nav-item small" sec:authorize="hasAnyRole('MEMBER','MANAGER')">
-				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/home}">
+				        		<li class="nav-item small" sec:authorize="hasAnyRole('MEMBER','MANAGER')" th:classappend="${viewLeftMenu == 'dashboard'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+				          			<a class="nav-link small ms-2 me-2" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/home}">
 				          				<img th:src="@{/images/bootstrap-icons/sun.svg}" height="20px;"/>
 				          				My Dashboard
 				          			</a>
 				        		</li>
-								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('ACCOUNTS','MANAGER')">
-									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'accounts'} ? active" th:href="@{/accounts}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('ACCOUNTS','MANAGER')" th:classappend="${viewLeftMenu == 'accounts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small dropdown-toggle ms-2 me-2" th:href="@{/accounts}" role="button" data-bs-toggle="dropdown">
 										<img th:src="@{/images/bootstrap-icons/book-half.svg}" height="20px;"/>
 										Accounts
 									</a>
@@ -86,8 +103,8 @@
 										<li><a class="dropdown-item" th:href="@{/accounts/reports}">Reports</a></li>
 									</ul>
 								</li>
-								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('LIBRARY','MANAGER')">
-									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'library'} ? active" th:href="@{/library}" role="button" data-bs-toggle="dropdown">
+								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('LIBRARY','MANAGER')" th:classappend="${viewLeftMenu == 'library'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small dropdown-toggle ms-2 me-2" th:classappend="${viewLeftMenu == 'library'} ? active" th:href="@{/library}" role="button" data-bs-toggle="dropdown">
 										<img th:src="@{/images/bootstrap-icons/bookshelf.svg}" height="20px;"/>
 										Library
 									</a>
@@ -98,12 +115,12 @@
 										<li><a class="dropdown-item" th:href="@{/library}">Search Title</a></li>
 									</ul>
 								</li>
-								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('MODERATOR','MANAGER')">
-									<a class="nav-link small dropdown-toggle" th:classappend="${viewLeftMenu == 'moderator'} ? active" th:href="@{/moderator}" role="button" data-bs-toggle="dropdown">
+								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('MODERATOR','MANAGER')" th:classappend="${viewLeftMenu == 'moderator'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small dropdown-toggle ms-2 me-2" th:classappend="${viewLeftMenu == 'moderator'} ? active" th:href="@{/moderator}" role="button" data-bs-toggle="dropdown">
 										<img th:src="@{/images/bootstrap-icons/peace.svg}" height="20px;"/>
 										Moderator
 									</a>
-									<ul class="dropdown-menu">
+									<ul class="dropdown-menu" style="columns: 3; -webkit-columns: 3; -moz-columns: 3;">
 										<li><a class="dropdown-item" th:href="@{/moderator/bulkEmail/list}">Bulk Message</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/business/list}">Business</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/carousel/list}">Carousel</a></li>
@@ -119,50 +136,50 @@
 										<li><a class="dropdown-item" th:href="@{/moderator/sponsorshipApplication/list}">Sponsorship Applications</a></li>
 									</ul>
 								</li>
-				      			<li class="nav-item small" sec:authorize="hasRole('MANAGER')">
-				          			<a class="nav-link small" th:classappend="${viewLeftMenu == 'manager'} ? active" th:href="@{/manager}">
+				      			<li class="nav-item small" sec:authorize="hasRole('MANAGER')" th:classappend="${viewLeftMenu == 'manager'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+				          			<a class="nav-link small ms-2 me-2" th:classappend="${viewLeftMenu == 'manager'} ? active" th:href="@{/manager}">
 				          				<img th:src="@{/images/bootstrap-icons/people-fill.svg}" height="20px;"/>
 				          				Manager
 				          			</a>
 				        		</li>
-								<li class="nav-item small" th:each="ob : ${listMenuItemTop}">
-									<a class="nav-link small" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
+								<li class="nav-item small" th:each="ob,iterator : ${listMenuItemTop}" th:classappend="${viewLeftMenu == 'topmenu'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
 										<img th:src="@{/images/bootstrap-icons/link-45deg.svg}" height="20px;"/>
 										<span th:text="${ob.title}"></span>
 									</a>
-									<a class="nav-link small" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
+									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
 										<img th:src="@{/images/bootstrap-icons/link-45deg.svg}" height="20px;"/>
 										<span th:text="${ob.title}"></span>
 									</a>
-									<a class="nav-link small" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
 										<img th:src="@{/images/bootstrap-icons/link-45deg.svg}" height="20px;"/>
 										<span th:text="${ob.title}"></span>
 									</a>
-									<a class="nav-link small" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
 										<img th:src="@{/images/bootstrap-icons/link-45deg.svg}" height="20px;"/>
 										<span th:text="${ob.title}"></span>
 									</a>
 								</li>
-								<li class="nav-item small">
-									<a class="nav-link" th:href="@{/holiday/list}">
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'holidays'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/holiday/list}">
 										<img th:src="@{/images/bootstrap-icons/bicycle.svg}" height="20px;"/>
 										Holidays
 									</a>
 								</li>
-								<li class="nav-item small" sec:authorize="!isAuthenticated()">
-									<a class="nav-link" th:href="@{/join}">
+								<li class="nav-item small" sec:authorize="!isAuthenticated()" th:classappend="${viewLeftMenu == 'join'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/join}">
 										<img th:src="@{/images/bootstrap-icons/person.svg}" height="20px;"/>
 										Join as Member
 									</a>
 								</li>
 				      			<li class="nav-item small" sec:authorize="!isAuthenticated()">
-				          			<a class="nav-link" th:href="@{/login}">
+				          			<a class="nav-link small ms-2 me-2" th:href="@{/login}">
 				          				<img th:src="@{/images/bootstrap-icons/lock.svg}" height="20px;"/>
 				          				Sign-In
 				          			</a>
 				        		</li>
 								<li class="nav-item small" sec:authorize="isAuthenticated()">
-									<a class="nav-link" th:href="@{/logout}">
+									<a class="nav-link small ms-2 me-2" th:href="@{/logout}">
 										<img th:src="@{/images/bootstrap-icons/unlock.svg}" height="20px;"/>
 										Sign-Out
 									</a>
@@ -175,12 +192,13 @@
 		</div>
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 	
 		<div class="row">
 		
 			<div class="col-2" th:fragment="left_menu">
 				
+				<!-- 
 				<nav class="navbar">
 					<h4 style="font-size: 16px; font-weight: bold;">Upcoming Events</h4>
 					<ul class="nav flex-column" th:if="${viewLeftMenu == 'index' }" >
@@ -195,7 +213,7 @@
 							<span style="font-size: small;" th:text="${#dates.format(event.endDate, 'dd/MM/yyyy')}"></span><br/>
 							<br/>
 					  	</li>
-						<li class="nav-item dropdown bg-light" th:each="ob : ${listMenuItemLeft}">
+						<li class="nav-item dropdown bg-light" th:each="ob,iterator : ${listMenuItemLeft}">
 							<a class="nav-link" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" th:text="${ob.title}"></a>
 							<a class="nav-link" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}" th:text="${ob.title}"></a>
 							<a class="nav-link" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>
@@ -210,6 +228,7 @@
 				<div th:each="advert : ${listAdvert}">
 					<div th:if="${advert.location == 'left'}" th:utext="${advert.content}"></div>
 				</div>
+				 -->
 			</div>
 			
 			<div class="col-10">
@@ -222,51 +241,51 @@
 		</div>
 	</div>
 	
-	<div class="container" th:fragment="footer">
+	<div class="container-fluid" th:fragment="footer">
 		<div class="row p-2">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-				    	<div id="navbarSupportedContent">
+					<div class="container-fluid px-5">
+				    	<div id="navbarSupportedContent2">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">	
-								<li class="nav-item small">
-									<a class="nav-link small" th:href="@{/event/list}">
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'events'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/event/list}">
 										<img th:src="@{/images/bootstrap-icons/alarm.svg}" height="20px;"/>
 										Upcoming Events
 									</a>
 								</li>		
-								<li class="nav-item small">
-									<a class="nav-link small" th:href="@{/open/organization/list}">
+								<li class="nav-item small"  th:classappend="${viewLeftMenu == 'organizations'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/organization/list}">
 										<img th:src="@{/images/bootstrap-icons/gem.svg}" height="20px;"/>
-										Similar Organizations
+										Similar Organization
 									</a>
 								</li>
-								<li class="nav-item small">
-									<a class="nav-link small" th:href="@{/open/sponsorship}">
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'sponsor'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/sponsorship}">
 										<img th:src="@{/images/bootstrap-icons/trophy.svg}" height="20px;"/>
 										Sponsorship
 									</a>
 								</li>	
-								<li class="nav-item small">
-									<a class="nav-link small" th:href="@{/contacts}">
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'contacts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/contacts}">
 										<img th:src="@{/images/bootstrap-icons/envelope.svg}" height="20px;"/>
 										Contacts
 									</a>
 								</li>
-								<li class="nav-item small">
-									<a class="nav-link small" th:href="@{/open/privacyPolicy}">
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'privacy'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/privacyPolicy}">
 										<img th:src="@{/images/bootstrap-icons/file-lock.svg}" height="20px;"/>
 										Privacy Policy
 									</a>
 								</li>
-								<li class="nav-item small">
-									<a class="nav-link" th:href="@{/open/termsAndConditions}">
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'terms'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/termsAndConditions}">
 										<img th:src="@{/images/bootstrap-icons/journal-text.svg}" height="20px;"/>
 										Terms &amp; Conditions
 									</a>
 								</li>
-								<li class="nav-item small">
-									<a class="nav-link" th:href="@{/open/disclaimer}">
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'disclaimer'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/disclaimer}">
 										<img th:src="@{/images/bootstrap-icons/patch-exclamation.svg}" height="20px;"/>
 										Disclaimer
 									</a>
@@ -277,17 +296,14 @@
 				</nav>
 			</div>
 		</div>
-		<div class="row p-2 text-end">
-			<div class="col-12" th:each="advert : ${listAdvert}">
+		<div class="row p-2">
+			<div class="col-3 text-center" th:each="advert : ${listAdvert}">
 				<div th:if="${advert.location == 'footer'}" th:utext="${advert.content}"></div>
 			</div>
-			<div class="col-12">
+			<div class="col-12 text-end">
 				<img th:src="@{/images/coop-logo-new.png}" height="25px;">
 				<br/><a href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;" th:text="#{copyright}"></a>
 			</div>
-			
-			<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-			<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 		</div>
 	</div>
 

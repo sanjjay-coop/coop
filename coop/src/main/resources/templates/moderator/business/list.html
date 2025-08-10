@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 			<div class="col-12">
 				
@@ -28,26 +28,28 @@
 					  </div>
 				</form>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{business.businessName}"></th>
-							<th th:text="#{business.city}"></th>
-							<th th:text="#{business.keywords}"></th>
-							<th th:text="#{business.owner}"></th>
-							<th th:text="#{business.enabled}"></th>
+							<th class="col-sm-1" th:text="#{business.city}"></th>
+							<th class="col-sm-2" th:text="#{business.keywords}"></th>
+							<th class="col-sm-2" th:text="#{business.owner}"></th>
+							<th class="col-sm-1 text-center" th:text="#{business.enabled}"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listBusiness}">
+						<tr th:each="ob,iterator : ${listBusiness}">
+							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.businessName}"></td>
         					<td th:text="${ob.city}"></td>
         					<td th:text="${ob.keywords}"></td>
 							<td th:text="${ob.owner.name}"></td>
-        					<td th:text="${ob.enabled}"></td>							
+        					<td class="text-center" th:text="${ob.enabled}"></td>							
 							<td>
 								<a class="nav-link" th:href="@{/moderator/business/view/{orderId}(orderId=${ob.id})}" title="View Record">
 							       	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>

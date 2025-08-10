@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,56 +16,75 @@
 
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/menuItem/list/current}">
+								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; Back to List
+							</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${menuItem}" method="POST">
 
 					<input type="hidden" class="form-control" th:field="*{id}">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{menuItem.title}"></label>
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.title}"></label>
+						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{menuItem.title}" autofocus >
-				      		<ul><li class="cooperror" th:errors="*{title}" /></ul>
-				    	</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{menuItem.location}"></label>
-							<select class="form-select required" th:field="*{location}">
+					  		<ul><li class="cooperror" th:errors="*{title}" /></ul>
+						</div>
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.location}"></label>
+						<div class="col-sm-4">
+				    		<select class="form-select required" th:field="*{location}">
 								<option th:value="left" th:text="left" />
 								<option th:value="top" th:text="top" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{location}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{menuItem.itemType}"></label>
-							<select class="form-select required" th:field="*{itemType}">
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.itemType}"></label>
+						<div class="col-sm-4">
+				    		<select class="form-select required" th:field="*{itemType}">
 								<option th:value="category" th:text="Category" />
 								<option th:value="url" th:text="URL" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{itemType}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{menuItem.category}"></label>
-							<select class="form-select" th:field="*{category}">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.category}"></label>
+						<div class="col-sm-4">
+				    		<select class="form-select" th:field="*{category}">
 								<option th:each="p : ${listCategory}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{category}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{menuItem.url}"></label>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.url}"></label>
+						<div class="col-sm-4">
 				    		<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{menuItem.url}" >
-				      		<ul><li class="cooperror" th:errors="*{url}" /></ul>
-				    	</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{menuItem.newPage}"></label>
-							<select class="form-select" th:field="*{newPage}">
+					  		<ul><li class="cooperror" th:errors="*{url}" /></ul>
+						</div>
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.newPage}"></label>
+						<div class="col-sm-4">
+				    		<select class="form-select" th:field="*{newPage}">
 								<option th:value="0" th:text="FALSE" />
 								<option th:value="1" th:text="TRUE" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{newPage}" /></ul>
 						</div>
-						<div class="col-md-12">
-				      		<button type="submit" class="btn btn-primary">Submit</button>
-				    	</div>
-				  	</div>
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

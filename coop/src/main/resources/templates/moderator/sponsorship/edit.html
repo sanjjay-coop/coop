@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,37 +16,56 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/sponsorship/list/current}">&lt;&lt; Back To List</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${sponsorship}" method="POST">
 					
 					<input type="hidden" class="form-control" th:field="*{id}">
 
-					<div class="row g-3">
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{sponsorship.title}"></label>
-							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{sponsorship.title}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.title}"></label>
+						<div class="col-sm-10">
+				    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{sponsorship.title}" autofocus >
 							<ul><li class="cooperror" th:errors="*{title}" /></ul>
 						</div>
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{sponsorship.description}"></label>
-							<textarea class="widgEditor form-control" rows="5" th:field="*{description}" th:placeholder="#{sponsorship.description}"></textarea>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.description}"></label>
+						<div class="col-sm-10">
+				    		<textarea class="widgEditor form-control" rows="5" th:field="*{description}" th:placeholder="#{sponsorship.description}"></textarea>
 							<ul><li class="cooperror" th:errors="*{description}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{sponsorship.pubDate}"></label>
-							<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{sponsorship.pubDate}">
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.pubDate}"></label>
+						<div class="col-sm-2">
+				    		<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{sponsorship.pubDate}">
 							<ul><li class="cooperror" th:errors="*{pubDate}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{sponsorship.expDate}"></label>
-							<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{sponsorship.expDate}">
+			
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.expDate}"></label>
+						<div class="col-sm-2">
+				    		<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{sponsorship.expDate}">
 							<ul><li class="cooperror" th:errors="*{expDate}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{sponsorship.lastDate}"></label>
-							<input type="date" class="form-control required" th:field="*{lastDate}" th:placeholder="#{sponsorship.lastDate}">
+						
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.lastDate}"></label>
+						<div class="col-sm-2">
+				    		<input type="date" class="form-control required" th:field="*{lastDate}" th:placeholder="#{sponsorship.lastDate}">
 							<ul><li class="cooperror" th:errors="*{lastDate}" /></ul>
 						</div>
-						<div class="col-md-12">
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
@@ -57,5 +76,12 @@
 	
 	<div class="container" th:replace="~{fragments :: footer}">
 	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#description').summernote({height: 200});
+		});
+    </script>
+    
 </body>
 </html>

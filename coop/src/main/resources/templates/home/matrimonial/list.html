@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
@@ -39,7 +39,7 @@
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listMatrimonial}">
+						<tr th:each="ob,iterator : ${listMatrimonial}">
         					<td th:text="${ob.lookingFor}"></td>
         					<td th:text="${ob.description}"></td>
         					<td th:text="${ob.mobile}"></td>

@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -19,56 +19,82 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/searchResult}">To Search List</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/edit/{orderId}(orderId=${title.id})}">Edit Title</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/delete/{orderId}(orderId=${title.id})}" onclick="return confirm('Are you sure?')">Delete Title</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/searchResult}">
+								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; To Search List</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library}">
+								<img th:src="@{/images/bootstrap-icons/search.svg}"/>&nbsp; Search Again</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/edit/{orderId}(orderId=${title.id})}">
+								<img th:src="@{/images/bootstrap-icons/pen.svg}"/>&nbsp; Edit Title</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/delete/{orderId}(orderId=${title.id})}" onclick="return confirm('Are you sure?')">
+								<img th:src="@{/images/bootstrap-icons/trash.svg}"/>&nbsp; Delete Title</a>
 						</div>
 					</div>
 				</div>
 								
-				<div class="row g-3">
-					<div class="col-md-3">
-				   		<label class="form-label text-primary" th:text="#{title.accessionNumber}"></label>
-				      	<span class="form-control" th:text="${title.accessionNumber}"></span>
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.accessionNumber}"></label>
+				    <div class="col-sm-4">
+						<span class="form-control border-light" th:text="${title.accessionNumber}"></span>
 				    </div>
-					<div class="col-md-3">
-						<label class="form-label text-primary" th:text="#{title.titleType}"></label>
-						<span class="form-control" th:text="${title.titleType.name}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.titleType}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${title.titleType.name}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{title.library}"></label>
-						<span class="form-control" th:text="${title.library.name + ' [' + title.library.shortName + ']'}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.library}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${title.library.name + ' [' + title.library.shortName + ']'}"></span>
 					</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{title.uniformTitle}"></label>
-						<span class="form-control" th:text="${title.uniformTitle}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.uniformTitle}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${title.uniformTitle}"></span>
 					</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{title.authors}"></label>
-						<span class="form-control" th:text="${title.authors}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.authors}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${title.authors}"></span>
 					</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{title.publisher}"></label>
-						<span class="form-control" th:text="${title.publisher}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.publisher}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${title.publisher}"></span>
 					</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{title.summary}"></label>
-						<span class="form-control" th:text="${title.summary}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.summary}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:utext="${title.summary}"></span>
 					</div>
-					<div class="col-md-4" th:if="${co!=null}">
-						<label class="form-label text-primary" th:text="#{checkOut}"></label>
-						<span class="form-control" th:text="${co.member.name + ' [' + co.member.memId + ']' }"></span>
+				</div>
+				
+				<div class="row mb-2" th:if="${co!=null}">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{checkOut}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${co.member.name + ' [' + co.member.memId + ']' }"></span>
 					</div>
-					<div class="col-md-3" th:if="${co!=null}">
-						<label class="form-label text-primary">Issue Date</label>
-						<span class="form-control" th:text="${#dates.format(co.transactionDate, 'dd/MM/yyyy')}"></span>
+					<label class="col-sm-2 col-form-label text-primary">Issue Date</label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${#dates.format(co.transactionDate, 'dd/MM/yyyy')}"></span>
 					</div>
-					<div class="col-md-3" th:if="${co!=null}">
-						<label class="form-label text-primary">Due Date</label>
-						<span class="form-control" th:text="${#dates.format(co.dueDate, 'dd/MM/yyyy')}"></span>
+				</div>
+				
+				<div class="row mb-2" th:if="${co!=null}">
+					<label class="col-sm-2 col-form-label text-primary">Due Date</label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${#dates.format(co.dueDate, 'dd/MM/yyyy')}"></span>
 					</div>
-					<div class="col-md-2" th:if="${co!=null}">
-						<label class="form-label text-primary">Check-In</label>
+					<label class="col-sm-2 col-form-label text-primary">Check-In</label>
+					<div class="col-sm-4">
 						<a class="form-control btn btn-primary btn-sm" role="button" th:href="@{/library/title/checkIn/{orderId}(orderId=${co.id})}" onclick="return confirm('Are you sure?')">Check-In</a>
 					</div>
 				</div>
@@ -83,15 +109,15 @@
 							</div>
 							<div class="form-group row">
 								<input type="hidden" class="form-control" th:field="*{title}">
-								<label class="col-2 col-form-label" th:text="#{checkOut.member}"></label>
-								<div class="col-2">
+								<label class="col-sm-2 col-form-label" th:text="#{checkOut.member}"></label>
+								<div class="col-sm-2">
 									<input type="text" class="form-control required" th:field="*{member.memId}" th:placeholder="#{member.memId}" />
 								</div>
-								<label class="col-2 col-form-label" th:text="#{checkOut.dueDate}"></label>
-								<div class="col-3">
+								<label class="col-sm-2 col-form-label" th:text="#{checkOut.dueDate}"></label>
+								<div class="col-sm-3">
 									<input type="date" class="form-control required" th:field="*{dueDate}" th:placeholder="#{checkOut.dueDate}" >
 								</div>
-								<div class="col-3">
+								<div class="col-sm-3">
 									<button type="submit" class="btn btn-primary">Submit</button>
 								</div>
 							</div>

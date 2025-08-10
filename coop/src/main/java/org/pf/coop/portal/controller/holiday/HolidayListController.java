@@ -162,4 +162,9 @@ public class HolidayListController extends BaseController {
 			return "redirect:/holiday/list";
 		}
 	}
+	
+	@ModelAttribute("viewLeftMenu")
+	public String viewLeftMenu() {
+		return "holidays";
+	}
 }

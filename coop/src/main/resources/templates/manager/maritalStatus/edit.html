@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -20,16 +20,19 @@
 				
 					<input type="hidden" class="form-control" th:field="*{id}">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{maritalStatus.status}"></label>
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{maritalStatus.status}"></label>
+						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{status}" th:placeholder="#{maritalStatus.status}" autofocus >
-				      		<ul><li class="cooperror" th:errors="*{status}" /></ul>
-				    	</div>
-						<div class="col-md-12">
-				      		<button type="submit" class="btn btn-primary">Submit</button>
-				    	</div>
-				  	</div>
+					  		<ul><li class="cooperror" th:errors="*{status}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

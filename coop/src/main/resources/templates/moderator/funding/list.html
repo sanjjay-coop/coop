@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 			<div class="col-12">
 				
@@ -28,26 +28,28 @@
 					  </div>
 				</form>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{funding.name}"></th>
-							<th th:text="#{funding.email}"></th>
-							<th th:text="#{funding.applicationDate}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-2" th:text="#{funding.name}"></th>
+							<th class="col-sm-2" th:text="#{funding.email}"></th>
+							<th class="col-sm-2 text-center" th:text="#{funding.applicationDate}"></th>
 							<th th:text="#{funding.purpose}"></th>
-							<th th:text="#{funding.status}"></th>
+							<th class="col-sm-1 text-center" th:text="#{funding.status}"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listFunding}">
-							<td th:text="${ob.name}"></td>
+						<tr th:each="ob,iterator : ${listFunding}">
+							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+        					<td th:text="${ob.name}"></td>
 							<td th:text="${ob.email}"></td>
-							<td th:text="${#dates.format(ob.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></td>
+							<td class="text-center" th:text="${#dates.format(ob.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></td>
 							<td th:text="${ob.purpose}"></td>
-							<td th:text="${ob.status}"></td>
+							<td class="text-center" th:text="${ob.status}"></td>
 							<td>
 								<a class="nav-link" th:href="@{/moderator/funding/view/{orderId}(orderId=${ob.id})}" title="View Record">
 							      	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>

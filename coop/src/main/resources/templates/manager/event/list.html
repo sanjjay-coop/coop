@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -19,20 +19,21 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/addNew}">Add New Event</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/addNew}">
+								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add Event</a>
 						</div>
 					</div>
 				</div>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{event.title}"></th>
-							<th th:text="#{event.publish}"></th>
-							<th th:text="#{event.startDate}"></th>
-							<th th:text="#{event.endDate}"></th>
+							<th class="col-sm-1 text-center" th:text="#{event.publish}"></th>
+							<th class="col-sm-1 text-center" th:text="#{event.startDate}"></th>
+							<th class="col-sm-1 text-center" th:text="#{event.endDate}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
@@ -40,12 +41,12 @@
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listEvent}">
-        					<td th:text="${ob.id}"></td>
+						<tr th:each="ob,iterator : ${listEvent}">
+        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.title}"></td>
-							<td th:text="${ob.publish}"></td>
-        					<td th:text="${#dates.format(ob.startDate, 'dd/MM/yyyy')}"></td>
-        					<td th:text="${#dates.format(ob.endDate, 'dd/MM/yyyy')}"></td>
+							<td class="text-center" th:text="${ob.publish}"></td>
+        					<td class="text-center" th:text="${#dates.format(ob.startDate, 'dd/MM/yyyy')}"></td>
+        					<td class="text-center" th:text="${#dates.format(ob.endDate, 'dd/MM/yyyy')}"></td>
 							<td>
 								<a class="nav-link" th:href="@{/manager/event/view/{orderId}(orderId=${ob.id})}" title="View Record">
 							      	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>

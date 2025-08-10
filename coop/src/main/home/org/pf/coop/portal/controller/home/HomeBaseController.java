@@ -7,7 +7,7 @@ public class HomeBaseController extends BaseController {
 	
 	@ModelAttribute("viewLeftMenu")
 	public String viewLeftMenu() {
-		return "home";
+		return "dashboard";
 	}
 
 }

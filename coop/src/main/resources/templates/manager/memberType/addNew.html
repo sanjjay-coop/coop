@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -18,14 +18,17 @@
 				
 				<form th:action= "${servletRequest.requestURI}" th:object="${memberType}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-							<label class="col-3 col-form-label" th:text="#{memberType.name}"></label>
-							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{memberType.name}" autofocus />
+					<div class="row mb-2">
+						<label class="col-3 col-form-label" th:text="#{memberType.name}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{memberType.name}" autofocus />
 					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 						</div>
-						<div class="col-md-12">
-					  		<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
 				</form>
@@ -36,10 +39,11 @@
 
 				<div class="row px-4 py-2">
 					<div class="col-6">
-						<table class="table table-sm table-bordered table-striped">
+						<table class="table table-sm small table-bordered table-striped">
 						
 							<thead>
 								<tr>
+									<th class="col-sm-1" th:text="'S/N'"></th>
 									<th th:text="#{memberType.name}"></th>
 									<th style="width: 15px;"></th>
 									<th style="width: 15px;"></th>
@@ -47,8 +51,9 @@
 							</thead>
 							
 							<tbody>
-								<tr th:each="ob : ${listMemberType}">
-		        					<td th:text="${ob.name}"></td>
+								<tr th:each="ob,iterator : ${listMemberType}">
+		        					<td th:text="${iterator.index + 1}"></td>
+        							<td th:text="${ob.name}"></td>
 		        					<td>
 		        						<a class="nav-link" th:href="@{/manager/memberType/edit/{orderId}(orderId=${ob.id})}" title="Edit record">
 								          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>

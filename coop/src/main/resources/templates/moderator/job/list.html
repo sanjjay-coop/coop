@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 			<div class="col-12">
 				
@@ -28,29 +28,31 @@
 					  </div>
 				</form>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{job.position}"></th>
-							<th th:text="#{job.firmName}"></th>
-							<th style="text-align: right;" th:text="#{job.salary}"></th>
-							<th th:text="#{job.lastDate}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-2" th:text="#{job.position}"></th>
+							<th class="col-sm-3" th:text="#{job.firmName}"></th>
+							<th class="col-sm-1 text-center" th:text="#{job.salary}"></th>
+							<th class="col-sm-1 text-center" th:text="#{job.lastDate}"></th>
 							<th th:text="#{job.owner}"></th>
-							<th th:text="#{job.enabled}"></th>
+							<th class="col-sm-1 text-center" th:text="#{job.enabled}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listJob}">
+						<tr th:each="ob,iterator : ${listJob}">
+        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.position}"></td>
 							<td th:text="${ob.firmName}"></td>
-        					<td style="text-align: right;" th:text="${ob.salary}"></td>
-        					<td th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></td>
+        					<td class="col-sm-1 text-center" th:text="${ob.salary}"></td>
+        					<td class="col-sm-1 text-center" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></td>
 							<td th:text="${ob.owner.name}"></td>	
-							<td th:text="${ob.enabled}"></td>	
+							<td class="col-sm-1 text-center" th:text="${ob.enabled}"></td>	
         					<td>
         						<a th:if="${ob.fileData != null}" class="nav-link" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
 						          	<img th:src="@{/images/bootstrap-icons/download.svg}"/>

@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -19,13 +19,14 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/business/addNew}">Add New Business</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/business/addNew}">
+								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add Business</a>
 						</div>
 					</div>
 				</div>
 			
 				<div class="row py-2">
-					<div class="col-6 my-2" th:each="ob : ${listBusiness}">
+					<div class="col-4 my-2" th:each="ob,iterator : ${listBusiness}">
 						<div class="card h-100">
 							<h5 class="card-header" th:text="${ob.businessName}"></h5>
 						  	<div class="card-body text-center">

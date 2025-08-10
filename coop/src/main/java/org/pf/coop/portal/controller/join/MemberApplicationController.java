@@ -170,4 +170,9 @@ public class MemberApplicationController extends BaseController {
 		
 		return "join/fail";
 	}
+	
+	@ModelAttribute("viewLeftMenu")
+	public String viewLeftMenu() {
+		return "join";
+	}
 }

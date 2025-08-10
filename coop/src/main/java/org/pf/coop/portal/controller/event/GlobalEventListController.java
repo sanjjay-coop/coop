@@ -127,4 +127,9 @@ public class GlobalEventListController extends BaseController  {
 			return "redirect:/event/list";
 		}
 	}
+	
+	@ModelAttribute("viewLeftMenu")
+	public String viewLeftMenu() {
+		return "events";
+	}
 }

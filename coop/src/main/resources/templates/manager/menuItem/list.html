@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -19,30 +19,31 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/menuItem/addNew}">Add New Menu Item</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/menuItem/addNew}">
+								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add New Menu Item</a>
 						</div>
 					</div>
 				</div>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{menuItem.title}"></th>
-							<th th:text="#{menuItem.location}"></th>
-							<th th:text="#{menuItem.itemType}"></th>
-							<th th:text="#{menuItem.category}"></th>
-							<th th:text="#{menuItem.url}"></th>
-							<th th:text="#{menuItem.newPage}"></th>
+							<th class="col-sm-3" th:text="#{menuItem.location}"></th>
+							<th class="col-sm-1" th:text="#{menuItem.itemType}"></th>
+							<th class="col-sm-1" th:text="#{menuItem.category}"></th>
+							<th class="col-sm-2" th:text="#{menuItem.url}"></th>
+							<th class="col-sm-1" th:text="#{menuItem.newPage}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listMenuItem}">
-        					<td th:text="${ob.id}"></td>
+						<tr th:each="ob,iterator : ${listMenuItem}">
+        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.title}"></td>
 							<td th:text="${ob.location}"></td>
 							<td th:text="${ob.itemType}"></td>

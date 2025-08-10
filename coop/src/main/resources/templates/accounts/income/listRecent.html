@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,23 +16,25 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 								
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{income.transactionDate}"></th>
-							<th th:text="#{income.amount}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-1" th:text="#{id}"></th>
+							<th class="col-sm-1" th:text="#{income.transactionDate}"></th>
+							<th class="col-sm-1" th:text="#{income.amount}"></th>
 							<th th:text="#{income.narration}"></th>
-							<th th:text="#{income.receiptNumber}"></th>
-							<th th:text="#{income.receivedFrom}"></th>
+							<th class="col-sm-2" th:text="#{income.receiptNumber}"></th>
+							<th class="col-sm-2" th:text="#{income.receivedFrom}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listIncome}">
+						<tr th:each="ob,iterator : ${listIncome}">
+        					<td th:text="${iterator.index + 1}"></td>
         					<td th:text="${ob.id}"></td>
 							<td th:text="${#dates.format(ob.transactionDate, 'dd/MM/yyyy')}"></td>
 							<td th:text="${ob.amount}"></td>

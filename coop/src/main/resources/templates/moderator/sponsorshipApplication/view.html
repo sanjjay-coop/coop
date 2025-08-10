@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,59 +16,87 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/sponsorshipApplication/list/current}">&lt;&lt; Back To List</a>
+						</div>
+					</div>
+				</div>
 					
-				<div class="row g-3">
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{sponsorship.title}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.sponsorship.title}"></span>
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.title}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.sponsorship.title}"></span>
 					</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{sponsorship.description}"></label>
-						<span class="form-control" th:utext="${sponsorshipApplication.sponsorship.description}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.description}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:utext="${sponsorshipApplication.sponsorship.description}"></span>
 					</div>
-					<div class="col-md-12">
-			    		<label class="form-label text-primary" th:text="#{sponsorshipApplication.name}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.name}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.name}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.name}"></span>
 			    	</div>
-					<div class="col-md-6">
-			    		<label class="form-label text-primary" th:text="#{sponsorshipApplication.address}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.address}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.address}"></label>
+					<div class="col-sm-2">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.address}"></span>
 			    	</div>
-					<div class="col-md-4">
-						<label class="form-label text-primary" th:text="#{sponsorshipApplication.city}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.city}"></span>
+			    </div>
+			    
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.city}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.city}"></span>
 					</div>
-					<div class="col-md-2">
-						<label class="form-label text-primary" th:text="#{sponsorshipApplication.pin}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.pin}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.pin}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.pin}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{sponsorshipApplication.state}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.state}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.state}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.state}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{sponsorshipApplication.country}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.country}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.country}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.country}"></span>
 					</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{sponsorshipApplication.reasonsForApplication}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.reasonsForApplication}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.reasonsForApplication}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.reasonsForApplication}"></span>
 					</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{sponsorshipApplication.educationAndExperience}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.educationAndExperience}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.educationAndExperience}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.educationAndExperience}"></span>
 					</div>
-					<div class="col-md-6">
-			    		<label class="form-label text-primary" th:text="#{sponsorshipApplication.mobile}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.mobile}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.mobile}"></label>
+					<div class="col-sm-2">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.mobile}"></span>
 			    	</div>
-					<div class="col-md-6">
-			    		<label class="form-label text-primary" th:text="#{sponsorshipApplication.email}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.email}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.email}"></label>
+					<div class="col-sm-2">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.email}"></span>
 			    	</div>
-					<div class="col-md-2">
-						<label class="form-label text-primary" th:text="#{sponsorshipApplication.status}"></label>
-						<span class="form-control" th:text="${sponsorshipApplication.status}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorshipApplication.status}"></label>
+					<div class="col-sm-2">
+						<span class="form-control border-light" th:text="${sponsorshipApplication.status}"></span>
 					</div>
 			  	</div>
 			</div>

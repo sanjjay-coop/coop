@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,39 +16,58 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/article/list/current}">
+								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; Back to List
+							</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${article}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{article.title}"></label>
-							<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{article.title}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{article.title}"></label>
+						<div class="col-sm-10">
+				    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{article.title}" autofocus >
 							<ul><li class="cooperror" th:errors="*{title}" /></ul>
 						</div>
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{article.content}"></label>
-							<textarea class="widgEditor form-control" rows="5" th:field="*{content}" th:placeholder="#{article.content}"></textarea>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{article.content}"></label>
+						<div class="col-sm-10">
+				    		<textarea class="widgEditor form-control" rows="5" th:field="*{content}" th:placeholder="#{article.content}"></textarea>
 							<ul><li class="cooperror" th:errors="*{content}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{article.pubDate}"></label>
-							<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{article.pubDate}">
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{article.pubDate}"></label>
+						<div class="col-sm-4">
+				    		<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{article.pubDate}">
 							<ul><li class="cooperror" th:errors="*{pubDate}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{article.expDate}"></label>
-							<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{article.expDate}">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{article.expDate}"></label>
+						<div class="col-sm-4">
+				    		<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{article.expDate}">
 							<ul><li class="cooperror" th:errors="*{expDate}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{article.publish}"></label>
-							<select class="form-select" th:field="*{publish}">
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{article.publish}"></label>
+						<div class="col-sm-4">
+				    		<select class="form-select" th:field="*{publish}">
 								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{publish}" /></ul>
 						</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{article.categories}"></label>
-							<ul style="list-style-type: none;">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{article.categories}"></label>
+						<div class="col-sm-4">
+				    		<ul style="list-style-type: none;">
 								<li th:each="category : ${listCategory}">
 									<input type="checkbox" th:field="*{categories}" th:value="${category.id}" />
 									<label th:for="${#ids.prev('categories')}" 
@@ -56,7 +75,9 @@
 								</li>
 							</ul>
 						</div>
-						<div class="col-md-12">
+					</div>
+					<div class="row mb-2">
+						<div class="offset-sm-2">
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
@@ -67,5 +88,11 @@
 	
 	<div class="container" th:replace="~{fragments :: footer}">
 	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#content').summernote({height: 200});
+		});
+    </script>
 </body>	
 </html>

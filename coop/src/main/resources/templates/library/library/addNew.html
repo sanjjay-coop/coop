@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -18,58 +18,73 @@
 				
 				<form th:action= "${servletRequest.requestURI}" th:object="${library}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{library.shortName}"></label>
-					   		<input type="text" class="form-control required" th:field="*{shortName}" th:placeholder="#{library.shortName}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.shortName}"></label>
+					   	<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{shortName}" th:placeholder="#{library.shortName}" autofocus >
 					    	<ul><li class="cooperror" th:errors="*{shortName}" /></ul>
 					    </div>
-						<div class="col-md-9">
-				    		<label class="form-label text-primary" th:text="#{library.name}"></label>
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.name}"></label>
+				    	<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{library.name}" >
 				      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 				    	</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{library.address}"></label>
-							<input type="text" class="form-control" th:field="*{address}" th:placeholder="#{library.address}" >
+				    </div>
+				    
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.address}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{address}" th:placeholder="#{library.address}" >
 					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
 						</div>
-						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{library.city}"></label>
-							<input type="text" class="form-control" th:field="*{city}" th:placeholder="#{library.city}" >
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.city}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{city}" th:placeholder="#{library.city}" >
 					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
 						</div>
-						<div class="col-md-2">
-							<label class="form-label text-primary" th:text="#{library.pin}"></label>
-							<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{library.pin}" >
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.pin}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{library.pin}" >
 					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{library.state}"></label>
-							<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{library.state}" >
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.state}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{library.state}" >
 					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{library.country}"></label>
-							<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{library.country}" >
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.country}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{library.country}" >
 					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
 						</div>
-						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{library.mobile}"></label>
-							<input type="text" class="form-control" th:field="*{mobile}" th:placeholder="#{library.mobile}" >
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.mobile}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{mobile}" th:placeholder="#{library.mobile}" >
 					  		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
 						</div>
-						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{library.phone}"></label>
-							<input type="text" class="form-control" th:field="*{phone}" th:placeholder="#{library.phone}" >
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.phone}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{phone}" th:placeholder="#{library.phone}" >
 					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
 						</div>
-						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{library.email}"></label>
-							<input type="text" class="form-control" th:field="*{email}" th:placeholder="#{library.email}" >
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{library.email}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{email}" th:placeholder="#{library.email}" >
 					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
 						</div>
-						<div class="col-md-12">
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
 							<button type="submit" class="btn btn-primary">Submit</button>
 				    	</div>
 				  	</div>
@@ -79,35 +94,31 @@
 
 				<h4 class="h4 pb-3">Library (List All)</h4>
 
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{library.shortName}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-1" th:text="#{library.shortName}"></th>
 							<th th:text="#{library.name}"></th>
-							<th th:text="#{library.email}"></th>
-							<th th:text="#{library.address}"></th>
+							<th class="col-sm-2" th:text="#{library.email}"></th>
+							<th class="col-sm-3" th:text="#{library.address}"></th>
+							<th class="col-sm-1" th:text="#{library.phone}"></th>
+							<th class="col-sm-1" th:text="#{library.mobile}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listLibrary}">
-							<td th:text="${ob.id}"></td>
-							<td th:text="${ob.shortName}"></td>
+						<tr th:each="ob,iterator : ${listLibrary}">
+							<td th:text="${iterator.index + 1}"></td>
+        					<td th:text="${ob.shortName}"></td>
 							<td th:text="${ob.name}"></td>
 							<td th:text="${ob.email}"></td>
-							<td>
-								<span th:text="#{library.address}"></span><span th:text="${' : ' + ob.address}"></span><br/>
-								<span th:text="#{library.city}"></span><span th:text="${' : ' + ob.city}"></span><br/>
-								<span th:text="#{library.pin}"></span><span th:text="${' : ' + ob.pin}"></span><br/>
-								<span th:text="#{library.state}"></span><span th:text="${' : ' + ob.state}"></span><br/>
-								<span th:text="#{library.country}"></span><span th:text="${' : ' + ob.country}"></span><br/>
-								<span th:text="#{library.phone}"></span><span th:text="${' : ' + ob.phone}"></span><br/>
-								<span th:text="#{library.mobile}"></span><span th:text="${' : ' + ob.mobile}"></span>
-							</td>
+							<td th:text="${ob.address + ', ' + ob.city + ' ' + ob.pin + ' ' + ob.state + ' ' + ob.country}"></td>
+							<td th:text="${ob.phone}"></td>
+							<td th:text="${ob.mobile}"></td>
 							<td>
 								<a class="nav-link" th:href="@{/library/library/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
 						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>

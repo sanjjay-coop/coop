@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,22 +16,37 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/view/{orderId}(orderId=${eventUpdate.event.id})}">
+								<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>&nbsp; Back to Event
+							</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${eventUpdate}" method="POST">
 				
 					<input type="hidden" class="form-control" th:field="*{event}">
 
-					<div class="row g-3">
-						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{event}"></label>
-				    		<span class="form-control" th:text="${eventUpdate.event.title}"></span>
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{event}"></label>
+				    	<div class="col-sm-10">
+				    		<span class="form-control border-light" th:text="${eventUpdate.event.title}"></span>
 				    	</div>
-						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{eventUpdate.description}"></label>
+				    </div>
+				    
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{eventUpdate.description}"></label>
+				    	<div class="col-sm-10">
 				    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{event.description}"></textarea>
 				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 				    	</div>
-						<div class="col-md-12">
-				      		<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
 				    	</div>
 				  	</div>
 				</form>

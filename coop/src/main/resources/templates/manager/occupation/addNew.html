@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -18,13 +18,16 @@
 				
 				<form th:action= "${servletRequest.requestURI}" th:object="${occupation}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{occupation.name}"></label>
-							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{occupation.name}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{occupation.name}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{occupation.name}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 						</div>
-						<div class="col-md-12">
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
@@ -34,10 +37,11 @@
 				
 				<h4 class="h4 pb-3">Occupation (List All)</h4>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{occupation.name}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
@@ -45,7 +49,8 @@
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listOccupation}">
+						<tr th:each="ob,iterator : ${listOccupation}">
+        					<td th:text="${iterator.index + 1}"></td>
         					<td th:text="${ob.name}"></td>
         					<td>
         						<a class="nav-link" th:href="@{/manager/occupation/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">

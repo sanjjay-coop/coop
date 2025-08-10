@@ -156,4 +156,9 @@ public class ArticleBlogController extends IndexBaseController {
 			return "redirect:/";
 		}
 	}
+	
+	@ModelAttribute("viewLeftMenu")
+	public String viewLeftMenu() {
+		return "top";
+	}
 }

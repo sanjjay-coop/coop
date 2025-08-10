@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,21 +16,37 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/invitation/list/current}">
+								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; Back to List
+							</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${invitation}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{invitation.email}"></label>
-							<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{invitation.email}" autofocus >
-							<ul><li class="cooperror" th:errors="*{email}" /></ul>
-						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{invitation.name}"></label>
-							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{invitation.name}">
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{invitation.name}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{invitation.name}" autofocus >
 							<ul><li class="cooperror" th:errors="*{name}" /></ul>
 						</div>
-						<div class="col-md-12">
-				    		<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{invitation.email}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{invitation.email}" >
+							<ul><li class="cooperror" th:errors="*{email}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
 				    	</div>
 				  	</div>
 				</form>

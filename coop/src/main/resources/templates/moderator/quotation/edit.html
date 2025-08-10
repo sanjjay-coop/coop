@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,27 +16,42 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/quotation/list/current}">&lt;&lt; Back To List</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${quotation}" method="POST">
 				
 					<input type="hidden" th:field="*{id}"/>
 
-					<div class="row g-3">
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{quotation.quote}"></label>
-							<input type="text" class="form-control required" th:field="*{quote}" th:placeholder="#{quotation.quote}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{quotation.quote}"></label>
+						<div class="col-sm-10">
+				    		<input type="text" class="form-control required" th:field="*{quote}" th:placeholder="#{quotation.quote}" autofocus >
 							<ul><li class="cooperror" th:errors="*{quote}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{quotation.author}"></label>
-							<input type="text" class="form-control required" th:field="*{author}" th:placeholder="#{quotation.author}">
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{quotation.author}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{author}" th:placeholder="#{quotation.author}">
 							<ul><li class="cooperror" th:errors="*{author}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{quotation.source}"></label>
-							<input type="text" class="form-control" th:field="*{source}" th:placeholder="#{quotation.source}">
+						
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{quotation.source}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{source}" th:placeholder="#{quotation.source}">
 							<ul><li class="cooperror" th:errors="*{source}" /></ul>
 						</div>
-						<div class="col-md-12">
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>

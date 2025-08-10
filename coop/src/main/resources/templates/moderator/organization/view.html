@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 			
 			<div class="col-12">
@@ -26,50 +26,68 @@
 					</div>
 				</div>
 
-				<div class="row g-3">
-					<div class="col-md-12">
-			    		<label class="form-label text-primary" th:text="#{organization.organizationName}"></label>
-			    		<span class="form-control" th:text="${organization.organizationName}"></span>
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.organizationName}"></label>
+			    	<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${organization.organizationName}"></span>
 			    	</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{organization.description}"></label>
-						<span class="form-control" th:text="${organization.description}"></span>
+			    </div>
+			    
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.description}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${organization.description}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{organization.address}"></label>
-						<span class="form-control" th:text="${organization.address}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.address}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${organization.address}"></span>
 					</div>
-					<div class="col-md-4">
-						<label class="form-label text-primary" th:text="#{organization.city}"></label>
-						<span class="form-control" th:text="${organization.city}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.city}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${organization.city}"></span>
 					</div>
-					<div class="col-md-2">
-						<label class="form-label text-primary" th:text="#{organization.pin}"></label>
-						<span class="form-control" th:text="${organization.pin}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.pin}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${organization.pin}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{organization.state}"></label>
-						<span class="form-control" th:text="${organization.state}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.state}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${organization.state}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{organization.country}"></label>
-						<span class="form-control" th:text="${organization.country}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.country}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${organization.country}"></span>
 					</div>
-					<div class="col-md-12">
-						<label class="form-label text-primary" th:text="#{organization.contactName}"></label>
-						<span class="form-control" th:text="${organization.contactName}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.contactName}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${organization.contactName}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{organization.contactPhone}"></label>
-						<span class="form-control" th:text="${organization.contactPhone}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.contactPhone}"></label>
+					<div class="col-sm-2">
+						<span class="form-control border-light" th:text="${organization.contactPhone}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{organization.contactEmail}"></label>
-						<span class="form-control" th:text="${organization.contactEmail}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.contactEmail}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${organization.contactEmail}"></span>
 					</div>
-					<div class="col-md-6">
-						<label class="form-label text-primary" th:text="#{organization.url}"></label>
-						<span class="form-control" th:text="${organization.url}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{organization.url}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${organization.url}"></span>
 					</div>
 				</div>
 			</div>

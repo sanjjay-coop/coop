@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,24 +16,31 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<div class="row pb-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/member/search}">
+								<img th:src="@{/images/bootstrap-icons/search.svg}"/>&nbsp; Search Again</a>
+						</div>
+					</div>
+				</div>
+				
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{member.memId}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{member.name}"></th>
-							<th th:text="#{member.email}"></th>
-							<th th:text="#{member.mobile}"></th>
-							<th th:text="#{member.resAddress}"></th>
+							<th class="col-sm-2" th:text="#{member.email}"></th>
+							<th class="col-sm-1" th:text="#{member.mobile}"></th>
+							<th class="col-sm-3" th:text="#{member.resAddress}"></th>
 							<th style="width: 10px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listMember}">
-        					<td th:text="${ob.id}"></td>
-							<td th:text="${ob.memId}"></td>
+						<tr th:each="ob,iterator : ${listMember}">
+        					<td th:text="${iterator.index + 1}"></td>
 							<td th:text="${ob.name}"></td>
         					<td th:text="${ob.email}"></td>
         					<td th:text="${ob.mobile}"></td>

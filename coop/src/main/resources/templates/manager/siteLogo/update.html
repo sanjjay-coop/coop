@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,23 +16,24 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
-				<form th:action= "${servletRequest.requestURI}" th:object="${fileUploadForm}" method="POST" enctype="multipart/form-data">
 				
-					<div class="row g-3">
-						<div class="col-md-12">
-							<img th:src="@{/siteLogo}" alt="Site logo" class="border rounded rounded-3"/>
+				<div class="row mb-2">
+					<div class="col-sm-4">
+				   		<img th:src="@{/siteLogo}" alt="Site logo" class="img-fluid border rounded rounded-3"/>
+				   	</div>
+				</div>
+					
+				<form class="row g-3 align-items-center py-3" th:action= "${servletRequest.requestURI}" th:object="${fileUploadForm}" method="POST" enctype="multipart/form-data">
+					<div class="col-auto">
+						<div class="input-group">
+							<input type="file" class="form-control" th:field="*{file}" th:placeholder="#{fileUploadForm.file}" autofocus >
 						</div>
-						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{fileUploadForm.file}"></label>
-				    		<input type="file" class="form-control" th:field="*{file}" th:placeholder="#{fileUploadForm.file}" autofocus >
-				      		<ul><li class="cooperror" th:errors="*{file}" /></ul>
-				    	</div>
-						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary">Submit</button>
-				    	</div>
-				  	</div>
-				  	
-				</form>
+					</div>
+					
+					<div class="col-auto">
+						<button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					</div>
+				</form>	
 			</div>
 		</div>
 	</div>

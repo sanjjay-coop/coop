@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -23,12 +23,12 @@
 					<div class="row g-3">
 						<div class="col-md-12">
 							<label class="form-label" th:text="#{sponsorship.title}"></label>
-							<span class="form-control" th:text="${sponsorshipApplication.sponsorship.title}"></span>
+							<span class="form-control border-light" th:text="${sponsorshipApplication.sponsorship.title}"></span>
 							<ul><li class="cooperror" th:errors="*{sponsorship}" /></ul>
 						</div>
 						<div class="col-md-12">
 							<label class="form-label" th:text="#{sponsorship.description}"></label>
-							<span class="form-control" th:utext="${sponsorshipApplication.sponsorship.description}"></span>
+							<span class="form-control border-light" th:utext="${sponsorshipApplication.sponsorship.description}"></span>
 						</div>
 						<div class="col-md-12">
 				    		<label class="form-label" th:text="#{sponsorshipApplication.name}"></label>

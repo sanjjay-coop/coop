@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -19,17 +19,18 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/memberGroup/addNew}">Add New Member Group</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/memberGroup/addNew}">
+							<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; Add Member Group</a>
 						</div>
 					</div>
 				</div>
 
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{memberGroup.name}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-3" th:text="#{memberGroup.name}"></th>
 							<th th:text="#{memberGroup.label}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
@@ -37,9 +38,9 @@
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listMemberGroup}">
-							<td th:text="${ob.id}"></td>
-							<td th:text="${ob.name}"></td>
+						<tr th:each="ob,iterator : ${listMemberGroup}">
+							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+        					<td th:text="${ob.name}"></td>
 							<td th:text="${ob.label}"></td>
 							<td>
 								<a class="nav-link" th:href="@{/manager/memberGroup/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">

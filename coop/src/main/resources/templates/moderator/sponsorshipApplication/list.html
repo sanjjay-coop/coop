@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -29,28 +29,28 @@
 					  </div>
 				</form>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{sponsorshipApplication.name}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-3" th:text="#{sponsorshipApplication.name}"></th>
 							<th th:text="#{sponsorshipApplication.reasonsForApplication}"></th>
-							<th th:text="#{sponsorshipApplication.applicationDate}"></th>
-							<th th:text="#{sponsorship.title}"></th>
+							<th class="col-sm-1 text-center" th:text="#{sponsorshipApplication.applicationDate}"></th>
+							<th class="col-sm-3" th:text="#{sponsorship.title}"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listSponsorshipApplication}">
-        					<td th:text="${ob.id}"></td>
-							<td th:utext="${ob.name 
+						<tr th:each="ob,iterator : ${listSponsorshipApplication}">
+        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+        					<td th:utext="${ob.name 
 								+ '<br/>' + ob.address + ', ' + ob.city + ', ' + ob.state + ', ' + ob.country
 								+ '<br/>Email: ' + ob.email
 								+ '<br/>Mobile: ' + ob.mobile}"></td>
 							<td th:text="${ob.reasonsForApplication}"></td>
-							<td th:text="${#dates.format(ob.applicationDate, 'dd/MM/yyyy')}"></td>
+							<td class="text-center" th:text="${#dates.format(ob.applicationDate, 'dd/MM/yyyy')}"></td>
         					<td th:text="${ob.sponsorship.title}"></td>
         					<td>
         						<a class="nav-link" th:href="@{/moderator/sponsorshipApplication/view/{orderId}(orderId=${ob.id})}" title="View Record">

@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -18,24 +18,33 @@
 				
 				<form th:action= "${servletRequest.requestURI}" th:object="${messageText}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{messageText.messageFor}"></label>
-							<input type="text" class="form-control required" th:field="*{messageFor}" th:placeholder="#{messageText.messageFor}" autofocus />
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{messageText.messageFor}"></label>
+						<div class="col-sm-10">
+				    		<input type="text" class="form-control required" th:field="*{messageFor}" th:placeholder="#{messageText.messageFor}" autofocus />
 					  		<ul><li class="cooperror" th:errors="*{messageFor}" /></ul>
 						</div>
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{messageText.subject}"></label>
-							<input type="text" class="form-control required" th:field="*{subject}" th:placeholder="#{messageText.subject}" />
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{messageText.subject}"></label>
+						<div class="col-sm-10">
+				    		<input type="text" class="form-control required" th:field="*{subject}" th:placeholder="#{messageText.subject}" />
 					  		<ul><li class="cooperror" th:errors="*{subject}" /></ul>
 						</div>
-						<div class="col-md-12">
-					  		<label class="form-label text-primary" th:text="#{messageText.content}"></label>
-					   		<textarea class="form-control required" rows="10" th:field="*{content}" th:placeholder="#{messageText.content}"></textarea>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{messageText.content}"></label>
+					   	<div class="col-sm-10">
+				    		<textarea class="form-control required" rows="10" th:field="*{content}" th:placeholder="#{messageText.content}"></textarea>
 							<ul><li class="cooperror" th:errors="*{content}" /></ul>
 					   	</div>
-						<div class="col-md-12">
-					  		<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
 				</form>
@@ -44,11 +53,12 @@
 				
 				<h4 class="h4 pb-3">MessageText (List All)</h4>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{messageText.messageFor}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-4"th:text="#{messageText.messageFor}"></th>
 							<th th:text="#{messageText.subject}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
@@ -56,7 +66,8 @@
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listMessageText}">
+						<tr th:each="ob,iterator : ${listMessageText}">
+        					<td th:text="${iterator.index + 1}"></td>
         					<td th:text="${ob.messageFor}"></td>
 							<td th:text="${ob.subject}"></td>
         					<td>

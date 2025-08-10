@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -19,27 +19,30 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/addNew}">Add New Application</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/addNew}">
+								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add Application</a>
 						</div>
 					</div>
 				</div>
 			
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{funding.name}"></th>
-							<th th:text="#{funding.email}"></th>
-							<th th:text="#{funding.applicationDate}"></th>
-							<th th:text="#{funding.purpose}"></th>
-							<th th:text="#{funding.status}"></th>
+							<th class="col-sm-2" th:text="#{funding.email}"></th>
+							<th class="col-sm-1" th:text="#{funding.applicationDate}"></th>
+							<th class="col-sm-3" th:text="#{funding.purpose}"></th>
+							<th class="col-sm-1" th:text="#{funding.status}"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listFunding}">
-							<td th:text="${ob.name}"></td>
+						<tr th:each="ob,iterator : ${listFunding}">
+							<td th:text="${iterator.index + 1}"></td>
+        					<td th:text="${ob.name}"></td>
 							<td th:text="${ob.email}"></td>
 							<td th:text="${#dates.format(ob.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></td>
 							<td th:text="${ob.purpose}"></td>

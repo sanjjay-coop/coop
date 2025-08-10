@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -20,36 +20,44 @@
 				
 					<input type="hidden" class="form-control" th:field="*{id}">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{contact.name}"></label>
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.name}"></label>
+						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{contact.name}" autofocus >
-				      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
-				    	</div>
-						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{contact.designation}"></label>
+					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+						</div>
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.designation}"></label>
+						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{designation}" th:placeholder="#{contact.designation}">
-				      		<ul><li class="cooperror" th:errors="*{designation}" /></ul>
-				    	</div>
-						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{contact.address}"></label>
+					  		<ul><li class="cooperror" th:errors="*{designation}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.address}"></label>
+						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{contact.address}">
-				      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
-				    	</div>
-						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{contact.email}"></label>
+					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+						</div>
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.email}"></label>
+						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{contact.email}">
-				      		<ul><li class="cooperror" th:errors="*{email}" /></ul>
-				    	</div>
-						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{contact.phone}"></label>
+					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.phone}"></label>
+						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{phone}" th:placeholder="#{contact.phone}">
-				      		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
-				    	</div>
-						<div class="col-md-12">
-				      		<button type="submit" class="btn btn-primary">Submit</button>
-				    	</div>
-				  	</div>
+					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

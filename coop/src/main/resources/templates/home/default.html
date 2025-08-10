@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 		
 			<div class="col-12">
@@ -19,19 +19,27 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/profile}">Profile</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/list}">Apply for Fund Request</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/business/list}">My Businesses</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/invitation/list}">My Invitations</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/list}">My Jobs</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/payments}">My Payments</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/reminder/list}">Reminders</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/changePassword}">Change Password</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/profile}">
+								<img th:src="@{/images/bootstrap-icons/person-lines-fill.svg}"/>&nbsp; Profile</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/list}">
+								<img th:src="@{/images/bootstrap-icons/currency-rupee.svg}"/>&nbsp; Fund Requests</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/business/list}">
+								<img th:src="@{/images/bootstrap-icons/briefcase.svg}"/>&nbsp; My Businesses</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/invitation/list}">
+								<img th:src="@{/images/bootstrap-icons/person-raised-hand.svg}"/>&nbsp; My Invitations</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/list}">
+								<img th:src="@{/images/bootstrap-icons/person-workspace.svg}"/>&nbsp; My Jobs</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/payments}">
+								<img th:src="@{/images/bootstrap-icons/wallet2.svg}"/>&nbsp; My Payments</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/reminder/list}">
+								<img th:src="@{/images/bootstrap-icons/bell.svg}"/>&nbsp; Reminders</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/changePassword}">
+								<img th:src="@{/images/bootstrap-icons/pass.svg}"/>&nbsp; Change Password</a>
 						</div>
 					</div>
 				</div>
 				
-				<div class="alert alert-warning" role="alert" th:each="ob : ${listReminder}" th:if="${listReminder != null }">
+				<div class="alert alert-warning" role="alert" th:each="ob,iterator : ${listReminder}" th:if="${listReminder != null }">
 					<div th:text="${ob.reminderMessage}"></div>
 				</div>
 				
@@ -41,7 +49,7 @@
 							<h5 class="card-header">Latest Articles</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listArticle}">
+									<li class="list-group-item" th:each="ob,iterator : ${listArticle}">
 										<a th:href="@{/article/view/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>
 									</li>
 								</ul>
@@ -56,7 +64,7 @@
 							<h5 class="card-header">Latest Events</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listEvent}">
+									<li class="list-group-item" th:each="ob,iterator : ${listEvent}">
 										<a th:href="@{/event/view/{orderId}(orderId=${ob.id})}" th:text="${ob.title + ', Start Date: ' + #dates.format(ob.startDate, 'dd/MM/yyyy') + ', End Date: ' + #dates.format(ob.endDate, 'dd/MM/yyyy')}"></a>
 									</li>
 								</ul>
@@ -71,7 +79,7 @@
 							<h5 class="card-header">Latest Members</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listMember}">
+									<li class="list-group-item" th:each="ob,iterator : ${listMember}">
 										<a th:href="@{/home/member/view/{orderId}(orderId=${ob.id})}" th:text="${ob.name + ', ' + ob.resCity + ', ' + ob.resState}"></a>
 									</li>
 								</ul>
@@ -89,7 +97,7 @@
 							<h5 class="card-header">Businesses</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listBusiness}" th:text="${ob.businessName + ', ' + ob.city}"></li>
+									<li class="list-group-item" th:each="ob,iterator : ${listBusiness}" th:text="${ob.businessName + ', ' + ob.city}"></li>
 								</ul>
 						  	</div>
 						  	<div class="card-footer">
@@ -102,7 +110,7 @@
 							<h5 class="card-header">Jobs / Vacancies</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listJob}" th:text="${ob.position + ', ' + ob.city}"></li>
+									<li class="list-group-item" th:each="ob,iterator : ${listJob}" th:text="${ob.position + ', ' + ob.city}"></li>
 								</ul>
 						  	</div>
 						  	<div class="card-footer">
@@ -115,7 +123,7 @@
 							<h5 class="card-header">Books / Documents</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob : ${listTitle}" th:text="${ob.uniformTitle+ ', ' + ob.authors}"></li>
+									<li class="list-group-item" th:each="ob,iterator : ${listTitle}" th:text="${ob.uniformTitle+ ', ' + ob.authors}"></li>
 								</ul>
 						  	</div>
 						  	<div class="card-footer">

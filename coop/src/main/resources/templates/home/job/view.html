@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 			
 			<div class="col-12">
@@ -19,87 +19,118 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-						<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/list/current}">Back to List</a>
+						<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/list/current}">
+							<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; Back to List</a>
 						</div>
 					</div>
 				</div>
 
-				<div class="row g-3">
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.position}"></label>
-				   		<span class="form-control" th:text="${job.position}"></span>
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.position}"></label>
+				   	<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${job.position}"></span>
 				  	</div>
-					<div class="col-md-12">
-				   		<label class="form-label text-primary" th:text="#{job.description}"></label>
-				   		<span class="form-control" th:text="${job.description}"></span>
+				 </div>
+				 
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.description}"></label>
+				   	<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${job.description}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.salary}"></label>
-				   		<span class="form-control" th:text="${job.salary}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.salary}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.salary}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.minimumQualification}"></label>
-				   		<span class="form-control" th:text="${job.minimumQualification.name}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.minimumQualification}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.minimumQualification.name}"></span>
 				  	</div>
-					<div class="col-md-12">
-				   		<label class="form-label text-primary" th:text="#{job.firmName}"></label>
-				   		<span class="form-control" th:text="${job.firmName}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.firmName}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.firmName}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.address}"></label>
-				   		<span class="form-control" th:text="${job.address}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.address}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.address}"></span>
 				  	</div>
-					<div class="col-md-4">
-				   		<label class="form-label text-primary" th:text="#{job.city}"></label>
-				   		<span class="form-control" th:text="${job.city}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.city}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.city}"></span>
 				  	</div>
-					<div class="col-md-2">
-				   		<label class="form-label text-primary" th:text="#{job.pin}"></label>
-				   		<span class="form-control" th:text="${job.pin}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.pin}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.pin}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.state}"></label>
-				   		<span class="form-control" th:text="${job.state}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.state}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.state}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.country}"></label>
-				   		<span class="form-control" th:text="${job.country}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.country}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.country}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.contactName}"></label>
-				   		<span class="form-control" th:text="${job.contactName}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.contactName}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.contactName}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.contactDesignation}"></label>
-				   		<span class="form-control" th:text="${job.contactDesignation}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.contactDesignation}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.contactDesignation}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.contactPhone}"></label>
-				   		<span class="form-control" th:text="${job.contactPhone}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.contactPhone}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.contactPhone}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.contactEmail}"></label>
-				   		<span class="form-control" th:text="${job.contactEmail}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.contactEmail}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.contactEmail}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.url}"></label>
-				   		<span class="form-control" th:text="${job.url}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.url}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.url}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.lastDate}"></label>
-				   		<span class="form-control" th:text="${#dates.format(job.lastDate, 'dd/MM/yyyy')}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.lastDate}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${#dates.format(job.lastDate, 'dd/MM/yyyy')}"></span>
 				  	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.enabled}"></label>
-				   		<span class="form-control" th:text="${job.enabled}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.enabled}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.enabled}"></span>
 				   	</div>
-					<div class="col-md-6">
-				   		<label class="form-label text-primary" th:text="#{job.addDate}"></label>
-				   		<span class="form-control" th:text="${#dates.format(job.addDate, 'dd/MM/yyyy')}"></span>
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.addDate}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${#dates.format(job.addDate, 'dd/MM/yyyy')}"></span>
 				   	</div>
-					<div class="col-md-12">
-				   		<label class="form-label text-primary" th:text="#{job.owner}"></label>
-				   		<span class="form-control" th:text="${job.owner.name}"></span>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-primary" th:text="#{job.owner}"></label>
+				   	<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${job.owner.name}"></span>
 				   	</div>
 				</div>
 			</div>

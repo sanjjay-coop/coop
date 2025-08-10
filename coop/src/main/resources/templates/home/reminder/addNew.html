@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -18,36 +18,45 @@
 				
 				<form th:action= "${servletRequest.requestURI}" th:object="${reminder}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-				    		<label class="form-label text-primary" th:text="#{reminder.title}"></label>
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{reminder.title}"></label>
+				    	<div class="col-sm-10">
 				    		<input type="text" class="form-control" th:field="*{title}" th:placeholder="#{reminder.title}" autofocus >
 				      		<ul><li class="cooperror" th:errors="*{title}" /></ul>
 				    	</div>
-						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{reminder.description}"></label>
+				    </div>
+				    
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{reminder.description}"></label>
+				    	<div class="col-sm-10">
 				    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{reminder.description}"></textarea>
 				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 				    	</div>
-						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{reminder.remDate}"></label>
+				    </div>
+				    
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{reminder.remDate}"></label>
+				    	<div class="col-sm-2">
 				    		<input type="date" class="form-control" th:field="*{remDate}" th:placeholder="#{reminder.remDate}">
 				      		<ul><li class="cooperror" th:errors="*{remDate}" /></ul>
 				    	</div>
-						<div class="col-md-3">
-				    		<label class="form-label text-primary" th:text="#{reminder.remDays}"></label>
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{reminder.remDays}"></label>
+				    	<div class="col-sm-2">
 				    		<input type="text" class="form-control" th:field="*{remDays}" th:placeholder="#{reminder.remDays}">
 				      		<ul><li class="cooperror" th:errors="*{remDays}" /></ul>
 				    	</div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{reminder.remByEmail}"></label>
-							<select class="form-select" th:field="*{remByEmail}">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{reminder.remByEmail}"></label>
+						<div class="col-sm-2">
+				    		<select class="form-select" th:field="*{remByEmail}">
 								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{remByEmail}" /></ul>
 						</div>
-						<div class="col-md-12">
-				    		<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
 				    	</div>
 				  	</div>
 				</form>

@@ -34,4 +34,9 @@ public class ContactsViewController extends IndexBaseController {
 		
 		return "contact/view";
 	}
+	
+	@ModelAttribute("viewLeftMenu")
+	public String viewLeftMenu() {
+		return "contacts";
+	}
 }

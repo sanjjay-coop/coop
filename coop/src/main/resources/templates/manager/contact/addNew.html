@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -18,34 +18,42 @@
 				
 				<form th:action= "${servletRequest.requestURI}" th:object="${contact}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{contact.name}"></label>
-							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{contact.name}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.name}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{contact.name}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{contact.designation}"></label>
-							<input type="text" class="form-control required" th:field="*{designation}" th:placeholder="#{contact.designation}">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.designation}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{designation}" th:placeholder="#{contact.designation}">
 					  		<ul><li class="cooperror" th:errors="*{designation}" /></ul>
 						</div>
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{contact.address}"></label>
-							<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{contact.address}">
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.address}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{contact.address}">
 					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{contact.email}"></label>
-							<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{contact.email}">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.email}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{contact.email}">
 					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{contact.phone}"></label>
-							<input type="text" class="form-control required" th:field="*{phone}" th:placeholder="#{contact.phone}">
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.phone}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{phone}" th:placeholder="#{contact.phone}">
 					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
 						</div>
-						<div class="col-md-12">
-					  		<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
 				</form>
@@ -54,22 +62,24 @@
 				
 				<h4 class="h4 pb-3">Contact (List All)</h4>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{contact.name}"></th>
-							<th th:text="#{contact.designation}"></th>
-							<th th:text="#{contact.address}"></th>
-							<th th:text="#{contact.email}"></th>
-							<th th:text="#{contact.phone}"></th>
+							<th class="col-sm-2" th:text="#{contact.designation}"></th>
+							<th class="col-sm-3" th:text="#{contact.address}"></th>
+							<th class="col-sm-1" th:text="#{contact.email}"></th>
+							<th class="col-sm-1" th:text="#{contact.phone}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listContact}">
+						<tr th:each="ob,iterator : ${listContact}">
+        					<td th:text="${iterator.index + 1}"></td>
         					<td th:text="${ob.name}"></td>
 							<td th:text="${ob.designation}"></td>
         					<td th:text="${ob.address}"></td>

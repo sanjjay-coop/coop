@@ -162,4 +162,9 @@ public class OpenOrganizationListController extends BaseController {
 			return "redirect:/open/organization/list";
 		}
 	}
+	
+	@ModelAttribute("viewLeftMenu")
+	public String viewLeftMenu() {
+		return "organizations";
+	}
 }

@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -19,30 +19,31 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/carousel/addNew}">Add New Carousel Photo</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/carousel/addNew}">
+								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add Carousel Photo</a>
 						</div>
 					</div>
 				</div>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{carousel.title}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-3" th:text="#{carousel.title}"></th>
 							<th th:text="#{carousel.description}"></th>
-							<th th:text="#{carousel.pubEndDate}"></th>
+							<th class="col-sm-1 text-center" th:text="#{carousel.pubEndDate}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listCarousel}">
-        					<td th:text="${ob.id}"></td>
+						<tr th:each="ob,iterator : ${listCarousel}">
+        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.title}"></td>
 							<td th:text="${ob.description}"></td>
-        					<td th:text="${#dates.format(ob.pubEndDate, 'dd/MM/yyyy')}"></td>
+        					<td class="text-center" th:text="${#dates.format(ob.pubEndDate, 'dd/MM/yyyy')}"></td>
         					<td>
         						<img width="100px" th:src="@{/carousel/download/{orderId}(orderId=${ob.id})}"/>
         					</td>

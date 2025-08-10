@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 			<div class="col-12">
 				
@@ -18,33 +18,34 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/bulkEmail/addNew}">Add New Message</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/bulkEmail/addNew}">
+								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add Message</a>
 						</div>
 					</div>
 				</div>
 
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{bulkEmail.subject}"></th>
-							<th th:text="#{bulkEmail.bcc}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-2" th:text="#{bulkEmail.subject}"></th>
+							<th class="col-sm-2" th:text="#{bulkEmail.bcc}"></th>
 							<th th:text="#{bulkEmail.message}"></th>
-							<th th:text="#{bulkEmail.status}"></th>
-							<th th:text="#{bulkEmail.dateSent}"></th>
+							<th class="col-sm-1 text-center" th:text="#{bulkEmail.status}"></th>
+							<th class="col-sm-2 text-center" th:text="#{bulkEmail.dateSent}"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listBulkEmail}">
-        					<td th:text="${ob.id}"></td>
+						<tr th:each="ob,iterator : ${listBulkEmail}">
+							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>	
         					<td th:text="${ob.subject}"></td>
         					<td th:text="${ob.bcc}"></td>
 							<td th:utext="${ob.htmlString}"></td>		
-							<td th:utext="${ob.status}"></td>	
-							<td th:text="${#dates.format(ob.dateSent, 'dd/MM/yyyy hh:mm:ss')}"></td>
+							<td class="text-center" th:utext="${ob.status}"></td>	
+							<td class="text-center" th:text="${#dates.format(ob.dateSent, 'dd/MM/yyyy hh:mm:ss')}"></td>
 							<td>
 								<a class="nav-link" th:href="@{/moderator/bulkEmail/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
 							      	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}"/>

@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,19 +16,30 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<div class="row pb-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/library}">
+								<img th:src="@{/images/bootstrap-icons/search.svg}"/>&nbsp; Search Again</a>
+						</div>
+					</div>
+				</div>
+				
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{title.accessionNumber}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-1" th:text="#{title.accessionNumber}"></th>
 							<th th:text="#{title.uniformTitle}"></th>
-							<th th:text="#{title.authors}"></th>
+							<th class="col-sm-4" th:text="#{title.authors}"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listTitle}">
+						<tr th:each="ob,iterator : ${listTitle}">
+        					<td th:text="${iterator.index + 1}"></td>
         					<td th:text="${ob.accessionNumber}"></td>
 							<td th:text="${ob.uniformTitle}"></td>
 							<td th:text="${ob.authors}"></td>

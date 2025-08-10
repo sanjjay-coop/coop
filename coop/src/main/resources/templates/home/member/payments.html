@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -16,21 +16,23 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{receipt.receiptDate}"></th>
-							<th th:text="#{receipt.receiptNumber}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-1" th:text="#{id}"></th>
+							<th class="col-sm-1" th:text="#{receipt.receiptDate}"></th>
+							<th class="col-sm-1" th:text="#{receipt.receiptNumber}"></th>
 							<th th:text="#{receipt.details}"></th>
-							<th th:text="#{receipt.amount}"></th>
-							<th th:text="#{receipt.document}"></th>
+							<th class="col-sm-1" th:text="#{receipt.amount}"></th>
+							<th class="col-sm-1" th:text="#{receipt.document}"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${member.receipts}">
+						<tr th:each="ob,iterator : ${member.receipts}">
+        					<td th:text="${iterator.index + 1}"></td>
         					<td th:text="${ob.id}"></td>
 							<td th:text="${#dates.format(ob.receiptDate, 'dd/MM/yyyy')}"></td>
 							<td th:text="${ob.receiptNumber}"></td>
@@ -45,11 +47,6 @@
 					</tbody>
 					
 					<tfoot>
-						<tr th:if="${totalPages > 0}">
-							<td colspan="6" class="text-center">
-								
-							</td>
-						</tr>
 					</tfoot>
 				</table>
 			</div>

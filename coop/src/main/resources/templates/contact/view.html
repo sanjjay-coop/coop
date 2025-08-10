@@ -7,27 +7,29 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
 				
 				<h4 class="h4 pb-3">Contacts</h4>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{contact.name}"></th>
-							<th th:text="#{contact.designation}"></th>
-							<th th:text="#{contact.address}"></th>
-							<th th:text="#{contact.email}"></th>
-							<th th:text="#{contact.phone}"></th>
+							<th class="col-sm-2" th:text="#{contact.designation}"></th>
+							<th class="col-sm-3" th:text="#{contact.address}"></th>
+							<th class="col-sm-2" th:text="#{contact.email}"></th>
+							<th class="col-sm-1" th:text="#{contact.phone}"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listContact}">
+						<tr th:each="ob,iterator : ${listContact}">
+        					<td th:text="${iterator.index + 1}"></td>
         					<td th:text="${ob.name}"></td>
 							<td th:text="${ob.designation}"></td>
         					<td th:text="${ob.address}"></td>

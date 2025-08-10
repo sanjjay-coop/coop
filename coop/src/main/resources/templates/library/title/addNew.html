@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -18,48 +18,66 @@
 				
 				<form th:action= "${servletRequest.requestURI}" th:object="${title}" method="POST">
 					
-					<div class="row g-3">
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{title.accessionNumber}"></label>
-					   		<input type="text" class="form-control required" th:field="*{accessionNumber}" th:placeholder="#{title.accessionNumber}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.accessionNumber}"></label>
+					   	<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{accessionNumber}" th:placeholder="#{title.accessionNumber}" autofocus >
 					    	<ul><li class="cooperror" th:errors="*{accessionNumber}" /></ul>
 					    </div>
-						<div class="col-md-3">
-							<label class="form-label text-primary" th:text="#{title.titleType}"></label>
-							<select class="form-select required" th:field="*{titleType}">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.titleType}"></label>
+						<div class="col-sm-4">
+				    		<select class="form-select required" th:field="*{titleType}">
 								<option th:each="p : ${listTitleType}" th:value="${p.id}" th:text="${p.name}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{titleType}" /></ul>
 						</div>
-						<div class="col-md-6">
-							<label class="form-label text-primary" th:text="#{title.library}"></label>
-							<select class="form-select required" th:field="*{library}">
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.library}"></label>
+						<div class="col-sm-4">
+				    		<select class="form-select required" th:field="*{library}">
 								<option th:each="p : ${listLibrary}" th:value="${p.id}" th:text="${p.name + ' [' + p.shortName + ']'}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{library}" /></ul>
 						</div>
-						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{title.uniformTitle}"></label>
-				      		<input type="text" class="form-control required" th:field="*{uniformTitle}" th:placeholder="#{title.uniformTitle}" >
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.uniformTitle}"></label>
+				      	<div class="col-sm-10">
+				    		<input type="text" class="form-control required" th:field="*{uniformTitle}" th:placeholder="#{title.uniformTitle}" >
 				      		<ul><li class="cooperror" th:errors="*{uniformTitle}" /></ul>
 				    	</div>
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{title.authors}"></label>
-					  		<input type="text" class="form-control required" th:field="*{authors}" th:placeholder="#{title.authors}" >
+				    </div>
+				    
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.authors}"></label>
+					  	<div class="col-sm-10">
+				    		<input type="text" class="form-control required" th:field="*{authors}" th:placeholder="#{title.authors}" >
 					  		<ul><li class="cooperror" th:errors="*{authors}" /></ul>
 						</div>
-						<div class="col-md-12">
-							<label class="form-label text-primary" th:text="#{title.publisher}"></label>
-					  		<input type="text" class="form-control" th:field="*{publisher}" th:placeholder="#{title.publisher}" >
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.publisher}"></label>
+					  	<div class="col-sm-10">
+				    		<input type="text" class="form-control" th:field="*{publisher}" th:placeholder="#{title.publisher}" >
 					  		<ul><li class="cooperror" th:errors="*{publisher}" /></ul>
 						</div>
-						<div class="col-md-12">
-				    		<label class="form-label text-primary" th:text="#{title.summary}"></label>
-				      		<textarea class="form-control" th:field="*{summary}" th:placeholder="#{title.summary}"></textarea>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.summary}"></label>
+				      	<div class="col-sm-10">
+				    		<textarea class="form-control" th:field="*{summary}" th:placeholder="#{title.summary}"></textarea>
 				      		<ul><li class="cooperror" th:errors="*{summary}" /></ul>
 				    	</div>
-						<div class="col-12">
-				      		<button type="submit" class="btn btn-primary">Submit</button>
+				    </div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
 				    	</div>
 				  	</div>
 				</form>
@@ -69,5 +87,11 @@
 	
 	<div class="container" th:replace="~{fragments :: footer}">
 	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#summary').summernote({height: 200});
+		});
+    </script>
 </body>
 </html>

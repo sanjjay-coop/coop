@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -19,7 +19,9 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/holiday/addNew}">Add New Holiday</a>
+							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/holiday/addNew}">
+								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add New Holiday
+							</a>
 						</div>
 					</div>
 				</div>
@@ -37,22 +39,22 @@
 					  </div>
 				</form>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
-							<th th:text="#{id}"></th>
-							<th th:text="#{holiday.date}"></th>
-							<th th:text="#{holiday.date.day}"></th>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-2 text-center" th:text="#{holiday.date}"></th>
+							<th class="col-sm-2" th:text="#{holiday.date.day}"></th>
 							<th th:text="#{holiday.name}"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listHoliday}">
-        					<td th:text="${ob.id}"></td>
-        					<td th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></td>
+						<tr th:each="ob,iterator : ${listHoliday}">
+        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+        					<td class="text-center" th:text="${#dates.format(ob.date, 'dd - MM - yyyy')}"></td>
         					<td th:text="${#dates.dayOfWeekName(ob.date)}"></td>
         					<td th:text="${ob.name}"></td>
         					<td>

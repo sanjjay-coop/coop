@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -37,20 +37,22 @@
 					  </div>
 				</form>
 				
-				<table class="table table-sm table-bordered table-striped">
+				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{quotation.quote}"></th>
-							<th th:text="#{quotation.author}"></th>
-							<th th:text="#{quotation.source}"></th>
+							<th class="col-sm-2" th:text="#{quotation.author}"></th>
+							<th class="col-sm-2" th:text="#{quotation.source}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob : ${listQuotation}">
+						<tr th:each="ob,iterator : ${listQuotation}">
+        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.quote}"></td>
         					<td th:text="${ob.author}"></td>
         					<td th:text="${ob.source}"></td>

@@ -7,7 +7,7 @@
 		
 	</div>
 	
-	<div class="container">
+	<div class="container-fluid px-5">
 		<div class="row px-4 py-2">
 
 			<div class="col-12">
@@ -18,18 +18,25 @@
 				
 				<form th:action= "${servletRequest.requestURI}" th:object="${role}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-4">
-							<label class="form-label text-primary" th:text="#{role.code}"></label>
-							<input type="text" class="form-control required" th:field="*{code}" th:placeholder="#{role.code}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{role.code}"></label>
+						<div class="col-sm-2">
+				    		<input type="text" class="form-control required" th:field="*{code}" th:placeholder="#{role.code}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{code}" /></ul>
 						</div>
-						<div class="col-md-8">
-							<label class="form-label text-primary" th:text="#{role.description}"></label>
-							<input type="text" class="form-control required" th:field="*{description}" th:placeholder="#{role.description}" autofocus >
+						
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-primary" th:text="#{role.description}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control required" th:field="*{description}" th:placeholder="#{role.description}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 						</div>
-						<div class="col-md-3">
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2">
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
@@ -41,11 +48,12 @@
 				
 				<div class="row px-4 py-2">
 					<div class="col-10">
-						<table class="table table-sm table-bordered table-striped">
+						<table class="table table-sm small table-bordered table-striped">
 						
 							<thead>
 								<tr>
-									<th th:text="#{role.code}"></th>
+									<th class="col-sm-1" th:text="'S/N'"></th>
+									<th class="col-sm-3" th:text="#{role.code}"></th>
 									<th th:text="#{role.description}"></th>
 									<th style="width: 15px;"></th>
 									<th style="width: 15px;"></th>
@@ -53,8 +61,9 @@
 							</thead>
 							
 							<tbody>
-								<tr th:each="ob : ${listRole}">
-		        					<td th:text="${ob.code}"></td>
+								<tr th:each="ob,iterator : ${listRole}">
+		        					<td th:text="${iterator.index + 1}"></td>
+        							<td th:text="${ob.code}"></td>
 									<td th:text="${ob.description}"></td>
 		        					<td>
 		        						<a class="nav-link" th:href="@{/manager/role/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
