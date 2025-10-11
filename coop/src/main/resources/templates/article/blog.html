@@ -17,7 +17,7 @@
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 					
 				<div class="card p-2 mb-3" th:each="article : ${listArticle}">
-					<h5 class="card-header" th:text="${article.title}"></h5>
+					<h5 class="card-header bg-success-subtle bg-gradient" th:text="${article.title}"></h5>
 				  	<div class="card-body">
 						<p th:utext="${article.content}"></p>
 						<div style="font-size: small;">
@@ -32,19 +32,19 @@
 				<nav aria-label="Page navigation example" th:if="${totalPages > 1}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}">
-							<a class="page-link" th:href="@{/article/blog/{categoryId}(categoryId=${category.id})}">First</a>
+							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}(categoryId=${category.id})}"><i class="bi bi-chevron-bar-left"></i></a>
 						</li>
 						<li class="page-item" th:if="${!firstPage}">
-							<a class="page-link" th:href="@{/article/blog/{categoryId}/previous(categoryId=${category.id})}">Previous</a>
+							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/previous(categoryId=${category.id})}"><i class="bi bi-chevron-left"></i></a>
 						</li>
 						<li class="page-item">
-							<a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a>
+							<a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a>
 						</li>
 						<li class="page-item" th:if="${!lastPage}">
-							<a class="page-link" th:href="@{/article/blog/{categoryId}/next(categoryId=${category.id})}">Next</a>
+							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/next(categoryId=${category.id})}"><i class="bi bi-chevron-right"></i></a>
 						</li>
 						<li class="page-item" th:if="${!lastPage}">
-							<a class="page-link" th:href="@{/article/blog/{categoryId}/last(categoryId=${category.id})}">Last</a>
+							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/last(categoryId=${category.id})}"><i class="bi bi-chevron-bar-right"></i></a>
 						</li>
 					</ul>
 				</nav>

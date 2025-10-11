@@ -19,175 +19,173 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/memberApplication/list/current}">
-								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; Back to List
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/memberApplication/list/current}">
+								<i class="bi bi-chevron-double-left"></i> To List
 							</a>
-							<a th:if="${memberApplication.status != true}" class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/memberApplication/confirm/{orderId}(orderId=${memberApplication.id})}" onclick="return confirm('Are you sure?')">
-								<img th:src="@{/images/bootstrap-icons/check-circle.svg}"/>&nbsp; Confirm Member
+							<a th:if="${memberApplication.status != true}" class="btn btn-success btn-sm" role="button" th:href="@{/moderator/memberApplication/confirm/{orderId}(orderId=${memberApplication.id})}" onclick="return confirm('Are you sure?')">
+								<i class="bi bi-check-circle"></i> Confirm Member
 							</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/memberApplication/delete/{orderId}(orderId=${memberApplication.id})}" onclick="return confirm('Are you sure?')">
-								<img th:src="@{/images/bootstrap-icons/trash-fill.svg}"/>&nbsp; Delete Record
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/memberApplication/delete/{orderId}(orderId=${memberApplication.id})}" onclick="return confirm('Are you sure?')">
+								<i class="bi bi-trash-fill"></i> Delete Record
 							</a>
 						</div>
 					</div>
 				</div>
 
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary">Name</label>
+					<label class="col-sm-2 col-form-label text-success">Name</label>
 					<div class="col-sm-10">
 						<span class="form-control border-light" th:text="${memberApplication.salutation.name + ' ' + memberApplication.firstName + ' ' + memberApplication.middleName + ' ' + memberApplication.lastName}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{memberGroup}"></label>
-					<div class="col-sm-4">
+					<label class="col-sm-1 col-form-label text-success" th:text="#{memberGroup}"></label>
+					<div class="col-sm-3">
 						<span class="form-control border-light" th:text="${memberApplication.memGroup.name}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{gender}"></label>
-					<div class="col-sm-4">
+					<label class="col-sm-1 col-form-label text-success" th:text="#{gender}"></label>
+					<div class="col-sm-3">
 						<span class="form-control border-light" th:text="${memberApplication.gender.name}"></span>
 					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{educationLevel}"></label>
-					<div class="col-sm-4">
+					<label class="col-sm-1 col-form-label text-success" th:text="#{educationLevel}"></label>
+					<div class="col-sm-3">
 						<span class="form-control border-light" th:text="${memberApplication.educationLevel.name}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.mobile}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${memberApplication.mobile}"></span>
-					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.email}"></label>
-					<div class="col-sm-4">
+					<label class="col-sm-1 col-form-label text-success" th:text="#{member.mobile}"></label>
+					<div class="col-sm-3">
+						<span class="form-control border-light" th:text="${memberApplication.mobile}"></span>
+					</div>
+					<label class="col-sm-1 col-form-label text-success" th:text="#{member.email}"></label>
+					<div class="col-sm-3">
 						<span class="form-control border-light" th:text="${memberApplication.email}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.dateOfBirth}"></label>
-					<div class="col-sm-4">
+					<label class="col-sm-1 col-form-label text-success" th:text="#{member.dateOfBirth}"></label>
+					<div class="col-sm-3">
 						<span class="form-control border-light" th:text="${#dates.format(memberApplication.dateOfBirth, 'dd-MM-yyyy')}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.education}"></label>
+					<label class="col-sm-1 col-form-label text-success" th:text="#{member.maritalStatus}"></label>
+					<div class="col-sm-3">
+						<span class="form-control border-light" th:text="${memberApplication.maritalStatus.status}"></span>
+					</div>
+					<label class="col-sm-1 col-form-label text-success" th:text="#{member.aadhaar}"></label>
+					<div class="col-sm-3">
+						<span class="form-control border-light" th:text="${memberApplication.aadhaar}"></span>
+					</div>
+					<label class="col-sm-1 col-form-label text-success" th:text="#{member.occupation}"></label>
+					<div class="col-sm-3">
+						<span class="form-control border-light" th:text="${memberApplication.occupation.name}"></span>
+					</div>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-1 col-form-label text-success" th:text="#{member.caste}"></label>
+					<div class="col-sm-3">
+						<span class="form-control border-light" th:if="${memberApplication.caste}" th:text="${memberApplication.caste.name}"></span>
+					</div>
+					<label class="col-sm-1 col-form-label text-success">Status</label>
+					<div class="col-sm-3">
+						<span class="form-control border-light" th:text="${memberApplication.status}"></span>
+					</div>
+					<label class="col-sm-1 col-form-label text-success">Status Date</label>
+					<div class="col-sm-3">
+						<span class="form-control border-light" th:text="${#dates.format(memberApplication.statusDate, 'dd-MM-yyyy HH:mm:ss')}"></span>
+					</div>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.education}"></label>
 					<div class="col-sm-10">
 						<span class="form-control border-light" th:text="${memberApplication.education}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.experience}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.experience}"></label>
 					<div class="col-sm-10">
 						<span class="form-control border-light" th:text="${memberApplication.experience}"></span>
 					</div>
 				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.maritalStatus}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${memberApplication.maritalStatus.status}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.aadhaar}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${memberApplication.aadhaar}"></span>
-					</div>
+					
+				<div class="row my-2">
+					<label class="col-sm-12 text-center text-success h5 bg-success-subtle bg-gradient rounded-1 p-2">Residence Address</label>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.occupation}"></label>
-					<div class="col-sm-10">
-						<span class="form-control border-light" th:text="${memberApplication.occupation.name}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2 text-center">
-					<label class="col-sm-12 col-form-label text-primary" style="font-weight: bold;">Residence Address</label>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.resAddress}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.resAddress}"></label>
 					<div class="col-sm-10">
 						<span class="form-control border-light" th:text="${memberApplication.resAddress}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.resCity}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.resCity}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.resCity}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.resPin}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.resPin}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.resPin}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.resState}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.resState}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.resState}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.resCountry}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.resCountry}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.resCountry}"></span>
 					</div>
 				</div>
 				
-				<div class="row mb-12 text-center">
-					<label class="col-sm-12 col-form-label text-primary" style="font-weight: bold;">Office Address</label>
+				<div class="row my-2">
+					<label class="col-sm-12 text-center text-success h5 bg-success-subtle bg-gradient rounded-1 p-2">Office Details</label>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.offDesignation}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.offDesignation}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.offDesignation}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.offName}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.offName}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.offName}"></span>
 					</div>
 				</div>
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.offAddress}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.offAddress}"></label>
 					<div class="col-sm-10">
 						<span class="form-control border-light" th:text="${memberApplication.offAddress}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.offCity}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.offCity}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.offCity}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.offPin}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.offPin}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.offPin}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.offState}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.offState}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.offState}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{member.offCountry}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.offCountry}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${memberApplication.offCountry}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary">Status</label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${memberApplication.status}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-primary">Status Date</label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${#dates.format(memberApplication.statusDate, 'dd-MM-yyyy HH:mm:ss')}"></span>
 					</div>
 				</div>
 			</div>

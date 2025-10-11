@@ -19,20 +19,20 @@
 				<div class="row py-2">
 					<div class="col-6 my-2" th:each="ob,iterator : ${listJobAll}">
 						<div class="card h-100">
-							<h5 class="card-header" th:text="${ob.position}"></h5>
+							<h5 class="card-header bg-success-subtle bg-gradient" th:text="${ob.position}"></h5>
 						  	<div class="card-body">
 						  		<div class="row py-2">
-						  			<label class="col-sm-4 text-primary" th:text="#{job.description}"></label><span class="col-sm-8" th:text="${ob.description}"></span>
-									<label class="col-sm-4 text-primary" th:text="#{job.salary}"></label><span class="col-sm-8" th:text="${ob.salary}"></span>
-									<label class="col-sm-4 text-primary" th:text="#{job.minimumQualification}"></label><span class="col-sm-8" th:text="${ob.minimumQualification.name}"></span>
-									<label class="col-sm-4 text-primary" th:text="#{job.firmName}"></label><span class="col-sm-8" th:text="${ob.firmName}"></span>
-									<label class="col-sm-4 text-primary" th:text="#{job.address}"></label><span class="col-sm-8" th:text="${ob.address + ', ' + ob.city + ' ' + ob.pin + ' ' + ob.state + ' ' + ob.country}"></span>
-									<label class="col-sm-4 text-primary" th:text="#{job.contactName}"></label><span class="col-sm-8" th:text="${ob.contactName}"></span> 
-									<label class="col-sm-4 text-primary" th:text="#{job.contactDesignation}"></label><span class="col-sm-8" th:text="${ob.contactDesignation}"></span> 
-									<label class="col-sm-4 text-primary" th:text="#{job.contactPhone}"></label><span class="col-sm-8" th:text="${ob.contactPhone}"></span> 
-									<label class="col-sm-4 text-primary" th:text="#{job.contactEmail}"></label><span class="col-sm-8" th:text="${ob.contactEmail}"></span> 
-									<label class="col-sm-4 text-primary" th:text="#{job.url}"></label><span class="col-sm-8" th:text="${ob.url}"></span>
-									<label class="col-sm-4 text-primary" th:text="#{job.lastDate}"></label><span class="col-sm-8" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></span>	  
+						  			<label class="col-sm-4 text-success" th:text="#{job.description}"></label><span class="col-sm-8" th:text="${ob.description}"></span>
+									<label class="col-sm-4 text-success" th:text="#{job.salary}"></label><span class="col-sm-8" th:text="${ob.salary}"></span>
+									<label class="col-sm-4 text-success" th:text="#{job.minimumQualification}"></label><span class="col-sm-8" th:text="${ob.minimumQualification.name}"></span>
+									<label class="col-sm-4 text-success" th:text="#{job.firmName}"></label><span class="col-sm-8" th:text="${ob.firmName}"></span>
+									<label class="col-sm-4 text-success" th:text="#{job.address}"></label><span class="col-sm-8" th:text="${ob.address + ', ' + ob.city + ' ' + ob.pin + ' ' + ob.state + ' ' + ob.country}"></span>
+									<label class="col-sm-4 text-success" th:text="#{job.contactName}"></label><span class="col-sm-8" th:text="${ob.contactName}"></span> 
+									<label class="col-sm-4 text-success" th:text="#{job.contactDesignation}"></label><span class="col-sm-8" th:text="${ob.contactDesignation}"></span> 
+									<label class="col-sm-4 text-success" th:text="#{job.contactPhone}"></label><span class="col-sm-8" th:text="${ob.contactPhone}"></span> 
+									<label class="col-sm-4 text-success" th:text="#{job.contactEmail}"></label><span class="col-sm-8" th:text="${ob.contactEmail}"></span> 
+									<label class="col-sm-4 text-success" th:text="#{job.url}"></label><span class="col-sm-8" th:text="${ob.url}"></span>
+									<label class="col-sm-4 text-success" th:text="#{job.lastDate}"></label><span class="col-sm-8" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></span>	  
 									<a th:if="${ob.fileData != null}" class="nav-link" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
 							          	<img th:src="@{/images/bootstrap-icons/download.svg}"/>
 							        </a>
@@ -43,11 +43,11 @@
 				</div>
 				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 				 	<ul class="pagination">
-				 		<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/all/list}">First</a></li>
-				 		<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/all/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"></a></li>
-				 		<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/all/list/next}">Next</a></li>
-				 		<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/all/list/last}">Last</a></li>
+				 		<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/job/all/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+				 		<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/job/all/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + ' ... of ... ' + totalPages}"></a></li>
+				 		<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/job/all/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+				 		<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/job/all/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 				 	</ul>
 				</nav>
 			</div>

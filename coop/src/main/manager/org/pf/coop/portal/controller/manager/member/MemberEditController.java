@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.pf.coop.common.TransactionResult;
 import org.pf.coop.portal.controller.manager.ManagerBaseController;
+import org.pf.coop.portal.model.Caste;
 import org.pf.coop.portal.model.EducationLevel;
 import org.pf.coop.portal.model.Gender;
 import org.pf.coop.portal.model.MaritalStatus;
@@ -14,6 +15,8 @@ import org.pf.coop.portal.model.MemberType;
 import org.pf.coop.portal.model.Occupation;
 import org.pf.coop.portal.model.Role;
 import org.pf.coop.portal.model.Salutation;
+import org.pf.coop.portal.model.Tribe;
+import org.pf.coop.portal.repository.CasteRepo;
 import org.pf.coop.portal.repository.EducationLevelRepo;
 import org.pf.coop.portal.repository.GenderRepo;
 import org.pf.coop.portal.repository.MaritalStatusRepo;
@@ -22,6 +25,7 @@ import org.pf.coop.portal.repository.MemberTypeRepo;
 import org.pf.coop.portal.repository.OccupationRepo;
 import org.pf.coop.portal.repository.RoleRepo;
 import org.pf.coop.portal.repository.SalutationRepo;
+import org.pf.coop.portal.repository.TribeRepo;
 import org.pf.coop.portal.service.MemberService;
 import org.pf.coop.portal.validators.edit.MemberEditValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +49,12 @@ public class MemberEditController extends ManagerBaseController {
 	
 	@Autowired
 	private GenderRepo genderRepo;
+
+	@Autowired
+	private CasteRepo casteRepo;
+
+	@Autowired
+	private TribeRepo tribeRepo;
 
 	@Autowired
 	private MemberGroupRepo memberGroupRepo;
@@ -78,6 +88,16 @@ public class MemberEditController extends ManagerBaseController {
 	@ModelAttribute("listGender")
 	public List<Gender> getListGender(){
 		return (List<Gender>) this.genderRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	}
+	
+	@ModelAttribute("listCaste")
+	public List<Caste> getListCaste(){
+		return (List<Caste>) this.casteRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	}
+	
+	@ModelAttribute("listTribe")
+	public List<Tribe> getListTribe(){
+		return (List<Tribe>) this.tribeRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
 	}
 	
 	@ModelAttribute("listMemberGroup")

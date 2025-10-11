@@ -19,12 +19,12 @@
 				<form th:action= "${servletRequest.requestURI}" th:object="${expenditure}" method="POST">
 
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{expenditure.amount}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.amount}"></label>
 					   	<div class="col-sm-4">
 				    		<input type="text" class="form-control required amount" th:field="*{amount}" th:placeholder="#{expenditure.amount}" autofocus />
 					    	<ul><li class="cooperror" th:errors="*{amount}" /></ul>
 					    </div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{expenditure.headOfAccount}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.headOfAccount}"></label>
 						<div class="col-sm-4">
 				    		<select class="form-select required" th:field="*{headOfAccount}">
 								<option th:each="p : ${listHeadOfAccount}" th:value="${p.id}" th:text="${p.name + ' [' + p.code + ']'}" />
@@ -34,12 +34,12 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{expenditure.narration}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.narration}"></label>
 				    	<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{narration}" th:placeholder="#{expenditure.narration}" />
 				      		<ul><li class="cooperror" th:errors="*{narration}" /></ul>
 				    	</div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{expenditure.modeOfPayment}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.modeOfPayment}"></label>
 						<div class="col-sm-4">
 				    		<select class="form-select required" th:field="*{modeOfPayment}">
 								<option th:value="Cash" th:text="Cash" />
@@ -51,12 +51,12 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{expenditure.paidTo}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.paidTo}"></label>
 				    	<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{paidTo}" th:placeholder="#{expenditure.paidTo}" >
 				      		<ul><li class="cooperror" th:errors="*{paidTo}" /></ul>
 				    	</div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{expenditure.transactionDate}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.transactionDate}"></label>
 				    	<div class="col-sm-4">
 				    		<input type="date" class="form-control required" th:field="*{transactionDate}" th:placeholder="#{expenditure.transactionDate}" >
 				      		<ul><li class="cooperror" th:errors="*{transactionDate}" /></ul>
@@ -64,12 +64,12 @@
 				    </div>
 				    
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{expenditure.voucherInvoiceNumber}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.voucherInvoiceNumber}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{voucherInvoiceNumber}" th:placeholder="#{expenditure.voucherInvoiceNumber}" >
 					  		<ul><li class="cooperror" th:errors="*{voucherInvoiceNumber}" /></ul>
 						</div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{expenditure.voucherDate}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.voucherDate}"></label>
 						<div class="col-sm-4">
 				    		<input type="date" class="form-control required" th:field="*{voucherDate}" th:placeholder="#{expenditure.voucherDate}" >
 					  		<ul><li class="cooperror" th:errors="*{voucherDate}" /></ul>
@@ -77,8 +77,8 @@
 					</div>
 					
 					<div class="row mb-2">
-						<div class="offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 				    	</div>
 				  	</div>
 				</form>

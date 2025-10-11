@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid px-5">
+		<div class="row px-4 py-2">
+
+			<div class="col-12">
+				
+				<h4 class="h4 pb-3">Tribe (List All)</h4>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+				<div class="row pb-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/tribe/addNew}">
+								<i class="bi bi-plus-circle"></i> Tribe</a>
+						</div>
+					</div>
+				</div>
+
+
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${tribe}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
+				
+			</div>
+			
+			<div class="col-8">
+				<table class="table table-sm small table-bordered table-striped">
+
+					<thead>
+						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th th:text="#{tribe.name}"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob,iterator : ${listTribe}">
+							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+        					<td th:text="${ob.name}"></td>
+							<td>
+								<a class="nav-link" th:href="@{/manager/tribe/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+						          	<i class="bi bi-pencil-square"></i>
+						        </a>
+							</td>
+							<td>
+								<a class="nav-link" th:href="@{/manager/tribe/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+						          	<i class="bi bi-trash-fill"></i>
+						        </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
+					<ul class="pagination">
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/manager/tribe/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/manager/tribe/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/manager/tribe/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/manager/tribe/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

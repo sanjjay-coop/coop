@@ -29,6 +29,7 @@
 					  </div>
 				</form>
 				
+				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -54,7 +55,7 @@
         					<td th:text="${ob.sponsorship.title}"></td>
         					<td>
         						<a class="nav-link" th:href="@{/moderator/sponsorshipApplication/view/{orderId}(orderId=${ob.id})}" title="View Record">
-						          	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>
+						          	<i class="bi bi-folder2-open"></i>
 						        </a>
         					</td>
 						</tr>
@@ -62,11 +63,11 @@
 				</table>
 				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/sponsorshipApplication/list}">First</a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/sponsorshipApplication/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/sponsorshipApplication/list/next}">Next</a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/sponsorshipApplication/list/last}">Last</a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/sponsorshipApplication/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/sponsorshipApplication/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/moderator/sponsorshipApplication/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/moderator/sponsorshipApplication/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 					</ul>
 				</nav>
 			</div>

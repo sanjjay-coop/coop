@@ -40,6 +40,7 @@ public class CarouselListController extends ModeratorBaseController {
 		
 		model.addAttribute("currentPage", pageNumber + 1);
 		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("totalRecords", page.getTotalElements());
 		
 		if (pageNumber == 0) model.addAttribute("firstPage", true);
 		else model.addAttribute("firstPage", false);
@@ -82,6 +83,7 @@ public class CarouselListController extends ModeratorBaseController {
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);

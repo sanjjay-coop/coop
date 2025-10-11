@@ -52,15 +52,15 @@ public class ModQuotationAddController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "moderator/quotation/addNew";
+				return "redirect:/moderator/quotation/list/current";
 			} else {
 				reat.addFlashAttribute("message", "Record added successfully.");
 			}
 			
-			return "redirect:/moderator/quotation/addNew";
+			return "redirect:/moderator/quotation/list/current";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "moderator/quotation/addNew";
+			return "redirect:/moderator/quotation/list/current";
 		}
 	}
 }

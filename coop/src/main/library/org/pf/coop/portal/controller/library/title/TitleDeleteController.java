@@ -31,23 +31,23 @@ public class TitleDeleteController extends LibraryBaseController {
 			if (tr == null ) {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				return "redirect:/library/title/addNew";
+				return "redirect:/library/title/list/current";
 				
 			} else if (tr.isStatus()){
 				
 				reat.addFlashAttribute("message", "Record deleted successfully.");
-				return "redirect:/library/title/addNew";
+				return "redirect:/library/title/list/current";
 				
 			} else {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				return "redirect:/library/title/addNew";
+				return "redirect:/library/title/list/current";
 				
 			}
 		} catch (Exception e) {
 			
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
-			return "redirect:/library/title/addNew";
+			return "redirect:/library/title/list/current";
 			
 		}
 	}

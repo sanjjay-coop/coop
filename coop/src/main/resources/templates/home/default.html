@@ -19,22 +19,22 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/profile}">
-								<img th:src="@{/images/bootstrap-icons/person-lines-fill.svg}"/>&nbsp; Profile</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/funding/list}">
-								<img th:src="@{/images/bootstrap-icons/currency-rupee.svg}"/>&nbsp; Fund Requests</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/business/list}">
-								<img th:src="@{/images/bootstrap-icons/briefcase.svg}"/>&nbsp; My Businesses</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/invitation/list}">
-								<img th:src="@{/images/bootstrap-icons/person-raised-hand.svg}"/>&nbsp; My Invitations</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/list}">
-								<img th:src="@{/images/bootstrap-icons/person-workspace.svg}"/>&nbsp; My Jobs</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/payments}">
-								<img th:src="@{/images/bootstrap-icons/wallet2.svg}"/>&nbsp; My Payments</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/reminder/list}">
-								<img th:src="@{/images/bootstrap-icons/bell.svg}"/>&nbsp; Reminders</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/changePassword}">
-								<img th:src="@{/images/bootstrap-icons/pass.svg}"/>&nbsp; Change Password</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/profile}">
+								<i class="bi bi-person-lines-fill"></i> Profile</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/funding/list}">
+								<i class="bi bi-currency-rupee"></i> Fund Requests</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/business/list}">
+								<i class="bi bi-briefcase"></i> My Businesses</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/invitation/list}">
+								<i class="bi bi-person-raised-hand"></i> My Invitations</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/job/list}">
+								<i class="bi bi-person-workspace"></i> My Jobs</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/payments}">
+								<i class="bi bi-wallet2"></i> My Payments</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/reminder/list}">
+								<i class="bi bi-bell"></i> Reminders</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/changePassword}">
+								<i class="bi bi-key"></i> Change Password</a>
 						</div>
 					</div>
 				</div>
@@ -43,10 +43,10 @@
 					<div th:text="${ob.reminderMessage}"></div>
 				</div>
 				
-				<div class="row pb-2" style="font-size: 12px;">
+				<div class="row pb-3" style="font-size: 12px;">
 					<div class="col-4">
 						<div class="card h-100">
-							<h5 class="card-header">Latest Articles</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient">Latest Articles</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob,iterator : ${listArticle}">
@@ -54,14 +54,14 @@
 									</li>
 								</ul>
 						  	</div>
-						  	<div class="card-footer">
+						  	<div class="card-footer bg-success-subtle bg-gradient">
 						  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/article/list}">List Articles</a>
 						  	</div>
 						</div>
 					</div>
 					<div class="col-4">
 						<div class="card h-100">
-							<h5 class="card-header">Latest Events</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient">Latest Events</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob,iterator : ${listEvent}">
@@ -69,14 +69,14 @@
 									</li>
 								</ul>
 						  	</div>
-						  	<div class="card-footer">
+						  	<div class="card-footer bg-success-subtle bg-gradient">
 						  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/event/list}">List Events</a>
 						  	</div>
 						</div>
 					</div>
 					<div class="col-4">
 						<div class="card h-100">
-							<h5 class="card-header">Latest Members</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient">Latest Members</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob,iterator : ${listMember}">
@@ -84,49 +84,49 @@
 									</li>
 								</ul>
 						  	</div>
-						  	<div class="card-footer">
+						  	<div class="card-footer bg-success-subtle bg-gradient">
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/member/search}">Search Member</a>
 						  	</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="row pb-2" style="font-size: 12px;">
+				<div class="row pb-3" style="font-size: 12px;">
 					<div class="col-4">
 						<div class="card h-100">
-							<h5 class="card-header">Businesses</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient">Businesses</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob,iterator : ${listBusiness}" th:text="${ob.businessName + ', ' + ob.city}"></li>
 								</ul>
 						  	</div>
-						  	<div class="card-footer">
+						  	<div class="card-footer bg-success-subtle bg-gradient">
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/business/all/list}">List All Businesses</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-4">
 						<div class="card h-100">
-							<h5 class="card-header">Jobs / Vacancies</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient">Jobs / Vacancies</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob,iterator : ${listJob}" th:text="${ob.position + ', ' + ob.city}"></li>
 								</ul>
 						  	</div>
-						  	<div class="card-footer">
+						  	<div class="card-footer bg-success-subtle bg-gradient">
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/job/all/list}">List All Jobs / Vacancies</a>
 							</div>
 						</div>
 					</div>
 					<div class="col-4">
 						<div class="card h-100">
-							<h5 class="card-header">Books / Documents</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient">Books / Documents</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob,iterator : ${listTitle}" th:text="${ob.uniformTitle+ ', ' + ob.authors}"></li>
 								</ul>
 						  	</div>
-						  	<div class="card-footer">
+						  	<div class="card-footer bg-success-subtle bg-gradient">
 								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/title/search}">Search Titles</a>
 							</div>
 						</div>

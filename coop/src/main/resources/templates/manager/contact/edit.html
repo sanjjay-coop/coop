@@ -16,17 +16,27 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/contact/addNew}">
+								<i class="bi bi-chevron-double-left"></i> Back to List
+							</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${contact}" method="POST">
 				
 					<input type="hidden" class="form-control" th:field="*{id}">
 
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.name}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.name}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{contact.name}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 						</div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.designation}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.designation}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{designation}" th:placeholder="#{contact.designation}">
 					  		<ul><li class="cooperror" th:errors="*{designation}" /></ul>
@@ -34,12 +44,12 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.address}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.address}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{contact.address}">
 					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
 						</div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.email}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.email}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{contact.email}">
 					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
@@ -47,15 +57,15 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{contact.phone}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.phone}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{phone}" th:placeholder="#{contact.phone}">
 					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
 						</div>
 					</div>
 					<div class="row mb-2">
-						<div class="offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</form>

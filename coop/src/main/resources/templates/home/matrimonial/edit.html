@@ -22,41 +22,41 @@
 
 					<div class="row g-3">
 						<div class="col-md-12">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.description}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.description}"></label>
 							<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{matrimonial.description}"></textarea>
 					  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.age}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.age}"></label>
 							<input type="text" class="form-control required amount" th:field="*{age}" th:placeholder="#{matrimonial.age}">
 					  		<ul><li class="cooperror" th:errors="*{age}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.education}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.education}"></label>
 							<select class="form-select required" th:field="*{educationLevel}">
 					            <option th:each="p : ${listEducationLevel}" th:value="${p.id}" th:text="${p.name}" />
 					        </select>
 					        <ul><li class="cooperror" th:errors="*{educationLevel}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.occupation}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.occupation}"></label>
 							<select class="form-select required" th:field="*{occupation}">
 					            <option th:each="p : ${listOccupation}" th:value="${p.id}" th:text="${p.name}" />
 					        </select>
 					        <ul><li class="cooperror" th:errors="*{occupation}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.mobile}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.mobile}"></label>
 							<input type="text" class="form-control required" th:field="*{mobile}" th:placeholder="#{matrimonial.mobile}">
 					  		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
 						</div>
 						<div class="col-md-6">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.email}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.email}"></label>
 							<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{matrimonial.email}">
 					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.lookingFor}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.lookingFor}"></label>
 							<select class="form-select required" th:field="*{lookingFor}">
 					            <option th:value="Bride" th:text="Bride" />
 					            <option th:value="Groom" th:text="Groom" />
@@ -64,36 +64,36 @@
 					        <ul><li th:errors="*{lookingFor}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.expDescription}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expDescription}"></label>
 							<textarea class="form-control required" rows="5" th:field="*{expDescription}" th:placeholder="#{matrimonial.expDescription}"></textarea>
 					  		<ul><li class="cooperror" th:errors="*{expDescription}" /></ul>
 						</div>
 						<div class="col-md-3">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.expEducation}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expEducation}"></label>
 							<select class="form-select required" th:field="*{expEducationLevel}">
 					            <option th:each="p : ${listEducationLevel}" th:value="${p.id}" th:text="${p.name}" />
 					        </select>
 					        <ul><li class="cooperror" th:errors="*{expEducationLevel}" /></ul>
 						</div>
 						<div class="col-md-4">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.expOccupation}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expOccupation}"></label>
 							<select class="form-select required" th:field="*{expOccupation}">
 					            <option th:each="p : ${listOccupation}" th:value="${p.id}" th:text="${p.name}" />
 					        </select>
 					        <ul><li class="cooperror" th:errors="*{expOccupation}" /></ul>
 						</div>
 						<div class="col-md-2">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.expMinAge}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expMinAge}"></label>
 							<input type="text" class="form-control required" th:field="*{expMinAge}" th:placeholder="#{matrimonial.expMinAge}">
 					  		<ul><li class="cooperror" th:errors="*{expMinAge}" /></ul>
 						</div>
 						<div class="col-md-2">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{matrimonial.expMaxAge}"></label>
+							<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expMaxAge}"></label>
 							<input type="text" class="form-control required" th:field="*{expMaxAge}" th:placeholder="#{matrimonial.expMaxAge}">
 					  		<ul><li class="cooperror" th:errors="*{expMaxAge}" /></ul>
 						</div>
 						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</form>

@@ -28,6 +28,8 @@
 					  </div>
 				</form>
 				
+				
+				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -55,12 +57,12 @@
 							<td class="col-sm-1 text-center" th:text="${ob.enabled}"></td>	
         					<td>
         						<a th:if="${ob.fileData != null}" class="nav-link" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
-						          	<img th:src="@{/images/bootstrap-icons/download.svg}"/>
+						          	<i class="bi bi-download"></i>
 						        </a>
         					</td>					
 							<td>
 								<a class="nav-link" th:href="@{/moderator/job/view/{orderId}(orderId=${ob.id})}" title="View Record">
-							      	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>
+							      	<i class="bi bi-folder2-open"></i>
 							    </a>
 							</td>
 						</tr>
@@ -68,11 +70,11 @@
 				</table>
 				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/job/list}">First</a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/moderator/job/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/job/list/next}">Next</a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/moderator/job/list/last}">Last</a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/job/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/job/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/moderator/job/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/moderator/job/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 					</ul>
 				</nav>
 			</div>

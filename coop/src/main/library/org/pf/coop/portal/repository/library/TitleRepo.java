@@ -3,6 +3,8 @@ package org.pf.coop.portal.repository.library;
 import java.util.List;
 
 import org.pf.coop.portal.model.library.Title;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -18,4 +20,6 @@ public interface TitleRepo extends JpaRepository<Title, Long>{
 	
 	@Query("select t from Title t order by t.id desc limit 5")
 	public List<Title> listTitleRecent();
+	
+	Page<Title> findBySearchStringContainingIgnoreCase(String seatchString, Pageable pageable);
 }

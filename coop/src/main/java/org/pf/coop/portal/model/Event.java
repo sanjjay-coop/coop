@@ -50,6 +50,15 @@ public class Event implements Serializable {
 	@Column(name="f_publish", nullable=false)
 	private Boolean publish;
 	
+	@Column(name="f_venue", length=100, nullable=true)
+	private String venue;
+	
+	@Column(name="f_city", length=100, nullable=true)
+	private String city;
+	
+	@Column(name="f_state", length=100, nullable=true)
+	private String state;
+	
 	@ManyToOne
 	@JoinColumn(name="f_event_type", nullable=false)
 	private EventType eventType;
@@ -107,6 +116,30 @@ public class Event implements Serializable {
 		this.publish = publish;
 	}
 
+	public String getVenue() {
+		return venue;
+	}
+
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public EventType getEventType() {
 		return eventType;
 	}
@@ -131,6 +164,9 @@ public class Event implements Serializable {
 				+ (startDate != null ? "startDate=" + startDate + ", " : "")
 				+ (endDate != null ? "endDate=" + endDate + ", " : "")
 				+ (publish != null ? "publish=" + publish + ", " : "")
+				+ (venue != null ? "venue=" + venue + ", " : "")
+				+ (city != null ? "city=" + city + ", " : "")
+				+ (state != null ? "state=" + state + ", " : "")
 				+ (eventType != null ? "eventType=" + eventType : "") + "]";
 	}
 	

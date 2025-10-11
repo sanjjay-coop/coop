@@ -68,15 +68,15 @@ public class ModQuotationEditController extends ModeratorBaseController {
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record updated successfully.");
-					return "redirect:/moderator/quotation/view/"+quotation.getId();
+					return "redirect:/moderator/quotation/list/current";
 				} else {
 					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/moderator/quotation/edit/"+quotation.getId();
+					return "redirect:/moderator/quotation/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/moderator/quotation/edit/"+quotation.getId();
+			return "redirect:/moderator/quotation/list/current";
 		}
 	}
 }

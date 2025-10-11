@@ -43,12 +43,12 @@
 							<td th:text="${ob.receivedFrom}"></td>
         					<td>
         						<a class="nav-link" th:href="@{/accounts/income/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>
+						          	<i class="bi bi-pencil-square"></i>
 						        </a>
         					</td>
         					<td>
 		        				<a class="nav-link" th:href="@{/accounts/income/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}"/>
+						          	<i class="bi bi-trash-fill"></i>
 						        </a>
         					</td>
 						</tr>

@@ -16,21 +16,34 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/holiday/list}">
+								<i class="bi bi-chevron-double-left"></i> To List</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${holiday}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-8">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{holiday.name}"></label>
-							<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{holiday.name}" autofocus >
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{holiday.name}"></label>
+						<div class="col-sm-6">
+				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{holiday.name}" autofocus >
 							<ul><li class="cooperror" th:errors="*{name}" /></ul>
 						</div>
-						<div class="col-md-4">
-							<label class="col-sm-2 col-form-label text-primary" th:text="#{holiday.date}"></label>
-							<input type="date" class="form-control required" th:field="*{date}" th:placeholder="#{holiday.date}">
+					</div>
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{holiday.date}"></label>
+						<div class="col-sm-2">
+				    		<input type="date" class="form-control required" th:field="*{date}" th:placeholder="#{holiday.date}">
 							<ul><li class="cooperror" th:errors="*{date}" /></ul>
 						</div>
-						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+					<div class="row mb-2">
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</form>

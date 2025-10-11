@@ -19,8 +19,8 @@
 				<div class="row pb-2">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/memberGroup/list/current}">
-								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; Back to List
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/memberGroup/list/current}">
+								<i class="bi bi-chevron-double-left"></i> To List
 							</a>
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 					<input type="hidden" class="form-control" th:field="*{id}">
 
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{memberGroup.name}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{memberGroup.name}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{memberGroup.name}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
@@ -39,19 +39,8 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{memberGroup.parentGroup}"></label>
-						<div class="col-sm-4">
-				    		<select class="form-select" th:field="*{parentGroup}">
-								<option value="0" label="--Select--" />
-								<option th:each="p : ${listMemberGroup}" th:value="${p.id}" th:text="${p.label}" th:if="${p.id != memberGroup.id}"/>
-							</select>
-							<ul><li class="cooperror" th:errors="*{parentGroup}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<div class="offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</form>

@@ -19,7 +19,7 @@
 				<form th:action= "${servletRequest.requestURI}" th:object="${profession}" method="POST">
 
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{profession.name}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{profession.name}"></label>
 				    	<div class="col-sm-4">
 				    		<input type="text" class="form-control" th:field="*{name}" th:placeholder="#{profession.name}" autofocus >
 				      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
@@ -27,8 +27,8 @@
 				    </div>
 				    
 					<div class="row mb-2">
-						<div class="offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 				    	</div>
 				  	</div>
 				</form>
@@ -52,12 +52,12 @@
         					<td th:text="${ob.name}"></td>
         					<td>
         						<a class="nav-link" th:href="@{/manager/profession/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>
+						          	<i class="bi bi-pencil-square"></i>
 						        </a>
         					</td>
         					<td>
 		        				<a class="nav-link" th:href="@{/manager/profession/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}"/>
+						          	<i class="bi bi-trash-fill"></i>
 						        </a>
         					</td>
 						</tr>

@@ -40,6 +40,7 @@ public class MemberGroupListController extends ManagerBaseController {
 		
 		model.addAttribute("currentPage", pageNumber + 1);
 		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("totalRecords", page.getTotalElements());
 		
 		if (pageNumber == 0) model.addAttribute("firstPage", true);
 		else model.addAttribute("firstPage", false);
@@ -79,9 +80,11 @@ public class MemberGroupListController extends ManagerBaseController {
 			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "name"));
 			
 			Page<MemberGroup> page = this.memberGroupRepo.findAll(pageable);
+			totalPages = page.getTotalPages();
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);

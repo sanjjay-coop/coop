@@ -29,33 +29,27 @@
 					  </div>
 				</form>
 				
-				<table class="table table-sm small table-bordered table-striped">
+				<div class="h6" th:text="'Total Records: ' + ${totalRecords}"></div>
 				
-					<thead>
-						<tr>
-							<th class="col-sm-1" th:text="'S/N'"></th>
-							<th class="col-sm-2 text-center" th:text="#{holiday.date}"></th>
-							<th class="col-sm-2" th:text="#{holiday.date.day}"></th>
-							<th th:text="#{holiday.name}"></th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<tr th:each="ob,iterator : ${listHoliday}">
-        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
-        					<td class="text-center" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></td>
-        					<td th:text="${#dates.dayOfWeekName(ob.date)}"></td>
-        					<td th:text="${ob.name}"></td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="row g-3">
+					<div class="col-sm-2 pb-2" th:each="ob,iterator : ${listHoliday}">
+						<div class="card h-100">
+							<h5 class="card-header text-center bg-gradient" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}" th:classappend="${ob.date.after(#dates.createNow())} ? 'bg-success-subtle' : 'bg-warning-subtle'"></h5>
+						  	<div class="card-body text-center">
+						  		<div class="small m-3" th:text="${#dates.dayOfWeekName(ob.date)}"></div>	
+						  		<div class="text-success" th:text="${ob.name}"></div>			  		
+						  	</div>
+						</div>
+					</div>
+				</div>
+				
 				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/holiday/list}">First</a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/holiday/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/holiday/list/next}">Next</a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/holiday/list/last}">Last</a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/holiday/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/holiday/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/holiday/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/holiday/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 					</ul>
 				</nav>
 			</div>

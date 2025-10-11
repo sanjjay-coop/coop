@@ -19,63 +19,63 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/title/searchResult}">
-								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; To Search Result</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/title/search}">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/home/title/searchResult}">
+								<i class="bi bi-chevron-double-left"></i> To Search Result</a>
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/home/title/search}">
 								<img th:src="@{/images/bootstrap-icons/search.svg}"/>&nbsp; Search Again</a>
 						</div>
 					</div>
 				</div>
 
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.accessionNumber}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{title.accessionNumber}"></label>
 				    <div class="col-sm-4">
 						<span class="form-control border-light" th:text="${title.accessionNumber}"></span>
 				    </div>
 					<div class="col-sm-4">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.titleType}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{title.titleType}"></label>
 						<span class="form-control border-light" th:text="${title.titleType.name}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.uniformTitle}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{title.uniformTitle}"></label>
 					<div class="col-sm-10">
 						<span class="form-control border-light" th:text="${title.uniformTitle}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.authors}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{title.authors}"></label>
 					<div class="col-sm-10">
 						<span class="form-control border-light" th:text="${title.authors}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.library}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{title.library}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${title.library.name + ' [' + title.library.shortName + ']'}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{title.summary}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{title.summary}"></label>
 					<div class="col-sm-10">
 						<span class="form-control border-light" th:text="${title.summary}"></span>
 					</div>
 				</div>
 				
 				<div class="row mb-2" th:if="${co}">
-					<label class="col-sm-2 col-form-label text-primary" th:text="#{checkOut}"></label>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{checkOut}"></label>
 					<div class="col-sm-2">
 						<span class="form-control border-light" th:text="${co.member.name + ' [' + co.member.memId + ']' }"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary">Issue Date</label>
+					<label class="col-sm-2 col-form-label text-success">Issue Date</label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${#dates.format(co.transactionDate, 'dd/MM/yyyy')}"></span>
 					</div>
-					<label class="col-sm-2 col-form-label text-primary">Due Date</label>
+					<label class="col-sm-2 col-form-label text-success">Due Date</label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${#dates.format(co.dueDate, 'dd/MM/yyyy')}"></span>
 					</div>

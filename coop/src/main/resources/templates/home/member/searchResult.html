@@ -19,7 +19,7 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/member/search}">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/home/member/search}">
 								<img th:src="@{/images/bootstrap-icons/search.svg}"/>&nbsp; Search Again</a>
 						</div>
 					</div>
@@ -47,7 +47,7 @@
 							<td th:text="${ob.residenceAddress}"></td>
 							<td>
         						<a class="nav-link" th:href="@{/home/member/view/{orderId}(orderId=${ob.id})}" title="View Record">
-						          	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>
+						          	<i class="bi bi-folder2-open"></i>
 						        </a>
         					</td>
 						</tr>

@@ -17,9 +17,17 @@
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 					
 				<div class="card p-2 mb-3">
-					<h5 class="card-header" th:text="${event.title}"></h5>
+					<h5 class="card-header bg-success-subtle bg-gradient" th:text="${event.title}"></h5>
 				  	<div class="card-body">
-						<pre class="text-primary" th:utext="${event.description}" style="text-wrap: wrap;"></pre>
+						<pre class="text-success" th:utext="${event.description}" style="text-wrap: wrap;"></pre>
+						<div style="font-size: small;">
+							<b> Venue: </b>
+							<span th:text="${event.venue}"></span>
+							<b> City: </b>
+							<span th:text="${event.city}"></span>
+							<b> State: </b>
+							<span th:text="${event.state}"></span>
+						</div>
 						<div style="font-size: small;">
 							<b>Event Type: </b>
 							<span th:text="${event.eventType.name}"></span>

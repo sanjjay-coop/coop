@@ -19,10 +19,10 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/list/current}">
-								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; To Event List</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/view/{orderId}(orderId=${event.id})}">
-								<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>&nbsp; View Event</a>
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/list/current}">
+								<i class="bi bi-chevron-double-left"></i> To Event List</a>
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/view/{orderId}(orderId=${event.id})}">
+								<i class="bi bi-folder2-open"></i>&nbsp; View Event</a>
 						</div>
 					</div>
 				</div>
@@ -31,7 +31,7 @@
 					<input type="hidden" class="form-control" th:field="*{id}">
 
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{event.title}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.title}"></label>
 						<div class="col-sm-10">
 				    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{event.title}" autofocus >
 					  		<ul><li class="cooperror" th:errors="*{title}" /></ul>
@@ -39,19 +39,19 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{event.description}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.description}"></label>
 						<div class="col-sm-10">
 				    			<textarea class="widgEditor form-control" rows="5" th:field="*{description}" th:placeholder="#{event.description}"></textarea>
 					  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 						</div>
 					</div>
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{event.startDate}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.startDate}"></label>
 						<div class="col-sm-4">
 				    		<input type="date" class="form-control required" th:field="*{startDate}" th:placeholder="#{event.startDate}">
 					  		<ul><li class="cooperror" th:errors="*{startDate}" /></ul>
 						</div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{event.endDate}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.endDate}"></label>
 						<div class="col-sm-4">
 				    		<input type="date" class="form-control required" th:field="*{endDate}" th:placeholder="#{event.endDate}">
 					  		<ul><li class="cooperror" th:errors="*{endDate}" /></ul>
@@ -59,14 +59,35 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{event.publish}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.venue}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{venue}" th:placeholder="#{event.venue}">
+					  		<ul><li class="cooperror" th:errors="*{venue}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.city}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{city}" th:placeholder="#{event.city}">
+					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+						</div>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.state}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{event.state}">
+					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.publish}"></label>
 						<div class="col-sm-4">
 				    		<select class="form-select" th:field="*{publish}">
 								<option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{publish}" /></ul>
 						</div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{event.eventType}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{event.eventType}"></label>
 						<div class="col-sm-4">
 				    		<select class="form-select" th:field="*{eventType}">
 								<option th:each="p : ${listEventType}" th:value="${p.id}" th:text="${p.name}" />
@@ -74,9 +95,10 @@
 							<ul><li class="cooperror" th:errors="*{eventType}" /></ul>
 						</div>
 					</div>
+					
 					<div class="row mb-2">
-						<div class="offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</form>

@@ -19,7 +19,8 @@
 				<div class="row pb-2">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/quotation/list/current}">&lt;&lt; Back To List</a>
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/quotation/list/current}">
+								<i class="bi bi-chevron-double-left"></i> To List</a>
 						</div>
 					</div>
 				</div>
@@ -29,7 +30,7 @@
 					<input type="hidden" th:field="*{id}"/>
 
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{quotation.quote}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{quotation.quote}"></label>
 						<div class="col-sm-10">
 				    		<input type="text" class="form-control required" th:field="*{quote}" th:placeholder="#{quotation.quote}" autofocus >
 							<ul><li class="cooperror" th:errors="*{quote}" /></ul>
@@ -37,13 +38,13 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{quotation.author}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{quotation.author}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{author}" th:placeholder="#{quotation.author}">
 							<ul><li class="cooperror" th:errors="*{author}" /></ul>
 						</div>
 						
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{quotation.source}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{quotation.source}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control" th:field="*{source}" th:placeholder="#{quotation.source}">
 							<ul><li class="cooperror" th:errors="*{source}" /></ul>
@@ -51,8 +52,8 @@
 					</div>
 					
 					<div class="row mb-2">
-						<div class="offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</form>

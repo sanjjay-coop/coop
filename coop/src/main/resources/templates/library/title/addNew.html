@@ -19,12 +19,12 @@
 				<form th:action= "${servletRequest.requestURI}" th:object="${title}" method="POST">
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.accessionNumber}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{title.accessionNumber}"></label>
 					   	<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{accessionNumber}" th:placeholder="#{title.accessionNumber}" autofocus >
 					    	<ul><li class="cooperror" th:errors="*{accessionNumber}" /></ul>
 					    </div>
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.titleType}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{title.titleType}"></label>
 						<div class="col-sm-4">
 				    		<select class="form-select required" th:field="*{titleType}">
 								<option th:each="p : ${listTitleType}" th:value="${p.id}" th:text="${p.name}" />
@@ -34,7 +34,7 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.library}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{title.library}"></label>
 						<div class="col-sm-4">
 				    		<select class="form-select required" th:field="*{library}">
 								<option th:each="p : ${listLibrary}" th:value="${p.id}" th:text="${p.name + ' [' + p.shortName + ']'}" />
@@ -44,7 +44,7 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.uniformTitle}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{title.uniformTitle}"></label>
 				      	<div class="col-sm-10">
 				    		<input type="text" class="form-control required" th:field="*{uniformTitle}" th:placeholder="#{title.uniformTitle}" >
 				      		<ul><li class="cooperror" th:errors="*{uniformTitle}" /></ul>
@@ -52,7 +52,7 @@
 				    </div>
 				    
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.authors}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{title.authors}"></label>
 					  	<div class="col-sm-10">
 				    		<input type="text" class="form-control required" th:field="*{authors}" th:placeholder="#{title.authors}" >
 					  		<ul><li class="cooperror" th:errors="*{authors}" /></ul>
@@ -60,7 +60,7 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.publisher}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{title.publisher}"></label>
 					  	<div class="col-sm-10">
 				    		<input type="text" class="form-control" th:field="*{publisher}" th:placeholder="#{title.publisher}" >
 					  		<ul><li class="cooperror" th:errors="*{publisher}" /></ul>
@@ -68,7 +68,7 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{title.summary}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{title.summary}"></label>
 				      	<div class="col-sm-10">
 				    		<textarea class="form-control" th:field="*{summary}" th:placeholder="#{title.summary}"></textarea>
 				      		<ul><li class="cooperror" th:errors="*{summary}" /></ul>
@@ -76,8 +76,8 @@
 				    </div>
 					
 					<div class="row mb-2">
-						<div class="offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 				    	</div>
 				  	</div>
 				</form>

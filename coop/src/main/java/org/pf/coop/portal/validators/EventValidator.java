@@ -43,6 +43,24 @@ public class EventValidator extends BaseValidator implements Validator {
 		
 		if (obj.getPublish()==null) {
 			errors.rejectValue("publish", "event.publish.required");
-		}				
+		}	
+		
+		if (obj.getVenue()!=null){
+			if (!this.lengthRange(obj.getVenue(), 0, 100)){
+				errors.rejectValue("venue", "event.venue.size");
+			}
+		}
+		
+		if (obj.getCity()!=null){
+			if (!this.lengthRange(obj.getCity(), 0, 100)){
+				errors.rejectValue("city", "event.city.size");
+			}
+		}
+		
+		if (obj.getState()!=null){
+			if (!this.lengthRange(obj.getState(), 0, 100)){
+				errors.rejectValue("state", "event.state.size");
+			}
+		}
 	}
 }

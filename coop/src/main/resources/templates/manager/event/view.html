@@ -18,19 +18,19 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/list/current}">
-								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; To Event List</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/edit/{orderId}(orderId=${event.id})}">
-								<img th:src="@{/images/bootstrap-icons/pen.svg}"/>&nbsp; Edit Event</a>
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/eventUpdate/addNew/{orderId}(orderId=${event.id})}">
-								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add Update</a>
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/list/current}">
+								<i class="bi bi-chevron-double-left"></i> To Event List</a>
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/edit/{orderId}(orderId=${event.id})}">
+								<i class="bi bi-pen"></i> Edit Event</a>
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/eventUpdate/addNew/{orderId}(orderId=${event.id})}">
+								<i class="bi bi-plus-circle"></i> Add Update</a>
 						</div>
 					</div>
 				</div>
 								
 				<div class="row pb-3">
 					<div class="col-12 text-center">
-						<h4 class="bg-light p-2 border rounded rounded-2" th:text="${event.title}"></h4>
+						<h4 class="bg-light p-2 border bg-success-subtle bg-gradient rounded rounded-1" th:text="${event.title}"></h4>
 						<span th:utext="${event.description}" style="text-wrap: wrap;"></span>
 						<div class="py-2" style="font-size: small;">
 							<b>Event Type: </b>
@@ -40,15 +40,24 @@
 							<b> End Date: </b>
 							<span th:text="${#dates.format(event.endDate, 'dd/MM/yyyy')}"></span>
 						</div>
+						<div class="py-2" style="font-size: small;">
+							<b> Venue: </b>
+							<span th:text="${event.venue}"></span>
+							<b> City: </b>
+							<span th:text="${event.city}"></span>
+							<b> State: </b>
+							<span th:text="${event.state}"></span>
+						</div>
 					</div>
 				</div>
 				<div class="row pb-3 text-center">
-					<div class="col-4 py-3" th:each="eventUpdate : ${event.updates}" style="margin: 10px; padding: 10px; border:aliceblue solid 1px; border-radius: 10px;">
+					<div class="col-sm-3 py-3" th:each="eventUpdate : ${event.updates}" style="margin: 10px; padding: 10px; border:aliceblue solid 1px; border-radius: 10px;">
 						<span th:utext="${eventUpdate.description}" style="text-wrap: wrap;"></span>
+						<br/>
 						<br/><span style="font-weight: bold; font-size: small;">Last Update: </span>
 						<span style="font-size: small;" th:text="${#dates.format(eventUpdate.updateDate, 'dd/MM/yyyy HH:mm:ss')}"></span><br/>
 						<a class="nav-link" th:href="@{/manager/eventUpdate/delete/{orderId}(orderId=${eventUpdate.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-							<img th:src="@{/images/bootstrap-icons/trash-fill.svg}" alt="Delete Update"/>
+							<i class="bi bi-trash-fill"></i> Delete Update
 						</a>
 					</div>
 				</div>

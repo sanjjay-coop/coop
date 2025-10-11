@@ -72,6 +72,8 @@ public class ModBusinessListController extends ModeratorBaseController {
 			
 			int totalPages = page.getTotalPages();
 			
+			model.addAttribute("totalRecords", page.getTotalElements());
+			
 			model.addAttribute("listBusiness", page.getContent());
 			
 			model.addAttribute("currentPage", pageNumber + 1);
@@ -141,6 +143,7 @@ public class ModBusinessListController extends ModeratorBaseController {
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);

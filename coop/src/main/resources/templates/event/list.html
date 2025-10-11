@@ -17,9 +17,17 @@
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 					
 				<div class="card p-2 mb-3" th:each="event : ${listEvent}">
-					<h5 class="card-header" th:text="${event.title}"></h5>
+					<h5 class="card-header bg-success-subtle bg-gradient" th:text="${event.title}"></h5>
 				  	<div class="card-body">
-						<pre class="text-primary" th:utext="${event.description}" style="text-wrap: wrap;"></pre>
+						<pre class="text-success" th:utext="${event.description}" style="text-wrap: wrap;"></pre>
+						<div style="font-size: small;">
+							<b> Venue: </b>
+							<span th:text="${event.venue}"></span>
+							<b> City: </b>
+							<span th:text="${event.city}"></span>
+							<b> State: </b>
+							<span th:text="${event.state}"></span>
+						</div>
 						<div style="font-size: small;">
 							<b>Event Type: </b>
 							<span th:text="${event.eventType.name}"></span>
@@ -39,19 +47,19 @@
 				<nav aria-label="Page navigation example" th:if="${totalPages > 1}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}">
-							<a class="page-link" th:href="@{/event/list}">First</a>
+							<a class="page-link text-success" th:href="@{/event/list}"><i class="bi bi-chevron-bar-left"></i></a>
 						</li>
 						<li class="page-item" th:if="${!firstPage}">
-							<a class="page-link" th:href="@{/event/list/previous}">Previous</a>
+							<a class="page-link text-success" th:href="@{/event/list/previous}"><i class="bi bi-chevron-left"></i></a>
 						</li>
 						<li class="page-item">
-							<a class="page-link" th:text="${currentPage + '... of ...' + totalPages}"></a>
+							<a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a>
 						</li>
 						<li class="page-item" th:if="${!lastPage}">
-							<a class="page-link" th:href="@{/event/list/next}">Next</a>
+							<a class="page-link text-success" th:href="@{/event/list/next}"><i class="bi bi-chevron-right"></i></a>
 						</li>
 						<li class="page-item" th:if="${!lastPage}">
-							<a class="page-link" th:href="@{/event/list/last}">Last</a>
+							<a class="page-link text-success" th:href="@{/event/list/last}"><i class="bi bi-chevron-bar-right"></i></a>
 						</li>
 					</ul>
 				</nav>

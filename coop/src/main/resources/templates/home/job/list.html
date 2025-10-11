@@ -19,8 +19,8 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/home/job/addNew}">
-								<img th:src="@{/images/bootstrap-icons/plus-circle.svg}"/>&nbsp; Add Job</a>
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/home/job/addNew}">
+								<i class="bi bi-plus-circle"></i> Add Job</a>
 						</div>
 					</div>
 				</div>
@@ -57,17 +57,17 @@
         					</td>				
 							<td>
 								<a class="nav-link" th:href="@{/home/job/view/{orderId}(orderId=${ob.id})}" title="View Record">
-							      	<img th:src="@{/images/bootstrap-icons/folder2-open.svg}"/>
+							      	<i class="bi bi-folder2-open"></i>
 							    </a>
 							</td>
         					<td>
         						<a class="nav-link" th:href="@{/home/job/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-						          	<img th:src="@{/images/bootstrap-icons/pencil-square.svg}"/>
+						          	<i class="bi bi-pencil-square"></i>
 						        </a>
         					</td>
         					<td>
 		        				<a class="nav-link" th:href="@{/home/job/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-						          	<img th:src="@{/images/bootstrap-icons/trash-fill.svg}"/>
+						          	<i class="bi bi-trash-fill"></i>
 						        </a>
         					</td>
 						</tr>
@@ -75,11 +75,11 @@
 				</table>
 				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
 					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/list}">First</a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link" th:href="@{/home/job/list/previous}">Previous</a></li>
-						<li class="page-item"><a class="page-link" th:text="${currentPage + ' ... of ... ' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/list/next}">Next</a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link" th:href="@{/home/job/list/last}">Last</a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/job/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/job/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + ' ... of ... ' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/job/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/job/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 					</ul>
 				</nav>
 			</div>

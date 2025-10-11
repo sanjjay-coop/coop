@@ -19,8 +19,8 @@
 				<div class="row pb-3">
 					<div class="col-12">
 						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/newsFeed/list/current}">
-								<img th:src="@{/images/bootstrap-icons/arrow-left-circle.svg}"/>&nbsp; Back to List
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/newsFeed/list/current}">
+								<i class="bi bi-chevron-double-left"></i> Back to List
 							</a>
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 					<input type="hidden" class="form-control" th:field="*{id}">
 
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{newsFeed.title}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{newsFeed.title}"></label>
 						<div class="col-sm-10">
 				    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{newsFeed.title}" autofocus >
 							<ul><li class="cooperror" th:errors="*{title}" /></ul>
@@ -39,7 +39,7 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{newsFeed.description}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{newsFeed.description}"></label>
 						<div class="col-sm-10">
 				    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{newsFeed.description}"></textarea>
 							<ul><li class="cooperror" th:errors="*{description}" /></ul>
@@ -47,7 +47,7 @@
 					</div>
 					
 					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-primary" th:text="#{newsFeed.url}"></label>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{newsFeed.url}"></label>
 						<div class="col-sm-4">
 				    		<input type="text" class="form-control required" th:field="*{url}" th:placeholder="#{newsFeed.url}" autofocus >
 							<ul><li class="cooperror" th:errors="*{url}" /></ul>
@@ -56,8 +56,8 @@
 					
 					
 					<div class="row mb-2">
-						<div class="offset-sm-2">
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</form>

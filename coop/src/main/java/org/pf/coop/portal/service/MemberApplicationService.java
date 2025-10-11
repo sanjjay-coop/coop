@@ -149,6 +149,8 @@ public class MemberApplicationService {
 		member.setResPin(obj.getResPin());
 		member.setResState(obj.getResState());
 		member.setSalutation(obj.getSalutation());
+		member.setCaste(obj.getCaste());
+		member.setTribe(obj.getTribe());
 		
 		RandomString rb = new RandomString();
 		

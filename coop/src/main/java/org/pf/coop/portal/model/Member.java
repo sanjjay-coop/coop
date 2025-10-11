@@ -72,6 +72,14 @@ public class Member extends BaseObject implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="f_gender", nullable=false)
 	private Gender gender;
+
+	@ManyToOne
+	@JoinColumn(name="f_caste", nullable=true)
+	private Caste caste;
+	
+	@ManyToOne
+	@JoinColumn(name="f_tribe", nullable=true)
+	private Tribe tribe;
 	
 	@ManyToOne
 	@JoinColumn(name="f_education_level", nullable=true)
@@ -249,6 +257,22 @@ public class Member extends BaseObject implements Serializable {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public Caste getCaste() {
+		return caste;
+	}
+
+	public void setCaste(Caste caste) {
+		this.caste = caste;
+	}
+
+	public Tribe getTribe() {
+		return tribe;
+	}
+
+	public void setTribe(Tribe tribe) {
+		this.tribe = tribe;
 	}
 
 	public EducationLevel getEducationLevel() {
@@ -518,6 +542,8 @@ public class Member extends BaseObject implements Serializable {
 				+ (memGroup != null ? "memGroup=" + memGroup + ", " : "")
 				+ (memType != null ? "memType=" + memType + ", " : "")
 				+ (gender != null ? "gender=" + gender + ", " : "")
+				+ (caste != null ? "caste=" + caste + ", " : "")
+				+ (tribe != null ? "tribe=" + tribe + ", " : "")
 				+ (educationLevel != null ? "educationLevel=" + educationLevel + ", " : "")
 				+ (resAddress != null ? "resAddress=" + resAddress + ", " : "")
 				+ (resCity != null ? "resCity=" + resCity + ", " : "")
