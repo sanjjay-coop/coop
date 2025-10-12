@@ -37,6 +37,8 @@ public class RoleService {
 	@Transactional
 	public TransactionResult addRole(Role obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = roleRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Role", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -75,6 +77,8 @@ public class RoleService {
 		
 		obj.setCode(role.getCode());
 		obj.setDescription(role.getDescription());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = roleRepo.save(obj);
 		

@@ -33,4 +33,6 @@ public interface SponsorshipRepo extends JpaRepository<Sponsorship, Long> {
 	Page<Sponsorship> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 	
 	List<Sponsorship> findBySearchString(String searchString);
+	
+	List<Sponsorship> findByRecordAddDateIsNull();
 }

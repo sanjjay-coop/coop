@@ -18,4 +18,6 @@ public interface QuotationRepo extends JpaRepository<Quotation, Long>{
 	public Quotation findByQuoteIgnoreCase(String quote);
 	
 	List<Quotation> findBySearchString(String searchString);
+	
+	List<Quotation> findByRecordAddDateIsNull();
 }

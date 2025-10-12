@@ -26,4 +26,6 @@ public interface ReminderRepo extends JpaRepository<Reminder, Long>{
 			+ "r.remDate >:today  "
 			+ "order by r.remDate desc")
 	public List<Reminder> listReminder(Member member, Date today);
+	
+	List<Reminder> findByRecordAddDateIsNull();
 }

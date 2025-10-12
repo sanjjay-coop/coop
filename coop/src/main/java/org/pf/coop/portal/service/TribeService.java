@@ -37,6 +37,8 @@ public class TribeService {
 	@Transactional
 	public TransactionResult addTribe(Tribe obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = tribeRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Tribe", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class TribeService {
 		Tribe obj = oe.get();
 		
 		obj.setName(tribe.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = tribeRepo.save(obj);
 		

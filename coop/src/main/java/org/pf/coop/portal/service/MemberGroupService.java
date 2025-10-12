@@ -43,6 +43,8 @@ public class MemberGroupService {
 	@Transactional
 	public TransactionResult addMemberGroup(MemberGroup obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = memberGroupRepo.save(obj);
 		
 		audit = new Audit(updateBy, "MemberGroup", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -89,6 +91,8 @@ public class MemberGroupService {
 		
 		obj.setName(memberGroup.getName());
 		obj.setParentGroup(memberGroup.getParentGroup());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = memberGroupRepo.save(obj);
 		

@@ -137,18 +137,27 @@ public class MemberService {
 		Member obj = oe.get();
 		
 		obj.setAadhaar(member.getAadhaar());
+		obj.setGender(member.getGender());
+		obj.setMaritalStatus(member.getMaritalStatus());
+		obj.setOccupation(member.getOccupation());
+		obj.setMemGroup(member.getMemGroup());
+		obj.setCaste(member.getCaste());
+		obj.setTribe(member.getTribe());
+		obj.setEducationLevel(member.getEducationLevel());
+		obj.setProfilePublic(member.getProfilePublic());
 		obj.setDateOfBirth(member.getDateOfBirth());
 		obj.setEducation(member.getEducation());
-		obj.setEducationLevel(member.getEducationLevel());
 		obj.setExperience(member.getExperience());
+		
 		obj.setOffAddress(member.getOffAddress());
 		obj.setOffCity(member.getOffCity());
 		obj.setOffCountry(member.getOffCountry());
-		obj.setOffDesignation(member.getOffDesignation());
-		obj.setOffName(member.getOffName());
 		obj.setOffPin(member.getOffPin());
 		obj.setOffState(member.getOffState());
-		obj.setProfilePublic(member.getProfilePublic());
+		
+		obj.setOffDesignation(member.getOffDesignation());
+		obj.setOffName(member.getOffName());
+		
 		obj.setResAddress(member.getResAddress());
 		obj.setResCity(member.getResCity());
 		obj.setResCountry(member.getResCountry());

@@ -73,6 +73,17 @@
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${member.memGroup.label}" th:if="${member.memGroup!=null}"></span>
 					</div>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.caste}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${member.caste.name}" th:if="${member.caste!=null}"></span>
+					</div>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.tribe}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${member.tribe.name}" th:if="${member.tribe!=null}"></span>
+					</div>
 					<label class="col-sm-2 col-form-label text-success" th:text="#{member.dateOfBirth}"></label>
 					<div class="col-sm-4">
 						<span class="form-control border-light" th:text="${#dates.format(member.dateOfBirth, 'dd/MM/yyyy')}"></span>

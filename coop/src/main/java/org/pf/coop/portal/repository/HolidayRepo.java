@@ -16,4 +16,6 @@ public interface HolidayRepo extends JpaRepository<Holiday, Long>{
 	
 	List<Holiday> findBySearchString(String searchString);
 	
+	List<Holiday> findByRecordAddDateIsNull();
+	
 }

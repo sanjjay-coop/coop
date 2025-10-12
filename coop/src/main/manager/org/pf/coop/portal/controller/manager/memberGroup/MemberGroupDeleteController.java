@@ -31,23 +31,23 @@ public class MemberGroupDeleteController extends ManagerBaseController {
 			if (tr == null ) {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				return "redirect:/manager/memberGroup/addNew";
+				return "redirect:/manager/memberGroup/list/current";
 				
 			} else if (tr.isStatus()){
 				
 				reat.addFlashAttribute("message", "Record deleted successfully.");
-				return "redirect:/manager/memberGroup/addNew";
+				return "redirect:/manager/memberGroup/list/current";
 				
 			} else {
 				
 				reat.addFlashAttribute("message", tr.getMessage());
-				return "redirect:/manager/memberGroup/addNew";
+				return "redirect:/manager/memberGroup/list/current";
 				
 			}
 		} catch (Exception e) {
 			
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
-			return "redirect:/manager/memberGroup/addNew";
+			return "redirect:/manager/memberGroup/list/current";
 			
 		}
 	}

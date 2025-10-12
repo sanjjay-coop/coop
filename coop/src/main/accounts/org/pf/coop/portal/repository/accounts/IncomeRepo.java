@@ -19,4 +19,6 @@ public interface IncomeRepo extends JpaRepository<Income, Long>{
 			+ "o.transactionDate <=:endDate "
 			+ "order by o.transactionDate asc")
 	public List<Income> listIncome(Date startDate, Date endDate);
+	
+	List<Income> findByRecordAddDateIsNull();
 }

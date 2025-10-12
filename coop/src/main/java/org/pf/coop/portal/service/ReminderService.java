@@ -50,6 +50,8 @@ public class ReminderService {
 		
 		obj.setRemStartDate(cal.getTime());
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = reminderRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Reminder", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -112,6 +114,8 @@ public class ReminderService {
 			cal.add(Calendar.DAY_OF_YEAR, -5);
 			
 			reminder.setRemStartDate(cal.getTime());
+			
+			reminder.setAddDefaults("system");
 			
 			reminderRepo.save(reminder);
 		}

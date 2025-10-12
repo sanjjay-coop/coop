@@ -37,6 +37,8 @@ public class MaritalStatusService {
 	@Transactional
 	public TransactionResult addMaritalStatus(MaritalStatus obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = maritalStatusRepo.save(obj);
 	
 		audit = new Audit(updateBy, "MaritalStatus", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class MaritalStatusService {
 		MaritalStatus obj = oe.get();
 				
 		obj.setStatus(maritalStatus.getStatus());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = maritalStatusRepo.save(obj);
 		

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,15 +13,19 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_member_group")
-public class MemberGroup implements Serializable {
+public class MemberGroup extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -42,6 +48,9 @@ public class MemberGroup implements Serializable {
 	
 	@OneToMany(mappedBy = "parentGroup", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<MemberGroup> children = new HashSet<MemberGroup>();
+	
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -75,18 +84,21 @@ public class MemberGroup implements Serializable {
 		this.children = children;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberGroup [" + (id != null ? "id=" + id + ", " : "") + (name != null ? "name=" + name + ", " : "") + "]";
 	}
 	
 	public String getLabel() {
-		String str = this.name;
-		
-		if (this.parentGroup!=null) {
-			str = str + " -> " + this.parentGroup.getLabel();
-		}
-	
+		String str = this.name;	
 		return str;
 	}
 	
@@ -96,6 +108,20 @@ public class MemberGroup implements Serializable {
 			if (id.equals(this.parentGroup.getId())) return true;
 			else return this.parentGroup.getAncestor(id);
 		}
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+		this.setSearchString(name != null ? name : "");
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
+		this.setSearchString(name != null ? name : "");
 	}
 }
 

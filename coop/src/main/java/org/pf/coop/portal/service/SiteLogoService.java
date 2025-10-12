@@ -17,17 +17,7 @@ import jakarta.transaction.Transactional;
 public class SiteLogoService {
 	
 	@Autowired
-	private SiteLogoRepo siteLogoRepo;
-	
-	/*
-	@Transactional
-	public TransactionResult addSiteLogo(SiteLogo obj, String updateBy) {
-		
-		obj = siteLogoRepo.save(obj);
-		
-		return new TransactionResult(obj, true);
-	} */
-	
+	private SiteLogoRepo siteLogoRepo;	
 
 	@Transactional 
 	public Object getById(Long id) {

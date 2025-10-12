@@ -42,6 +42,9 @@ public class ReceiptService {
 		obj.setFileName(StringUtils.cleanPath(obj.getFile().getOriginalFilename()));
 		obj.setFileType(obj.getFile().getContentType());
 		obj.setDocument(obj.getFile().getBytes());
+		
+		obj.setAddDefaults(updateBy);
+		
 		obj = receiptRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Receipt", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -87,6 +90,8 @@ public class ReceiptService {
 		obj.setFileName(StringUtils.cleanPath(receipt.getFile().getOriginalFilename()));
 		obj.setFileType(receipt.getFile().getContentType());
 		obj.setDocument(receipt.getFile().getBytes());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = receiptRepo.save(obj);
 		

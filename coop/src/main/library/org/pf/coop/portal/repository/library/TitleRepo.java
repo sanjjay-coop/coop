@@ -22,4 +22,6 @@ public interface TitleRepo extends JpaRepository<Title, Long>{
 	public List<Title> listTitleRecent();
 	
 	Page<Title> findBySearchStringContainingIgnoreCase(String seatchString, Pageable pageable);
+	
+	List<Title> findByRecordAddDateIsNull();
 }

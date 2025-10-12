@@ -15,6 +15,16 @@
 				<h4 class="h4 pb-3">Member (View Record)</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<div class="row pb-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/home/member/list/current}" >
+								<i class="bi bi-chevron-double-left"></i> To Member List
+							</a>
+						</div>
+					</div>
+				</div>
 
 					
 				<div class="row mb-2">
@@ -61,7 +71,18 @@
 				<div class="row mb-2">
 					<label class="col-sm-2 col-form-label text-success" th:text="#{member.memGroup}"></label>
 					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${member.memGroup.label}" th:if="${member.memGroup!=null}"></span>
+						<span class="form-control border-light" th:text="${member.memGroup.name}" th:if="${member.memGroup!=null}"></span>
+					</div>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.caste}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${member.caste.name}" th:if="${member.caste!=null}"></span>
+					</div>
+				</div>
+				
+				<div class="row mb-2">
+					<label class="col-sm-2 col-form-label text-success" th:text="#{member.tribe}"></label>
+					<div class="col-sm-4">
+						<span class="form-control border-light" th:text="${member.tribe.name}" th:if="${member.tribe!=null}"></span>
 					</div>
 					<label class="col-sm-2 col-form-label text-success" th:text="#{member.dateOfBirth}"></label>
 					<div class="col-sm-4">

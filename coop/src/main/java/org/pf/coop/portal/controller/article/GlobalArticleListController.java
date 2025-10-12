@@ -2,13 +2,10 @@ package org.pf.coop.portal.controller.article;
 
 import java.security.Principal;
 import java.util.Calendar;
-import java.util.List;
 
 import org.pf.coop.portal.controller.BaseController;
 import org.pf.coop.portal.model.Article;
-import org.pf.coop.portal.model.Event;
 import org.pf.coop.portal.repository.ArticleRepo;
-import org.pf.coop.portal.repository.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,19 +25,6 @@ public class GlobalArticleListController extends BaseController  {
 
 	@Autowired
 	private ArticleRepo articleRepo;
-	
-	@Autowired
-	private EventRepo eventRepo;
-	
-	@ModelAttribute("listArticle")
-	public List<Article> getListArticle(){
-		return (List<Article>) this.articleRepo.listArticleRecent((Calendar.getInstance()).getTime());
-	}
-	
-	@ModelAttribute("listEvent")
-	public List<Event> getListEvent(){
-		return (List<Event>) this.eventRepo.listEventRecent((Calendar.getInstance()).getTime());
-	}
 	
 	@GetMapping("/list")
 	public String listArticle(Model model, Principal principal, HttpServletRequest request) {
@@ -62,6 +45,8 @@ public class GlobalArticleListController extends BaseController  {
 		
 		model.addAttribute("currentPage", pageNumber + 1);
 		model.addAttribute("totalPages", totalPages);
+
+		model.addAttribute("totalRecords", page.getTotalElements());
 		
 		if (pageNumber == 0) model.addAttribute("firstPage", true);
 		else model.addAttribute("firstPage", false);
@@ -106,8 +91,12 @@ public class GlobalArticleListController extends BaseController  {
 					(Calendar.getInstance()).getTime(), 
 					pageable);
 			
+			totalPages = page.getTotalPages();
+			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+
+			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);

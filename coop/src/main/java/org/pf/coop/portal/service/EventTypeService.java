@@ -37,6 +37,8 @@ public class EventTypeService {
 	@Transactional
 	public TransactionResult addEventType(EventType obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = eventTypeRepo.save(obj);
 		
 		audit = new Audit(updateBy, "EventType", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -73,6 +75,8 @@ public class EventTypeService {
 		EventType obj = oe.get();
 		
 		obj.setName(eventType.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = eventTypeRepo.save(obj);
 		

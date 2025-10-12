@@ -1,10 +1,10 @@
-package org.pf.coop.portal.controller.open.newsFeed;
+package org.pf.coop.portal.controller.home.member;
 
 import java.security.Principal;
 
-import org.pf.coop.portal.controller.BaseController;
-import org.pf.coop.portal.model.NewsFeed;
-import org.pf.coop.portal.repository.NewsFeedRepo;
+import org.pf.coop.portal.controller.home.HomeBaseController;
+import org.pf.coop.portal.model.Member;
+import org.pf.coop.portal.repository.MemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,20 +22,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/newsFeed")
-public class OpenNewsFeedListController extends BaseController {
+@RequestMapping("/home/member")
+public class HomeMemberListController extends HomeBaseController {
 	
 	@Autowired
-	private NewsFeedRepo newsFeedRepo;
+	private MemberRepo memberRepo;
 	
 	@PostMapping({"/list", "/list/*", "/list/*/*" })
-	public String listNewsFeed(@ModelAttribute NewsFeed newsFeed, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
+	public String listMember(@ModelAttribute Member member, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
 		try {
 			
-			request.getSession().setAttribute("openSearch_newsFeed", newsFeed);
+			request.getSession().setAttribute("homeSearch_member", member);
 				
-			return "redirect:/newsFeed/list";
+			return "redirect:/home/member/list";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e);
 			return "redirect:/home";
@@ -43,36 +43,36 @@ public class OpenNewsFeedListController extends BaseController {
 	}
 	
 	@GetMapping("/list")
-	public String listNewsFeed(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
+	public String listMember(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
 		try {
 			
 			int pageNumber = 0;
 			
-			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "recordAddDate"));
 			
-			Page<NewsFeed> page;
+			Page<Member> page;
 			
-			NewsFeed obj = (NewsFeed) request.getSession().getAttribute("openSearch_newsFeed");
+			Member obj = (Member) request.getSession().getAttribute("homeSearch_member");
 			
 			if (obj == null) {
-				page = this.newsFeedRepo.findAll(pageable);
-				obj = new NewsFeed();
+				page = this.memberRepo.findAll(pageable);
+				obj = new Member();
 				obj.setSearchString("");
 			} else {
 				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
-					page = this.newsFeedRepo.findAll(pageable);
+					page = this.memberRepo.findAll(pageable);
 				} else {
-					page = this.newsFeedRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+					page = this.memberRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
 				}
 			}
 			
-			request.getSession().setAttribute("openSearch_newsFeed", obj);
-			model.addAttribute("newsFeed", obj);
+			request.getSession().setAttribute("homeSearch_member", obj);
+			model.addAttribute("member", obj);
 			
 			int totalPages = page.getTotalPages();
 			
-			model.addAttribute("listNewsFeed", page.getContent());
+			model.addAttribute("listMember", page.getContent());
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
@@ -87,10 +87,10 @@ public class OpenNewsFeedListController extends BaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listNewsFeedOpen_pageNumber", pageNumber);
-			request.getSession().setAttribute("listNewsFeedOpen_totalPages", totalPages);
+			request.getSession().setAttribute("listMemberHome_pageNumber", pageNumber);
+			request.getSession().setAttribute("listMemberHome_totalPages", totalPages);
 			
-			return "open/newsFeed/list";
+			return "home/member/list";
 			
 		} catch(Exception e) {
 			System.out.println("Error Message: " + e);
@@ -100,14 +100,14 @@ public class OpenNewsFeedListController extends BaseController {
 	}
 	
 	@GetMapping("/list/{whichPage}")
-	public String listNewsFeed(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
+	public String listMember(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			int pageNumber = (int) request.getSession().getAttribute("listNewsFeedOpen_pageNumber");
-			int totalPages = (int) request.getSession().getAttribute("listNewsFeedOpen_totalPages");
+			int pageNumber = (int) request.getSession().getAttribute("listMemberHome_pageNumber");
+			int totalPages = (int) request.getSession().getAttribute("listMemberHome_totalPages");
 			
 			if ("previous".equals(whichPage)) {
-				if (pageNumber == 0) return "redirect:/newsFeed/list";
+				if (pageNumber == 0) return "redirect:/home/member/list";
 				else {
 					pageNumber--; 
 				}
@@ -119,28 +119,28 @@ public class OpenNewsFeedListController extends BaseController {
 				if (pageNumber+1 < totalPages) pageNumber++;
 			}
 			
-			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "recordAddDate"));
 			
-			Page<NewsFeed> page;
+			Page<Member> page;
 			
-			NewsFeed obj = (NewsFeed) request.getSession().getAttribute("openSearch_newsFeed");
+			Member obj = (Member) request.getSession().getAttribute("homeSearch_member");
 			
 			if (obj == null) {
-				page = this.newsFeedRepo.findAll(pageable);
-				obj = new NewsFeed();
+				page = this.memberRepo.findAll(pageable);
+				obj = new Member();
 				obj.setSearchString("");
 			} else {
 				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
-					page = this.newsFeedRepo.findAll(pageable);
+					page = this.memberRepo.findAll(pageable);
 				} else {
-					page = this.newsFeedRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+					page = this.memberRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
 				}
 			}
 			
 			totalPages = page.getTotalPages();
 			
-			request.getSession().setAttribute("openSearch_newsFeed", obj);
-			model.addAttribute("newsFeed", obj);
+			request.getSession().setAttribute("homeSearch_member", obj);
+			model.addAttribute("member", obj);
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
@@ -155,15 +155,15 @@ public class OpenNewsFeedListController extends BaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listNewsFeedOpen_pageNumber", pageNumber);
-			request.getSession().setAttribute("listNewsFeedOpen_totalPages", totalPages);
+			request.getSession().setAttribute("listMemberHome_pageNumber", pageNumber);
+			request.getSession().setAttribute("listMemberHome_totalPages", totalPages);
 			
-			model.addAttribute("listNewsFeed", page.getContent());
+			model.addAttribute("listMember", page.getContent());
 			
-			return "open/newsFeed/list";
+			return "home/member/list";
 		
 		} catch(Exception e) {
-			return "redirect:/newsFeed/list";
+			return "redirect:/home/member/list";
 		}
 	}
 }

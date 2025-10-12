@@ -39,4 +39,6 @@ public interface MemberRepo extends JpaRepository<Member, Long>{
 	
 	public List<Member> findBySubEndDateGreaterThan(Date date);
 	
+	List<Member> findByRecordAddDateIsNull();
+	
 }

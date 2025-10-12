@@ -181,6 +181,7 @@ public class MemberApplicationService {
 		obj.setStatus(true);
 		obj.setStatusDate(Calendar.getInstance().getTime());
 	
+		obj.setUpdateDefaults(updateBy);
 		this.memberApplicationRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Member", member.toString(), member.getId(), Calendar.getInstance().getTime(), "UPD");

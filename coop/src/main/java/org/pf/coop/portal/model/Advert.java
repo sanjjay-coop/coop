@@ -3,17 +3,23 @@ package org.pf.coop.portal.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_advert")
-public class Advert implements Serializable {
+public class Advert extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -41,6 +47,9 @@ public class Advert implements Serializable {
 	
 	@Column(name="f_exp_date", nullable=false)
 	private Date expDate;
+	
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -90,6 +99,14 @@ public class Advert implements Serializable {
 		this.expDate = expDate;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "Advert [" + (id != null ? "id=" + id + ", " : "") + (name != null ? "name=" + name + ", " : "")
@@ -97,5 +114,23 @@ public class Advert implements Serializable {
 				+ (location != null ? "location=" + location + ", " : "")
 				+ (pubDate != null ? "pubDate=" + pubDate + ", " : "") + (expDate != null ? "expDate=" + expDate : "")
 				+ "]";
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+		
+		this.setSearchString((name != null ? name + ", " : "")
+				+ (location != null ? location + ", " : ""));
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
+		
+		this.setSearchString((name != null ? name + ", " : "")
+				+ (location != null ? location + ", " : ""));
 	}
 }

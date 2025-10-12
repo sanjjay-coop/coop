@@ -19,4 +19,6 @@ public interface MemberApplicationRepo extends JpaRepository<MemberApplication, 
 	Page<MemberApplication> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 	
 	List<MemberApplication> findBySearchString(String searchString);
+	
+	List<MemberApplication> findByRecordAddDateIsNull();
 }

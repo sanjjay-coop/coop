@@ -37,6 +37,8 @@ public class AdvertService {
 	@Transactional
 	public TransactionResult addAdvert(Advert obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = advertRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Advert", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -78,6 +80,8 @@ public class AdvertService {
 		obj.setContent(advert.getContent());
 		obj.setExpDate(advert.getExpDate());
 		obj.setPubDate(advert.getPubDate());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = advertRepo.save(obj);
 		

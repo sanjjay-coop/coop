@@ -16,6 +16,16 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/home/profile}">
+								<i class="bi bi-chevron-double-left"></i> To Profile
+							</a>
+						</div>
+					</div>
+				</div>
+				
 				<form th:action= "${servletRequest.requestURI}" th:object="${fileUploadForm}" method="POST" enctype="multipart/form-data">
 				  	
 				  	<input type="hidden" class="form-control" th:field="*{description}">

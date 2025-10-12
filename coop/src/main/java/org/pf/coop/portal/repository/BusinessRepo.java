@@ -43,4 +43,6 @@ public interface BusinessRepo extends JpaRepository<Business, Long>{
 	Page<Business> findByEnabledAndSearchStringContainingIgnoreCase(Boolean enabled, String searchString, Pageable pageable);
 	
 	List<Business> findByEnabledAndSearchString(Boolean enabled, String searchString);
+	
+	List<Business> findByRecordAddDateIsNull();
 }

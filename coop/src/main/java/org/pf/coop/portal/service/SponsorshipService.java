@@ -56,6 +56,8 @@ public class SponsorshipService {
 	@Transactional
 	public TransactionResult addSponsorship(Sponsorship obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = sponsorshipRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Sponsorship", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -97,6 +99,8 @@ public class SponsorshipService {
 		obj.setLastDate(sponsorship.getLastDate());
 		obj.setPubDate(sponsorship.getPubDate());
 		obj.setTitle(sponsorship.getTitle());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = sponsorshipRepo.save(obj);
 		

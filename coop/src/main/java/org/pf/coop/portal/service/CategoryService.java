@@ -37,6 +37,8 @@ public class CategoryService {
 	@Transactional
 	public TransactionResult addCategory(Category obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = categoryRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Category", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class CategoryService {
 		Category obj = oe.get();
 		
 		obj.setName(category.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = categoryRepo.save(obj);
 		

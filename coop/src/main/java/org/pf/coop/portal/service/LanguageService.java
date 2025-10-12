@@ -37,6 +37,8 @@ public class LanguageService {
 	@Transactional
 	public TransactionResult addLanguage(Language obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = languageRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Language", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class LanguageService {
 		Language obj = oe.get();
 				
 		obj.setName(language.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = languageRepo.save(obj);
 		

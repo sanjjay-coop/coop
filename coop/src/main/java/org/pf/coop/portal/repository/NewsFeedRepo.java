@@ -19,5 +19,7 @@ public interface NewsFeedRepo extends JpaRepository<NewsFeed, Long>{
 	Page<NewsFeed> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 	
 	List<NewsFeed> findBySearchString(String searchString);
+	
+	List<NewsFeed> findByRecordAddDateIsNull();
 }
 

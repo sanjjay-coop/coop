@@ -71,4 +71,6 @@ public interface ArticleRepo extends JpaRepository<Article, Long>{
 	Page<Article> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 	
 	List<Article> findBySearchString(String searchString);
+	
+	List<Article> findByRecordAddDateIsNull();
 }

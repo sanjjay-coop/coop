@@ -80,6 +80,8 @@ public class BulkEmailService {
 				bm.setStatus("N");
 				bm.setDateSent((Calendar.getInstance()).getTime());
 				
+				bm.setAddDefaults(updateBy);
+				
 				bulkEmailRepo.save(bm);
 			}
 			
@@ -121,6 +123,8 @@ public class BulkEmailService {
 		obj.setMessage(bulkEmail.getMessage());
 		obj.setStatus(bulkEmail.getStatus());
 		obj.setDateSent(bulkEmail.getDateSent());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = bulkEmailRepo.save(obj);
 		

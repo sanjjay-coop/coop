@@ -37,6 +37,7 @@ public class GenderService {
 	@Transactional
 	public TransactionResult addGender(Gender obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
 		obj = genderRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Gender", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +75,8 @@ public class GenderService {
 		Gender obj = oe.get();
 		
 		obj.setName(gender.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = genderRepo.save(obj);
 		

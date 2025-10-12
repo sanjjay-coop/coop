@@ -37,6 +37,8 @@ public class EducationLevelService {
 	@Transactional
 	public TransactionResult addEducationLevel(EducationLevel obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = educationLevelRepo.save(obj);
 		
 		audit = new Audit(updateBy, "EducationLevel", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class EducationLevelService {
 		EducationLevel obj = oe.get();
 		
 		obj.setName(educationLevel.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = educationLevelRepo.save(obj);
 		

@@ -37,6 +37,8 @@ public class SalutationService {
 	@Transactional
 	public TransactionResult addSalutation(Salutation obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = salutationRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Salutation", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -73,6 +75,8 @@ public class SalutationService {
 		
 		Salutation obj = oe.get();
 		obj.setName(salutation.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = salutationRepo.save(obj);
 		

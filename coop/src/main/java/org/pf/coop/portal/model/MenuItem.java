@@ -2,19 +2,25 @@ package org.pf.coop.portal.model;
 
 import java.io.Serializable;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_menu_item")
-public class MenuItem implements Serializable{
+public class MenuItem extends BaseObject implements Serializable{
 
 	/**
 	 * 
@@ -46,6 +52,9 @@ public class MenuItem implements Serializable{
 	
 	@Column(name="f_new_page", nullable=false)
 	private Boolean newPage;
+	
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -103,6 +112,14 @@ public class MenuItem implements Serializable{
 		this.newPage = newPage;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "MenuItem [" + (id != null ? "id=" + id + ", " : "") + (title != null ? "title=" + title + ", " : "")
@@ -110,6 +127,28 @@ public class MenuItem implements Serializable{
 				+ (itemType != null ? "itemType=" + itemType + ", " : "") + (url != null ? "url=" + url + ", " : "")
 				+ (category != null ? "category=" + category + ", " : "")
 				+ (newPage != null ? "newPage=" + newPage : "") + "]";
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+		
+		this.setSearchString((title != null ? title + ", " : "")
+				+ (location != null ? location + ", " : "")
+				+ (itemType != null ? itemType + ", " : "") 
+				+ (category != null ? category + ", " : ""));
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
+		
+		this.setSearchString((title != null ? title + ", " : "")
+				+ (location != null ? location + ", " : "")
+				+ (itemType != null ? itemType + ", " : "") 
+				+ (category != null ? category + ", " : ""));
 	}
 	
 }

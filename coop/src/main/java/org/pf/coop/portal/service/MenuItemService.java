@@ -37,6 +37,8 @@ public class MenuItemService {
 	@Transactional
 	public TransactionResult addMenuItem(MenuItem obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = menuItemRepo.save(obj);
 	
 		audit = new Audit(updateBy, "MenuItem", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -79,6 +81,8 @@ public class MenuItemService {
 		obj.setTitle(menuItem.getTitle());
 		obj.setUrl(menuItem.getUrl());
 		obj.setNewPage(menuItem.getNewPage());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = menuItemRepo.save(obj);
 		

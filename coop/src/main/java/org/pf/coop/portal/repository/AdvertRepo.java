@@ -17,4 +17,6 @@ public interface AdvertRepo extends JpaRepository<Advert, Long>{
 	
 	@Query("select art from Advert art where art.pubDate <=:today and art.expDate >=:today and art.location =:location order by art.pubDate desc")
 	public List<Advert> listAdvertForPublication(Date today, String location);
+	
+	List<Advert> findByRecordAddDateIsNull();
 }

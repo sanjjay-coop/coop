@@ -39,6 +39,8 @@ public class EventUpdateService {
 		
 		obj.setUpdateDate(Calendar.getInstance().getTime());
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = eventUpdateRepo.save(obj);
 	
 		audit = new Audit(updateBy, "EventUpdate", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");

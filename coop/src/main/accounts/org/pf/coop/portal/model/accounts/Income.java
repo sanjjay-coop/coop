@@ -4,19 +4,25 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_accounts_income")
-public class Income implements Serializable {
+public class Income extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -57,6 +63,9 @@ public class Income implements Serializable {
 	
 	@Column(name="f_update_date", nullable=false)
 	private Date updateDate;
+
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -138,6 +147,14 @@ public class Income implements Serializable {
 		this.updateDate = updateDate;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "Income [" + (id != null ? "id=" + id + ", " : "") + (amount != null ? "amount=" + amount + ", " : "")
@@ -149,6 +166,32 @@ public class Income implements Serializable {
 				+ (modeOfReceipt != null ? "modeOfReceipt=" + modeOfReceipt + ", " : "")
 				+ (headOfAccount != null ? "headOfAccount=" + headOfAccount + ", " : "")
 				+ (updateDate != null ? "updateDate=" + updateDate : "") + "]";
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+		
+		this.setSearchString((amount != null ? amount + ", " : "")
+				+ (narration != null ? narration + ", " : "")
+				+ (transactionDate != null ? transactionDate + ", " : "")
+				+ (receiptNumber != null ? receiptNumber + ", " : "")
+				+ (receiptDate != null ? receiptDate + ", " : "")
+				+ (receivedFrom != null ? receivedFrom + ", " : ""));
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
+		
+		this.setSearchString((amount != null ? amount + ", " : "")
+				+ (narration != null ? narration + ", " : "")
+				+ (transactionDate != null ? transactionDate + ", " : "")
+				+ (receiptNumber != null ? receiptNumber + ", " : "")
+				+ (receiptDate != null ? receiptDate + ", " : "")
+				+ (receivedFrom != null ? receivedFrom + ", " : ""));
 	}
 	
 }

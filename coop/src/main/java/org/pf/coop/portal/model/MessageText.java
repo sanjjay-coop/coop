@@ -2,17 +2,23 @@ package org.pf.coop.portal.model;
 
 import java.io.Serializable;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_message_text")
-public class MessageText  implements Serializable {
+public class MessageText extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -34,6 +40,9 @@ public class MessageText  implements Serializable {
 	
 	@Column(columnDefinition = "TEXT", name="f_content", nullable=false)
 	private String content;
+	
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -65,6 +74,14 @@ public class MessageText  implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
 	}
 
 	@Override
@@ -108,5 +125,23 @@ public class MessageText  implements Serializable {
 		str = str.replace("${invitation.url}", siteUrl + "acceptInvitation/" + invitation.getId() + "/" + invitation.getRandom());
 		
 		return str;
+	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+		
+		this.setSearchString((messageFor != null ? messageFor + ", " : "")
+				+ (subject != null ? subject + ", " : ""));
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
+		
+		this.setSearchString((messageFor != null ? messageFor + ", " : "")
+				+ (subject != null ? subject + ", " : ""));
 	}
 }

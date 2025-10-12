@@ -13,4 +13,6 @@ public interface OrganizationRepo extends JpaRepository<Organization, Long>{
 	
 	List<Organization> findBySearchString(String searchString);
 	
+	List<Organization> findByRecordAddDateIsNull();
+	
 }

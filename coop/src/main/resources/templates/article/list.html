@@ -15,18 +15,20 @@
 				<h4 class="h4 pb-3">Articles</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<div class="row p-2">
+					<div class="h6 pb-2" th:text="'Total Records: ' + ${totalRecords}"></div>		
 					
-				<div class="card p-2 mb-3" th:each="article : ${listArticle}">
-					<h5 class="card-header bg-success-subtle bg-gradient" th:text="${article.title}"></h5>
-				  	<div class="card-body">
-						<p th:utext="${article.content}"></p>
-						<div style="font-size: small;">
-							<b>Categories: </b>
+					<div class="col-12 pb-3 mt-2 mb-2" th:each="article : ${listArticle}">
+						<div class="h3 text-success pb-2 px-4 mt-3 pt-2 rounded-2 bg-success-subtle bg-gradient " th:text="${article.title}"></div>
+						<div class="px-4" th:utext="${article.content}"></div>
+						<div class="small px-4 pb-3">
+							<span>Categories: </span>
 							<span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
-							<b> Last Update: </b>
-							<span th:text="${#dates.format(article.updateDate, 'dd/MM/yyyy')}"></span>
+							<span class="px-4" th:text="${'Last Update: ' + article.updateDate}"></span>
 						</div>
-				  	</div>
+					</div>
+				
 				</div>
 				
 				<nav aria-label="Page navigation example" th:if="${totalPages > 1}">

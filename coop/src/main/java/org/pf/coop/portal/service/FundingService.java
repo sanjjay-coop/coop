@@ -41,6 +41,8 @@ public class FundingService {
 		obj.setApplicationDate(Calendar.getInstance().getTime());
 		obj.setStatus("RECEIVED");
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = fundingRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Funding", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -99,6 +101,9 @@ public class FundingService {
 		obj.setStatus(funding.getStatus());
 		obj.setRemarks(funding.getRemarks());
 		obj.setStatusDate(Calendar.getInstance().getTime());
+		
+		obj.setUpdateDefaults(updateBy);
+		
 		obj = fundingRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Funding", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "UPDSTATUS");

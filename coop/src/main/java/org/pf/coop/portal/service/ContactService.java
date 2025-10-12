@@ -36,6 +36,9 @@ public class ContactService {
 	
 	@Transactional
 	public TransactionResult addContact(Contact obj, String updateBy) {
+		
+		obj.setAddDefaults(updateBy);
+		
 		obj = contactRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Contact", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -78,6 +81,8 @@ public class ContactService {
 		obj.setFax(contact.getFax());
 		obj.setName(contact.getName());
 		obj.setPhone(contact.getPhone());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = contactRepo.save(obj);
 		

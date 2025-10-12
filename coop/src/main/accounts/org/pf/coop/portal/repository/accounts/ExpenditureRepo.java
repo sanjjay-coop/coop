@@ -19,4 +19,6 @@ public interface ExpenditureRepo extends JpaRepository<Expenditure, Long>{
 			+ "e.transactionDate <=:endDate "
 			+ "order by e.transactionDate asc")
 	public List<Expenditure> listExpenditure(Date startDate, Date endDate);
+	
+	List<Expenditure> findByRecordAddDateIsNull();
 }

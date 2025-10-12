@@ -50,6 +50,8 @@ public class JobService {
 		obj.setAddDate(Calendar.getInstance().getTime());
 		obj.setEnabled(false);
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = jobRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Job", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -109,6 +111,7 @@ public class JobService {
 			obj.setFileData(job.getFile().getBytes());
 		}
 		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = jobRepo.save(obj);
 		
@@ -132,6 +135,8 @@ public class JobService {
 		
 		audit = new Audit(updateBy, "Job", status.toString(), obj.getId(), Calendar.getInstance().getTime(), "ENABLE/DISABLE");
 		auditRepo.save(audit);
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		jobRepo.save(obj);
 

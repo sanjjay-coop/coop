@@ -9,24 +9,32 @@ import org.pf.coop.common.RandomString;
 import org.pf.coop.common.TransactionResult;
 import org.pf.coop.portal.controller.IndexBaseController;
 import org.pf.coop.portal.email.EmailService;
+import org.pf.coop.portal.model.Caste;
 import org.pf.coop.portal.model.EducationLevel;
 import org.pf.coop.portal.model.Gender;
 import org.pf.coop.portal.model.Invitation;
+import org.pf.coop.portal.model.MaritalStatus;
 import org.pf.coop.portal.model.Member;
 import org.pf.coop.portal.model.MemberGroup;
 import org.pf.coop.portal.model.MemberType;
 import org.pf.coop.portal.model.MessageText;
+import org.pf.coop.portal.model.Occupation;
 import org.pf.coop.portal.model.Role;
 import org.pf.coop.portal.model.Salutation;
+import org.pf.coop.portal.model.Tribe;
+import org.pf.coop.portal.repository.CasteRepo;
 import org.pf.coop.portal.repository.EducationLevelRepo;
 import org.pf.coop.portal.repository.GenderRepo;
 import org.pf.coop.portal.repository.InvitationRepo;
+import org.pf.coop.portal.repository.MaritalStatusRepo;
 import org.pf.coop.portal.repository.MemberGroupRepo;
 import org.pf.coop.portal.repository.MemberRepo;
 import org.pf.coop.portal.repository.MemberTypeRepo;
 import org.pf.coop.portal.repository.MessageTextRepo;
+import org.pf.coop.portal.repository.OccupationRepo;
 import org.pf.coop.portal.repository.RoleRepo;
 import org.pf.coop.portal.repository.SalutationRepo;
+import org.pf.coop.portal.repository.TribeRepo;
 import org.pf.coop.portal.service.InvitationService;
 import org.pf.coop.portal.service.MemberService;
 import org.pf.coop.portal.validators.add.MemberAddValidator;
@@ -115,6 +123,38 @@ public class AcceptInvitationController extends IndexBaseController {
 	@ModelAttribute("listSalutation")
 	public List<Salutation> getListSalutation(){
 		return (List<Salutation>) this.salutationRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	}
+	
+	@Autowired
+	MaritalStatusRepo maritalStatusRepo;
+	
+	@ModelAttribute("listMaritalStatus")
+	public List<MaritalStatus> getListMaritalStatus(){
+		return (List<MaritalStatus>) this.maritalStatusRepo.findAll(Sort.by(Sort.Direction.ASC, "status"));
+	}
+	
+	@Autowired
+	CasteRepo casteRepo;
+	
+	@ModelAttribute("listCaste")
+	public List<Caste> getListCaste(){
+		return (List<Caste>) this.casteRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	}
+	
+	@Autowired
+	TribeRepo tribeRepo;
+	
+	@ModelAttribute("listTribe")
+	public List<Tribe> getListTribe(){
+		return (List<Tribe>) this.tribeRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	}
+	
+	@Autowired
+	OccupationRepo occupationRepo;
+	
+	@ModelAttribute("listOccupation")
+	public List<Occupation> getListOccupation(){
+		return (List<Occupation>) this.occupationRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
 	}
 	
 	@GetMapping("/{id}/{random}")

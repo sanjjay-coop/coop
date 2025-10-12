@@ -49,6 +49,8 @@ public class ParametersService {
 	@Transactional
 	public TransactionResult addParameters(Parameters obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = parametersRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Parameters", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");

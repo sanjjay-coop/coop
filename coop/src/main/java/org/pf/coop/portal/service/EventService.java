@@ -37,6 +37,8 @@ public class EventService {
 	@Transactional
 	public TransactionResult addEvent(Event obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = eventRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Event", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -79,6 +81,8 @@ public class EventService {
 		obj.setPublish(event.getPublish());
 		obj.setStartDate(event.getStartDate());
 		obj.setTitle(event.getTitle());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = eventRepo.save(obj);
 		

@@ -37,6 +37,8 @@ public class OccupationService {
 	@Transactional
 	public TransactionResult addOccupation(Occupation obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = occupationRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Occupation", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class OccupationService {
 		Occupation obj = oe.get();
 				
 		obj.setName(occupation.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = occupationRepo.save(obj);
 		

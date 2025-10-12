@@ -5,24 +5,26 @@ import java.util.List;
 
 import org.pf.coop.common.TransactionResult;
 import org.pf.coop.portal.controller.home.HomeBaseController;
+import org.pf.coop.portal.model.Caste;
 import org.pf.coop.portal.model.EducationLevel;
 import org.pf.coop.portal.model.Gender;
 import org.pf.coop.portal.model.MaritalStatus;
 import org.pf.coop.portal.model.Member;
 import org.pf.coop.portal.model.MemberGroup;
-import org.pf.coop.portal.model.MemberType;
 import org.pf.coop.portal.model.Occupation;
 import org.pf.coop.portal.model.Role;
 import org.pf.coop.portal.model.Salutation;
+import org.pf.coop.portal.model.Tribe;
+import org.pf.coop.portal.repository.CasteRepo;
 import org.pf.coop.portal.repository.EducationLevelRepo;
 import org.pf.coop.portal.repository.GenderRepo;
 import org.pf.coop.portal.repository.MaritalStatusRepo;
 import org.pf.coop.portal.repository.MemberGroupRepo;
 import org.pf.coop.portal.repository.MemberRepo;
-import org.pf.coop.portal.repository.MemberTypeRepo;
 import org.pf.coop.portal.repository.OccupationRepo;
 import org.pf.coop.portal.repository.RoleRepo;
 import org.pf.coop.portal.repository.SalutationRepo;
+import org.pf.coop.portal.repository.TribeRepo;
 import org.pf.coop.portal.service.MemberService;
 import org.pf.coop.portal.validators.edit.MemberSelfEditValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +51,6 @@ public class MemberProfileController extends HomeBaseController {
 	
 	@Autowired
 	private MemberGroupRepo memberGroupRepo;
-	
-	@Autowired
-	private MemberTypeRepo memberTypeRepo;
 	
 	@Autowired
 	private RoleRepo roleRepo;
@@ -86,11 +85,6 @@ public class MemberProfileController extends HomeBaseController {
 		return (List<MemberGroup>) this.memberGroupRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
 	}
 	
-	@ModelAttribute("listMemberType")
-	public List<MemberType> getListMemberType(){
-		return (List<MemberType>) this.memberTypeRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
-	}
-	
 	@ModelAttribute("listRole")
 	public List<Role> getListRole(){
 		return (List<Role>) this.roleRepo.findAll(Sort.by(Sort.Direction.ASC, "code"));
@@ -109,6 +103,22 @@ public class MemberProfileController extends HomeBaseController {
 	@ModelAttribute("listOccupation")
 	public List<Occupation> getListOccupation(){
 		return (List<Occupation>) this.occupationRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	}
+	
+	@Autowired
+	CasteRepo casteRepo;
+	
+	@ModelAttribute("listCaste")
+	public List<Caste> getListCaste(){
+		return (List<Caste>) this.casteRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	}
+	
+	@Autowired
+	TribeRepo tribeRepo;
+	
+	@ModelAttribute("listTribe")
+	public List<Tribe> getListTribe(){
+		return (List<Tribe>) this.tribeRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
 	}
 	
 	@GetMapping("/home/profile")

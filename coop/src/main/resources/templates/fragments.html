@@ -59,13 +59,13 @@
 </head>
 <body>
 	<div class="container-fluid" th:fragment="header">
-		<div class="row p-2">
+		<div class="row p-2" style="max-height: 150px;">
 			<div class="col-sm-1">
 				<img th:src="@{/siteLogo}" alt="Site logo" class="img-fluid rounded rounded-3" style="min-width: 125px;"/>
 			</div>
-			<div class="col-sm-5 my-auto">
-				<div class="h2 text-success" th:text="${params?.header}"></div>
-				<div class="h6 text-success" th:text="${params?.subHeader}"></div>
+			<div class="col-sm-5 my-auto ps-5">
+				<div class="h1 text-success" th:text="${params?.header}"></div>
+				<div class="h5 text-success" th:text="${params?.subHeader}"></div>
 			</div>
 			<div class="col-sm-6 text-end" th:if="${advert.location == 'top'}" th:each="advert : ${listAdvert}">
 				<div th:utext="${advert.content}"></div>	
@@ -298,10 +298,10 @@
 			</div>
 		</div>
 		<div class="row p-2">
-			<div class="col-3 text-center" th:each="advert : ${listAdvert}">
-				<div th:if="${advert.location == 'footer'}" th:utext="${advert.content}"></div>
+			<div th:if="${advert.location == 'footer'}" class="col-3 text-center p-2" th:each="advert : ${listAdvert}">
+				<div class="text-center" th:utext="${advert.content}"></div>
 			</div>
-			<div class="col-12 text-end">
+			<div class="col-12 text-end p-2">
 				<img th:src="@{/images/coop-logo-new.png}" height="25px;">
 				<br/><a class="text-success" href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;" th:text="#{copyright}"></a>
 			</div>

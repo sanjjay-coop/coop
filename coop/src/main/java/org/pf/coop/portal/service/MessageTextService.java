@@ -37,6 +37,8 @@ public class MessageTextService {
 	@Transactional
 	public TransactionResult addMessageText(MessageText obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = messageTextRepo.save(obj);
 	
 		audit = new Audit(updateBy, "MessageText", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -76,6 +78,8 @@ public class MessageTextService {
 		obj.setMessageFor(messageText.getMessageFor());
 		obj.setSubject(messageText.getSubject());
 		obj.setContent(messageText.getContent());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = messageTextRepo.save(obj);
 		

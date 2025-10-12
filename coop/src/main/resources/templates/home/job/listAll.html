@@ -33,9 +33,11 @@
 									<label class="col-sm-4 text-success" th:text="#{job.contactEmail}"></label><span class="col-sm-8" th:text="${ob.contactEmail}"></span> 
 									<label class="col-sm-4 text-success" th:text="#{job.url}"></label><span class="col-sm-8" th:text="${ob.url}"></span>
 									<label class="col-sm-4 text-success" th:text="#{job.lastDate}"></label><span class="col-sm-8" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></span>	  
-									<a th:if="${ob.fileData != null}" class="nav-link" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
-							          	<img th:src="@{/images/bootstrap-icons/download.svg}"/>
-							        </a>
+									<div class="col-sm-12">
+										<a th:if="${ob.fileData != null}" class="nav-link p-2" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
+							          		<i class="bi bi-download"></i>
+							        	</a>
+							        </div>
 						       	</div>
 						  	</div>
 						</div>

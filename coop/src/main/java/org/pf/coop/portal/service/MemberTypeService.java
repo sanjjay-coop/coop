@@ -37,6 +37,8 @@ public class MemberTypeService {
 	@Transactional
 	public TransactionResult addMemberType(MemberType obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = memberTypeRepo.save(obj);
 		
 		audit = new Audit(updateBy, "MemberType", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class MemberTypeService {
 		MemberType obj = oe.get();
 		
 		obj.setName(memberType.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = memberTypeRepo.save(obj);
 		

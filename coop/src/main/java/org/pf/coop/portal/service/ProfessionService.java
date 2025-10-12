@@ -37,6 +37,8 @@ public class ProfessionService {
 	@Transactional
 	public TransactionResult addProfession(Profession obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = professionRepo.save(obj);
 	
 		audit = new Audit(updateBy, "Profession", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class ProfessionService {
 		Profession obj = oe.get();
 				
 		obj.setName(profession.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = professionRepo.save(obj);
 		

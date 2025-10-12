@@ -40,6 +40,9 @@ public class SponsorshipApplicationService {
 		
 		obj.setApplicationDate(Calendar.getInstance().getTime());
 		obj.setStatus("RECEIVED");
+		
+		obj.setAddDefaults(updateBy);
+		
 		obj = sponsorshipApplicationRepo.save(obj);
 	
 		audit = new Audit(updateBy, "SponsorshipApplication", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -79,6 +82,8 @@ public class SponsorshipApplicationService {
 		obj.setStatus(sponsorshipApplication.getStatus());
 		obj.setRemarks(sponsorshipApplication.getRemarks());
 		obj.setStatusDate(sponsorshipApplication.getStatusDate());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = sponsorshipApplicationRepo.save(obj);
 		

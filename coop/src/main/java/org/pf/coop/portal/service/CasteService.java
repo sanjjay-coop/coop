@@ -37,6 +37,8 @@ public class CasteService {
 	@Transactional
 	public TransactionResult addCaste(Caste obj, String updateBy) {
 		
+		obj.setAddDefaults(updateBy);
+		
 		obj = casteRepo.save(obj);
 		
 		audit = new Audit(updateBy, "Caste", obj.toString(), obj.getId(), Calendar.getInstance().getTime(), "ADD");
@@ -74,6 +76,8 @@ public class CasteService {
 		Caste obj = oe.get();
 		
 		obj.setName(caste.getName());
+		
+		obj.setUpdateDefaults(updateBy);
 		
 		obj = casteRepo.save(obj);
 		

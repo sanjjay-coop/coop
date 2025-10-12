@@ -10,4 +10,6 @@ public interface MenuItemRepo extends JpaRepository<MenuItem, Long>{
 
 	@Query("select art from MenuItem art where art.location =:location order by art.title asc")
 	public List<MenuItem> listMenuItemLocation(String location);
+	
+	List<MenuItem> findByRecordAddDateIsNull();
 }

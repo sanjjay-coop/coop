@@ -3,17 +3,23 @@ package org.pf.coop.portal.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.pf.coop.common.BaseObject;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_bulk_email")
-public class BulkEmail implements Serializable {
+public class BulkEmail extends BaseObject implements Serializable {
 
 	/**
 	 * 
@@ -41,6 +47,9 @@ public class BulkEmail implements Serializable {
 	
 	@Column(name="f_status", length=5, nullable=true)
 	private String status;
+	
+	@Transient
+	private String searchFor;
 
 	public Long getId() {
 		return id;
@@ -90,6 +99,14 @@ public class BulkEmail implements Serializable {
 		this.status = status;
 	}
 
+	public String getSearchFor() {
+		return searchFor;
+	}
+
+	public void setSearchFor(String searchFor) {
+		this.searchFor = searchFor;
+	}
+
 	@Override
 	public String toString() {
 		return "BulkEmail [" + (id != null ? "id=" + id + ", " : "") + (bcc != null ? "bcc=" + bcc + ", " : "")
@@ -106,4 +123,22 @@ public class BulkEmail implements Serializable {
 		
 		return str;
 	}
+
+	@Override
+	public void setAddDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setAddDefaults(modifiedBy);
+		
+		this.setSearchString((subject != null ? subject + ", " : ""));
+	}
+
+	@Override
+	public void setUpdateDefaults(String modifiedBy) {
+		// TODO Auto-generated method stub
+		super.setUpdateDefaults(modifiedBy);
+		
+		this.setSearchString((subject != null ? subject + ", " : ""));
+	}
+	
+	
 }

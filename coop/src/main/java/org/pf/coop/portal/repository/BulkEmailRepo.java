@@ -14,4 +14,6 @@ public interface BulkEmailRepo extends JpaRepository<BulkEmail, Long>{
 			+ "order by o.id asc "
 			+ "limit 1")
 	public List<BulkEmail> listBulkEmailForSending();
+	
+	List<BulkEmail> findByRecordAddDateIsNull();
 }
