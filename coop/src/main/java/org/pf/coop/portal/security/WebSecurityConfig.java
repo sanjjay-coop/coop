@@ -28,7 +28,7 @@ public class WebSecurityConfig {
         return provider;
     }
 
-	@SuppressWarnings({ "removal", "deprecation" })
+	@SuppressWarnings({ "deprecation", "removal" })
 	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -76,7 +76,9 @@ public class WebSecurityConfig {
                         .loginPage("/login").permitAll()
                         .defaultSuccessUrl("/home", true))
                 .logout(logout -> logout.invalidateHttpSession(true)
+                		//.logoutUrl("/logout")
                         .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/logout-success").permitAll());
 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+		
+		<div class="row px-4 py-2">
+
+			<div class="col-12">
+			
+				<h4 class="h4 pb-3">Gallery (View)</h4>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<div class="row pb-3">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/open/gallery/list/current}"><i class="bi bi-chevron-double-left"></i> To List</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label text-success" th:text="#{gallery.title}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${gallery.title}"></span>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label text-success" th:text="#{gallery.description}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:utext="${gallery.description}"></span>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label text-success" th:text="#{gallery.date}"></label>
+					<div class="col-sm-10">
+						<span class="form-control border-light" th:text="${#dates.format(gallery.date, 'dd-MM-yyyy')}"></span>
+					</div>
+				</div>
+			
+				<div class="row m-1 p-1 bg-light border border-success border-1 rounded-3" style="max-height: 600px; overflow: scroll;" id="bootstrap-image-gallery">
+				    <div class="col-sm-3 p-2 text-center" th:each="obj,iterator : ${gallery.photos}">
+				        <a class="lg-item" 
+				            th:data-src="@{/open/gallery/photo/download/{id}(id=${obj.id})}">
+							<img th:src="@{/open/gallery/photo/download/{id}(id=${obj.id})}"
+								class="border rounded rounded-3 img-fluid" th:alt="${obj.fileName}" th:title="${obj.fileName}" />
+				        </a>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+	
+	<script type="text/javascript">
+		
+		window.lightGallery(document.querySelector('#bootstrap-image-gallery'), {
+		    selector: '.lg-item',
+		    plugins: [
+		        lgZoom,
+		        lgThumbnail
+		    ],
+		});
+	</script>
+</body>	
+</html>

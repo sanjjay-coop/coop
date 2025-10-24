@@ -7,17 +7,23 @@ import java.util.List;
 import org.pf.coop.portal.model.Article;
 import org.pf.coop.portal.model.Carousel;
 import org.pf.coop.portal.model.Event;
+import org.pf.coop.portal.model.Gallery;
 import org.pf.coop.portal.model.NewsFeed;
 import org.pf.coop.portal.repository.ArticleRepo;
 import org.pf.coop.portal.repository.BusinessRepo;
 import org.pf.coop.portal.repository.CarouselRepo;
 import org.pf.coop.portal.repository.EventRepo;
+import org.pf.coop.portal.repository.GalleryRepo;
 import org.pf.coop.portal.repository.JobRepo;
 import org.pf.coop.portal.repository.MemberRepo;
 import org.pf.coop.portal.repository.NewsFeedRepo;
 import org.pf.coop.portal.repository.library.TitleRepo;
 import org.pf.coop.portal.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,6 +89,19 @@ public class IndexController extends IndexBaseController {
 	@ModelAttribute("countTitle")
 	public long getCountTitle(){
 		return this.titleRepo.count();
+	}
+	
+	@Autowired
+	private GalleryRepo galleryRepo;
+	
+	@ModelAttribute("listHomeGallery")
+	public List<Gallery> getListGallery(){
+		
+		Pageable pageable = PageRequest.of(0, 4, Sort.by(Sort.Direction.DESC, "date"));
+		
+		Page<Gallery> page = this.galleryRepo.findAll(pageable);
+		
+		return page.getContent();
 	}
 	
 	@GetMapping("/")

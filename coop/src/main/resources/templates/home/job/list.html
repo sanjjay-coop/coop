@@ -49,10 +49,13 @@
 							<td th:text="${ob.firmName}"></td>
         					<td class="text-center" th:text="${ob.salary}"></td>
         					<td class="text-center" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></td>
-							<td class="text-center" th:text="${ob.enabled}"></td>
+							<td class="text-center">
+								<i th:if="${ob.enabled == true}" class="bi bi-check-lg"></i>
+								<i th:if="${ob.enabled != true}" class="bi bi-x-lg"></i>
+							</td>
         					<td>
         						<a th:if="${ob.fileData != null}" class="nav-link" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
-						          	<img th:src="@{/images/bootstrap-icons/download.svg}"/>
+						          	<i class="bi bi-download"></i>
 						        </a>
         					</td>				
 							<td>
@@ -62,7 +65,7 @@
 							</td>
         					<td>
         						<a class="nav-link" th:href="@{/home/job/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-						          	<i class="bi bi-pencil-square"></i>
+						          	<i class="bi bi-vector-pen"></i>
 						        </a>
         					</td>
         					<td>

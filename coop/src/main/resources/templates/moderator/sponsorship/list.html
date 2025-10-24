@@ -46,9 +46,9 @@
 						<tr>
 							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{sponsorship.title}"></th>
-							<th class="col-sm-1 text-center" th:text="#{sponsorship.lastDate}"></th>
-							<th class="col-sm-1 text-center" th:text="#{sponsorship.pubDate}"></th>
-							<th class="col-sm-1 text-center" th:text="#{sponsorship.expDate}"></th>
+							<th class="col-sm-2 text-center" th:text="#{sponsorship.lastDate}"></th>
+							<th class="col-sm-2 text-center" th:text="#{sponsorship.pubDate}"></th>
+							<th class="col-sm-2 text-center" th:text="#{sponsorship.expDate}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
@@ -63,7 +63,7 @@
         					<td class="text-center" th:text="${#dates.format(ob.expDate, 'dd/MM/yyyy')}"></td>
         					<td>
         						<a class="nav-link" th:href="@{/moderator/sponsorship/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-						          	<i class="bi bi-pencil-square"></i>
+						          	<i class="bi bi-vector-pen"></i>
 						        </a>
         					</td>
         					<td>

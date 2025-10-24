@@ -175,7 +175,7 @@ public class ScheduledTasks {
 			str = str + "\n\n" + "New Articles\n";
 			int count = 1;
 			for(Article article : listArticle) {
-				str = str + "\n" + count++ + article.getTitle() + " [ " + article.getAuthor() + " ] ";
+				str = str + "\n" + count++ + ". " + article.getTitle() + " [ " + article.getAuthor() + " ] ";
 			}
 			i++;
 		}
@@ -186,7 +186,7 @@ public class ScheduledTasks {
 			str = str + "\n\n" + "New Businesses\n";
 			int count = 1;
 			for(Business business : listBusiness) {
-				str = str + "\n" + count++ + business.getBusinessName() + " [ " + business.getOwner().getName() + " ] ";
+				str = str + "\n" + count++ + ". " + business.getBusinessName() + " [ " + business.getOwner().getName() + " ] ";
 			}
 			i++;
 		}
@@ -197,7 +197,7 @@ public class ScheduledTasks {
 			str = str + "\n\n" + "New Job Vacancies\n";
 			int count = 1;
 			for(Job job : listJob) {
-				str = str + "\n" + count++ + job.getPosition() + " [ " + job.getFirmName() + ", " + job.getCity()+ " ] ";
+				str = str + "\n" + count++ + ". " + job.getPosition() + " [ " + job.getFirmName() + ", " + job.getCity()+ " ] ";
 			}
 			i++;
 		}
@@ -208,7 +208,7 @@ public class ScheduledTasks {
 			str = str + "\n\n" + "New Sponsorships\n";
 			int count = 1;
 			for(Sponsorship sponsorship : listSponsorship) {
-				str = str + "\n" + count++ + sponsorship.getTitle();
+				str = str + "\n" + count++ + ". " + sponsorship.getTitle();
 			}
 			i++;
 		}

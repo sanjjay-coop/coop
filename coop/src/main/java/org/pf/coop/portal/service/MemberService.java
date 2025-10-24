@@ -92,6 +92,7 @@ public class MemberService {
 		obj.setFirstName(member.getFirstName());
 		obj.setGender(member.getGender());
 		obj.setCaste(member.getCaste());
+		obj.setTribe(member.getTribe());
 		obj.setLastName(member.getLastName());
 		obj.setMemId(member.getMemId());
 		obj.setMemGroup(member.getMemGroup());
@@ -116,7 +117,6 @@ public class MemberService {
 		obj.setSubStartDate(member.getSubStartDate());
 		obj.setRoles(member.getRoles());	
 		obj.setMaritalStatus(member.getMaritalStatus());
-		obj.setCaste(member.getCaste());
 		
 		obj.setUpdateDefaults(updateBy);
 		obj = memberRepo.save(obj);

@@ -122,6 +122,9 @@ public class Sponsorship extends BaseObject implements Serializable {
 				+ (description != null ? "description=" + description + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setAddDefaults(modifiedBy);
+		
+		this.setSearchString((title != null ? title + ", " : "")
+				+ (description != null ? description + ", " : ""));
 	}
 
 	@Override
@@ -130,5 +133,8 @@ public class Sponsorship extends BaseObject implements Serializable {
 				+ (description != null ? "description=" + description + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setUpdateDefaults(modifiedBy);
+		
+		this.setSearchString((title != null ? title + ", " : "")
+				+ (description != null ? description + ", " : ""));
 	}
 }

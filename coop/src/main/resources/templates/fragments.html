@@ -49,16 +49,65 @@
 		}
 		
 		.required {
-			background-color: rgb(250, 253, 189);
+			background-color: #00FFFF;
 		}
 		
 		.amount {
 			text-align: right;
 		}
+		
+		body {
+			max-width: 1600px;
+			margin: 0 auto;
+			background-color: #F5F5F5;
+		}
 	</style>
 </head>
 <body>
 	<div class="container-fluid" th:fragment="header">
+		<div class="row p-2">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-lg bg-success-subtle bg-gradient rounded-1">
+					<div class="container-fluid px-5  justify-content-end">
+				    	<div id="navbarTopMenu">
+				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">	
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'events'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/event/list}">
+										<i class="bi bi-alarm"></i>
+										Upcoming Events
+									</a>
+								</li>		
+								<li class="nav-item small"  th:classappend="${viewLeftMenu == 'organizations'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/organization/list}">
+										<i class="bi bi-gem"></i>
+										Similar Organization
+									</a>
+								</li>
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'sponsorship'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/sponsorship/list}">
+										<i class="bi bi-trophy"></i>
+										Sponsorship
+									</a>
+								</li>		
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'gallery'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/gallery/list}">
+										<i class="bi bi-images"></i>
+										Photo Gallery
+									</a>
+								</li>
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'contacts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/contacts}">
+										<i class="bi bi-envelope"></i>
+										Contacts
+									</a>
+								</li>
+				      		</ul>
+				    	</div>
+				  	</div>
+				</nav>
+			</div>
+		</div>
+		
 		<div class="row p-2" style="max-height: 150px;">
 			<div class="col-sm-1">
 				<img th:src="@{/siteLogo}" alt="Site logo" class="img-fluid rounded rounded-3" style="min-width: 125px;"/>
@@ -125,6 +174,7 @@
 										<li><a class="dropdown-item" th:href="@{/moderator/bulkEmail/list}">Bulk Message</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/business/list}">Business</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/carousel/list}">Carousel</a></li>
+										<li><a class="dropdown-item" th:href="@{/moderator/gallery/list}">Gallery</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/funding/list}">Funding Appl.</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/holiday/list}">Holiday</a></li>
 										<li><a class="dropdown-item" th:href="@{/moderator/invitation/list}">Invitation</a></li>
@@ -248,31 +298,7 @@
 				<nav class="navbar navbar-expand-lg bg-success-subtle bg-gradient rounded-1">
 					<div class="container-fluid px-5">
 				    	<div id="navbarSupportedContent2">
-				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">	
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'events'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/event/list}">
-										<i class="bi bi-alarm"></i>
-										Upcoming Events
-									</a>
-								</li>		
-								<li class="nav-item small"  th:classappend="${viewLeftMenu == 'organizations'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/open/organization/list}">
-										<i class="bi bi-gem"></i>
-										Similar Organization
-									</a>
-								</li>
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'sponsorship'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/open/sponsorship}">
-										<i class="bi bi-trophy"></i>
-										Sponsorship
-									</a>
-								</li>	
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'contacts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/contacts}">
-										<i class="bi bi-envelope"></i>
-										Contacts
-									</a>
-								</li>
+				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'privacy'} ? 'bg-primary bg-opacity-10 rounded-2'" >
 									<a class="nav-link small ms-2 me-2" th:href="@{/open/privacyPolicy}">
 										<i class="bi bi-file-lock"></i>
@@ -298,10 +324,10 @@
 			</div>
 		</div>
 		<div class="row p-2">
-			<div th:if="${advert.location == 'footer'}" class="col-3 text-center p-2" th:each="advert : ${listAdvert}">
+			<div th:if="${advert.location == 'footer'}" class="col-sm-4 text-center p-2" th:each="advert : ${listAdvert}">
 				<div class="text-center" th:utext="${advert.content}"></div>
 			</div>
-			<div class="col-12 text-end p-2">
+			<div class="col-sm-12 text-end p-2">
 				<img th:src="@{/images/coop-logo-new.png}" height="25px;">
 				<br/><a class="text-success" href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;" th:text="#{copyright}"></a>
 			</div>

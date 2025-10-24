@@ -35,4 +35,9 @@ public interface SponsorshipRepo extends JpaRepository<Sponsorship, Long> {
 	List<Sponsorship> findBySearchString(String searchString);
 	
 	List<Sponsorship> findByRecordAddDateIsNull();
+	
+	Page<Sponsorship> findByPubDateLessThanAndExpDateGreaterThan(Date today1, Date today2, Pageable pageable);
+
+	Page<Sponsorship> findByPubDateLessThanAndExpDateGreaterThanAndSearchStringContainingIgnoreCase(Date today1, Date today2, String searchString, Pageable pageable);
+	
 }

@@ -47,7 +47,7 @@
 							<th th:text="#{invitation.name}"></th>
 							<th class="col-sm-2 text-center" th:text="#{invitation.date}"></th>
 							<th class="col-sm-2 text-center" >Email Date</th>
-							<th class="col-sm-1" th:text="#{invitation.status}"></th>
+							<th style="width: 15px;" th:text="#{invitation.status}"></th>
 							<th style="width: 15px;">Resend</th>
 						</tr>
 					</thead>
@@ -59,11 +59,11 @@
 							<td th:text="${ob.name}"></td>
 							<td class="text-center" th:text="${#dates.format(ob.date, 'dd/MM/yyyy hh:mm:ss')}"></td>
 							<td class="text-center" th:text="${#dates.format(ob.updateDate, 'dd/MM/yyyy hh:mm:ss')}"></td>
-							<td th:text="${ob.status}"></td>
+							<td class="text-center"><i th:if="${ob.status == true}" class="bi bi-check2"></i></td>
 							<td class="text-center" >
 								<div th:if="${ob.resendPossible == true}">
-									<a th:if="${ob.status != true}" class="nav-link" th:href="@{/home/invitation/resend/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-						      	    	<img th:src="@{/images/bootstrap-icons/arrow-clockwise.svg}" alt="Resend-Invitation"/>
+									<a th:if="${ob.status != true}" class="nav-link" th:href="@{/home/invitation/resend/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Resend Invitation">
+						      	    	<i class="bi bi-arrow-clockwise"></i>
 						      	  </a>
 					       	 </div>
 							</td>

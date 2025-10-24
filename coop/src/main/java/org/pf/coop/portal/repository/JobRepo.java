@@ -36,7 +36,7 @@ public interface JobRepo extends JpaRepository<Job, Long>{
 	@Query("select o "
 			+ "from Job o "
 			+ "where o.enabled = true "
-			+ "and o.recordAddDate <=:date "
+			+ "and o.recordAddDate >=:date "
 			+ "order by o.id desc ")
 	public List<Job> listJobForBulletin(Date date);
 	
