@@ -24,7 +24,20 @@
 					</div>
 				</div>
 
-				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${bulkEmail}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
+
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>

@@ -4,7 +4,9 @@ import java.security.Principal;
 
 import org.pf.coop.portal.controller.home.HomeBaseController;
 import org.pf.coop.portal.model.Invitation;
+import org.pf.coop.portal.model.Member;
 import org.pf.coop.portal.repository.InvitationRepo;
+import org.pf.coop.portal.repository.MemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +29,9 @@ public class InvitationListController extends HomeBaseController {
 	
 	@Autowired
 	private InvitationRepo invitationRepo;
+	
+	@Autowired
+	private MemberRepo memberRepo;
 	
 	@PostMapping({"/list", "/list/*", "/list/*/*" })
 	public String listInvitation(@ModelAttribute Invitation invitation, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
@@ -53,17 +58,19 @@ public class InvitationListController extends HomeBaseController {
 			
 			Page<Invitation> page;
 			
+			Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
+			
 			Invitation obj = (Invitation) request.getSession().getAttribute("Search_invitation_home");
 			
 			if (obj == null) {
-				page = this.invitationRepo.findAll(pageable);
+				page = this.invitationRepo.findByMember(member, pageable);
 				obj = new Invitation();
 				obj.setSearchString("");
 			} else {
 				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
-					page = this.invitationRepo.findAll(pageable);
+					page = this.invitationRepo.findByMember(member, pageable);
 				} else {
-					page = this.invitationRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+					page = this.invitationRepo.findByMemberAndSearchStringContainingIgnoreCase(member, obj.getSearchFor(), pageable);
 				}
 			}
 			
@@ -76,6 +83,8 @@ public class InvitationListController extends HomeBaseController {
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			
+			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);
@@ -122,25 +131,31 @@ public class InvitationListController extends HomeBaseController {
 			
 			Page<Invitation> page;
 			
+			Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
+			
 			Invitation obj = (Invitation) request.getSession().getAttribute("Search_invitation_home");
 			
 			if (obj == null) {
-				page = this.invitationRepo.findAll(pageable);
+				page = this.invitationRepo.findByMember(member, pageable);
 				obj = new Invitation();
 				obj.setSearchString("");
 			} else {
 				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
-					page = this.invitationRepo.findAll(pageable);
+					page = this.invitationRepo.findByMember(member, pageable);
 				} else {
-					page = this.invitationRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+					page = this.invitationRepo.findByMemberAndSearchStringContainingIgnoreCase(member, obj.getSearchFor(), pageable);
 				}
 			}
+			
+			totalPages = page.getTotalPages();
 			
 			request.getSession().setAttribute("Search_invitation_home", obj);
 			model.addAttribute("invitation", obj);
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			
+			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);

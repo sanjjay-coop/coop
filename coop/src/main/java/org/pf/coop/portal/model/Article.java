@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -22,6 +26,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_article")
 public class Article extends BaseObject implements Serializable {
@@ -38,21 +43,27 @@ public class Article extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
+	@FullTextField
 	@Column(name="f_title", length=500, nullable=false)
 	private String title;
 	
+	@FullTextField
 	@Column(columnDefinition = "TEXT", name="f_content", nullable=false)
 	private String content;
 	
+	@GenericField
 	@Column(name="f_pub_date", nullable=false)
 	private Date pubDate;
 	
+	@GenericField
 	@Column(name="f_exp_date", nullable=false)
 	private Date expDate;
 	
+	@GenericField
 	@Column(name="f_publish", nullable=false)
 	private Boolean publish;
 
+	@FullTextField
 	@Column(name="f_author", length=100, nullable=true)
 	private String author;
 	
@@ -63,6 +74,7 @@ public class Article extends BaseObject implements Serializable {
 	private Date updateDate;
 	
 	@ManyToMany
+	@IndexedEmbedded
 	@JoinTable(
 			name = "tab_article_category",
 			joinColumns = @JoinColumn(name = "article_id"),

@@ -52,12 +52,10 @@
 				</div>
 				<div class="row pb-3 text-center">
 					<div class="col-sm-3 py-3" th:each="eventUpdate : ${event.updates}" style="margin: 10px; padding: 10px; border:aliceblue solid 1px; border-radius: 10px;">
-						<span th:utext="${eventUpdate.description}" style="text-wrap: wrap;"></span>
-						<br/>
-						<br/><span style="font-weight: bold; font-size: small;">Last Update: </span>
-						<span style="font-size: small;" th:text="${#dates.format(eventUpdate.updateDate, 'dd/MM/yyyy HH:mm:ss')}"></span><br/>
-						<a class="nav-link" th:href="@{/manager/eventUpdate/delete/{orderId}(orderId=${eventUpdate.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-							<i class="bi bi-trash-fill"></i> Delete Update
+						<div class="p-2" th:utext="${eventUpdate.description}" style="text-wrap: wrap;"></div>
+						<div class="p-2" style="font-size: small;" th:utext="'<b>Last Update:</b> ' + ${#dates.format(eventUpdate.updateDate, 'dd/MM/yyyy HH:mm:ss')}"></div>
+						<a class="nav-link text-small p-2" th:href="@{/manager/eventUpdate/delete/{orderId}(orderId=${eventUpdate.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+							<i class="bi bi-trash-fill"></i>
 						</a>
 					</div>
 				</div>

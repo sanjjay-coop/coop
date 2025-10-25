@@ -2,6 +2,8 @@ package org.pf.coop.portal.model;
 
 import java.io.Serializable;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -16,6 +18,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_quotation")
 public class Quotation extends BaseObject implements Serializable  {
@@ -32,12 +35,15 @@ public class Quotation extends BaseObject implements Serializable  {
 		allocationSize=1)
 	private Long id;
 	
+	@FullTextField
 	@Column(name="f_quote", length=500, nullable=false)
 	private String quote;
 	
+	@FullTextField
 	@Column(name="f_author", length=100, nullable=false)
 	private String author;
 	
+	@FullTextField
 	@Column(name="f_source", length=500, nullable=true)
 	private String source;
 

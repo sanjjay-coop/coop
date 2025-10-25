@@ -25,6 +25,20 @@
 					</div>
 				</div>
 				
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${job}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
+				
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -47,7 +61,7 @@
         					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.position}"></td>
 							<td th:text="${ob.firmName}"></td>
-        					<td class="text-center" th:text="${ob.salary}"></td>
+        					<td class="text-end" th:text="${ob.salary}"></td>
         					<td class="text-center" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></td>
 							<td class="text-center">
 								<i th:if="${ob.enabled == true}" class="bi bi-check-lg"></i>

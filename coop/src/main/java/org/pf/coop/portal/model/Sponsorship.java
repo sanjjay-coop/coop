@@ -3,6 +3,9 @@ package org.pf.coop.portal.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -17,6 +20,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_sponsorship")
 public class Sponsorship extends BaseObject implements Serializable {
@@ -33,18 +37,23 @@ public class Sponsorship extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
+	@FullTextField
 	@Column(name="f_title", length=500, nullable=false)
 	private String title;
 	
+	@FullTextField
 	@Column(columnDefinition = "TEXT", name="f_description", nullable=false)
 	private String description;
 	
+	@GenericField
 	@Column(name="f_pub_date", nullable=false)
 	private Date pubDate;
 	
+	@GenericField
 	@Column(name="f_exp_date", nullable=false)
 	private Date expDate;
 	
+	@GenericField
 	@Column(name="f_last_date", nullable=false)
 	private Date lastDate;
 

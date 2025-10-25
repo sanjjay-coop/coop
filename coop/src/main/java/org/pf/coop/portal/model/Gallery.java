@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.pf.coop.common.BaseObject;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +25,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_gallery")
 public class Gallery extends BaseObject implements Serializable {
@@ -39,9 +42,11 @@ public class Gallery extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
+	@FullTextField
 	@Column(name="f_title", length=500, nullable=false)
 	private String title;
 	
+	@FullTextField
 	@Column(columnDefinition = "TEXT", name="f_description", nullable=false)
 	private String description;
 	

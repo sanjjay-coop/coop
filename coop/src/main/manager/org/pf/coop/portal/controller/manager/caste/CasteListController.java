@@ -76,6 +76,7 @@ public class CasteListController extends ManagerBaseController {
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			
 			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
@@ -144,6 +145,7 @@ public class CasteListController extends ManagerBaseController {
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			
 			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);

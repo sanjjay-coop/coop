@@ -41,4 +41,6 @@ public interface EventRepo extends JpaRepository<Event, Long>{
 	public Page<Event> findByPublishAndEndDateGreaterThanEqual(Boolean publish, Date endDate, Pageable pageable);
 	
 	List<Event> findByRecordAddDateIsNull();
+	
+	Page<Event> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 }

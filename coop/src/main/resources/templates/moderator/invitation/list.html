@@ -30,7 +30,7 @@
 				</form>
 				
 				
-				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -41,7 +41,7 @@
 							<th class="col-sm-2" th:text="#{invitation.date}"></th>
 							<th class="col-sm-2">Email Date</th>
 							<th th:text="#{member}"></th>
-							<th class="col-sm-1" th:text="#{invitation.status}"></th>
+							<th class="col-sm-1 text-center" th:text="#{invitation.status}"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
@@ -54,7 +54,9 @@
 							<td th:text="${#dates.format(ob.date, 'dd/MM/yyyy hh:mm:ss')}"></td>
 							<td th:text="${#dates.format(ob.updateDate, 'dd/MM/yyyy hh:mm:ss')}"></td>
 							<td th:text="${ob.member.name}"></td>
-							<td th:text="${ob.status}"></td>
+        					<td class="text-center">
+        						<i class="bi bi-check-lg" th:if="${ob.status}"></i>
+        					</td>
 							<td>
 								<a class="nav-link" th:href="@{/moderator/invitation/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
 							      	<i class="bi bi-trash-fill"></i>

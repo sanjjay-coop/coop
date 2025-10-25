@@ -24,18 +24,32 @@
 						</div>
 					</div>
 				</div>
+
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${event}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
 				
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>				
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
 						<tr>
 							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th th:text="#{event.title}"></th>
-							<th class="col-sm-1 text-center" th:text="#{event.publish}"></th>
-							<th class="col-sm-1 text-center" th:text="#{event.startDate}"></th>
-							<th class="col-sm-1 text-center" th:text="#{event.endDate}"></th>
 							<th class="col-sm-2 text-center" th:text="#{event.venue}"></th>
 							<th class="col-sm-1 text-center" th:text="#{event.city}"></th>
+							<th class="col-sm-1 text-center" th:text="#{event.startDate}"></th>
+							<th class="col-sm-1 text-center" th:text="#{event.endDate}"></th>
+							<th class="col-sm-1 text-center" th:text="#{event.publish}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
@@ -46,11 +60,14 @@
 						<tr th:each="ob,iterator : ${listEvent}">
         					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.title}"></td>
-							<td class="text-center" th:text="${ob.publish}"></td>
-        					<td class="text-center" th:text="${#dates.format(ob.startDate, 'dd/MM/yyyy')}"></td>
-        					<td class="text-center" th:text="${#dates.format(ob.endDate, 'dd/MM/yyyy')}"></td>
 							<td th:text="${ob.venue}"></td>
 							<td th:text="${ob.city}"></td>
+        					<td class="text-center" th:text="${#dates.format(ob.startDate, 'dd/MM/yyyy')}"></td>
+        					<td class="text-center" th:text="${#dates.format(ob.endDate, 'dd/MM/yyyy')}"></td>
+        					<td class="text-center">
+        						<i class="bi bi-check-lg" th:if="${ob.publish}"></i>
+        						<i class="bi bi-x-lg" th:unless="${ob.publish}"></i>
+        					</td>	
 							<td>
 								<a class="nav-link" th:href="@{/manager/event/view/{orderId}(orderId=${ob.id})}" title="View Record">
 							      	<i class="bi bi-folder2-open"></i>

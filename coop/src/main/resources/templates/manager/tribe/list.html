@@ -25,7 +25,6 @@
 					</div>
 				</div>
 
-
 				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${tribe}" method="POST">
 					  <div class="col-auto">
 					    <div class="input-group">
@@ -40,6 +39,8 @@
 				</form>
 				
 			</div>
+				
+			<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 			
 			<div class="col-8">
 				<table class="table table-sm small table-bordered table-striped">

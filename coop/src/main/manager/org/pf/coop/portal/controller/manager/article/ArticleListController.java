@@ -77,6 +77,8 @@ public class ArticleListController extends ManagerBaseController {
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
 			
+			model.addAttribute("totalRecords", page.getTotalElements());
+			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);
 			
@@ -136,11 +138,15 @@ public class ArticleListController extends ManagerBaseController {
 				}
 			}
 			
+			totalPages = page.getTotalPages();
+			
 			request.getSession().setAttribute("managerSearch_article", obj);
 			model.addAttribute("article", obj);
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			
+			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);

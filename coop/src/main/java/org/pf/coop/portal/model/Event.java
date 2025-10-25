@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.CascadeType;
@@ -25,6 +29,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
+@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_event")
 public class Event extends BaseObject implements Serializable {
@@ -41,27 +46,35 @@ public class Event extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
+	@FullTextField
 	@Column(name="f_title", length=500, nullable=false)
 	private String title;
 	
+	@FullTextField
 	@Column(columnDefinition = "TEXT", name="f_description", nullable=false)
 	private String description;
 	
+	@GenericField
 	@Column(name="f_start_date", nullable=false)
 	private Date startDate;
 	
+	@GenericField
 	@Column(name="f_end_date", nullable=false)
 	private Date endDate;
 	
+	@GenericField
 	@Column(name="f_publish", nullable=false)
 	private Boolean publish;
 	
+	@FullTextField
 	@Column(name="f_venue", length=100, nullable=true)
 	private String venue;
 	
+	@KeywordField
 	@Column(name="f_city", length=100, nullable=true)
 	private String city;
 	
+	@FullTextField
 	@Column(name="f_state", length=100, nullable=true)
 	private String state;
 	

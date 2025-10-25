@@ -29,7 +29,7 @@
 				</form>
 				
 				
-				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -51,10 +51,13 @@
         					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.position}"></td>
 							<td th:text="${ob.firmName}"></td>
-        					<td class="col-sm-1 text-center" th:text="${ob.salary}"></td>
+        					<td class="col-sm-1 text-end" th:text="${ob.salary}"></td>
         					<td class="col-sm-1 text-center" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></td>
 							<td th:text="${ob.owner.name}"></td>	
-							<td class="col-sm-1 text-center" th:text="${ob.enabled}"></td>	
+        					<td class="text-center">
+        						<i class="bi bi-check-lg" th:if="${ob.enabled}"></i>
+        						<i class="bi bi-x-lg" th:unless="${ob.enabled}"></i>
+        					</td>		
         					<td>
         						<a th:if="${ob.fileData != null}" class="nav-link" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
 						          	<i class="bi bi-download"></i>

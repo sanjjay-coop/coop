@@ -2,6 +2,10 @@ package org.pf.coop.portal.model.library;
 
 import java.io.Serializable;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -20,6 +24,7 @@ import jakarta.persistence.Transient;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_library_title")
+@Indexed
 public class Title extends BaseObject implements Serializable {
 
 	/**
@@ -34,26 +39,33 @@ public class Title extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
+	@KeywordField
 	@Column(name="f_accession_number", length=10, nullable=false, unique=true)
 	private String accessionNumber;
 	
+	@FullTextField
 	@Column(name="f_uniform_title", length=1000, nullable=false, unique=false)
 	private String uniformTitle;
 	
+	@FullTextField
 	@Column(name="f_authors", length=1000, nullable=false)
 	private String authors;
 	
+	@FullTextField
 	@Column(name="f_publisher", length=1000, nullable=true)
 	private String publisher;
 	
+	@IndexedEmbedded
 	@ManyToOne
 	@JoinColumn(name="f_library", nullable=false)
 	private Library library;
 	
+	@IndexedEmbedded
 	@ManyToOne
 	@JoinColumn(name="f_title_type", nullable=false)
 	private TitleType titleType;
 	
+	@FullTextField
 	@Column(name="f_summary", length=2000, nullable=true)
 	private String summary;
 	

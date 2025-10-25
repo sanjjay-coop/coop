@@ -3,6 +3,8 @@ package org.pf.coop.portal.repository;
 import java.util.List;
 
 import org.pf.coop.portal.model.MenuItem;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -12,4 +14,6 @@ public interface MenuItemRepo extends JpaRepository<MenuItem, Long>{
 	public List<MenuItem> listMenuItemLocation(String location);
 	
 	List<MenuItem> findByRecordAddDateIsNull();
+	
+	Page<MenuItem> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 }

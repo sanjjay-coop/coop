@@ -42,6 +42,10 @@ public interface JobRepo extends JpaRepository<Job, Long>{
 	
 	Page<Job> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 	
+	Page<Job> findByEnabledAndSearchStringContainingIgnoreCase(Boolean enabled, String searchString, Pageable pageable);
+	
+	Page<Job> findByOwnerAndSearchStringContainingIgnoreCase(Member owner, String searchString, Pageable pageable);
+	
 	List<Job> findBySearchString(String searchString);
 	
 	List<Job> findByRecordAddDateIsNull();

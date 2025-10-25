@@ -28,8 +28,7 @@
 					  </div>
 				</form>
 				
-				
-				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -52,7 +51,10 @@
         					<td th:text="${ob.email}"></td>
 							<td th:text="${ob.mobile}"></td>	
 							<td th:text="${ob.residenceAddress}"></td>
-							<td class="text-center" th:text="${ob.status}"></td>
+        					<td class="text-center">
+        						<i class="bi bi-check-lg" th:if="${ob.status}"></i>
+        						<i class="bi bi-x-lg" th:unless="${ob.status}"></i>
+        					</td>	
 							<td class="text-center" th:text="${#dates.format(ob.statusDate, 'dd-MM-yyyy HH:mm:ss')}"></td>	
 							<td>
 								<a class="nav-link" th:href="@{/moderator/memberApplication/view/{orderId}(orderId=${ob.id})}" title="View Record">

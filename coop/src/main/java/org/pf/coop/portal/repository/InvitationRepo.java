@@ -17,6 +17,8 @@ public interface InvitationRepo extends JpaRepository<Invitation, Long>{
 	Invitation findByIdAndMember(Long id, Member member);
 	
 	Page<Invitation> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
+	
+	Page<Invitation> findByMemberAndSearchStringContainingIgnoreCase(Member member, String searchString, Pageable pageable);
 
 	List<Invitation> findBySearchString(String searchString);
 	

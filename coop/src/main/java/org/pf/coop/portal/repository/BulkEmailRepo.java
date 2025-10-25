@@ -3,6 +3,8 @@ package org.pf.coop.portal.repository;
 import java.util.List;
 
 import org.pf.coop.portal.model.BulkEmail;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -16,4 +18,6 @@ public interface BulkEmailRepo extends JpaRepository<BulkEmail, Long>{
 	public List<BulkEmail> listBulkEmailForSending();
 	
 	List<BulkEmail> findByRecordAddDateIsNull();
+	
+	Page<BulkEmail> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);
 }

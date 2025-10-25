@@ -29,7 +29,7 @@
 				</form>
 				
 
-				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -51,7 +51,10 @@
         					<td th:text="${ob.city}"></td>
         					<td th:text="${ob.keywords}"></td>
 							<td th:text="${ob.owner.name}"></td>
-        					<td class="text-center" th:text="${ob.enabled}"></td>							
+        					<td class="text-center">
+        						<i class="bi bi-check-lg" th:if="${ob.enabled}"></i>
+        						<i class="bi bi-x-lg" th:unless="${ob.enabled}"></i>
+        					</td>							
 							<td>
 								<a class="nav-link" th:href="@{/moderator/business/view/{orderId}(orderId=${ob.id})}" title="View Record">
 							       	<i class="bi bi-folder2-open"></i>

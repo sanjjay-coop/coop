@@ -15,7 +15,21 @@
 				<h4 class="h4 pb-3">Jobs</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${job}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
 
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<div class="row py-2">
 					<div class="col-6 my-2" th:each="ob,iterator : ${listJobAll}">
 						<div class="card h-100">
@@ -32,9 +46,10 @@
 									<label class="col-sm-4 text-success" th:text="#{job.contactPhone}"></label><span class="col-sm-8" th:text="${ob.contactPhone}"></span> 
 									<label class="col-sm-4 text-success" th:text="#{job.contactEmail}"></label><span class="col-sm-8" th:text="${ob.contactEmail}"></span> 
 									<label class="col-sm-4 text-success" th:text="#{job.url}"></label><span class="col-sm-8" th:text="${ob.url}"></span>
-									<label class="col-sm-4 text-success" th:text="#{job.lastDate}"></label><span class="col-sm-8" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></span>	  
-									<div class="col-sm-12">
-										<a th:if="${ob.fileData != null}" class="nav-link p-2" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
+									<label class="col-sm-4 text-success" th:text="#{job.lastDate}"></label><span class="col-sm-8" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></span>
+									<label class="col-sm-4 text-success" th:if="${ob.fileData != null}" >Download File: </label>	  
+									<div class="col-sm-8" th:if="${ob.fileData != null}" >
+										<a class="nav-link p-2" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
 							          		<i class="bi bi-download"></i>
 							        	</a>
 							        </div>

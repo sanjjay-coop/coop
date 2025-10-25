@@ -168,6 +168,28 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- Import Hibernate Search BOM to get all of its artifact versions aligned: -->
+        <dependency>
+            <groupId>org.hibernate.search</groupId>
+            <artifactId>hibernate-search-bom</artifactId>
+            <version>7.2.4.Final</version>
+            <type>pom</type>
+        </dependency>
+        <!--
+	        Add dependencies without specifying versions
+	        as that is already taken care by dependency management:
+	    -->
+	    <dependency>
+	       <groupId>org.hibernate.search</groupId>
+	       <artifactId>hibernate-search-mapper-orm</artifactId>
+	       <version>7.2.4.Final</version>
+	    </dependency>
+	    
+	    <dependency>
+	       <groupId>org.hibernate.search</groupId>
+	       <artifactId>hibernate-search-backend-lucene</artifactId>
+	       <version>7.2.4.Final</version>
+	    </dependency>
 	</dependencies>
 
 	<build>

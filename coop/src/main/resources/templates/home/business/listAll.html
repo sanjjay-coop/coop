@@ -28,6 +28,7 @@
 					  </div>
 				</form>
 				
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<div class="row py-2">
 					<div class="col-4 my-2" th:each="ob,iterator : ${listBusinessAll}">
 						<div class="card h-100">

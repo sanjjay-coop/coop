@@ -38,6 +38,7 @@
 					  </div>
 				</form>
 				
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -56,7 +57,10 @@
 						<tr th:each="ob,iterator : ${listArticle}">
         					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.title}"></td>
-							<td class="text-center" th:text="${ob.publish}"></td>
+        					<td class="text-center">
+        						<i class="bi bi-check-lg" th:if="${ob.publish}"></i>
+        						<i class="bi bi-x-lg" th:unless="${ob.publish}"></i>
+        					</td>	
         					<td class="text-center" th:text="${#dates.format(ob.pubDate, 'dd/MM/yyyy')}"></td>
         					<td class="text-center" th:text="${#dates.format(ob.expDate, 'dd/MM/yyyy')}"></td>
         					<td>

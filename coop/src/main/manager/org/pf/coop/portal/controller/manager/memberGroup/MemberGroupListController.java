@@ -13,8 +13,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -25,44 +28,84 @@ public class MemberGroupListController extends ManagerBaseController {
 	@Autowired
 	private MemberGroupRepo memberGroupRepo;
 	
-	@GetMapping("/list")
-	public String listMemberGroup(Model model, Principal principal, HttpServletRequest request) {
+	@PostMapping({"/list", "/list/*", "/list/*/*" })
+	public String listMemberGroup(@ModelAttribute MemberGroup memberGroup, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		int pageNumber = 0;
-		
-		Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "name"));
-		
-		Page<MemberGroup> page = this.memberGroupRepo.findAll(pageable);
-		
-		int totalPages = page.getTotalPages();
-		
-		model.addAttribute("listMemberGroup", page.getContent());
-		
-		model.addAttribute("currentPage", pageNumber + 1);
-		model.addAttribute("totalPages", totalPages);
-		model.addAttribute("totalRecords", page.getTotalElements());
-		
-		if (pageNumber == 0) model.addAttribute("firstPage", true);
-		else model.addAttribute("firstPage", false);
-		
-		if (pageNumber == (totalPages-1)) {
-			model.addAttribute("lastPage", true);
-		} else {
-			model.addAttribute("lastPage", false);
+		try {
+			
+			request.getSession().setAttribute("managerSearch_memberGroup", memberGroup);
+				
+			return "redirect:/manager/memberGroup/list";
+		} catch (Exception e) {
+			reat.addFlashAttribute("message", e);
+			return "redirect:/home";
 		}
+	}
+	
+	@GetMapping("/list")
+	public String listMemberGroup(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		request.getSession().setAttribute("listMemberGroup_pageNumber", pageNumber);
-		request.getSession().setAttribute("listMemberGroup_totalPages", totalPages);
-		
-		return "manager/memberGroup/list";
+		try {
+			
+			int pageNumber = 0;
+			
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
+			
+			Page<MemberGroup> page;
+			
+			MemberGroup obj = (MemberGroup) request.getSession().getAttribute("managerSearch_memberGroup");
+			
+			if (obj == null) {
+				page = this.memberGroupRepo.findAll(pageable);
+				obj = new MemberGroup();
+				obj.setSearchString("");
+			} else {
+				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
+					page = this.memberGroupRepo.findAll(pageable);
+				} else {
+					page = this.memberGroupRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+				}
+			}
+			
+			request.getSession().setAttribute("managerSearch_memberGroup", obj);
+			model.addAttribute("memberGroup", obj);
+			
+			int totalPages = page.getTotalPages();
+			
+			model.addAttribute("listMemberGroup", page.getContent());
+			
+			model.addAttribute("currentPage", pageNumber + 1);
+			model.addAttribute("totalPages", totalPages);
+			
+			model.addAttribute("totalRecords", page.getTotalElements());
+			
+			if (pageNumber == 0) model.addAttribute("firstPage", true);
+			else model.addAttribute("firstPage", false);
+			
+			if (pageNumber == (totalPages-1)) {
+				model.addAttribute("lastPage", true);
+			} else {
+				model.addAttribute("lastPage", false);
+			}
+			
+			request.getSession().setAttribute("listMemberGroupManager_pageNumber", pageNumber);
+			request.getSession().setAttribute("listMemberGroupManager_totalPages", totalPages);
+			
+			return "manager/memberGroup/list";
+			
+		} catch(Exception e) {
+			System.out.println("Error Message: " + e);
+			reat.addFlashAttribute("message", e);
+			return "redirect:/home";
+		}
 	}
 	
 	@GetMapping("/list/{whichPage}")
 	public String listMemberGroup(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			int pageNumber = (int) request.getSession().getAttribute("listMemberGroup_pageNumber");
-			int totalPages = (int) request.getSession().getAttribute("listMemberGroup_totalPages");
+			int pageNumber = (int) request.getSession().getAttribute("listMemberGroupManager_pageNumber");
+			int totalPages = (int) request.getSession().getAttribute("listMemberGroupManager_totalPages");
 			
 			if ("previous".equals(whichPage)) {
 				if (pageNumber == 0) return "redirect:/manager/memberGroup/list";
@@ -77,13 +120,32 @@ public class MemberGroupListController extends ManagerBaseController {
 				if (pageNumber+1 < totalPages) pageNumber++;
 			}
 			
-			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "name"));
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
 			
-			Page<MemberGroup> page = this.memberGroupRepo.findAll(pageable);
+			Page<MemberGroup> page;
+			
+			MemberGroup obj = (MemberGroup) request.getSession().getAttribute("managerSearch_memberGroup");
+			
+			if (obj == null) {
+				page = this.memberGroupRepo.findAll(pageable);
+				obj = new MemberGroup();
+				obj.setSearchString("");
+			} else {
+				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
+					page = this.memberGroupRepo.findAll(pageable);
+				} else {
+					page = this.memberGroupRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
+				}
+			}
+			
 			totalPages = page.getTotalPages();
+			
+			request.getSession().setAttribute("managerSearch_memberGroup", obj);
+			model.addAttribute("memberGroup", obj);
 			
 			model.addAttribute("currentPage", pageNumber + 1);
 			model.addAttribute("totalPages", totalPages);
+			
 			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
@@ -95,8 +157,8 @@ public class MemberGroupListController extends ManagerBaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listMemberGroup_pageNumber", pageNumber);
-			request.getSession().setAttribute("listMemberGroup_totalPages", totalPages);
+			request.getSession().setAttribute("listMemberGroupManager_pageNumber", pageNumber);
+			request.getSession().setAttribute("listMemberGroupManager_totalPages", totalPages);
 			
 			model.addAttribute("listMemberGroup", page.getContent());
 			
