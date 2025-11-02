@@ -24,6 +24,11 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/open/gallery")
 public class OpenGalleryListController extends BaseController {
+
+	@ModelAttribute("viewLeftMenu")
+	public String viewLeftMenu() {
+		return "gallery";
+	}
 	
 	@Autowired
 	private GalleryRepo galleryRepo;

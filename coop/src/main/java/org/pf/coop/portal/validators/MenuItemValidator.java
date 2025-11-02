@@ -51,6 +51,12 @@ public class MenuItemValidator extends BaseValidator implements Validator {
 			errors.rejectValue("itemType", "menuItem.itemType.required");
 		}
 		
+		if (obj.getIcon()!=null){
+			if (!this.lengthRange(obj.getIcon(), 0, 100)){
+				errors.rejectValue("icon", "menuItem.icon.size");
+			}
+		}
+		
 		if (obj.getNewPage()==null) {
 			obj.setNewPage(false);
 		}

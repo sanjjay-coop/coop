@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid px-5">
+		<div class="row px-4 py-2">
+
+			<div class="col-12">
+			
+				<h4 class="h4 pb-3">Order (Add New)</h4>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<div class="row pb-2">
+					<div class="col-12">
+						<div class="d-grid gap-2 d-md-block">
+							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/order/list/current}">
+								<i class="bi bi-chevron-double-left"></i> To List</a>
+						</div>
+					</div>
+				</div>
+				
+				<form th:action= "${servletRequest.requestURI}" th:object="${order}" method="POST" enctype="multipart/form-data">
+
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{order.subject}"></label>
+						<div class="col-sm-10">
+				    		<input type="text" class="form-control required" th:field="*{subject}" th:placeholder="#{order.subject}" autofocus >
+							<ul><li class="cooperror" th:errors="*{subject}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{order.orderDate}"></label>
+						<div class="col-sm-4">
+				    		<input type="date" class="form-control" th:field="*{orderDate}" th:placeholder="#{order.orderDate}">
+							<ul><li class="cooperror" th:errors="*{orderDate}" /></ul>
+						</div>
+						
+						<label class="col-sm-2 col-form-label text-success" th:text="#{order.orderNumber}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{orderNumber}" th:placeholder="#{order.orderNumber}">
+							<ul><li class="cooperror" th:errors="*{orderNumber}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">						
+						<label class="col-sm-2 col-form-label text-success" th:text="#{order.file}"></label>
+						<div class="col-sm-4">
+				    		<input type="file" class="form-control required" th:field="*{file}" th:placeholder="#{order.file}">
+							<ul><li class="cooperror" th:errors="*{file}" /></ul>
+						</div>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{order.orderCategory}"></label>
+						<div class="col-sm-2">
+				    		<select class="form-select required" th:field="*{orderCategory}">
+								<option th:each="p : ${listOrderCategory}" th:value="${p.id}" th:text="${p.name}" />
+							</select>
+							<ul><li class="cooperror" th:errors="*{orderCategory}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<div class="offset-sm-2 col-sm-2">
+							<button type="submit" class="btn btn-success">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>	
+</html>

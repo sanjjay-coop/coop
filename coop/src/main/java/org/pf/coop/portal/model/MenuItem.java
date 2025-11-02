@@ -46,6 +46,9 @@ public class MenuItem extends BaseObject implements Serializable{
 	@Column(name="f_url", length=255, nullable=true)
 	private String url;
 	
+	@Column(name="f_icon", length=100, nullable=true)
+	private String icon;
+	
 	@ManyToOne
 	@JoinColumn(name="f_category", nullable=true)
 	private Category category;
@@ -96,6 +99,14 @@ public class MenuItem extends BaseObject implements Serializable{
 		this.url = url;
 	}
 
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
 	public Category getCategory() {
 		return category;
 	}
@@ -126,6 +137,7 @@ public class MenuItem extends BaseObject implements Serializable{
 				+ (location != null ? "location=" + location + ", " : "")
 				+ (itemType != null ? "itemType=" + itemType + ", " : "") + (url != null ? "url=" + url + ", " : "")
 				+ (category != null ? "category=" + category + ", " : "")
+				+ (icon != null ? "icon=" + icon + ", " : "")
 				+ (newPage != null ? "newPage=" + newPage : "") + "]";
 	}
 
@@ -134,10 +146,7 @@ public class MenuItem extends BaseObject implements Serializable{
 		// TODO Auto-generated method stub
 		super.setAddDefaults(modifiedBy);
 		
-		this.setSearchString((title != null ? title + ", " : "")
-				+ (location != null ? location + ", " : "")
-				+ (itemType != null ? itemType + ", " : "") 
-				+ (category != null ? category + ", " : ""));
+		this.setSearchString((title != null ? title + ", " : ""));
 	}
 
 	@Override
@@ -145,10 +154,7 @@ public class MenuItem extends BaseObject implements Serializable{
 		// TODO Auto-generated method stub
 		super.setUpdateDefaults(modifiedBy);
 		
-		this.setSearchString((title != null ? title + ", " : "")
-				+ (location != null ? location + ", " : "")
-				+ (itemType != null ? itemType + ", " : "") 
-				+ (category != null ? category + ", " : ""));
+		this.setSearchString((title != null ? title + ", " : ""));
 	}
 	
 }

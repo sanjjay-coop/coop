@@ -80,6 +80,7 @@ public class MenuItemService {
 		obj.setNewPage(menuItem.getNewPage());
 		obj.setTitle(menuItem.getTitle());
 		obj.setUrl(menuItem.getUrl());
+		obj.setIcon(menuItem.getIcon());
 		obj.setNewPage(menuItem.getNewPage());
 		
 		obj.setUpdateDefaults(updateBy);

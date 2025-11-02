@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:fragment="html_head">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title th:text="${params?.header}"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/jquery-ui.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.min.css}">
+		
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+	
+	<link type="text/css" rel="stylesheet" th:href="@{/assets/lightGallery/dist/css/lightgallery-bundle.min.css}" />
+
+	<script th:src="@{/assets/lightGallery/dist/lightgallery.min.js}"></script>
+	<script th:src="@{/assets/lightGallery/dist/plugins/thumbnail/lg-thumbnail.min.js}"></script>
+	<script th:src="@{/assets/lightGallery/dist/plugins/zoom/lg-zoom.min.js}"></script>
+
+	<style>
+		.cooperror {
+			font-size: 10px; 
+			font-style: italic; 
+			color: darkred; 
+			line-height: 12px; 
+			margin: 5px; 
+			list-style-type: none;
+		}
+		
+		.fieldvalue {
+			font-size: 12pt;
+			border-color: rgb(217, 215, 213);
+			border-width: 0pt 0pt 1pt 1pt;
+			border-radius: 2pt;
+			border-style: solid;
+			padding-bottom: 2pt;
+			padding-left: 3pt;
+		}
+
+		.fieldvalueSmall {
+			font-size: 10pt;
+		}
+		
+		.required {
+			background-color: #00FFFF;
+		}
+		
+		.amount {
+			text-align: right;
+		}
+		
+		body {
+			max-width: 1600px;
+			margin: 0 auto;
+			background-color: #F5F5F5;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid" th:fragment="header">
+		
+		<div class="row py-2" style="max-height: 150px;">
+			
+			<div class="col-sm-9 my-auto ps-5">
+				<div class="h1 text-success" th:text="${params?.header}"></div>
+				<div class="h5 text-success" th:text="${params?.subHeader}"></div>
+			</div>
+		</div>
+		<div class="row p-2">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-lg bg-success-subtle bg-gradient rounded-1">
+					<div class="container-fluid px-5">
+				    	<div id="navbarSupportedContentMenu">
+				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				      			<li class="nav-item small">
+				          			<a class="nav-link small ms-2 me-2" th:href="@{/}" th:classappend="${viewLeftMenu == 'home'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+				          				<i class="bi bi-house"></i>
+				          				Home
+				          			</a>
+				        		</li>
+				        		<li class="nav-item small" sec:authorize="hasAnyRole('MEMBER','MANAGER')" th:classappend="${viewLeftMenu == 'dashboard'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+				          			<a class="nav-link small ms-2 me-2" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/home}">
+				          				<i class="bi bi-sun"></i>
+				          				My Dashboard
+				          			</a>
+				        		</li>
+								<li class="nav-item small" th:each="ob,iterator : ${listMenuItemTop}" th:classappend="${viewLeftMenu == 'topmenu'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
+										<i class="bi bi-link-45deg"></i>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
+										<i class="bi bi-link-45deg"></i>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+										<i class="bi bi-link-45deg"></i>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+										<i class="bi bi-link-45deg"></i>
+										<span th:text="${ob.title}"></span>
+									</a>
+								</li>
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'holidays'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/holiday/list}">
+										<i class="bi bi-bicycle"></i>
+										Holidays
+									</a>
+								</li>
+				      			<li class="nav-item small" sec:authorize="!isAuthenticated()">
+				          			<a class="nav-link small ms-2 me-2" th:href="@{/mobile/login}">
+				          				<i class="bi bi-lock"></i>
+				          				Sign-In
+				          			</a>
+				        		</li>
+								<li class="nav-item small" sec:authorize="isAuthenticated()">
+									<a class="nav-link small ms-2 me-2" th:href="@{/mobile/logout}">
+										<i class="bi bi-unlock"></i>
+										Sign-Out
+									</a>
+								</li>
+				      		</ul>
+				    	</div>
+				  	</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid px-5">
+	
+		<div class="row">
+		
+			<div class="col-2" th:fragment="left_menu">
+				
+				<!-- 
+				<nav class="navbar">
+					<h4 style="font-size: 16px; font-weight: bold;">Upcoming Events</h4>
+					<ul class="nav flex-column" th:if="${viewLeftMenu == 'index' }" >
+						<li th:each="event : ${listEvent}">
+							<span style="font-weight: bold; font-size: small;">Title: </span>
+							<a th:href="@{/event/view/{orderId}(orderId=${event.id})}">
+					    		<span th:text="${event.title}" style="font-size: small; text-align: center;"></span><br/>
+							</a>	
+							<span style="font-size: small;">Start Date: </span>
+							<span style="font-size: small;" th:text="${#dates.format(event.startDate, 'dd/MM/yyyy')}"></span><br/>
+							<span style="font-size: small;">End Date: </span>
+							<span style="font-size: small;" th:text="${#dates.format(event.endDate, 'dd/MM/yyyy')}"></span><br/>
+							<br/>
+					  	</li>
+						<li class="nav-item dropdown bg-light" th:each="ob,iterator : ${listMenuItemLeft}">
+							<a class="nav-link" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" th:text="${ob.title}"></a>
+							<a class="nav-link" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}" th:text="${ob.title}"></a>
+							<a class="nav-link" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>
+							<a class="nav-link" target="_blank" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>														
+						</li>
+						<li class="nav-item dropdown bg-light">
+							<a class="nav-link" th:href="@{/contacts}">Contacts</a>
+						</li>
+					</ul>
+				</nav>
+				
+				<div th:each="advert : ${listAdvert}">
+					<div th:if="${advert.location == 'left'}" th:utext="${advert.content}"></div>
+				</div>
+				 -->
+			</div>
+			
+			<div class="col-10">
+				
+				<h4 class="h4 pb-3">Title</h4>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid" th:fragment="footer">
+		<div class="row p-2">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-lg bg-success-subtle bg-gradient rounded-1">
+					<div class="container-fluid px-5">
+				    	<div id="navbarSupportedContent2">
+				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'privacy'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/privacyPolicy}">
+										<i class="bi bi-file-lock"></i>
+										Privacy Policy
+									</a>
+								</li>
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'terms'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/termsAndConditions}">
+										<i class="bi bi-journal-text"></i>
+										Terms &amp; Conditions
+									</a>
+								</li>
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'disclaimer'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/disclaimer}">
+										<i class="bi bi-patch-exclamation"></i>
+										Disclaimer
+									</a>
+								</li>
+				      		</ul>
+				    	</div>
+				  	</div>
+				</nav>
+			</div>
+		</div>
+		<div class="row py-2">
+			<div th:if="${advert.location == 'footer'}" class="col-sm-12 text-center p-2" th:each="advert : ${listAdvert}">
+				<div class="text-center" th:utext="${advert.content}"></div>
+			</div>
+			<div class="col-sm-12 text-end p-2">
+				<img th:src="@{/images/coop-logo-new.png}" height="25px;">
+				<br/><a class="text-success" href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;" th:text="#{copyright}"></a>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

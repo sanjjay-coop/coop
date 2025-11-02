@@ -64,9 +64,17 @@
 					
 					<div class="row mb-2">
 						<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.url}"></label>
-						<div class="col-sm-4">
+						<div class="col-sm-10">
 				    		<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{menuItem.url}" >
 					  		<ul><li class="cooperror" th:errors="*{url}" /></ul>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.icon}"></label>
+						<div class="col-sm-4">
+				    		<input type="text" class="form-control" th:field="*{icon}" th:placeholder="#{menuItem.icon}" >
+					  		<ul><li class="cooperror" th:errors="*{icon}" /></ul>
 						</div>
 						<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.newPage}"></label>
 						<div class="col-sm-4">

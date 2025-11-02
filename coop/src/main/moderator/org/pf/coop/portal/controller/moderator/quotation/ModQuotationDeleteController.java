@@ -31,21 +31,20 @@ public class ModQuotationDeleteController extends ModeratorBaseController {
 			if (tr == null ) {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				
+				return "redirect:/moderator/quotation/list/current";
 			} else if (tr.isStatus()){
 				
 				reat.addFlashAttribute("message", "Record deleted successfully.");
-				
+				return "redirect:/moderator/quotation/list/current";
 			} else {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				
+				return "redirect:/moderator/quotation/list/current";
 			}
 		} catch (Exception e) {
 			
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
-			
+			return "redirect:/moderator/quotation/list/current";
 		}
-		return "redirect:/moderator/quotation/list/current";
 	}
 }

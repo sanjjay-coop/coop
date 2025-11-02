@@ -64,7 +64,7 @@ public class AdvertEditController extends ManagerBaseController {
 			TransactionResult tr = this.advertService.updateAdvert(advert, principal.getName());
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated.");
-				return "redirect:/manager/advert/addNew";
+				return "redirect:/manager/advert/list/current";
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record updated successfully.");
