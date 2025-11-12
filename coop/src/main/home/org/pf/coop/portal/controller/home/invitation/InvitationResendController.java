@@ -62,20 +62,21 @@ public class InvitationResendController extends HomeBaseController {
 				
 				MessageText mt = messageTextRepo.findByMessageFor("INVITATION");
 				
-				this.emailService.sendEmail(invitation.getEmail(), mt.getSubject(), mt.getMessage(invitation, this.getParameters().getSiteUrl()));
+				if (mt != null) this.emailService.sendEmail(invitation.getEmail(), mt.getSubject(), mt.getMessage(invitation, this.getParameters().getSiteUrl()));
 				
 				try {
 					this.invitationService.updateInvitation(invitation, principal.getName());
+					return "redirect:/home/invitation/list/current";
 		
 				} catch (Exception e) {
 					reat.addFlashAttribute("message", e.getMessage());
+					return "redirect:/home/invitation/list/current";
 				}
 			} else {
 				reat.addFlashAttribute("message", "Revised-invitation can be sent only after lapse of 15 days from previous invitation.");
 				return "redirect:/home/invitation/list/current";
 			}
 			
-			return "redirect:/home/invitation/list/current";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
 			return "redirect:/home/invitation/list/current";

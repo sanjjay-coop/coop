@@ -71,17 +71,20 @@ public class ModFundingUpdateController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated.");
+				return "redirect:/moderator/funding/view/"+funding.getId();
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record updated successfully.");
+					return "redirect:/moderator/funding/view/"+funding.getId();
 				} else {
 					reat.addFlashAttribute("message", tr.getMessage());
+					return "redirect:/moderator/funding/view/"+funding.getId();
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
+			return "redirect:/moderator/funding/view/"+funding.getId();
 		}
 		
-		return "redirect:/moderator/funding/view/"+funding.getId();
 	}
 }

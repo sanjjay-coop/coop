@@ -21,68 +21,71 @@
 					<input type="hidden" class="form-control" th:field="*{id}">
 
 					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.paidTo}"></label>
+				    	<div class="col-sm-4">
+							<input type="text" class="form-control required" th:field="*{paidTo}" th:placeholder="#{expenditure.paidTo}" >
+				      		<ul><li class="cooperror" th:errors="*{paidTo}" /></ul>
+				    	</div>
+						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.towards}"></label>
+				    	<div class="col-sm-4">
+							<input type="text" class="form-control required" th:field="*{towards}" th:placeholder="#{expenditure.towards}" >
+				      		<ul><li class="cooperror" th:errors="*{towards}" /></ul>
+				    	</div>
+				    </div>
+					<div class="row mb-2">
 						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.amount}"></label>
 					   	<div class="col-sm-4">
-				    		<input type="text" class="form-control required amount" th:field="*{amount}" th:placeholder="#{expenditure.amount}" autofocus />
+							<input type="text" class="form-control required amount text-end" th:field="*{amount}" th:placeholder="#{expenditure.amount}" autofocus />
 					    	<ul><li class="cooperror" th:errors="*{amount}" /></ul>
 					    </div>
 						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.headOfAccount}"></label>
 						<div class="col-sm-4">
-				    		<select class="form-select required" th:field="*{headOfAccount}">
+							<select class="form-select required" th:field="*{headOfAccount}">
 								<option th:each="p : ${listHeadOfAccount}" th:value="${p.id}" th:text="${p.name + ' [' + p.code + ']'}" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{headOfAccount}" /></ul>
 						</div>
 					</div>
-					
 					<div class="row mb-2">
 						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.narration}"></label>
-				    	<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{narration}" th:placeholder="#{expenditure.narration}" />
+				    	<div class="col-sm-10">
+							<input type="text" class="form-control required" th:field="*{narration}" th:placeholder="#{expenditure.narration}" />
 				      		<ul><li class="cooperror" th:errors="*{narration}" /></ul>
 				    	</div>
+				    </div>
+					<div class="row mb-2">
 						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.modeOfPayment}"></label>
 						<div class="col-sm-4">
-				    		<select class="form-select required" th:field="*{modeOfPayment}">
+							<select class="form-select required" th:field="*{modeOfPayment}">
 								<option th:value="Cash" th:text="Cash" />
 								<option th:value="Cheque" th:text="Cheque" />
 								<option th:value="Online" th:text="Online" />
 							</select>
 							<ul><li class="cooperror" th:errors="*{modeOfPayment}" /></ul>
 						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.paidTo}"></label>
-				    	<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{paidTo}" th:placeholder="#{expenditure.paidTo}" >
-				      		<ul><li class="cooperror" th:errors="*{paidTo}" /></ul>
-				    	</div>
 						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.transactionDate}"></label>
 				    	<div class="col-sm-4">
-				    		<input type="date" class="form-control required" th:field="*{transactionDate}" th:placeholder="#{expenditure.transactionDate}" >
+							<input type="date" class="form-control required" th:field="*{transactionDate}" th:placeholder="#{expenditure.transactionDate}" >
 				      		<ul><li class="cooperror" th:errors="*{transactionDate}" /></ul>
 				    	</div>
 				    </div>
-				    
 					<div class="row mb-2">
 						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.voucherInvoiceNumber}"></label>
 						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{voucherInvoiceNumber}" th:placeholder="#{expenditure.voucherInvoiceNumber}" >
+							<input type="text" class="form-control required" th:field="*{voucherInvoiceNumber}" th:placeholder="#{expenditure.voucherInvoiceNumber}" >
 					  		<ul><li class="cooperror" th:errors="*{voucherInvoiceNumber}" /></ul>
 						</div>
 						<label class="col-sm-2 col-form-label text-success" th:text="#{expenditure.voucherDate}"></label>
 						<div class="col-sm-4">
-				    		<input type="date" class="form-control required" th:field="*{voucherDate}" th:placeholder="#{expenditure.voucherDate}" >
+							<input type="date" class="form-control required" th:field="*{voucherDate}" th:placeholder="#{expenditure.voucherDate}" >
 					  		<ul><li class="cooperror" th:errors="*{voucherDate}" /></ul>
 						</div>
-					</div>
-					
+				  	</div>
 					<div class="row mb-2">
 						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-				    	</div>
-				  	</div>
+							<button type="submit" class="btn btn-sm btn-success">Submit</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

@@ -49,7 +49,7 @@ public class ModOrderEditController extends ModeratorBaseController {
 			
 			if (order == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/order/addNew";
+				return "redirect:/moderator/order/list/current";
 			}
 	
 			model.addAttribute("order", order);
@@ -57,7 +57,7 @@ public class ModOrderEditController extends ModeratorBaseController {
 			return "moderator/order/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/order/addNew";
+			return "redirect:/moderator/order/list/current";
 		}
 	}
 

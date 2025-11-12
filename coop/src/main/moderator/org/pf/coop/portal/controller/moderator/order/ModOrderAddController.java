@@ -67,7 +67,7 @@ public class ModOrderAddController extends ModeratorBaseController {
 				return "redirect:/moderator/order/list/current";
 			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
-				return "redirect:/moderator/order/list/current";
+				return "redirect:/moderator/order/list";
 			} else {
 				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/moderator/order/list/current";

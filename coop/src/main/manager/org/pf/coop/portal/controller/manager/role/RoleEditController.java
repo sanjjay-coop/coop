@@ -70,13 +70,13 @@ public class RoleEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/role/addNew";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/role/edit/"+role.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/role/addNew";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/role/edit/"+role.getId();
+			return "redirect:/manager/role/addNew";
 		}
 	}
 }

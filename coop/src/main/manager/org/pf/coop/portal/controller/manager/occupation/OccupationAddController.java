@@ -63,15 +63,18 @@ public class OccupationAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/occupation/addNew";
-			} else {
+				return "redirect:/manager/occupation/addNew";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/occupation/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/occupation/addNew";
 			}
 			
-			return "redirect:/manager/occupation/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/occupation/addNew";
+			return "redirect:/manager/occupation/addNew";
 		}
 	}
 }

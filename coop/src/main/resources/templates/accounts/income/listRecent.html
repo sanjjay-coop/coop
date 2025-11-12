@@ -12,7 +12,7 @@
 
 			<div class="col-12">
 			
-				<h4 class="h4 pb-3">Income (Last 50 Payments)</h4>
+				<h4 class="h4 pb-3">Income (Last 50 Receipts)</h4>
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 								
@@ -20,34 +20,34 @@
 				
 					<thead>
 						<tr>
-							<th class="col-sm-1" th:text="'S/N'"></th>
 							<th class="col-sm-1" th:text="#{id}"></th>
-							<th class="col-sm-1" th:text="#{income.transactionDate}"></th>
-							<th class="col-sm-1" th:text="#{income.amount}"></th>
+							<th class="col-sm-1 text-end" th:text="#{income.transactionDate}"></th>
+							<th class="col-sm-1 text-end" th:text="#{income.amount}"></th>
+							<th class="col-sm-1 text-end" th:text="#{income.towards}"></th>
 							<th th:text="#{income.narration}"></th>
 							<th class="col-sm-2" th:text="#{income.receiptNumber}"></th>
-							<th class="col-sm-2" th:text="#{income.receivedFrom}"></th>
+							<th class="col-sm-3" th:text="#{income.receivedFrom}"></th>
 							<th style="width: 15px;"></th>
 							<th style="width: 15px;"></th>
 						</tr>
 					</thead>
 					
 					<tbody>
-						<tr th:each="ob,iterator : ${listIncome}">
-        					<td th:text="${iterator.index + 1}"></td>
+						<tr th:each="ob : ${listIncome}">
         					<td th:text="${ob.id}"></td>
-							<td th:text="${#dates.format(ob.transactionDate, 'dd/MM/yyyy')}"></td>
-							<td th:text="${ob.amount}"></td>
+							<td class="text-end" th:text="${#dates.format(ob.transactionDate, 'dd/MM/yyyy')}"></td>
+							<td class="text-end" th:text="${ob.amount}"></td>
+        					<td th:text="${ob.towards}"></td>
         					<td th:text="${ob.narration}"></td>
 							<td th:text="${ob.receiptNumber}"></td>
 							<td th:text="${ob.receivedFrom}"></td>
         					<td>
-        						<a class="nav-link" th:href="@{/accounts/income/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+        						<a th:if="${ob.direct}" class="nav-link" th:href="@{/accounts/income/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
 						          	<i class="bi bi-vector-pen"></i>
 						        </a>
         					</td>
         					<td>
-		        				<a class="nav-link" th:href="@{/accounts/income/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+		        				<a th:if="${ob.direct}" class="nav-link" th:href="@{/accounts/income/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
 						          	<i class="bi bi-trash-fill"></i>
 						        </a>
         					</td>

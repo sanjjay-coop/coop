@@ -82,13 +82,13 @@ public class EventEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/event/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/event/edit/"+event.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/event/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/event/edit/"+event.getId();
+			return "redirect:/manager/event/list/current";
 		}
 	}
 }

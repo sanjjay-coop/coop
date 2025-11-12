@@ -63,15 +63,18 @@ public class SalutationAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/salutation/addNew";
-			} else {
+				return "redirect:/manager/salutation/addNew";
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/salutation/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/salutation/addNew";
 			}
 			
-			return "redirect:/manager/salutation/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/salutation/addNew";
+			return "redirect:/manager/salutation/addNew";
 		}
 	}
 }

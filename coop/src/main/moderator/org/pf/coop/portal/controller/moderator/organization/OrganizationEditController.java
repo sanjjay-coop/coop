@@ -37,7 +37,7 @@ public class OrganizationEditController extends ModeratorBaseController {
 			
 			if (organization == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/organization/addNew";
+				return "redirect:/moderator/organization/view/" + id;
 			}
 	
 			model.addAttribute("organization", organization);
@@ -45,7 +45,7 @@ public class OrganizationEditController extends ModeratorBaseController {
 			return "moderator/organization/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/organization/addNew";
+			return "redirect:/moderator/organization/view/" + id;
 		}
 	}
 
@@ -64,19 +64,19 @@ public class OrganizationEditController extends ModeratorBaseController {
 			TransactionResult tr = this.organizationService.updateOrganization(organization, principal.getName());
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated.");
-				return "redirect:/moderator/organization/list/current";
+				return "redirect:/moderator/organization/view/"+organization.getId();
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/moderator/organization/view/"+organization.getId();
 				} else {
 					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/moderator/organization/edit/"+organization.getId();
+					return "redirect:/moderator/organization/view/"+organization.getId();
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/moderator/organization/edit/"+organization.getId();
+			return "redirect:/moderator/organization/view/"+organization.getId();
 		}
 	}
 }

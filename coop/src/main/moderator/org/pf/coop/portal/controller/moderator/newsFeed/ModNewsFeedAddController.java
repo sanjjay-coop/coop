@@ -52,15 +52,18 @@ public class ModNewsFeedAddController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "moderator/newsFeed/addNew";
-			} else {
+				return "redirect:/moderator/newsFeed/list/current";
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/moderator/newsFeed/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/newsFeed/list/current";
 			}
 			
-			return "redirect:/moderator/newsFeed/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "moderator/newsFeed/addNew";
+			return "redirect:/moderator/newsFeed/list/current";
 		}
 	}
 }

@@ -52,15 +52,18 @@ public class ModHolidayAddController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "moderator/holiday/addNew";
-			} else {
+				return "redirect:/moderator/holiday/list/current";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/moderator/holiday/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/holiday/list/current";
 			}
 			
-			return "redirect:/moderator/holiday/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "moderator/holiday/addNew";
+			return "redirect:/moderator/holiday/list/current";
 		}
 	}
 }

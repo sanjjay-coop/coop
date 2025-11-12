@@ -16,22 +16,26 @@
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 					
+				<div class="h6 pb-2" th:text="'Total Records: ' + ${totalRecords}"></div>		
+				
 				<div class="row p-2">
-					<div class="h6 pb-2" th:text="'Total Records: ' + ${totalRecords}"></div>		
 					
-					<div class="col-12 pb-3 mt-2 mb-2" th:each="article : ${listArticle}">
-						<div class="h3 text-success pb-2 px-4 mt-3 pt-2 rounded-2 bg-success-subtle bg-gradient " th:text="${article.title}"></div>
-						<div class="px-4" th:utext="${article.content}"></div>
-						<div class="small px-4 pb-3">
-							<span>Categories: </span>
-							<span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
-							<span class="px-4" th:text="${'Last Update: ' + article.updateDate}"></span>
+					<div class="col-md-12 p-2 my-1 bg-white rounded-3 border border-light-subtle" th:each="article : ${listArticle}">
+						<div class="h5 text-success pb-2 px-4 pt-2 rounded-2 bg-success-subtle bg-gradient">
+							<i class="bi bi-card-heading"></i>&nbsp;&nbsp;<span th:text="${article.title}"></span>
+						</div>
+						<div class="px-3 py-3" th:utext="${article.content}"></div>
+						
+						<div class="small px-3 pt-1 pb-3">
+							<i class="bi bi-person-circle"></i> <span th:text="${article.author}"></span>
+							&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar"></i> <span th:text="${#dates.format(article.updateDate, 'dd-MM-yyyy')}"></span>
+							&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-tags"></i> <span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
 						</div>
 					</div>
 				
 				</div>
 						
-				<nav aria-label="Page navigation example" th:if="${totalPages > 1}">
+				<nav aria-label="Page Navigation">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}">
 							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}(categoryId=${category.id})}"><i class="bi bi-chevron-bar-left"></i></a>

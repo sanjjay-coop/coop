@@ -25,8 +25,6 @@ public class MemberDeleteController extends ManagerBaseController {
 	@GetMapping("/{id}")
 	public String deleteMember(@PathVariable Long id, Model model,
 			RedirectAttributes reat, Principal principal, HttpServletRequest request) {
-		
-		String listMember_type = (String) request.getSession().getAttribute("listMember_type");
 
 		try {
 			
@@ -40,8 +38,7 @@ public class MemberDeleteController extends ManagerBaseController {
 			} else if (tr.isStatus()){
 				
 				reat.addFlashAttribute("message", "Record deleted successfully.");
-				if (listMember_type.equals("list"))	return "redirect:/manager/member/list/current"; 
-				else return "redirect:/manager/member/search/list"; 
+				return "redirect:/manager/member/list/current";
 				
 			} else {
 				

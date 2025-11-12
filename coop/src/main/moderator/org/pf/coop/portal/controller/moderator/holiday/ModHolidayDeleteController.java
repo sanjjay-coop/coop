@@ -30,15 +30,18 @@ public class ModHolidayDeleteController extends ModeratorBaseController {
 			
 			if (tr == null ) {
 				reat.addFlashAttribute("message", "Record could not be deleted.");
+				return "redirect:/moderator/holiday/list/current";
 			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record deleted successfully.");
+				return "redirect:/moderator/holiday/list/current";
 			} else {
-				reat.addFlashAttribute("message", "Record could not be deleted.");
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/holiday/list/current";
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
+			return "redirect:/moderator/holiday/list/current";
 		}
 
-		return "redirect:/moderator/holiday/list/current";
 	}
 }

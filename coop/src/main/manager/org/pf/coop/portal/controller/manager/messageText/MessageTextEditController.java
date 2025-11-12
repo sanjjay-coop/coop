@@ -70,7 +70,7 @@ public class MessageTextEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/messageText/addNew";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 					return "redirect:/manager/messageText/edit/"+messageText.getId();
 				}
 			}

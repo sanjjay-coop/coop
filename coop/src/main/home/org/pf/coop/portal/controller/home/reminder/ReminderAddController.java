@@ -62,15 +62,18 @@ public class ReminderAddController extends HomeBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "home/reminder/addNew";
-			} else {
+				return "redirect:/home/reminder/list/current";
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/home/reminder/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/home/reminder/list/current";				
 			}
 			
-			return "redirect:/home/reminder/list/current";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "home/reminder/addNew";
+			return "redirect:/home/reminder/list/current";
 		}
 	}
 }

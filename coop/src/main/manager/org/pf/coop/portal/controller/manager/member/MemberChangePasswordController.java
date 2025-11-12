@@ -32,7 +32,7 @@ public class MemberChangePasswordController  extends ManagerBaseController{
 			
 			if (member == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/manager/member/addNew";
+				return "redirect:/manager/member/list/current";
 			}
 	
 			model.addAttribute("member", member);
@@ -40,7 +40,7 @@ public class MemberChangePasswordController  extends ManagerBaseController{
 			return "manager/member/changePassword";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/manager/member/addNew";
+			return "redirect:/manager/member/view/" + id;
 		}
 	}
 	
@@ -55,20 +55,21 @@ public class MemberChangePasswordController  extends ManagerBaseController{
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Password not changed. Please try again later.");
-				return "home/member/changePassword";
+				return "redirect:/manager/member/view/" + member.getId();
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "password changed successfully.");
+					return "redirect:/manager/member/view/" + member.getId();
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/member/view/" + member.getId();
 				}
 			}
 			
-			return "redirect:/manager/member/view/"+member.getId();
 			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/member/view/"+member.getId();
+			return "redirect:/manager/member/view/" + member.getId();
 		}
 	}
 }

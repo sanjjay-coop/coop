@@ -24,6 +24,14 @@ public class IncomeValidator extends BaseValidator implements Validator {
 			errors.rejectValue("amount", "income.amount.required");
 		}
 		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "towards", "income.towards.required");
+		
+		if (obj.getTowards()!=null){
+			if (!this.lengthRange(obj.getTowards(), 1, 100)){
+				errors.rejectValue("towards", "income.towards.size");
+			}
+		}
+		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "narration", "income.narration.required");
 		
 		if (obj.getNarration()!=null){

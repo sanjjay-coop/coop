@@ -52,15 +52,18 @@ public class CarouselAddController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "moderator/carousel/addNew";
-			} else {
+				return "redirect:/moderator/carousel/list/current";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/moderator/carousel/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/carousel/list/current";
 			}
 			
-			return "redirect:/moderator/carousel/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "moderator/carousel/addNew";
+			return "redirect:/moderator/carousel/list/current";
 		}
 	}
 }

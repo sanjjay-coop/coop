@@ -37,7 +37,7 @@ public class ModDocumentEditController extends ModeratorBaseController {
 			
 			if (document == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/document/addNew";
+				return "redirect:/moderator/document/list/current";
 			}
 	
 			model.addAttribute("document", document);
@@ -45,7 +45,7 @@ public class ModDocumentEditController extends ModeratorBaseController {
 			return "moderator/document/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/document/addNew";
+			return "redirect:/moderator/document/list/current";
 		}
 	}
 
@@ -70,7 +70,7 @@ public class ModDocumentEditController extends ModeratorBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/moderator/document/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 					return "redirect:/moderator/document/list/current";
 				}
 			}

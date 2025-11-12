@@ -26,15 +26,18 @@ public class ModJobEnableDisableController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated. Please try again later.");
-				return "home/job/addNew";
-			} else {
+				return "redirect:/moderator/job/view/" + id;
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record updated successfully.");
+				return "redirect:/moderator/job/view/" + id;
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/job/view/" + id;
 			}
 			
-			return "redirect:/moderator/job/view/" + id;
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/job/list/current";
+			return "redirect:/moderator/job/view/" + id;
 		}
 	}
 
@@ -46,15 +49,18 @@ public class ModJobEnableDisableController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated. Please try again later.");
-				return "home/job/addNew";
-			} else {
+				return "redirect:/moderator/job/view/" + id;
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record updated successfully.");
+				return "redirect:/moderator/job/view/" + id;
+			} else {
+				reat.addFlashAttribute("message", "Error: "  + tr.getMessage());
+				return "redirect:/moderator/job/view/" + id;				
 			}
 			
-			return "redirect:/moderator/job/view/" + id;
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/job/list/current";
+			return "redirect:/moderator/job/view/" + id;
 		}
 	}
 }

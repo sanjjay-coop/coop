@@ -139,7 +139,7 @@ public class MemberEditController extends ManagerBaseController {
 			
 			if (member == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/manager/member/addNew";
+				return "redirect:/manager/member/list/current";
 			}
 	
 			model.addAttribute("member", member);
@@ -172,13 +172,13 @@ public class MemberEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/member/view/"+member.getId();
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/member/edit/"+member.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/member/view/"+member.getId();
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/member/edit/"+member.getId();
+			return "redirect:/manager/member/view/"+member.getId();
 		}
 	}
 }

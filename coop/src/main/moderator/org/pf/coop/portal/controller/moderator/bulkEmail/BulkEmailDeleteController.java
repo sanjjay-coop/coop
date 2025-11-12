@@ -30,15 +30,18 @@ public class BulkEmailDeleteController extends ModeratorBaseController {
 			
 			if (tr == null ) {
 				reat.addFlashAttribute("message", "Record could not be deleted.");
+				return "redirect:/moderator/bulkEmail/list/current";
 			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record deleted successfully.");
+				return "redirect:/moderator/bulkEmail/list/current";
 			} else {
 				reat.addFlashAttribute("message", "Record could not be deleted.");
+				return "redirect:/moderator/bulkEmail/list/current";
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
+			return "redirect:/moderator/bulkEmail/list/current";
 		}
-		return "redirect:/moderator/bulkEmail/list";
 	}
 }
 

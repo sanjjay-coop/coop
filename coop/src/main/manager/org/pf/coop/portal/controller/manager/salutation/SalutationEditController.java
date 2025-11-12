@@ -70,13 +70,13 @@ public class SalutationEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/salutation/addNew";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/salutation/edit/"+salutation.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/salutation/addNew";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/salutation/edit/"+salutation.getId();
+			return "redirect:/manager/salutation/addNew";
 		}
 	}
 }

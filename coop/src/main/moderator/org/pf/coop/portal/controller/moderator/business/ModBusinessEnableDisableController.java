@@ -26,15 +26,18 @@ public class ModBusinessEnableDisableController extends ModeratorBaseController 
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated. Please try again later.");
-				return "home/business/addNew";
-			} else {
+				return "redirect:/moderator/business/view/" + id;
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record updated successfully.");
+				return "redirect:/moderator/business/view/" + id;
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/business/view/" + id;
 			}
 			
-			return "redirect:/moderator/business/view/" + id;
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/business/list/current";
+			return "redirect:/moderator/business/view/" + id;
 		}
 	}
 
@@ -46,15 +49,18 @@ public class ModBusinessEnableDisableController extends ModeratorBaseController 
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated. Please try again later.");
-				return "home/business/addNew";
-			} else {
+				return "redirect:/moderator/business/view/" + id;
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record updated successfully.");
+				return "redirect:/moderator/business/view/" + id;
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/business/view/" + id;
 			}
 			
-			return "redirect:/moderator/business/view/" + id;
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/business/list/current";
+			return "redirect:/moderator/business/view/" + id;
 		}
 	}
 }

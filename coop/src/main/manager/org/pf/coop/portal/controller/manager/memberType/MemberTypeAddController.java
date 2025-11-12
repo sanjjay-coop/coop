@@ -63,15 +63,18 @@ public class MemberTypeAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/memberType/addNew";
-			} else {
+				return "redirect:/manager/memberType/addNew";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/memberType/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/memberType/addNew";
 			}
 			
-			return "redirect:/manager/memberType/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/memberType/addNew";
+			return "redirect:/manager/memberType/addNew";
 		}
 	}
 }

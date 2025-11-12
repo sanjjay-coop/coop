@@ -70,7 +70,7 @@ public class TribeEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/tribe/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 					return "redirect:/manager/tribe/list/current";
 				}
 			}

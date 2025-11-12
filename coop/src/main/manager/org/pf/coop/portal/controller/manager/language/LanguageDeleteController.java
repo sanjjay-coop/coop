@@ -31,21 +31,24 @@ public class LanguageDeleteController extends ManagerBaseController {
 			if (tr == null ) {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
+				return "redirect:/manager/language/addNew";
 				
 			} else if (tr.isStatus()){
 				
 				reat.addFlashAttribute("message", "Record deleted successfully.");
+				return "redirect:/manager/language/addNew";
 				
 			} else {
 				
-				reat.addFlashAttribute("message", "Record could not be deleted.");
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/language/addNew";
 				
 			}
 		} catch (Exception e) {
 			
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
+			return "redirect:/manager/language/addNew";
 		
 		}
-		return "redirect:/manager/language/addNew";
 	}
 }

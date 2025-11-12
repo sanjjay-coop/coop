@@ -70,13 +70,13 @@ public class CategoryEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/category/addNew";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/category/edit/"+category.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/category/addNew";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/category/edit/"+category.getId();
+			return "redirect:/manager/category/addNew";
 		}
 	}
 }

@@ -52,10 +52,10 @@ public class CasteAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/caste/addNew";
+				return "redirect:/manager/caste/list/current";
 			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
-				return "redirect:/manager/caste/list/current";
+				return "redirect:/manager/caste/list";
 			} else {
 				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/manager/caste/list/current";
@@ -63,7 +63,7 @@ public class CasteAddController extends ManagerBaseController {
 			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/caste/addNew";
+			return "redirect:/manager/caste/list/current";
 		}
 	}
 }

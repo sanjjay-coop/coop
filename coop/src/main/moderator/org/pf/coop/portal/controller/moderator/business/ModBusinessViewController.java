@@ -25,15 +25,16 @@ public class ModBusinessViewController extends ModeratorBaseController {
 			
 			if (business == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/business/list";
+				return "redirect:/moderator/business/list/current";
 			}
 	
 			model.addAttribute("business", business);
 			
 			return "moderator/business/view";
+			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/business/list";
+			return "redirect:/moderator/business/list/current";
 		}
 	}
 }

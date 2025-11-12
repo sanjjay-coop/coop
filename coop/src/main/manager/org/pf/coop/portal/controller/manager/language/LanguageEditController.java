@@ -68,16 +68,19 @@ public class LanguageEditController extends ManagerBaseController {
 			TransactionResult tr = this.languageService.updateLanguage(language, principal.getName());
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated.");
+				return "redirect:/manager/language/addNew";
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record updated successfully.");
+					return "redirect:/manager/language/addNew";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/language/addNew";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
+			return "redirect:/manager/language/addNew";
 		}
-		return "redirect:/manager/language/addNew";
 	}
 }

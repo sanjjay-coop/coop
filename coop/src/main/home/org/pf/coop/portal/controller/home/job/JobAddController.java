@@ -73,15 +73,18 @@ public class JobAddController extends HomeBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "home/job/addNew";
-			} else {
+				return "redirect:/home/job/list/current";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/home/job/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/home/job/list/current";
 			}
 			
-			return "redirect:/home/job/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "home/job/addNew";
+			return "redirect:/home/job/list/current";
 		}
 	}
 }

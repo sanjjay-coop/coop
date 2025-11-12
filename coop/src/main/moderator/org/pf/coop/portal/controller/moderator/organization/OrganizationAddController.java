@@ -52,15 +52,18 @@ public class OrganizationAddController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "moderator/organization/addNew";
+				return "redirect:/moderator/organization/list/current";
+			} else if (tr.isStatus()) {
+				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/moderator/organization/list";
 			} else {
 				reat.addFlashAttribute("message", "Record added successfully.");
-				return "redirect:/moderator/organization/list/current";
+				return "redirect:/moderator/organization/list/current";				
 			}
 			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "moderator/organization/addNew";
+			return "redirect:/moderator/organization/list/current";
 		}
 	}
 }

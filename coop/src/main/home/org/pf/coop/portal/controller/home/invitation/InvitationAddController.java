@@ -70,23 +70,24 @@ public class InvitationAddController extends HomeBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "home/invitation/addNew";
+				return "redirect:/home/invitation/list/current";
 			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
 				
 				MessageText mt = messageTextRepo.findByMessageFor("INVITATION");
 				
-				this.emailService.sendEmail(invitation.getEmail(), mt.getSubject(), mt.getMessage(invitation, this.getParameters().getSiteUrl()));
+				if (mt!= null) this.emailService.sendEmail(invitation.getEmail(), mt.getSubject(), mt.getMessage(invitation, this.getParameters().getSiteUrl()));
+
+				return "redirect:/home/invitation/list";
 				
 			} else {
 				reat.addFlashAttribute("message", tr.getMessage());
-				return "home/invitation/addNew";
+				return "redirect:/home/invitation/list/current";
 			}
 			
-			return "redirect:/home/invitation/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "home/invitation/addNew";
+			return "redirect:/home/invitation/list/current";
 		}
 	}
 }

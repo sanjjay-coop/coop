@@ -52,15 +52,18 @@ public class ModSponsorshipAddController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "moderator/sponsorship/addNew";
-			} else {
+				return "redirect:/moderator/sponsorship/list/current";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/moderator/sponsorship/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/sponsorship/list/current";
 			}
 			
-			return "redirect:/moderator/sponsorship/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "moderator/sponsorship/addNew";
+			return "redirect:/moderator/sponsorship/list/current";
 		}
 	}
 }

@@ -53,11 +53,14 @@ public class AdvertAddController extends ManagerBaseController {
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
 				return "redirect:/manager/advert/list/current";
-			} else {
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/advert/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/advert/list/current";
 			}
 			
-			return "redirect:/manager/advert/list/current";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
 			return "redirect:/manager/advert/list/current";

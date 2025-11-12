@@ -25,15 +25,16 @@ public class ModFundingViewController extends ModeratorBaseController {
 			
 			if (funding == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/funding/list";
+				return "redirect:/moderator/funding/list/current";
 			}
 	
 			model.addAttribute("funding", funding);
 			
 			return "moderator/funding/view";
+			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/funding/list";
+			return "redirect:/moderator/funding/list/current";
 		}
 	}
 }

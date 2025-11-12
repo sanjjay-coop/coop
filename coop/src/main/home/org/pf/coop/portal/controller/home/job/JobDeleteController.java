@@ -38,16 +38,11 @@ public class JobDeleteController extends HomeBaseController {
 			
 			Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
 			
-			Job job = this.jobRepo.getReferenceById(id);
+			Job job = this.jobRepo.findByIdAndOwner(id, member);
 			
 			if (job == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/home/job/addNew";
-			}
-			
-			if (!job.getOwner().getId().equals(member.getId())) {
-				reat.addFlashAttribute("message", "Record is owned by other Member.");
-				return "redirect:/home";
+				return "redirect:/home/job/list/current";
 			}
 			
 			TransactionResult tr = this.jobService.deleteJob(id, principal.getName());
@@ -55,7 +50,7 @@ public class JobDeleteController extends HomeBaseController {
 			if (tr == null ) {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				return "redirect:/home/job/addNew";
+				return "redirect:/home/job/list/current";
 				
 			} else if (tr.isStatus()){
 				

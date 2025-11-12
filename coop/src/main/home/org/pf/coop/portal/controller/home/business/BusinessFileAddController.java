@@ -73,7 +73,6 @@ public class BusinessFileAddController extends HomeBaseController {
 			return "home/business/file";
 		}
 		
-		
 		try {			
 
 			return "redirect:/home/business/list/current";

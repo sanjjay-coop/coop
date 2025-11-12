@@ -52,10 +52,10 @@ public class TribeAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/tribe/addNew";
+				return "redirect:/manager/tribe/list/current";
 			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
-				return "redirect:/manager/tribe/list/current";
+				return "redirect:/manager/tribe/list";
 			} else {
 				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/manager/tribe/list/current";
@@ -63,7 +63,7 @@ public class TribeAddController extends ManagerBaseController {
 			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/tribe/addNew";
+			return "redirect:/manager/tribe/list/current";
 		}
 	}
 }

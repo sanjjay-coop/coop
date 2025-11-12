@@ -70,13 +70,13 @@ public class GenderEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/gender/addNew";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/gender/edit/"+gender.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/gender/addNew";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/gender/edit/"+gender.getId();
+			return "redirect:/manager/gender/addNew";
 		}
 	}
 }

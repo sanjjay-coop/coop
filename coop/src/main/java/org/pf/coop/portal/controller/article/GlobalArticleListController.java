@@ -31,7 +31,7 @@ public class GlobalArticleListController extends BaseController  {
 		
 		int pageNumber = 0;
 		
-		Pageable pageable = PageRequest.of(pageNumber, 10, Sort.by(Sort.Direction.DESC, "pubDate"));
+		Pageable pageable = PageRequest.of(pageNumber, 24, Sort.by(Sort.Direction.DESC, "pubDate"));
 		
 		Page<Article> page = this.articleRepo.findByPublishAndPubDateLessThanEqualAndExpDateGreaterThanEqual(
 				true,
@@ -83,7 +83,7 @@ public class GlobalArticleListController extends BaseController  {
 				if (pageNumber+1 < totalPages) pageNumber++;
 			}
 			
-			Pageable pageable = PageRequest.of(pageNumber, 10, Sort.by(Sort.Direction.DESC, "pubDate"));
+			Pageable pageable = PageRequest.of(pageNumber, 24, Sort.by(Sort.Direction.DESC, "pubDate"));
 			
 			Page<Article> page = this.articleRepo.findByPublishAndPubDateLessThanEqualAndExpDateGreaterThanEqual(
 					true,

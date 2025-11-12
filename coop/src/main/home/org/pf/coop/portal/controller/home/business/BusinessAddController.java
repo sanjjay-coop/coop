@@ -61,15 +61,18 @@ public class BusinessAddController extends HomeBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "home/business/addNew";
-			} else {
+				return "redirect:/home/business/list/current";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/home/business/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/home/business/list/current";
 			}
 			
-			return "redirect:/home/business/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "home/business/addNew";
+			return "redirect:/home/business/list/current";
 		}
 	}
 }

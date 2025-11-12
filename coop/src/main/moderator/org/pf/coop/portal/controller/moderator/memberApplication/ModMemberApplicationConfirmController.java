@@ -51,7 +51,7 @@ public class ModMemberApplicationConfirmController extends ModeratorBaseControll
 	
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Error! Contact admin for resolution.");
-				return "redirect:/moderator/memberApplication/list";
+				return "redirect:/moderator/memberApplication/view/" + id;
 			} else {
 				if (tr.isStatus()) {
 					
@@ -59,7 +59,7 @@ public class ModMemberApplicationConfirmController extends ModeratorBaseControll
 					
 					MessageText mt = messageTextRepo.findByMessageFor("WELCOME");
 					
-					this.emailService.sendEmail(member.getEmail(), mt.getSubject(), mt.getMessage(member));
+					if (mt != null) this.emailService.sendEmail(member.getEmail(), mt.getSubject(), mt.getMessage(member));
 					
 					reat.addFlashAttribute("message", "Sucess! " + "Member added successfully.");
 					return "redirect:/moderator/memberApplication/view/" + id;
@@ -70,7 +70,7 @@ public class ModMemberApplicationConfirmController extends ModeratorBaseControll
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/moderator/memberApplication/list";
+			return "redirect:/moderator/memberApplication/view/" + id;
 		}
 	}
 }

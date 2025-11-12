@@ -63,15 +63,18 @@ public class MessageTextAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/messageText/addNew";
-			} else {
+				return "redirect:/manager/messageText/addNew";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/messageText/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/messageText/addNew";
 			}
 			
-			return "redirect:/manager/messageText/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/messageText/addNew";
+			return "redirect:/manager/messageText/addNew";
 		}
 	}
 }

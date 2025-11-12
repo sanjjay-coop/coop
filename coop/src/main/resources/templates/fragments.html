@@ -76,13 +76,19 @@
 										<i class="bi bi-file-arrow-down"></i>
 										Download Forms/Documents
 									</a>
-								</li>	
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'events'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/event/list}">
-										<i class="bi bi-alarm"></i>
-										Upcoming Events
+								</li>
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'holidays'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/holiday/list}">
+										<i class="bi bi-bicycle"></i>
+										Holidays
 									</a>
 								</li>		
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'gallery'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/open/gallery/list}">
+										<i class="bi bi-images"></i>
+										Photo Gallery
+									</a>
+								</li>			
 								<li class="nav-item small"  th:classappend="${viewLeftMenu == 'organizations'} ? 'bg-primary bg-opacity-10 rounded-2'" >
 									<a class="nav-link small ms-2 me-2" th:href="@{/open/organization/list}">
 										<i class="bi bi-gem"></i>
@@ -94,17 +100,11 @@
 										<i class="bi bi-trophy"></i>
 										Sponsorship
 									</a>
-								</li>		
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'gallery'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/open/gallery/list}">
-										<i class="bi bi-images"></i>
-										Photo Gallery
-									</a>
 								</li>
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'contacts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/contacts}">
-										<i class="bi bi-envelope"></i>
-										Contacts
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'events'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/event/list}">
+										<i class="bi bi-alarm"></i>
+										Upcoming Events
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'help'} ? 'bg-primary bg-opacity-10 rounded-2'" >
@@ -150,6 +150,24 @@
 				          				My Dashboard
 				          			</a>
 				        		</li>
+								<li class="nav-item small" th:each="ob,iterator : ${listMenuItemTop}" th:classappend="${viewLeftMenu == 'topmenu'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
+										<i th:class="${ob.icon}"></i>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
+										<i th:class="${ob.icon}"></i>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+										<i th:class="${ob.icon}"></i>
+										<span th:text="${ob.title}"></span>
+									</a>
+									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+										<i th:class="${ob.icon}"></i>
+										<span th:text="${ob.title}"></span>
+									</a>
+								</li>
 								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('ACCOUNTS','MANAGER')" th:classappend="${viewLeftMenu == 'accounts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
 									<a class="nav-link small dropdown-toggle ms-2 me-2" th:href="@{/accounts}" role="button" data-bs-toggle="dropdown">
 										<i class="bi bi-book-half"></i>
@@ -207,30 +225,6 @@
 				          				Manager
 				          			</a>
 				        		</li>
-								<li class="nav-item small" th:each="ob,iterator : ${listMenuItemTop}" th:classappend="${viewLeftMenu == 'topmenu'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
-										<i th:class="${ob.icon}"></i>
-										<span th:text="${ob.title}"></span>
-									</a>
-									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
-										<i th:class="${ob.icon}"></i>
-										<span th:text="${ob.title}"></span>
-									</a>
-									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
-										<i th:class="${ob.icon}"></i>
-										<span th:text="${ob.title}"></span>
-									</a>
-									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
-										<i th:class="${ob.icon}"></i>
-										<span th:text="${ob.title}"></span>
-									</a>
-								</li>
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'holidays'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/holiday/list}">
-										<i class="bi bi-bicycle"></i>
-										Holidays
-									</a>
-								</li>
 								<li class="nav-item small" sec:authorize="!isAuthenticated()" th:classappend="${viewLeftMenu == 'join'} ? 'bg-primary bg-opacity-10 rounded-2'" >
 									<a class="nav-link small ms-2 me-2" th:href="@{/join}">
 										<i class="bi bi-person"></i>
@@ -313,6 +307,13 @@
 					<div class="container-fluid px-5">
 				    	<div id="navbarSupportedContent2">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				      			
+								<li class="nav-item small" th:classappend="${viewLeftMenu == 'contacts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+									<a class="nav-link small ms-2 me-2" th:href="@{/contacts}">
+										<i class="bi bi-envelope"></i>
+										Contacts
+									</a>
+								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'privacy'} ? 'bg-primary bg-opacity-10 rounded-2'" >
 									<a class="nav-link small ms-2 me-2" th:href="@{/open/privacyPolicy}">
 										<i class="bi bi-file-lock"></i>

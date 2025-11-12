@@ -52,19 +52,20 @@ public class ChangePasswordController extends HomeBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Password not changed. Please try again later.");
-				return "home/member/changePassword";
+				return "redirect:/home";
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "password changed successfully.");
+					return "redirect:/home";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/home";
 				}
 			}
 			
-			return "redirect:/home";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/home/changePassword";
+			return "redirect:/home";
 		}
 	}
 }

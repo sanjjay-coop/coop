@@ -39,6 +39,9 @@ public class Expenditure extends BaseObject implements Serializable {
 	@Column(name="f_amount", precision=10, scale=2, nullable=false)
 	private BigDecimal amount;
 	
+	@Column(name="f_towards", length=100, nullable=true)
+	private String towards;
+	
 	@Column(name="f_narration", length=500, nullable=false)
 	private String narration;
 	
@@ -81,6 +84,14 @@ public class Expenditure extends BaseObject implements Serializable {
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	public String getTowards() {
+		return towards;
+	}
+
+	public void setTowards(String towards) {
+		this.towards = towards;
 	}
 
 	public String getNarration() {
@@ -159,6 +170,7 @@ public class Expenditure extends BaseObject implements Serializable {
 	public String toString() {
 		return "Expenditure [" + (id != null ? "id=" + id + ", " : "")
 				+ (amount != null ? "amount=" + amount + ", " : "")
+				+ (towards != null ? "towards=" + towards + ", " : "")
 				+ (narration != null ? "narration=" + narration + ", " : "")
 				+ (transactionDate != null ? "transactionDate=" + transactionDate + ", " : "")
 				+ (voucherInvoiceNumber != null ? "voucherInvoiceNumber=" + voucherInvoiceNumber + ", " : "")
@@ -175,6 +187,7 @@ public class Expenditure extends BaseObject implements Serializable {
 		super.setAddDefaults(modifiedBy);
 		
 		this.setSearchString((amount != null ? amount + ", " : "")
+				+ (towards != null ? towards + ", " : "")
 				+ (narration != null ? narration + ", " : "")
 				+ (transactionDate != null ? transactionDate + ", " : "")
 				+ (voucherInvoiceNumber != null ? voucherInvoiceNumber + ", " : "")
@@ -188,6 +201,7 @@ public class Expenditure extends BaseObject implements Serializable {
 		super.setUpdateDefaults(modifiedBy);
 		
 		this.setSearchString((amount != null ? amount + ", " : "")
+				+ (towards != null ? towards + ", " : "")
 				+ (narration != null ? narration + ", " : "")
 				+ (transactionDate != null ? transactionDate + ", " : "")
 				+ (voucherInvoiceNumber != null ? voucherInvoiceNumber + ", " : "")

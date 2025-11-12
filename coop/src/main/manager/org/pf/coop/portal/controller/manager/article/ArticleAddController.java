@@ -64,15 +64,18 @@ public class ArticleAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/article/addNew";
+				return "redirect:/manager/article/list/current";
+			} else if (tr.isStatus()) {
+				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/article/list";
 			} else {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/article/list/current";				
 			}
 			
-			return "redirect:/manager/article/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/article/addNew";
+			return "redirect:/manager/article/list/current";
 		}
 	}
 }

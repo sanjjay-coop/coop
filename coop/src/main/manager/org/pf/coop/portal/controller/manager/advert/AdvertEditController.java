@@ -37,7 +37,7 @@ public class AdvertEditController extends ManagerBaseController {
 			
 			if (advert == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/manager/advert/addNew";
+				return "redirect:/manager/advert/list/current";
 			}
 	
 			model.addAttribute("advert", advert);
@@ -45,7 +45,7 @@ public class AdvertEditController extends ManagerBaseController {
 			return "manager/advert/update";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/manager/advert/addNew";
+			return "redirect:/manager/advert/list/current";
 		}
 	}
 
@@ -70,13 +70,13 @@ public class AdvertEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/advert/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/advert/update/"+advert.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/advert/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/advert/update/"+advert.getId();
+			return "redirect:/manager/advert/list/current";
 		}
 	}
 }

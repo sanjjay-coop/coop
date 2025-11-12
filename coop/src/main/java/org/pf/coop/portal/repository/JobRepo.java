@@ -18,6 +18,8 @@ public interface JobRepo extends JpaRepository<Job, Long>{
 	
 	Page<Job> findByOwner(Member member, Pageable pageable);
 	
+	Job findByIdAndOwner(Long id, Member member);
+	
 	@Query("select count(*) from Job o where o.addDate > ?1")
 	long countAddAfterDate(Date cal);
 	

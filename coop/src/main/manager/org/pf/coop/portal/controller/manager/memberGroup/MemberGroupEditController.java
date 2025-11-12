@@ -48,7 +48,7 @@ public class MemberGroupEditController extends ManagerBaseController {
 			
 			if (memberGroup == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/manager/memberGroup/addNew";
+				return "redirect:/manager/memberGroup/list/current";
 			}
 	
 			model.addAttribute("memberGroup", memberGroup);
@@ -56,7 +56,7 @@ public class MemberGroupEditController extends ManagerBaseController {
 			return "manager/memberGroup/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/manager/memberGroup/addNew";
+			return "redirect:/manager/memberGroup/list/current";
 		}
 	}
 
@@ -75,19 +75,19 @@ public class MemberGroupEditController extends ManagerBaseController {
 			TransactionResult tr = this.memberGroupService.updateMemberGroup(memberGroup, principal.getName());
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not updated.");
-				return "redirect:/manager/memberGroup/addNew";
+				return "redirect:/manager/memberGroup/list/current";
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record updated successfully.");
-					return "redirect:/manager/memberGroup/addNew";
+					return "redirect:/manager/memberGroup/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/memberGroup/edit/"+memberGroup.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/memberGroup/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/memberGroup/edit/"+memberGroup.getId();
+			return "redirect:/manager/memberGroup/list/current";
 		}
 	}
 }

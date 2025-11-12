@@ -84,6 +84,7 @@ public class ExpenditureService {
 		obj.setPaidTo(expenditure.getPaidTo());
 		obj.setTransactionDate(expenditure.getTransactionDate());
 		obj.setUpdateDate(Calendar.getInstance().getTime());
+		obj.setTowards(expenditure.getTowards());
 		
 		obj = expenditureRepo.save(obj);
 		

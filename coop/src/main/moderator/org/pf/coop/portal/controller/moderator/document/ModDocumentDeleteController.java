@@ -38,7 +38,7 @@ public class ModDocumentDeleteController extends ModeratorBaseController {
 				return "redirect:/moderator/document/list/current";
 			} else {
 				
-				reat.addFlashAttribute("message", "Record could not be deleted.");
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/moderator/document/list/current";
 			}
 		} catch (Exception e) {

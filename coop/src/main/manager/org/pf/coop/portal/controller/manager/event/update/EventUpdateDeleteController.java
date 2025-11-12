@@ -50,7 +50,7 @@ public class EventUpdateDeleteController extends ManagerBaseController {
 				
 			} else {
 				
-				reat.addFlashAttribute("message", "Record could not be deleted.");
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/manager/event/view/" + eventId;
 				
 			}

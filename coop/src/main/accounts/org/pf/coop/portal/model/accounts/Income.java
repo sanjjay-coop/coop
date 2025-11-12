@@ -39,6 +39,9 @@ public class Income extends BaseObject implements Serializable {
 	@Column(name="f_amount", precision=10, scale=2, nullable=false)
 	private BigDecimal amount;
 	
+	@Column(name="f_towards", length=100, nullable=true)
+	private String towards;
+	
 	@Column(name="f_narration", length=500, nullable=false)
 	private String narration;
 	
@@ -81,6 +84,14 @@ public class Income extends BaseObject implements Serializable {
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	public String getTowards() {
+		return towards;
+	}
+
+	public void setTowards(String towards) {
+		this.towards = towards;
 	}
 
 	public String getNarration() {
@@ -158,6 +169,7 @@ public class Income extends BaseObject implements Serializable {
 	@Override
 	public String toString() {
 		return "Income [" + (id != null ? "id=" + id + ", " : "") + (amount != null ? "amount=" + amount + ", " : "")
+				+ (towards != null ? "towards=" + towards + ", " : "")
 				+ (narration != null ? "narration=" + narration + ", " : "")
 				+ (transactionDate != null ? "transactionDate=" + transactionDate + ", " : "")
 				+ (receiptNumber != null ? "receiptNumber=" + receiptNumber + ", " : "")
@@ -174,6 +186,7 @@ public class Income extends BaseObject implements Serializable {
 		super.setAddDefaults(modifiedBy);
 		
 		this.setSearchString((amount != null ? amount + ", " : "")
+				+ (towards != null ? towards + ", " : "")
 				+ (narration != null ? narration + ", " : "")
 				+ (transactionDate != null ? transactionDate + ", " : "")
 				+ (receiptNumber != null ? receiptNumber + ", " : "")
@@ -187,6 +200,7 @@ public class Income extends BaseObject implements Serializable {
 		super.setUpdateDefaults(modifiedBy);
 		
 		this.setSearchString((amount != null ? amount + ", " : "")
+				+ (towards != null ? towards + ", " : "")
 				+ (narration != null ? narration + ", " : "")
 				+ (transactionDate != null ? transactionDate + ", " : "")
 				+ (receiptNumber != null ? receiptNumber + ", " : "")

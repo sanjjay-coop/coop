@@ -40,7 +40,7 @@ public class MemberGroupDeleteController extends ManagerBaseController {
 				
 			} else {
 				
-				reat.addFlashAttribute("message", tr.getMessage());
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/manager/memberGroup/list/current";
 				
 			}

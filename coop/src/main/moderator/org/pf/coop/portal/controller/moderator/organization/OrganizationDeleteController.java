@@ -31,7 +31,7 @@ public class OrganizationDeleteController extends ModeratorBaseController {
 			if (tr == null ) {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				return "redirect:/moderator/organization/veiw/"+id;
+				return "redirect:/moderator/organization/list/current";
 				
 			} else if (tr.isStatus()){
 				
@@ -41,13 +41,13 @@ public class OrganizationDeleteController extends ModeratorBaseController {
 			} else {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				return "redirect:/moderator/organization/veiw/"+id;
+				return "redirect:/moderator/organization/list/current";
 				
 			}
 		} catch (Exception e) {
 			
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
-			return "redirect:/moderator/organization/veiw/"+id;
+			return "redirect:/moderator/organization/list/current";
 			
 		}
 	}

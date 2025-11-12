@@ -41,7 +41,7 @@ public interface ArticleRepo extends JpaRepository<Article, Long>{
 			+ "and "
 			+ "art.publish = TRUE "
 			+ "order by art.pubDate desc "
-			+ "limit 5")
+			+ "limit 6")
 	public List<Article> listArticleRecent(Date today);
 	
 	@Query("select art "

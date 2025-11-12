@@ -74,7 +74,7 @@ public class MaritalStatusEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/maritalStatus/addNew";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 					return "redirect:/manager/maritalStatus/edit/"+maritalStatus.getId();
 				}
 			}

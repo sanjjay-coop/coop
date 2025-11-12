@@ -70,7 +70,7 @@ public class MemberTypeEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/memberType/addNew";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 					return "redirect:/manager/memberType/edit/"+memberType.getId();
 				}
 			}

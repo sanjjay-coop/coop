@@ -30,16 +30,18 @@ public class CarouselDeleteController extends ModeratorBaseController {
 			
 			if (tr == null ) {
 				reat.addFlashAttribute("message", "Record could not be deleted.");
+				return "redirect:/moderator/carousel/list/current";
 			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record deleted successfully.");
+				return "redirect:/moderator/carousel/list/current";
 			} else {
-				reat.addFlashAttribute("message", "Record could not be deleted.");
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/carousel/list/current";
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
+			return "redirect:/moderator/carousel/list/current";
 		}
-
-		return "redirect:/moderator/carousel/list/current";
 	}
 }
 

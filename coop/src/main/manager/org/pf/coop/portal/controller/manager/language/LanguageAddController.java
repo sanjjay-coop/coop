@@ -63,15 +63,18 @@ public class LanguageAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/language/addNew";
-			} else {
+				return "redirect:/manager/language/addNew";
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/language/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/language/addNew";
 			}
 			
-			return "redirect:/manager/language/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/language/addNew";
+			return "redirect:/manager/language/addNew";
 		}
 	}
 }

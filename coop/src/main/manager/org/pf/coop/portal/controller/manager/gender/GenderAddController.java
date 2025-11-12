@@ -63,15 +63,18 @@ public class GenderAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/gender/addNew";
-			} else {
+				return "redirect:/manager/gender/addNew";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/gender/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/gender/addNew";
 			}
 			
-			return "redirect:/manager/gender/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/gender/addNew";
+			return "redirect:/manager/gender/addNew";
 		}
 	}
 }

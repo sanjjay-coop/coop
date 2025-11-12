@@ -31,17 +31,19 @@ public class ReminderDeleteController extends HomeBaseController {
 			if (tr == null ) {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
+				return "redirect:/home/reminder/list/current";
 				
 			} else if (tr.isStatus()){
 				
 				reat.addFlashAttribute("message", "Record deleted successfully.");
+				return "redirect:/home/reminder/list/current";
 				
 			} else {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
+				return "redirect:/home/reminder/list/current";
 			}
 
-			return "redirect:/home/reminder/list/current";
 		} catch (Exception e) {
 			
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());

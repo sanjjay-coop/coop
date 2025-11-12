@@ -40,7 +40,7 @@ public class MemberTypeDeleteController extends ManagerBaseController {
 				
 			} else {
 				
-				reat.addFlashAttribute("message", "Record could not be deleted.");
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/manager/memberType/addNew";
 				
 			}

@@ -38,16 +38,11 @@ public class BusinessDeleteController extends HomeBaseController {
 			
 			Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
 			
-			Business business = this.businessRepo.getReferenceById(id);
+			Business business = this.businessRepo.findByIdAndOwner(id, member);
 			
 			if (business == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/home/business/addNew";
-			}
-			
-			if (!business.getOwner().getId().equals(member.getId())) {
-				reat.addFlashAttribute("message", "Record is owned by other Member.");
-				return "redirect:/home";
+				return "redirect:/home/business/list/current";
 			}
 			
 			TransactionResult tr = this.businessService.deleteBusiness(id, principal.getName());

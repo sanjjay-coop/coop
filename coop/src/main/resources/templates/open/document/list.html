@@ -53,7 +53,7 @@
 					</tbody>
 				</table>
 				
-				<nav aria-label="Page navigation example" th:if="${totalPages > 0}">
+				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/open/document/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/open/document/list/previous}"><i class="bi bi-chevron-left"></i></a></li>

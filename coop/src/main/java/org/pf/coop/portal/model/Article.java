@@ -9,6 +9,7 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextFi
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
+import org.jsoup.Jsoup;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -199,6 +200,18 @@ public class Article extends BaseObject implements Serializable {
 				+ (author != null ? author + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setUpdateDefaults(modifiedBy);
+	}
+	
+	public String getExcerpt() {
+		
+		String str = this.getContent();
+		
+		str = Jsoup.parse(str).text();
+		
+		if (str.length()>500) str = str.substring(0, 500);
+		
+		return str;
+		
 	}
 	
 }

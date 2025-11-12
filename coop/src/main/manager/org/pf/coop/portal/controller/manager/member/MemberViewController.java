@@ -27,7 +27,7 @@ public class MemberViewController extends ManagerBaseController {
 			
 			if (member == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/manager/member/addNew";
+				return "redirect:/manager/member/list/current";
 			}
 	
 			model.addAttribute("member", member);
@@ -35,7 +35,7 @@ public class MemberViewController extends ManagerBaseController {
 			return "manager/member/view";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/manager/member/addNew";
+			return "redirect:/manager/member/list/current";
 		}
 	}
 }

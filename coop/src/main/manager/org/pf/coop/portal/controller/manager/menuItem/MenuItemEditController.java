@@ -50,7 +50,7 @@ public class MenuItemEditController extends ManagerBaseController {
 			
 			if (menuItem == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/manager/menuItem/addNew";
+				return "redirect:/manager/menuItem/list/current";
 			}
 	
 			model.addAttribute("menuItem", menuItem);
@@ -58,7 +58,7 @@ public class MenuItemEditController extends ManagerBaseController {
 			return "manager/menuItem/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/manager/menuItem/addNew";
+			return "redirect:/manager/menuItem/list/current";
 		}
 	}
 
@@ -83,7 +83,7 @@ public class MenuItemEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/menuItem/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 					return "redirect:/manager/menuItem/edit/"+menuItem.getId();
 				}
 			}

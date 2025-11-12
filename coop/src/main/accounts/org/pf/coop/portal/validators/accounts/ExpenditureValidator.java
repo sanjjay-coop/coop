@@ -24,6 +24,14 @@ public class ExpenditureValidator extends BaseValidator implements Validator {
 			errors.rejectValue("amount", "expenditure.amount.required");
 		}
 		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "towards", "expenditure.towards.required");
+		
+		if (obj.getTowards()!=null){
+			if (!this.lengthRange(obj.getTowards(), 1, 100)){
+				errors.rejectValue("towards", "expenditure.towards.size");
+			}
+		}
+		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "narration", "expenditure.narration.required");
 		
 		if (obj.getNarration()!=null){

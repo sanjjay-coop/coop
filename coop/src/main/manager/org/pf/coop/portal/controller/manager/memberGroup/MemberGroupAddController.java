@@ -63,15 +63,18 @@ public class MemberGroupAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/memberGroup/addNew";
-			} else {
+				return "redirect:/manager/memberGroup/list/current";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/memberGroup/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/memberGroup/list/current";
 			}
 			
-			return "redirect:/manager/memberGroup/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/memberGroup/addNew";
+			return "redirect:/manager/memberGroup/list/current";
 		}
 	}
 }

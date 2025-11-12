@@ -62,15 +62,18 @@ public class EducationLevelAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/educationLevel/addNew";
-			} else {
+				return "redirect:/manager/educationLevel/addNew";
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/educationLevel/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/educationLevel/addNew";
 			}
 			
-			return "redirect:/manager/educationLevel/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/educationLevel/addNew";
+			return "redirect:/manager/educationLevel/addNew";
 		}
 	}
 }

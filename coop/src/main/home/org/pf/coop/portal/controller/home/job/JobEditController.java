@@ -57,16 +57,11 @@ public class JobEditController extends HomeBaseController {
 			
 			Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
 			
-			Job job = this.jobRepo.getReferenceById(id);
+			Job job = this.jobRepo.findByIdAndOwner(id, member);
 			
 			if (job == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/home/job/addNew";
-			}
-			
-			if (!job.getOwner().getId().equals(member.getId())) {
-				reat.addFlashAttribute("message", "Record is owned by other Member.");
-				return "redirect:/home";
+				return "redirect:/home/job/list/current";
 			}
 	
 			model.addAttribute("job", job);
@@ -74,7 +69,7 @@ public class JobEditController extends HomeBaseController {
 			return "home/job/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/home/job/addNew";
+			return "redirect:/home/job/list/current";
 		}
 	}
 
@@ -93,31 +88,31 @@ public class JobEditController extends HomeBaseController {
 			
 			Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
 			
-			Job emp = this.jobRepo.getReferenceById(job.getId());
+			Job emp = this.jobRepo.findByIdAndOwner(job.getId(), member);
 			
 
-			if (!emp.getOwner().getId().equals(member.getId())) {
+			if (emp == null) {
 				reat.addFlashAttribute("message", "Record is owned by other Member.");
-				return "redirect:/home";
+				return "redirect:/home/job/list/current";
 			}
 			
 			TransactionResult tr = this.jobService.updateJob(job, principal.getName());
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not editd.");
-				return "redirect:/home/job/addNew";
+				return "redirect:/home/job/list/current";
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record editd successfully.");
 					return "redirect:/home/job/list/current";
 				} else {
 					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/home/job/edit/"+job.getId();
+					return "redirect:/home/job/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/home/job/edit/"+job.getId();
+			return "redirect:/home/job/list/current";
 		}
 	}
 }

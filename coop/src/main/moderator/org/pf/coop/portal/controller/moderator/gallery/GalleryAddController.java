@@ -52,15 +52,18 @@ public class GalleryAddController extends ModeratorBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "moderator/gallery/addNew";
-			} else {
+				return "redirect:/moderator/gallery/list/current";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/moderator/gallery/list/current";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/moderator/gallery/list/current";
 			}
 			
-			return "redirect:/moderator/gallery/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "moderator/gallery/addNew";
+			return "redirect:/moderator/gallery/list/current";
 		}
 	}
 }

@@ -2,6 +2,7 @@ package org.pf.coop.portal.model;
 
 import java.io.Serializable;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -48,6 +49,10 @@ public class Contact extends BaseObject implements Serializable {
 	
 	@Column(name = "f_email", nullable = false, length=255)
 	private String email;
+	
+	@FullTextField
+	@Column(columnDefinition = "TEXT", name="f_about", nullable=true)
+	private String about;
 	
 	@Transient
 	private String searchFor;
@@ -108,6 +113,14 @@ public class Contact extends BaseObject implements Serializable {
 		this.email = email;
 	}
 
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
 	public String getSearchFor() {
 		return searchFor;
 	}
@@ -121,7 +134,8 @@ public class Contact extends BaseObject implements Serializable {
 		return "Contact [" + (id != null ? "id=" + id + ", " : "") + (name != null ? "name=" + name + ", " : "")
 				+ (designation != null ? "designation=" + designation + ", " : "")
 				+ (address != null ? "address=" + address + ", " : "") + (phone != null ? "phone=" + phone + ", " : "")
-				+ (fax != null ? "fax=" + fax + ", " : "") + (email != null ? "email=" + email : "") + "]";
+				+ (fax != null ? "fax=" + fax + ", " : "")
+				+ (about != null ? "about=" + about + ", " : "") + (email != null ? "email=" + email : "") + "]";
 	}
 
 	@Override

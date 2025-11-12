@@ -50,7 +50,7 @@ public class ArticleEditController extends ManagerBaseController {
 			
 			if (article == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/manager/article/addNew";
+				return "redirect:/manager/article/list/current";
 			}
 	
 			model.addAttribute("article", article);
@@ -58,7 +58,7 @@ public class ArticleEditController extends ManagerBaseController {
 			return "manager/article/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/manager/article/addNew";
+			return "redirect:/manager/article/list/current";
 		}
 	}
 
@@ -83,13 +83,13 @@ public class ArticleEditController extends ManagerBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/manager/article/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/article/edit/"+article.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/manager/article/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/article/edit/"+article.getId();
+			return "redirect:/manager/article/list/current";
 		}
 	}
 }

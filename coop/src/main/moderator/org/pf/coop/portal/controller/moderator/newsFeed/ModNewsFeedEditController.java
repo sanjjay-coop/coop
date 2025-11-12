@@ -37,7 +37,7 @@ public class ModNewsFeedEditController extends ModeratorBaseController {
 			
 			if (newsFeed == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/newsFeed/addNew";
+				return "redirect:/moderator/newsFeed/list/current";
 			}
 	
 			model.addAttribute("newsFeed", newsFeed);
@@ -45,7 +45,7 @@ public class ModNewsFeedEditController extends ModeratorBaseController {
 			return "moderator/newsFeed/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/newsFeed/addNew";
+			return "redirect:/moderator/newsFeed/list/current";
 		}
 	}
 
@@ -70,13 +70,13 @@ public class ModNewsFeedEditController extends ModeratorBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/moderator/newsFeed/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/moderator/newsFeed/edit/"+newsFeed.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/moderator/newsFeed/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/moderator/newsFeed/edit/"+newsFeed.getId();
+			return "redirect:/moderator/newsFeed/list/current";
 		}
 	}
 }

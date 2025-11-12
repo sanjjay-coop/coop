@@ -51,6 +51,15 @@
 					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
 						</div>
 					</div>
+					
+					<div class="row mb-2">
+						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.about}"></label>
+						<div class="col-sm-10">
+				    		<textarea class="widgEditor form-control" rows="5" th:field="*{about}" th:placeholder="#{article.about}"></textarea>
+							<ul><li class="cooperror" th:errors="*{about}" /></ul>
+						</div>
+					</div>
+					
 					<div class="row mb-2">
 						<div class="offset-sm-2 col-sm-2">
 							<button type="submit" class="btn btn-success">Submit</button>
@@ -104,5 +113,11 @@
 	
 	<div class="container" th:replace="~{fragments :: footer}">
 	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#about').summernote({height: 200});
+		});
+    </script>
 </body>
 </html>

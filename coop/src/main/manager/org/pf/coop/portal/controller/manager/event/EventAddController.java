@@ -64,15 +64,18 @@ public class EventAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/event/addNew";
-			} else {
+				return "redirect:/manager/event/addNew";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/event/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/event/addNew";
 			}
 			
-			return "redirect:/manager/event/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/event/addNew";
+			return "redirect:/manager/event/addNew";
 		}
 	}
 }

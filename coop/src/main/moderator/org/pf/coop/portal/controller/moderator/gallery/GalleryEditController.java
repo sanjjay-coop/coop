@@ -37,7 +37,7 @@ public class GalleryEditController extends ModeratorBaseController {
 			
 			if (gallery == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/gallery/addNew";
+				return "redirect:/moderator/gallery/list/current";
 			}
 	
 			model.addAttribute("gallery", gallery);
@@ -45,7 +45,7 @@ public class GalleryEditController extends ModeratorBaseController {
 			return "moderator/gallery/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/gallery/addNew";
+			return "redirect:/moderator/gallery/list/current";
 		}
 	}
 
@@ -70,13 +70,13 @@ public class GalleryEditController extends ModeratorBaseController {
 					reat.addFlashAttribute("message", "Record updated successfully.");
 					return "redirect:/moderator/gallery/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/moderator/gallery/edit/"+gallery.getId();
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/moderator/gallery/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/moderator/gallery/edit/"+gallery.getId();
+			return "redirect:/moderator/gallery/list/current";
 		}
 	}
 }

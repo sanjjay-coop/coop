@@ -30,17 +30,20 @@ public class ModInvitationDeleteController extends ModeratorBaseController {
 				if (tr.isStatus()) {
 
 					reat.addFlashAttribute("message", "Record deleted successfully.");
+					return "redirect:/moderator/invitation/list/current";
 				} else {
 	
-					reat.addFlashAttribute("message", "Record not deleted.");
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+					return "redirect:/moderator/invitation/list/current";
 				}
 			} else {
 
-				reat.addFlashAttribute("message", "Record not found.");
+				reat.addFlashAttribute("message", "Record not deleted.");
+				return "redirect:/moderator/invitation/list/current";
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
+			return "redirect:/moderator/invitation/list/current";
 		}
-		return "redirect:/moderator/invitation/list/current";
 	}
 }

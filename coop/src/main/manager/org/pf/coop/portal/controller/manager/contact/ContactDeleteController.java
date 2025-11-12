@@ -31,21 +31,24 @@ public class ContactDeleteController extends ManagerBaseController {
 			if (tr == null ) {
 				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
+				return "redirect:/manager/contact/addNew";
 				
 			} else if (tr.isStatus()){
 				
 				reat.addFlashAttribute("message", "Record deleted successfully.");
+				return "redirect:/manager/contact/addNew";
 				
 			} else {
 				
-				reat.addFlashAttribute("message", "Record could not be deleted.");
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/contact/addNew";
 				
 			}
 		} catch (Exception e) {
 			
 			reat.addFlashAttribute("message", "Error: " + e.getMessage());
+			return "redirect:/manager/contact/addNew";
 			
 		}
-		return "redirect:/manager/contact/addNew";
 	}
 }

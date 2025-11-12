@@ -52,10 +52,10 @@ public class OrderCategoryAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/orderCategory/addNew";
+				return "redirect:/manager/orderCategory/list/current";
 			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
-				return "redirect:/manager/orderCategory/list/current";
+				return "redirect:/manager/orderCategory/list";
 			} else {
 				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/manager/orderCategory/list/current";
@@ -63,7 +63,7 @@ public class OrderCategoryAddController extends ManagerBaseController {
 			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/orderCategory/addNew";
+			return "redirect:/manager/orderCategory/list/current";
 		}
 	}
 }

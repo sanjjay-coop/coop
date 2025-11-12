@@ -63,15 +63,18 @@ public class MaritalStatusAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/maritalStatus/addNew";
-			} else {
+				return "redirect:/manager/maritalStatus/addNew";
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/maritalStatus/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/maritalStatus/addNew";
 			}
 			
-			return "redirect:/manager/maritalStatus/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/maritalStatus/addNew";
+			return "redirect:/manager/maritalStatus/addNew";
 		}
 	}
 }

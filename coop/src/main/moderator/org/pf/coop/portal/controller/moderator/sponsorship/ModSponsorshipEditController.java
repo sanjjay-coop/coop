@@ -37,7 +37,7 @@ public class ModSponsorshipEditController extends ModeratorBaseController {
 			
 			if (sponsorship == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/sponsorship/addNew";
+				return "redirect:/moderator/sponsorship/list/current";
 			}
 	
 			model.addAttribute("sponsorship", sponsorship);
@@ -45,7 +45,7 @@ public class ModSponsorshipEditController extends ModeratorBaseController {
 			return "moderator/sponsorship/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/sponsorship/addNew";
+			return "redirect:/moderator/sponsorship/list/current";
 		}
 	}
 
@@ -71,12 +71,12 @@ public class ModSponsorshipEditController extends ModeratorBaseController {
 					return "redirect:/moderator/sponsorship/list/current";
 				} else {
 					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/moderator/sponsorship/edit/"+sponsorship.getId();
+					return "redirect:/moderator/sponsorship/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/moderator/sponsorship/edit/"+sponsorship.getId();
+			return "redirect:/moderator/sponsorship/list/current";
 		}
 	}
 }

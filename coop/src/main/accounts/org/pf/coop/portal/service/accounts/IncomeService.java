@@ -84,6 +84,7 @@ public class IncomeService {
 		obj.setReceivedFrom(income.getReceivedFrom());
 		obj.setTransactionDate(income.getTransactionDate());
 		obj.setUpdateDate(Calendar.getInstance().getTime());
+		obj.setTowards(income.getTowards());
 		
 		obj = incomeRepo.save(obj);
 		

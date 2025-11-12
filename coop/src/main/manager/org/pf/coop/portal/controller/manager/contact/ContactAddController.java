@@ -63,15 +63,18 @@ public class ContactAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/contact/addNew";
-			} else {
+				return "redirect:/manager/contact/addNew";
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/contact/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/contact/addNew";
 			}
 			
-			return "redirect:/manager/contact/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/contact/addNew";
+			return "redirect:/manager/contact/addNew";
 		}
 	}
 }

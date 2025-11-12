@@ -55,7 +55,7 @@ public class ModDocumentAddController extends ModeratorBaseController {
 				return "redirect:/moderator/document/list/current";
 			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
-				return "redirect:/moderator/document/list/current";
+				return "redirect:/moderator/document/list";
 			} else {
 				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 				return "redirect:/moderator/document/list/current";

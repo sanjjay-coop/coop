@@ -6,6 +6,7 @@ import org.pf.coop.common.TransactionResult;
 import org.pf.coop.portal.controller.manager.ManagerBaseController;
 import org.pf.coop.portal.model.Member;
 import org.pf.coop.portal.model.Receipt;
+import org.pf.coop.portal.repository.ReceiptRepo;
 import org.pf.coop.portal.service.MemberService;
 import org.pf.coop.portal.service.ReceiptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class ReceiptDeleteController extends ManagerBaseController {
 	private MemberService memberService;
 	
 	@Autowired
+	private ReceiptRepo receiptRepo;
+	
+	@Autowired
 	private ReceiptService receiptService;
 	
 	@GetMapping("/manager/member/{memId}/receipt/delete/{id}")
@@ -29,47 +33,38 @@ public class ReceiptDeleteController extends ManagerBaseController {
 			RedirectAttributes reat, Principal principal) {
 		
 		try {
-			Receipt receipt = (Receipt) this.receiptService.getById(id);
 			
 			Member member = (Member) this.memberService.getById(memId);
 			
-			if (receipt == null) {
-				
-				if (member == null) {
-					reat.addFlashAttribute("message", "No such record.");
-					return "redirect:/manager/member/list/current";
-				} else {
-					reat.addFlashAttribute("message", "No such record.");
-					return "redirect:/manager/member/view/" + member.getId();
-				}
+			if (member == null) {
+				reat.addFlashAttribute("message", "No such record.");
+				return "redirect:/manager/member/list/current";
 			}
 			
-			if (!receipt.getMember().getId().equals(member.getId())) {
-				reat.addFlashAttribute("message", "No matching record available.");
+			Receipt receipt = this.receiptRepo.findByIdAndMember(id, member);
+			
+			
+			if (receipt == null) {
+				reat.addFlashAttribute("message", "No such record.");
 				return "redirect:/manager/member/view/" + member.getId();
 			}
 			
 			TransactionResult tr = this.receiptService.deleteReceipt(receipt.getId(), principal.getName());
 			
 			if (tr == null ) {
-				
 				reat.addFlashAttribute("message", "Record could not be deleted.");
-				
+				return "redirect:/manager/member/view/"+member.getId();
 			} else if (tr.isStatus()){
-				
 				reat.addFlashAttribute("message", "Record deleted successfully.");
-				
+				return "redirect:/manager/member/view/"+member.getId();
 			} else {
-				
-				reat.addFlashAttribute("message", "Record could not be deleted.");
-				
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/member/view/"+member.getId();	
 			}
-			
-			return "redirect:/manager/member/view/"+member.getId();
 			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/manager/member/list/current";
+			return "redirect:/manager/member/view/" + memId;	
 		}
 	}
 }

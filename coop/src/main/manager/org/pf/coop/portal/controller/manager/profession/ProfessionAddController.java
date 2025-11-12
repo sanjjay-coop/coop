@@ -63,15 +63,18 @@ public class ProfessionAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/profession/addNew";
-			} else {
+				return "redirect:/manager/profession/addNew";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/profession/addNew";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/profession/addNew";
 			}
 			
-			return "redirect:/manager/profession/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/profession/addNew";
+			return "redirect:/manager/profession/addNew";
 		}
 	}
 }

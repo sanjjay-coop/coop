@@ -64,15 +64,18 @@ public class MenuItemAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/menuItem/addNew";
-			} else {
+				return "redirect:/manager/menuItem/list/current";
+			} else if (tr.isStatus()) {
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/menuItem/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/menuItem/list/current";
 			}
 			
-			return "redirect:/manager/menuItem/addNew";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/menuItem/addNew";
+			return "redirect:/manager/menuItem/list/current";
 		}
 	}
 }

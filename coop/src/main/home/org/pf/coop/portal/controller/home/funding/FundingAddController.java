@@ -61,16 +61,18 @@ public class FundingAddController extends HomeBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
+				return "redirect:/home/funding/list/current";
 			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
-				
+				return "redirect:/home/funding/list";				
 			} else {
-				reat.addFlashAttribute("message", tr.getMessage());
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/home/funding/list/current";
 			}
 			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
+			return "redirect:/home/funding/current";
 		}
-		return "redirect:/home/funding/list";
 	}
 }

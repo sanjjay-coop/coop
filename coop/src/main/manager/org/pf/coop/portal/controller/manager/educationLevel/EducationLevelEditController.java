@@ -71,12 +71,12 @@ public class EducationLevelEditController extends ManagerBaseController {
 					return "redirect:/manager/educationLevel/addNew";
 				} else {
 					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/manager/educationLevel/edit/"+educationLevel.getId();
+					return "redirect:/manager/educationLevel/addNew";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/manager/educationLevel/edit/"+educationLevel.getId();
+			return "redirect:/manager/educationLevel/addNew";
 		}
 	}
 }

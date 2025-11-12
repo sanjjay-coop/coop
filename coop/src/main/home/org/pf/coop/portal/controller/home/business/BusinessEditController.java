@@ -45,24 +45,19 @@ public class BusinessEditController extends HomeBaseController {
 			
 			Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
 			
-			Business business = this.businessRepo.getReferenceById(id);
+			Business business = this.businessRepo.findByIdAndOwner(id, member);
 			
 			if (business == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/home/business/addNew";
+				return "redirect:/home/business/list/current";
 			}
 			
-			if (!business.getOwner().getId().equals(member.getId())) {
-				reat.addFlashAttribute("message", "Record is owned by other Member.");
-				return "redirect:/home";
-			}
-	
 			model.addAttribute("business", business);
 			
 			return "home/business/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/home/business/addNew";
+			return "redirect:/home/business/list/current";
 		}
 	}
 
@@ -81,12 +76,11 @@ public class BusinessEditController extends HomeBaseController {
 			
 			Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
 			
-			Business emp = this.businessRepo.getReferenceById(business.getId());
+			Business emp = this.businessRepo.findByIdAndOwner(business.getId(), member);
 			
-
-			if (!emp.getOwner().getId().equals(member.getId())) {
+			if (emp == null) {
 				reat.addFlashAttribute("message", "Record is owned by other Member.");
-				return "redirect:/home";
+				return "redirect:/home/business/list/current";
 			}
 			
 			business.setOwner(emp.getOwner());
@@ -94,19 +88,19 @@ public class BusinessEditController extends HomeBaseController {
 			TransactionResult tr = this.businessService.updateBusiness(business, principal.getName());
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not editd.");
-				return "redirect:/home/business/addNew";
+				return "redirect:/home/business/list/current";
 			} else {
 				if (tr.isStatus()) {
 					reat.addFlashAttribute("message", "Record editd successfully.");
 					return "redirect:/home/business/list/current";
 				} else {
 					reat.addFlashAttribute("message", tr.getMessage());
-					return "redirect:/home/business/edit/"+business.getId();
+					return "redirect:/home/business/list/current";
 				}
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "redirect:/home/business/edit/"+business.getId();
+			return "redirect:/home/business/list/current";
 		}
 	}
 }

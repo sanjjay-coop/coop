@@ -167,19 +167,24 @@ public class MemberAddController extends ManagerBaseController {
 			
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
-				return "manager/member/addNew";
-			} else {
+				return "redirect:/manager/member/list/current";
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
 				
 				MessageText mt = messageTextRepo.findByMessageFor("WELCOME");
 				
-				this.emailService.sendEmail(member.getEmail(), mt.getSubject(), mt.getMessage(member));
+				if (mt != null) this.emailService.sendEmail(member.getEmail(), mt.getSubject(), mt.getMessage(member));
+				
+				return "redirect:/manager/member/list";
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/member/list/current";
 			}
 			
-			return "redirect:/manager/member/addNew";
+			
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
-			return "manager/member/addNew";
+			return "redirect:/manager/member/list/current";
 		}
 	}
 }

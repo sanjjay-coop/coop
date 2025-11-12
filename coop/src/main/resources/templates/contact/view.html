@@ -14,30 +14,20 @@
 				
 				<h4 class="h4 pb-3">Contacts</h4>
 				
-				<table class="table table-sm small table-bordered table-striped">
-				
-					<thead>
-						<tr>
-							<th class="col-sm-1" th:text="'S/N'"></th>
-							<th th:text="#{contact.name}"></th>
-							<th class="col-sm-2" th:text="#{contact.designation}"></th>
-							<th class="col-sm-3" th:text="#{contact.address}"></th>
-							<th class="col-sm-2" th:text="#{contact.email}"></th>
-							<th class="col-sm-1" th:text="#{contact.phone}"></th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<tr th:each="ob,iterator : ${listContact}">
-        					<td th:text="${iterator.index + 1}"></td>
-        					<td th:text="${ob.name}"></td>
-							<td th:text="${ob.designation}"></td>
-        					<td th:text="${ob.address}"></td>
-							<td th:text="${ob.email}"></td>
-							<td th:text="${ob.phone}"></td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="row g-3">
+					<div class="col-sm-6 pb-2" th:each="contact,iterator : ${listContact}">
+						<div class="card h-100">
+							<h5 class="card-header text-center bg-gradient bg-success-subtle" th:text="${contact.name}" ></h5>
+						  	<div class="card-body text-center">
+						  		<div class="h6 m-3" th:text="${contact.designation}"></div>	
+						  		<div class="small pb-1" th:text="'Address: ' + ${contact.address}"></div>	
+						  		<div class="small pb-1" th:text="'Email: ' + ${contact.email}"></div>	
+						  		<div class="small pb-3" th:text="'Phone: ' + ${contact.phone}"></div>	
+						  		<div class="text-success" th:utext="${contact.about}"></div>			  		
+						  	</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

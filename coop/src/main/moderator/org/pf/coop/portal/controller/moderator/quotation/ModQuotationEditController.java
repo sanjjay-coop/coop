@@ -37,7 +37,7 @@ public class ModQuotationEditController extends ModeratorBaseController {
 			
 			if (quotation == null) {
 				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/moderator/quotation/addNew";
+				return "redirect:/moderator/quotation/list/current";
 			}
 	
 			model.addAttribute("quotation", quotation);
@@ -45,7 +45,7 @@ public class ModQuotationEditController extends ModeratorBaseController {
 			return "moderator/quotation/edit";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/quotation/addNew";
+			return "redirect:/moderator/quotation/list/current";
 		}
 	}
 

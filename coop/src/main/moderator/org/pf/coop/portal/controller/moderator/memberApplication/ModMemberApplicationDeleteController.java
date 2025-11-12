@@ -30,7 +30,7 @@ public class ModMemberApplicationDeleteController extends ModeratorBaseControlle
 				if (tr.isStatus()) {
 
 					reat.addFlashAttribute("message", "Record deleted successfully.");
-					return "redirect:/moderator/memberApplication/list";
+					return "redirect:/moderator/memberApplication/list/current";
 				} else {
 	
 					reat.addFlashAttribute("message", "Record not deleted.");
@@ -39,11 +39,11 @@ public class ModMemberApplicationDeleteController extends ModeratorBaseControlle
 			} else {
 
 				reat.addFlashAttribute("message", "Record not found.");
-				return "redirect:/moderator/memberApplication/list";
+				return "redirect:/moderator/memberApplication/view/" + id;
 			}
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/moderator/memberApplication/list";
+			return "redirect:/moderator/memberApplication/view/" + id;
 		}
 	}
 }

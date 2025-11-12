@@ -75,11 +75,14 @@ public class ReceiptAddController extends ManagerBaseController {
 			if (tr == null) {
 				reat.addFlashAttribute("message", "Record not added. Please try again later.");
 				return "redirect:/manager/member/view/" + receipt.getMember().getId();
-			} else {
+			} else if (tr.isStatus()){
 				reat.addFlashAttribute("message", "Record added successfully.");
+				return "redirect:/manager/member/view/" + receipt.getMember().getId();
+			} else {
+				reat.addFlashAttribute("message", "Error: " + tr.getMessage());
+				return "redirect:/manager/member/view/" + receipt.getMember().getId();
 			}
 			
-			return "redirect:/manager/member/view/" + receipt.getMember().getId();
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e.getMessage());
 			return "redirect:/manager/member/view/" + receipt.getMember().getId();
