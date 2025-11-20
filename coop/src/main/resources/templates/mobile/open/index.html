@@ -7,15 +7,16 @@
 		
 	</div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
+	
+		<div class="row px-2 py-2">
 
 			<div class="col-12">
 				
 				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
 				<div class="row p-2">
-					<div class="col-md-5 p-2 border border-light rounded-0" style="max-height: 500px;">
+					<div class="col-md-12 p-2 border border-light rounded-0">
 						<div class="card h-100">
 							<h5 class="card-header bg-success-subtle bg-gradient ">News Feed</h5>
 						  	<div class="card-body overflow-auto">
@@ -27,42 +28,8 @@
 								</div>
 						  	</div>
 						  	<div class="card-footer bg-success-subtle bg-gradient ">
-						  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/newsFeed/list}">News Feed Archive</a>
+						  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/mobile/open/newsFeed/list}">News Feed Archive</a>
 						  	</div>
-						</div>
-					</div>
-					<div class="col-md-7 p-2 border border-light rounded-0" style="max-height: 500px;">
-						<div id="carouselExampleCaptions" class="carousel slide">
-						  	<div class="carousel-indicators">
-						    	<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-						    	<button type="button" th:each="obj,iterator : ${listCarouselDisplay}" 
-									data-bs-target="#carouselExampleCaptions" th:data-bs-slide-to="${iterator.index + 1}" 
-									th:aria-label="Slide + ' ' + ${iterator.index + 2}"></button>
-						  	</div>
-						  	<div class="carousel-inner" th:if="${carouselActive} ne null">
-						    	<div class="carousel-item active">
-						      		<img th:src="@{/carousel/download/{orderId}(orderId=${carouselActive.id})}" style="height: 500px;" class="d-block w-100 rounded rounded-2" alt="...">
-						      		<div class="carousel-caption d-none d-md-block">
-						        		<h5 th:text="${carouselActive.title}"></h5>
-						        		<p th:text="${carouselActive.description}"></p>
-						      		</div>
-						   	 	</div>
-						    	<div class="carousel-item" th:each="obj : ${listCarouselDisplay}">
-						      		<img th:src="@{/carousel/download/{orderId}(orderId=${obj.id})}" style="height: 500px;" class="d-block w-100 rounded rounded-2" alt="...">
-						      		<div class="carousel-caption d-none d-md-block">
-										<h5 th:text="${obj.title}"></h5>
-										<p th:text="${obj.description}"></p>
-						      		</div>
-						    	</div>
-						  	</div>
-						  	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-						    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						    	<span class="visually-hidden">Previous</span>
-						  	</button>
-						  	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-						    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    	<span class="visually-hidden">Next</span>
-						  	</button>
 						</div>
 					</div>
 				</div>
@@ -71,68 +38,50 @@
 					<div class="col-md-3 p-2 rounded-0" th:each="ob,iterator : ${listHomeGallery}">
 						<div class="card h-100">
 						  	<div class="card-body overflow-auto text-center">
-								<a class="pb-2" th:href="@{/open/gallery/view/{id}(id=${ob.id})}">
-									<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}"
+								<a class="pb-2" th:href="@{/mobile/open/gallery/view/{id}(id=${ob.id})}">
+									<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}" style="max-height: 250px;"
 										class="border rounded rounded-3 img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
 								</a>
-								<div class="p-2 h5" th:text="${ob.title}"></div>
-								<div class="small p-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
+								<div class="px-2 h6" th:text="${ob.title}"></div>
+								<div class="small px-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
 						  	</div>
 						</div>
 					</div>
 					<div class="col-12 g-3 text-end">
-						<a th:href="@{/open/gallery/list}">
+						<a th:href="@{/mobile/open/gallery/list}">
 							More galleries ...
 						</a>
 					</div>
 				</div>
 				
-				<div class="row p-2 text-center">
-					<div class="col-md-2 p-2 rounded-0">
+				<div class="row p-2">
+					<div class="col-md-12 p-2 rounded-0">
 						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient ">Articles</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient ">Summary</h5>
 						  	<div class="card-body overflow-auto">
-								<div th:text="${countArticle}"></div>
-						  	</div>
-						</div>
-					</div>
-					<div class="col-md-2 p-2 rounded-0">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient ">Businesses</h5>
-						  	<div class="card-body overflow-auto">
-								<div th:text="${countBusiness}"></div>
-						  	</div>
-						</div>
-					</div>
-					<div class="col-md-2 p-2 rounded-0">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient ">Jobs</h5>
-						  	<div class="card-body overflow-auto">
-								<div th:text="${countJob}"></div>
-						  	</div>
-						</div>
-					</div>
-					<div class="col-md-2 p-2 rounded-0">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient ">Members</h5>
-						  	<div class="card-body overflow-auto">
-								<div th:text="${countMember}"></div>
-						  	</div>
-						</div>
-					</div>
-					<div class="col-md-2 p-2 rounded-0">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient ">Books, etc.</h5>
-						  	<div class="card-body overflow-auto">
-								<div th:text="${countTitle}"></div>
-						  	</div>
-						</div>
-					</div>
-					<div class="col-md-2 p-2 rounded-0">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient ">News Feeds</h5>
-						  	<div class="card-body overflow-auto">
-								<div th:text="${countNewsFeed}"></div>
+						  		<table class="table table-sm small table-bordered table-striped">								
+									<tbody>
+										<tr>
+				        					<td>Articles:</td>
+				        					<td th:text="${countArticle}"></td>
+				        				</tr><tr>
+											<td>Businesses:</td>
+											<td th:text="${countBusiness}"></td>
+										</tr><tr>
+				        					<td>Jobs/Vacancies:</td>
+				        					<td th:text="${countJob}"></td>
+				        				</tr><tr>
+				        					<td>Members:</td>	
+											<td th:text="${countMember}"></td>
+										</tr><tr>
+				        					<td>News Feeds:</td>
+				        					<td th:text="${countNewsFeed}"></td>
+										</tr><tr>
+				        					<td>Titles (Books, etc.):</td>
+				        					<td th:text="${countTitle}"></td>
+										</tr>
+									</tbody>
+								</table>
 						  	</div>
 						</div>
 					</div>

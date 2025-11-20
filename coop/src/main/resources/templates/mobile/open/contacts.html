@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{mobile/fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+		
+		<div class="row px-4 py-2">
+
+			<div class="col-12">
+				
+				<h4 class="h4 pb-3">Contacts</h4>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<div class="col-12 g-3 pb-2 text-center" th:each="ob,iterator : ${listContact}">
+					<div class="card h-100">
+						<h5 class="card-header bg-success-subtle bg-gradient" th:text="${ob.name}"></h5>
+					  	<div class="card-body overflow-auto text-center">
+							
+							<div class="py-1 h6">
+								<span th:text="${ob.designation}"></span>
+							</div>
+							<div class="py-1">
+								<i class="bi bi-house-door"></i> : <span th:text="${ob.address}"></span>
+							</div>
+							<div class="py-1">
+								<i class="bi bi-telephone"></i> : <span th:text="${ob.phone}"></span>
+							</div>
+							<div class="py-1">
+								<i class="bi bi-envelope"></i> : <span th:text="${ob.email}"></span>
+							</div>
+							
+							<div class="py-1">
+								<span th:utext="${ob.about}"></span>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{mobile/fragments :: footer}">
+	</div>
+</body>
+</html>

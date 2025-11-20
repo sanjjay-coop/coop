@@ -58,7 +58,7 @@ public class BusinessListAllController extends HomeBaseController {
 			if (obj == null) {
 				page = this.businessRepo.findByEnabled(true, pageable);
 				obj = new Business();
-				obj.setSearchString("");
+				obj.setSearchFor("");
 			} else {
 				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
 					page = this.businessRepo.findByEnabled(true, pageable);

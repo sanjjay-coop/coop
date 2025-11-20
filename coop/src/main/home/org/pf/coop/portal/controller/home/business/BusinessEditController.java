@@ -87,19 +87,19 @@ public class BusinessEditController extends HomeBaseController {
 			
 			TransactionResult tr = this.businessService.updateBusiness(business, principal.getName());
 			if (tr == null) {
-				reat.addFlashAttribute("message", "Record not editd.");
+				reat.addFlashAttribute("message", "Record not edited.");
 				return "redirect:/home/business/list/current";
 			} else {
 				if (tr.isStatus()) {
-					reat.addFlashAttribute("message", "Record editd successfully.");
+					reat.addFlashAttribute("message", "Record edited successfully.");
 					return "redirect:/home/business/list/current";
 				} else {
-					reat.addFlashAttribute("message", tr.getMessage());
+					reat.addFlashAttribute("message", "Error: " + tr.getMessage());
 					return "redirect:/home/business/list/current";
 				}
 			}
 		} catch (Exception e) {
-			reat.addFlashAttribute("message", e.getMessage());
+			reat.addFlashAttribute("message", "Error: " + e.getMessage());
 			return "redirect:/home/business/list/current";
 		}
 	}

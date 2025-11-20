@@ -1,24 +1,20 @@
 package org.pf.coop.portal.controller.mobile;
 
 import java.security.Principal;
-import java.util.Calendar;
 import java.util.List;
 
 import org.pf.coop.portal.model.Article;
-import org.pf.coop.portal.model.Carousel;
 import org.pf.coop.portal.model.Event;
 import org.pf.coop.portal.model.Gallery;
 import org.pf.coop.portal.model.NewsFeed;
 import org.pf.coop.portal.repository.ArticleRepo;
 import org.pf.coop.portal.repository.BusinessRepo;
-import org.pf.coop.portal.repository.CarouselRepo;
 import org.pf.coop.portal.repository.EventRepo;
 import org.pf.coop.portal.repository.GalleryRepo;
 import org.pf.coop.portal.repository.JobRepo;
 import org.pf.coop.portal.repository.MemberRepo;
 import org.pf.coop.portal.repository.NewsFeedRepo;
 import org.pf.coop.portal.repository.library.TitleRepo;
-import org.pf.coop.portal.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/mobile/open")
+@RequestMapping("/mobile")
 public class MobileIndexController extends MobileBaseController {
 
 	@Autowired
@@ -43,55 +39,7 @@ public class MobileIndexController extends MobileBaseController {
 	private EventRepo eventRepo;
 	
 	@Autowired
-	private ManagerService managerService;
-	
-	@Autowired
-	private BusinessRepo businessRepo;
-	
-	@Autowired
-	private JobRepo jobRepo;
-	
-	@Autowired
 	private MemberRepo memberRepo;
-	
-	@Autowired
-	private CarouselRepo carouselRepo;
-	
-	@Autowired
-	private TitleRepo titleRepo;
-	
-	@Autowired
-	private NewsFeedRepo newsFeedRepo;
-	
-	@ModelAttribute("countArticle")
-	public long getCountArticle(){
-		return this.articleRepo.count();
-	}
-	
-	@ModelAttribute("countBusiness")
-	public long getCountBusiness(){
-		return this.businessRepo.count();
-	}
-	
-	@ModelAttribute("countJob")
-	public long getCountJob(){
-		return this.jobRepo.count();
-	}
-	
-	@ModelAttribute("countNewsFeed")
-	public long getCountNewsFeed(){
-		return this.newsFeedRepo.count();
-	}
-	
-	@ModelAttribute("countMember")
-	public long getCountMember(){
-		return this.memberRepo.count();
-	}
-	
-	@ModelAttribute("countTitle")
-	public long getCountTitle(){
-		return this.titleRepo.count();
-	}
 	
 	@Autowired
 	private GalleryRepo galleryRepo;
@@ -109,10 +57,6 @@ public class MobileIndexController extends MobileBaseController {
 	@GetMapping("/index")
 	public String indexView(Model model, Principal principal) {
 		
-		if (this.memberRepo.count() < 1) {
-			this.managerService.initiate();
-		}
-		
 		return "mobile/open/index";
 		
 	}
@@ -127,7 +71,7 @@ public class MobileIndexController extends MobileBaseController {
 	@GetMapping("/accessDenied")
 	public String errorView(Model model, Principal principal) {
 		
-		return "accessDenied";
+		return "mobile/accessDenied";
 		
 	}
 	
@@ -173,32 +117,51 @@ public class MobileIndexController extends MobileBaseController {
 		}
 	}
 	
-	@ModelAttribute("carouselActive")
-	public Carousel getCarouselActive(){
-		List<Carousel> listCarousel = this.carouselRepo.listCarouselForPublication(Calendar.getInstance().getTime());
-		
-		if (listCarousel.isEmpty()) return null;
-		else {
-			return listCarousel.get(0);
-		}
+	@ModelAttribute("countArticle")
+	public long getCountArticle(){
+		return this.articleRepo.count();
 	}
 	
-	@ModelAttribute("listCarouselDisplay")
-	public List<Carousel> getCarouselPhotos(){
-		List<Carousel> listCarousel = this.carouselRepo.listCarouselForPublication(Calendar.getInstance().getTime());
-		
-		if (listCarousel.isEmpty()) return listCarousel;
-		else {
-			listCarousel.remove(0);
-			return listCarousel;
-		}
+	@Autowired
+	BusinessRepo businessRepo;
+	
+	@ModelAttribute("countBusiness")
+	public long getCountBusiness(){
+		return this.businessRepo.count();
 	}
 	
-
+	@Autowired
+	JobRepo jobRepo;
+	@ModelAttribute("countJob")
+	public long getCountJob(){
+		return this.jobRepo.count();
+	}
+	
+	@Autowired
+	NewsFeedRepo newsFeedRepo;
+	
+	@ModelAttribute("countNewsFeed")
+	public long getCountNewsFeed(){
+		return this.newsFeedRepo.count();
+	}
+	
 	@ModelAttribute("listNewsFeedHome")
 	public List<NewsFeed> getNewsFeed(){
 		List<NewsFeed> listNewsFeedHome = this.newsFeedRepo.listNewsFeedRecent();
 
 		return listNewsFeedHome;
+	}
+	
+	@ModelAttribute("countMember")
+	public long getCountMember(){
+		return this.memberRepo.count();
+	}
+	
+	@Autowired
+	TitleRepo titleRepo;
+	
+	@ModelAttribute("countTitle")
+	public long getCountTitle(){
+		return this.titleRepo.count();
 	}
 }

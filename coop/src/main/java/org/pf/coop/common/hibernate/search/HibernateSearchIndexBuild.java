@@ -10,12 +10,11 @@ import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Configuration;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
-@Configuration
+//@Configuration
 public class HibernateSearchIndexBuild implements ApplicationListener<ApplicationReadyEvent> {
 
 	private Logger logger = LogManager.getLogger();

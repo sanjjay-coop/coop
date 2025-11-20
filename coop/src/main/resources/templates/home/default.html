@@ -31,6 +31,8 @@
 								<i class="bi bi-person-workspace"></i> My Jobs</a>
 							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/payments}">
 								<i class="bi bi-wallet2"></i> My Payments</a>
+							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/serviceProvider/list}">
+								<i class="bi bi-cone-striped"></i> My Services</a>
 							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/order/list}">
 								<i class="bi bi-journals"></i> Orders</a>
 							<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/reminder/list}">
@@ -46,7 +48,9 @@
 				</div>
 				
 				<div class="row pb-3" style="font-size: 12px;">
-					<div class="col-4">
+				
+					<!--  
+					<div class="col-4 pb-2">
 						<div class="card h-100">
 							<h5 class="card-header bg-success-subtle bg-gradient">Latest Articles</h5>
 						  	<div class="card-body">
@@ -61,7 +65,23 @@
 						  	</div>
 						</div>
 					</div>
-					<div class="col-4">
+					-->
+					
+					<div class="col-4 pb-2">
+						<div class="card h-100">
+							<h5 class="card-header bg-success-subtle bg-gradient">Recent Books / Documents</h5>
+						  	<div class="card-body">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item" th:each="ob,iterator : ${listTitle}" th:text="${ob.uniformTitle+ ', ' + ob.authors}"></li>
+								</ul>
+						  	</div>
+						  	<div class="card-footer bg-success-subtle bg-gradient">
+								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/title/list}">Search Titles</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-4 pb-2">
 						<div class="card h-100">
 							<h5 class="card-header bg-success-subtle bg-gradient">Latest Events</h5>
 						  	<div class="card-body">
@@ -76,7 +96,22 @@
 						  	</div>
 						</div>
 					</div>
-					<div class="col-4">
+					
+					<div class="col-4 pb-2">
+						<div class="card h-100">
+							<h5 class="card-header bg-success-subtle bg-gradient">Recent Businesses</h5>
+						  	<div class="card-body">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item" th:each="ob,iterator : ${listBusiness}" th:text="${ob.businessName + ', ' + ob.city}"></li>
+								</ul>
+						  	</div>
+						  	<div class="card-footer bg-success-subtle bg-gradient">
+								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/business/all/list}">List All Businesses</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-4 pb-2">
 						<div class="card h-100">
 							<h5 class="card-header bg-success-subtle bg-gradient">Latest Members</h5>
 						  	<div class="card-body">
@@ -91,25 +126,10 @@
 						  	</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="row pb-3" style="font-size: 12px;">
-					<div class="col-4">
+					
+					<div class="col-4 pb-2">
 						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient">Businesses</h5>
-						  	<div class="card-body">
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob,iterator : ${listBusiness}" th:text="${ob.businessName + ', ' + ob.city}"></li>
-								</ul>
-						  	</div>
-						  	<div class="card-footer bg-success-subtle bg-gradient">
-								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/business/all/list}">List All Businesses</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient">Jobs / Vacancies</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient">Recent Jobs / Vacancies</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
 									<li class="list-group-item" th:each="ob,iterator : ${listJob}" th:text="${ob.position + ', ' + ob.city}"></li>
@@ -120,17 +140,18 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-4">
+					  
+					<div class="col-4 pb-2">
 						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient">Books / Documents</h5>
+							<h5 class="card-header bg-success-subtle bg-gradient">Recent Service Providers</h5>
 						  	<div class="card-body">
 								<ul class="list-group list-group-flush">
-									<li class="list-group-item" th:each="ob,iterator : ${listTitle}" th:text="${ob.uniformTitle+ ', ' + ob.authors}"></li>
+									<li class="list-group-item" th:each="ob,iterator : ${listServiceProvider}" th:text="${ob.serviceName + ', ' + ob.city}"></li>
 								</ul>
 						  	</div>
 						  	<div class="card-footer bg-success-subtle bg-gradient">
-								<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/title/list}">Search Titles</a>
-							</div>
+						  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/serviceProvider/all/list}">List Service Providers</a>
+						  	</div>
 						</div>
 					</div>
 				</div>

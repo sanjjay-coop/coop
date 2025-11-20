@@ -29,7 +29,7 @@ public class WebSecurityConfig {
         return provider;
     }
 
-	@SuppressWarnings({ "deprecation", "removal" })
+    @SuppressWarnings({ "deprecation", "removal" })
 	@Bean
 	@Order(1)
     SecurityFilterChain filterChainMobile(HttpSecurity http) throws Exception {
@@ -42,10 +42,9 @@ public class WebSecurityConfig {
         
     	http.securityMatcher("/mobile/**")
     		.csrf(csrf -> csrf.ignoringRequestMatchers(publicUrls))
-    		.authorizeHttpRequests((authorize) -> authorize
-    				//.dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
-    				.requestMatchers(
-    						"/mobile/open/**").permitAll()
+    		.authorizeHttpRequests(authorize -> authorize
+    				.requestMatchers("/mobile/index").permitAll()
+    				.requestMatchers("/mobile/open/**").permitAll()
     				.requestMatchers("/mobile/home/**", "/mobile/profile/**").hasAnyRole("ACCOUNTS", "LIBRARY", "MODERATOR", "MEMBER", "MANAGER")
     				.requestMatchers("/mobile/changeMemberPassword", "/mobile/changePassword").hasAnyRole("ACCOUNTS", "LIBRARY", "MODERATOR", "MANAGER", "MEMBER")
     				.requestMatchers("/mobile/login-success").hasAnyRole("ACCOUNTS", "LIBRARY", "MODERATOR", "MANAGER", "MEMBER")
@@ -53,15 +52,25 @@ public class WebSecurityConfig {
     				)
     		.exceptionHandling((exceptionHandling) -> exceptionHandling
     				.accessDeniedPage("/mobile/accessDenied"))
-    		.formLogin(login -> login
-    				.loginPage("/mobile/login").permitAll()
-    				.defaultSuccessUrl("/mobile/home", true))
-    		.logout(logout -> logout.invalidateHttpSession(true)
-    				//.logoutUrl("/logout")
+    		.formLogin(form -> form
+    				.loginPage("/mobile/login")
+    				.loginProcessingUrl("/mobile/login")
+    				.defaultSuccessUrl("/mobile/home", true)
+    				.permitAll())
+    		.logout(logout -> logout
+    				.invalidateHttpSession(true)
     				.clearAuthentication(true)
     				.deleteCookies("JSESSIONID")
+    				.logoutUrl("/mobile/logout")
+    				.logoutSuccessUrl("/mobile/login?logout")
     				.logoutRequestMatcher(new AntPathRequestMatcher("/mobile/logout"))
-    				.logoutSuccessUrl("/mobile/logout-success").permitAll());
+    				.permitAll());
+    				//.invalidateHttpSession(true)
+    				//.logoutUrl("/logout")
+    				//.clearAuthentication(true)
+    				//.deleteCookies("JSESSIONID")
+    				//.logoutRequestMatcher(new AntPathRequestMatcher("/mobile/logout"))
+    				//.logoutSuccessUrl("/mobile/logout-success").permitAll());
 
         return http.build();
     }
@@ -126,5 +135,4 @@ public class WebSecurityConfig {
 
         return http.build();
     }
-    
 }

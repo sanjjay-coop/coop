@@ -62,152 +62,63 @@
 	<div class="container-fluid" th:fragment="header">
 		
 		<div class="row py-2" style="max-height: 150px;">
-			
-			<div class="col-sm-9 my-auto ps-5">
-				<div class="h1 text-success" th:text="${params?.header}"></div>
-				<div class="h5 text-success" th:text="${params?.subHeader}"></div>
+			<div class="col-sm-12 my-auto ps-3">
+				<img class="img-fluid" th:src="@{/images/pf-long-logo.png}"/>
 			</div>
 		</div>
-		<div class="row p-2">
-			<div class="col-12">
-				<nav class="navbar navbar-expand-lg bg-success-subtle bg-gradient rounded-1">
-					<div class="container-fluid px-5">
-				    	<div id="navbarSupportedContentMenu">
-				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				      			<li class="nav-item small">
-				          			<a class="nav-link small ms-2 me-2" th:href="@{/}" th:classappend="${viewLeftMenu == 'home'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-				          				<i class="bi bi-house"></i>
-				          				Home
-				          			</a>
-				        		</li>
-				        		<li class="nav-item small" sec:authorize="hasAnyRole('MEMBER','MANAGER')" th:classappend="${viewLeftMenu == 'dashboard'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-				          			<a class="nav-link small ms-2 me-2" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/home}">
-				          				<i class="bi bi-sun"></i>
-				          				My Dashboard
-				          			</a>
-				        		</li>
-								<li class="nav-item small" th:each="ob,iterator : ${listMenuItemTop}" th:classappend="${viewLeftMenu == 'topmenu'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
-										<i class="bi bi-link-45deg"></i>
-										<span th:text="${ob.title}"></span>
-									</a>
-									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
-										<i class="bi bi-link-45deg"></i>
-										<span th:text="${ob.title}"></span>
-									</a>
-									<a class="nav-link small ms-2 me-2" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
-										<i class="bi bi-link-45deg"></i>
-										<span th:text="${ob.title}"></span>
-									</a>
-									<a class="nav-link small ms-2 me-2" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
-										<i class="bi bi-link-45deg"></i>
-										<span th:text="${ob.title}"></span>
-									</a>
-								</li>
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'holidays'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/holiday/list}">
-										<i class="bi bi-bicycle"></i>
-										Holidays
-									</a>
-								</li>
-				      			<li class="nav-item small" sec:authorize="!isAuthenticated()">
-				          			<a class="nav-link small ms-2 me-2" th:href="@{/mobile/login}">
-				          				<i class="bi bi-lock"></i>
-				          				Sign-In
-				          			</a>
-				        		</li>
-								<li class="nav-item small" sec:authorize="isAuthenticated()">
-									<a class="nav-link small ms-2 me-2" th:href="@{/mobile/logout}">
-										<i class="bi bi-unlock"></i>
-										Sign-Out
-									</a>
-								</li>
-				      		</ul>
-				    	</div>
-				  	</div>
-				</nav>
+		<div class="row py-2 m-2 bg-success-subtle bg-gradient rounded-1">
+			<div class="col-3 text-center">
+				<a class="nav-link" th:href="@{/mobile/index}">
+					<i class="bi bi-house" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+					<br/><span class="small">Home</span>
+				</a>
 			</div>
-		</div>
-	</div>
-	
-	<div class="container-fluid px-5">
-	
-		<div class="row">
-		
-			<div class="col-2" th:fragment="left_menu">
-				
-				<!-- 
-				<nav class="navbar">
-					<h4 style="font-size: 16px; font-weight: bold;">Upcoming Events</h4>
-					<ul class="nav flex-column" th:if="${viewLeftMenu == 'index' }" >
-						<li th:each="event : ${listEvent}">
-							<span style="font-weight: bold; font-size: small;">Title: </span>
-							<a th:href="@{/event/view/{orderId}(orderId=${event.id})}">
-					    		<span th:text="${event.title}" style="font-size: small; text-align: center;"></span><br/>
-							</a>	
-							<span style="font-size: small;">Start Date: </span>
-							<span style="font-size: small;" th:text="${#dates.format(event.startDate, 'dd/MM/yyyy')}"></span><br/>
-							<span style="font-size: small;">End Date: </span>
-							<span style="font-size: small;" th:text="${#dates.format(event.endDate, 'dd/MM/yyyy')}"></span><br/>
-							<br/>
-					  	</li>
-						<li class="nav-item dropdown bg-light" th:each="ob,iterator : ${listMenuItemLeft}">
-							<a class="nav-link" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" th:text="${ob.title}"></a>
-							<a class="nav-link" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}" th:text="${ob.title}"></a>
-							<a class="nav-link" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>
-							<a class="nav-link" target="_blank" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>														
-						</li>
-						<li class="nav-item dropdown bg-light">
-							<a class="nav-link" th:href="@{/contacts}">Contacts</a>
-						</li>
-					</ul>
-				</nav>
-				
-				<div th:each="advert : ${listAdvert}">
-					<div th:if="${advert.location == 'left'}" th:utext="${advert.content}"></div>
-				</div>
-				 -->
+			<div class="col-3 text-center" sec:authorize="hasAnyRole('MEMBER','MANAGER')">
+	   			<a class="nav-link" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/mobile/home}">
+	   				<i class="bi bi-sun" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+					<br/><span class="small">Dashboard</span>
+	   			</a>
 			</div>
-			
-			<div class="col-10">
-				
-				<h4 class="h4 pb-3">Title</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
+			<div class="col-3 text-center" sec:authorize="!isAuthenticated()">
+				<a class="nav-link" th:href="@{/mobile/login}">
+					<i class="bi bi-lock" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+					<br/><span class="small">Sign-In</span>
+				</a>
+			</div>
+			<div class="col-3 text-center" sec:authorize="isAuthenticated()">
+				<a class="nav-link" th:href="@{/mobile/logout}">
+					<i class="bi bi-unlock" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+					<br/><span class="small">Sign-Out</span>
+				</a>
 			</div>
 		</div>
 	</div>
 	
 	<div class="container-fluid" th:fragment="footer">
-		<div class="row p-2">
-			<div class="col-12">
-				<nav class="navbar navbar-expand-lg bg-success-subtle bg-gradient rounded-1">
-					<div class="container-fluid px-5">
-				    	<div id="navbarSupportedContent2">
-				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'privacy'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/open/privacyPolicy}">
-										<i class="bi bi-file-lock"></i>
-										Privacy Policy
-									</a>
-								</li>
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'terms'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/open/termsAndConditions}">
-										<i class="bi bi-journal-text"></i>
-										Terms &amp; Conditions
-									</a>
-								</li>
-								<li class="nav-item small" th:classappend="${viewLeftMenu == 'disclaimer'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2" th:href="@{/open/disclaimer}">
-										<i class="bi bi-patch-exclamation"></i>
-										Disclaimer
-									</a>
-								</li>
-				      		</ul>
-				    	</div>
-				  	</div>
-				</nav>
+		<div class="row py-2 m-2 bg-success-subtle bg-gradient rounded-1">
+			<div class="col-3 text-center">
+				<a class="nav-link" th:href="@{/mobile/open/contacts}">
+					<i class="bi bi-person" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+					<br/><span class="small">Contacts</span>
+				</a>
+			</div>
+			<div class="col-3 text-center">
+				<a class="nav-link" th:href="@{/mobile/open/disclaimer}">
+					<i class="bi bi-journal-text" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+					<br/><span class="small">Disclaimer</span>
+				</a>
+			</div>
+			<div class="col-3 text-center">
+				<a class="nav-link" th:href="@{/mobile/open/privacyPolicy}">
+					<i class="bi bi-file-lock" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+					<br/><span class="small">Privacy Policy</span>
+				</a>
+			</div>
+			<div class="col-3 text-center">
+				<a class="nav-link" th:href="@{/mobile/open/termsAndConditions}">
+					<i class="bi bi-journal-text" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+					<br/><span class="small">T &amp; C</span>
+				</a>
 			</div>
 		</div>
 		<div class="row py-2">

@@ -41,31 +41,32 @@
 				
 				<div class="row pb-3">
 					<div class="col-3 g-3 text-center" th:each="ob,iterator : ${listGallery}">
-						
-						<div class="p-3 g-2 border border-1 border-light rounded-3">
-							<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}"
-									class="border rounded rounded-3 img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
-							
-							<div class="pb-2" th:text="${ob.title}"></div>
-							
-							<div class="small pb-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
-							
-							<div class="row">
-								<div class="col-9 text-center"></div>
-								<div class="col-1 text-center">
-									<a class="nav-link" th:href="@{/moderator/gallery/view/{orderId}(orderId=${ob.id})}" title="View Record">
-							          	<i class="bi bi-folder2-open"></i>
-							        </a>
-								</div>
-								<div class="col-1 text-center">
-									<a class="nav-link" th:href="@{/moderator/gallery/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-							          	<i class="bi bi-vector-pen"></i>
-							        </a>
-								</div>
-								<div class="col-1 text-center">
-									<a class="nav-link" th:href="@{/moderator/gallery/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-							          	<i class="bi bi-trash-fill"></i>
-							        </a>
+						<div class="card h-100">
+						  	<div class="card-body overflow-auto text-center">
+								<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}" style="max-height: 250px;"
+										class="border rounded rounded-3 img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
+								
+								<div class="p-2 h5" th:text="${ob.title}"></div>
+								
+								<div class="small pb-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
+								
+								<div class="row">
+									<div class="col-9 text-center"></div>
+									<div class="col-1 text-center">
+										<a class="nav-link" th:href="@{/moderator/gallery/view/{orderId}(orderId=${ob.id})}" title="View Record">
+								          	<i class="bi bi-folder2-open"></i>
+								        </a>
+									</div>
+									<div class="col-1 text-center">
+										<a class="nav-link" th:href="@{/moderator/gallery/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+								          	<i class="bi bi-vector-pen"></i>
+								        </a>
+									</div>
+									<div class="col-1 text-center">
+										<a class="nav-link" th:href="@{/moderator/gallery/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+								          	<i class="bi bi-trash-fill"></i>
+								        </a>
+									</div>
 								</div>
 							</div>
 						</div>

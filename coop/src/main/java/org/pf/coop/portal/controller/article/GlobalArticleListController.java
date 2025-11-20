@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,6 +26,11 @@ public class GlobalArticleListController extends BaseController  {
 
 	@Autowired
 	private ArticleRepo articleRepo;
+	
+	@ModelAttribute("article")
+	public Article getArticle() {
+		return new Article();
+	}
 	
 	@GetMapping("/list")
 	public String listArticle(Model model, Principal principal, HttpServletRequest request) {
@@ -45,7 +51,36 @@ public class GlobalArticleListController extends BaseController  {
 		
 		model.addAttribute("currentPage", pageNumber + 1);
 		model.addAttribute("totalPages", totalPages);
+		
+		//Article obj = (Article) request.getSession().getAttribute("globalSearchAll_article");
+		
+		//if (obj == null) {			
+			//obj = new Article();
+			//obj.setSearchFor("");
+		//}
+		
+		//request.getSession().setAttribute("globalSearchAll_article", obj);
+		//model.addAttribute("article", obj);
+		
+		//final String str = obj.getSearchFor();
+		
+		//SearchSession searchSession = Search.session(entityManager);
+		
+		//SearchResult<Article> result = searchSession.search(Article.class)
+				//.where(f -> f.match()
+						//.field("content")
+						//.matching(str))
+				//.fetch(0, 24);
+		
+		//long totalRecords = result.total().hitCount();
+		//int totalPages = (int) Math.ceil(totalRecords/24);
+		
+		//model.addAttribute("listArticle", result.hits());
+		
+		model.addAttribute("currentPage", pageNumber + 1);
+		model.addAttribute("totalPages", totalPages);
 
+		//model.addAttribute("totalRecords", totalRecords);
 		model.addAttribute("totalRecords", page.getTotalElements());
 		
 		if (pageNumber == 0) model.addAttribute("firstPage", true);

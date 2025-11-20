@@ -3,7 +3,6 @@ package org.pf.coop.portal.model;
 import java.io.Serializable;
 
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.pf.coop.common.BaseObject;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +19,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
-@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_document")
 public class Document extends BaseObject implements Serializable {

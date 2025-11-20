@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid px-5">
+		<div class="row px-4 py-2">
+			<div class="col-12">
+				
+				<h4 class="h4 pb-3">Service Provider</h4>
+				
+				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${serviceProvider}" method="POST">
+					  <div class="col-auto">
+					    <div class="input-group">
+					      <div class="input-group-text">Search String</div>
+					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+					    </div>
+					  </div>
+					
+					  <div class="col-auto">
+					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+					  </div>
+				</form>
+				
+
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
+				<table class="table table-sm small table-bordered table-striped">
+				
+					<thead>
+						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th th:text="#{serviceProvider.serviceName}"></th>
+							<th class="col-sm-1" th:text="#{serviceProvider.city}"></th>
+							<th class="col-sm-2" th:text="#{serviceProvider.keywords}"></th>
+							<th class="col-sm-2" th:text="#{serviceProvider.owner}"></th>
+							<th class="col-sm-1 text-center" th:text="#{serviceProvider.enabled}"></th>
+							<th style="width: 15px;"></th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob,iterator : ${listServiceProvider}">
+							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+        					<td th:text="${ob.serviceName}"></td>
+        					<td th:text="${ob.city}"></td>
+        					<td th:text="${ob.keywords}"></td>
+							<td th:text="${ob.owner.name}"></td>
+        					<td class="text-center">
+        						<i class="bi bi-check-lg" th:if="${ob.enabled}"></i>
+        						<i class="bi bi-x-lg" th:unless="${ob.enabled}"></i>
+        					</td>							
+							<td>
+								<a class="nav-link" th:href="@{/moderator/serviceProvider/view/{orderId}(orderId=${ob.id})}" title="View Record">
+							       	<i class="bi bi-folder2-open"></i>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
+					<ul class="pagination">
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/serviceProvider/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/serviceProvider/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/moderator/serviceProvider/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/moderator/serviceProvider/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+</body>
+</html>

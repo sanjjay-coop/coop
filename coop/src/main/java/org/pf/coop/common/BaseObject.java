@@ -3,11 +3,14 @@ package org.pf.coop.common;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 
+@Indexed
 @MappedSuperclass
-public class BaseObject {
+public abstract class BaseObject {
 
 	@Column(columnDefinition = "TEXT", name="f_search_string", nullable=true)
 	private String searchString;

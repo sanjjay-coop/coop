@@ -3,7 +3,6 @@ package org.pf.coop.portal.model;
 import java.io.Serializable;
 
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -18,7 +17,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
-@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name="tab_quotation")
 public class Quotation extends BaseObject implements Serializable  {
