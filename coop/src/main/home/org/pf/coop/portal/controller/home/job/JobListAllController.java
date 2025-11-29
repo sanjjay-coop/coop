@@ -91,7 +91,7 @@ public class JobListAllController extends HomeBaseController {
 			request.getSession().setAttribute("listAllJobHome_pageNumber", pageNumber);
 			request.getSession().setAttribute("listAllJobHome_totalPages", totalPages);
 			
-			return "/home/job/listAll";
+			return "home/job/listAll";
 			
 		} catch(Exception e) {
 			System.out.println("Error Message: " + e);
@@ -162,7 +162,7 @@ public class JobListAllController extends HomeBaseController {
 			
 			model.addAttribute("listJobAll", page.getContent());
 			
-			return "/home/job/listAll";
+			return "home/job/listAll";
 		
 		} catch(Exception e) {
 			return "redirect:/home/job/all/list";

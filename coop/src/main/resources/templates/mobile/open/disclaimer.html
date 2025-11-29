@@ -8,21 +8,17 @@
 	</div>
 	
 	<div class="container-fluid">
+				
+		<h4 class="h4 p-2">Disclaimer</h4>
 		
-		<div class="row px-4 py-2">
-
-			<div class="col-12">
-				
-				<h4 class="h4 pb-3">Disclaimer</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<div class="col-sm-12" th:utext="${params.disclaimer}"></div>
-
-			</div>
-			
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
+			<div class="col-12" th:utext="${params.disclaimer}"></div>
 		</div>
+		
 	</div>
+
 	
 	<div class="container" th:replace="~{mobile/fragments :: footer}">
 	</div>

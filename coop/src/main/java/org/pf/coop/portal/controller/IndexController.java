@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class IndexController extends IndexBaseController {
 	
@@ -123,7 +125,11 @@ public class IndexController extends IndexBaseController {
 	}
 	
 	@GetMapping("/accessDenied")
-	public String errorView(Model model, Principal principal) {
+	public String errorView(Model model, HttpServletRequest request, Principal principal) {
+		
+		if (request.getHeader("Referer").contains("/mobile")) {
+			return "mobile/accessDenied";
+		}
 		
 		return "accessDenied";
 		

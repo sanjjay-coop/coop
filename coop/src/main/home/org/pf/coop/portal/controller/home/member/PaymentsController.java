@@ -26,7 +26,7 @@ public class PaymentsController  extends HomeBaseController{
 	private ReceiptService receiptService;
 	
 	@GetMapping("/home/payments")
-	public String memberProfile(Model model, RedirectAttributes reat, Principal principal) {
+	public String memberPayments(Model model, RedirectAttributes reat, Principal principal) {
 
 		try {
 			Member member= this.memberRepo.findByMemIdIgnoreCase(principal.getName());

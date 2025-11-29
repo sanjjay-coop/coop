@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{mobile/fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+					
+		<h4 class="h4 p-2">Invitation (My List)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/mobile/home/invitation/addNew}">
+						<i class="bi bi-plus-circle"></i> Add Invitation</a>
+				</div>
+			</div>
+		</div>
+		
+		<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${invitation}" method="POST">
+			  <div class="col-auto">
+			    <div class="input-group">
+			      <div class="input-group-text">Search String</div>
+			      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+			    </div>
+			  </div>
+		</form>
+				
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>		
+				<table class="table table-sm small table-bordered table-striped">
+				
+					<thead>
+						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-2" th:text="#{invitation.email}"></th>
+							<th th:text="#{invitation.name}"></th>
+							<th class="col-sm-2 text-center" th:text="#{invitation.date}"></th>
+							<th style="width: 15px;" th:text="#{invitation.status}"></th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob,iterator : ${listInvitation}">
+							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+		      				<td th:text="${ob.email}"></td>
+							<td th:text="${ob.name}"></td>
+							<td class="text-center" th:text="${#dates.format(ob.date, 'dd/MM/yyyy hh:mm:ss')}"></td>
+							<td class="text-center"><i th:if="${ob.status == true}" class="bi bi-check2"></i></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<nav class="p-2" aria-label="Page Navigation" th:if="${totalPages > 0}">
+			<ul class="pagination">
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/home/invitation/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/home/invitation/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+				<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/home/invitation/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/home/invitation/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+			</ul>
+		</nav>
+	</div>
+	
+	<div class="container" th:replace="~{mobile/fragments :: footer}">
+	</div>
+</body>
+</html>

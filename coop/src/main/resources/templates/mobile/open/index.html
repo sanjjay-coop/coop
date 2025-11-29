@@ -8,103 +8,101 @@
 	</div>
 	
 	<div class="container-fluid">
-	
-		<div class="row px-2 py-2">
-
-			<div class="col-12">
 				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<div class="row p-2">
-					<div class="col-md-12 p-2 border border-light rounded-0">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient ">News Feed</h5>
-						  	<div class="card-body overflow-auto">
-								<div class="text-center p-2 g-2 m-2 border border-light rounded-1" th:each="obj : ${listNewsFeedHome}">
-									<div class="text-success h5" >
-										<a class="text-decoration-none" target="_blank" th:href="${obj.url}" th:text="${obj.title}"></a>
-									</div>							
-									<small class="text-secondary" th:utext="${obj.description}"></small>
-								</div>
-						  	</div>
-						  	<div class="card-footer bg-success-subtle bg-gradient ">
-						  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/mobile/open/newsFeed/list}">News Feed Archive</a>
-						  	</div>
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
+			<div class="col-md-12 p-2 border border-light rounded-0">
+				<div class="card h-100">
+					<h5 class="card-header bg-success-subtle bg-gradient ">News Feed</h5>
+				  	<div class="card-body overflow-auto">
+						<div class="text-center p-2 g-2 m-2 border border-light rounded-1" th:each="obj : ${listNewsFeedHome}">
+							<div class="text-success h5" >
+								<a class="text-decoration-none" target="_blank" th:href="${obj.url}" th:text="${obj.title}"></a>
+							</div>							
+							<small class="text-secondary" th:utext="${obj.description}"></small>
 						</div>
-					</div>
+				  	</div>
+				  	<div class="card-footer bg-success-subtle bg-gradient ">
+				  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/mobile/open/newsFeed/list}">News Feed Archive</a>
+				  	</div>
 				</div>
-				
-				<div class="row p-2" th:unless="${listHomeGallery.empty}">
-					<div class="col-md-3 p-2 rounded-0" th:each="ob,iterator : ${listHomeGallery}">
-						<div class="card h-100">
-						  	<div class="card-body overflow-auto text-center">
-								<a class="pb-2" th:href="@{/mobile/open/gallery/view/{id}(id=${ob.id})}">
-									<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}" style="max-height: 250px;"
-										class="border rounded rounded-3 img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
-								</a>
-								<div class="px-2 h6" th:text="${ob.title}"></div>
-								<div class="small px-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
-						  	</div>
-						</div>
-					</div>
-					<div class="col-12 g-3 text-end">
-						<a th:href="@{/mobile/open/gallery/list}">
-							More galleries ...
+			</div>
+		</div>
+		
+		<div class="row p-2" th:unless="${listHomeGallery.empty}">
+			<div class="col-md-3 p-2 rounded-0" th:each="ob,iterator : ${listHomeGallery}">
+				<div class="card h-100">
+				  	<div class="card-body overflow-auto text-center">
+						<a class="pb-2" th:href="@{/mobile/open/gallery/view/{id}(id=${ob.id})}">
+							<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}" style="max-height: 250px;"
+								class="rounded rounded-3 img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
 						</a>
-					</div>
+						<div class="px-2 h6" th:text="${ob.title}"></div>
+						<div class="small px-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
+				  	</div>
 				</div>
-				
-				<div class="row p-2">
-					<div class="col-md-12 p-2 rounded-0">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient ">Summary</h5>
-						  	<div class="card-body overflow-auto">
-						  		<table class="table table-sm small table-bordered table-striped">								
-									<tbody>
-										<tr>
-				        					<td>Articles:</td>
-				        					<td th:text="${countArticle}"></td>
-				        				</tr><tr>
-											<td>Businesses:</td>
-											<td th:text="${countBusiness}"></td>
-										</tr><tr>
-				        					<td>Jobs/Vacancies:</td>
-				        					<td th:text="${countJob}"></td>
-				        				</tr><tr>
-				        					<td>Members:</td>	
-											<td th:text="${countMember}"></td>
-										</tr><tr>
-				        					<td>News Feeds:</td>
-				        					<td th:text="${countNewsFeed}"></td>
-										</tr><tr>
-				        					<td>Titles (Books, etc.):</td>
-				        					<td th:text="${countTitle}"></td>
-										</tr>
-									</tbody>
-								</table>
-						  	</div>
-						</div>
-					</div>
+			</div>
+			<div class="col-12 text-end">
+				<a th:href="@{/mobile/open/gallery/list}">
+					More galleries ...
+				</a>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<div class="col-md-12 p-2 rounded-0">
+				<div class="card h-100">
+					<h5 class="card-header bg-success-subtle bg-gradient ">Summary</h5>
+				  	<div class="card-body overflow-auto">
+				  		<table class="table table-sm small table-bordered table-striped">								
+							<tbody>
+								<tr>
+		        					<td>Articles:</td>
+		        					<td th:text="${countArticle}"></td>
+		        				</tr><tr>
+									<td>Businesses:</td>
+									<td th:text="${countBusiness}"></td>
+								</tr><tr>
+		        					<td>Jobs/Vacancies:</td>
+		        					<td th:text="${countJob}"></td>
+		        				</tr><tr>
+		        					<td>Members:</td>	
+									<td th:text="${countMember}"></td>
+								</tr><tr>
+		        					<td>News Feeds:</td>
+		        					<td th:text="${countNewsFeed}"></td>
+								</tr><tr>
+		        					<td>Titles (Books, etc.):</td>
+		        					<td th:text="${countTitle}"></td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
 				</div>
-				
-				<div class="row p-2">
-				
-					<div class="col-12 pb-3 mt-2 mb-2" th:each="article : ${listArticle}">
-						<div class="h3 text-success pb-2 px-4 mt-3 pt-2 rounded-2 bg-success-subtle bg-gradient " th:text="${article.title}"></div>
-						<div class="px-4" th:utext="${article.content}"></div>
-						<div class="small px-4 pb-3">
-							<span>Categories: </span>
-							<span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
-							<span class="px-4" th:text="${'Last Update: ' + article.updateDate}"></span>
-						</div>
-					</div>
-				
+			</div>
+		</div>
+		
+		<div class="row p-2">
+		
+			<div class="col-12 pb-3 mt-2 mb-2" th:each="article : ${listArticle}">
+				<div class="h3 text-success pb-2 px-4 mt-3 pt-2 rounded-2 bg-success-subtle bg-gradient " th:text="${article.title}"></div>
+				<div class="px-4" th:utext="${article.content}"></div>
+				<div class="small px-4 pb-3">
+					<span>Categories: </span>
+					<span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
+					<span class="px-4" th:text="${'Last Update: ' + article.updateDate}"></span>
 				</div>
-				
-				<a th:if="${countArticle > 5}" class="nav-link" th:href="@{/article/list}"><button type="submit" class="btn btn-success" style="height: 30px; font-size: 12px;">More Articles</button></a>
 			</div>
 			
+			<div th:if="${countArticle > 5}" class="col-12 text-end">
+				<a class="nav-link" th:href="@{/mobile/article/list}">
+					<button type="submit" class="btn btn-success" style="height: 30px; font-size: 12px;">More Articles</button>
+				</a>
+			</div>
+		
 		</div>
+		
 	</div>
 	
 	<div class="container" th:replace="~{mobile/fragments :: footer}">

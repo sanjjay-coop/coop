@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{mobile/fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+				
+		<h4 class="h4 p-2">Reminders</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/mobile/home/reminder/addNew}">
+						<i class="bi bi-plus-circle"></i> Add Reminder</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<div class="col-12 border border-light rounded-0" th:each="ob,iterator : ${listReminder}">
+				<div class="card ">
+					<h5 class="card-header bg-success-subtle bg-gradient" >
+						<th:block th:text="${ob.title}"></th:block>
+					</h5>
+				  	<div class="card-body">
+				  		<span class="my-2" th:text="${ob.description}"></span><br/>
+				  		<table class="table table-sm small table-bordered table-striped">								
+							<tbody>
+								<tr>
+									<td class="text-success" th:text="#{reminder.remDate}"></td>
+									<td th:text="${#dates.format(ob.remDate, 'dd/MM/yyyy')}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{reminder.remDays}"></td>
+									<td th:text="${ob.remDays}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{reminder.remByEmail}"></td>
+									<td th:text="${ob.remByEmail}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{reminder.remBySelf}"></td>
+									<td th:text="${ob.remBySelf}"></td>
+								</tr>
+								<tr>
+					    	</tbody>
+					    </table>
+					    
+					    <a class="nav-link" th:href="@{/home/reminder/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+					    	<i class="bi bi-trash-fill"></i>
+					  	</a>
+				   	</div>
+				</div>		
+			</div>
+		</div>
+		
+		<nav class="p-2" aria-label="Page Navigation" th:if="${totalPages > 0}">
+			<ul class="pagination">
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/home/reminder/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/home/reminder/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+				<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/home/reminder/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/home/reminder/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+			</ul>
+		</nav>
+	</div>
+	
+	<div class="container" th:replace="~{mobile/fragments :: footer}">
+	</div>
+</body>
+</html>

@@ -71,6 +71,8 @@ public class MobileIndexController extends MobileBaseController {
 	@GetMapping("/accessDenied")
 	public String errorView(Model model, Principal principal) {
 		
+		System.out.println("Executing this code");
+		
 		return "mobile/accessDenied";
 		
 	}

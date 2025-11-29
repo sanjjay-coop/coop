@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{mobile/fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+			
+		<h4 class="h4 p-2">Service Provider (Add New)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/mobile/home/serviceProvider/list/current}">
+						<i class="bi bi-chevron-double-left"></i> Back to List
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${serviceProvider}" method="POST">
+		
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.serviceName}"></label>
+		    	<div class="col-sm-10">
+		    		<input type="text" class="form-control required" th:field="*{serviceName}" th:placeholder="#{serviceProvider.serviceName}" autofocus >
+		      		<ul><li class="cooperror" th:errors="*{serviceName}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.description}"></label>
+		    	<div class="col-sm-10">
+		    		<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{serviceProvider.description}"></textarea>
+		      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.address}"></label>
+		    	<div class="col-sm-10">
+		    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{serviceProvider.address}">
+		      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.city}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{serviceProvider.city}">
+			  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.pin}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{serviceProvider.pin}">
+			  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.state}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{serviceProvider.state}">
+			  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.country}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{serviceProvider.country}">
+			  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactName}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{contactName}" th:placeholder="#{serviceProvider.contactName}">
+		      		<ul><li class="cooperror" th:errors="*{contactName}" /></ul>
+		    	</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactPhone}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{contactPhone}" th:placeholder="#{serviceProvider.contactPhone}">
+		      		<ul><li class="cooperror" th:errors="*{contactPhone}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactEmail}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{contactEmail}" th:placeholder="#{serviceProvider.contactEmail}">
+		      		<ul><li class="cooperror" th:errors="*{contactEmail}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.keywords}"></label>
+		    	<div class="col-sm-10">
+		    		<textarea class="form-control" rows="5" th:field="*{keywords}" th:placeholder="#{serviceProvider.keywords}"></textarea>
+		      		<ul><li class="cooperror" th:errors="*{keywords}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row mb-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+		    	</div>
+		  	</div>
+		</form>
+	</div>
+	
+	<div class="container" th:replace="~{mobile/fragments :: footer}">
+	</div>
+</body>
+</html>

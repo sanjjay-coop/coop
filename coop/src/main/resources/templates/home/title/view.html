@@ -30,8 +30,8 @@
 				    <div class="col-sm-4">
 						<span class="form-control border-light" th:text="${title.accessionNumber}"></span>
 				    </div>
+					<label class="col-sm-2 col-form-label text-success" th:text="#{title.titleType}"></label>
 					<div class="col-sm-4">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{title.titleType}"></label>
 						<span class="form-control border-light" th:text="${title.titleType.name}"></span>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 				<div class="row mb-2">
 					<label class="col-sm-2 col-form-label text-success" th:text="#{title.summary}"></label>
 					<div class="col-sm-10">
-						<span class="form-control border-light" th:text="${title.summary}"></span>
+						<span class="form-control border-light" th:utext="${title.summary}"></span>
 					</div>
 				</div>
 				

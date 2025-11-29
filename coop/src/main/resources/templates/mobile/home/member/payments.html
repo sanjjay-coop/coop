@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{mobile/fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+				
+		<h4 class="h4 p-2">Receipts for Payments</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
+			<div th:if="${member.receipts.empty}">
+		        There are no records to display.
+		    </div>
+			<div class="col-12" th:each="ob,iterator : ${member.receipts}">
+				<table class="table table-sm small table-bordered table-striped">
+				
+					<thead>
+						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th class="col-sm-1" th:text="#{id}"></th>
+							<th class="col-sm-1" th:text="#{receipt.receiptDate}"></th>
+							<th class="col-sm-1" th:text="#{receipt.receiptNumber}"></th>
+							<th th:text="#{receipt.details}"></th>
+							<th class="col-sm-1" th:text="#{receipt.amount}"></th>
+							<th class="col-sm-1" th:text="#{receipt.document}"></th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr>
+							<td th:text="'S/N'"></td>
+		      				<td th:text="${iterator.index + 1}"></td>
+		      			</tr><tr>
+		      				<td th:text="#{id}"></td>
+		      				<td th:text="${ob.id}"></td>
+		      			</tr><tr>
+		      				<td th:text="#{receipt.receiptDate}"></td>
+							<td th:text="${#dates.format(ob.receiptDate, 'dd/MM/yyyy')}"></td>
+						</tr><tr>
+		      				<td th:text="#{receipt.receiptNumber}"></td>
+							<td th:text="${ob.receiptNumber}"></td>
+						</tr><tr>
+		      				<td th:text="#{receipt.details}"></td>
+		      				<td th:text="${ob.details}"></td>
+		      			</tr><tr>
+		      				<td th:text="#{receipt.amount}"></td>
+							<td th:text="${ob.amount}" style="text-align: right;"></td>
+						</tr><tr>
+		      				<td th:text="#{receipt.document}"></td>
+							<td>
+								<a target="_blank" class="nav-link" th:href="@{/home/payment/receipt/{orderId}(orderId=${ob.id})}" title="View Receipt">
+							      	<i class="bi bi-image"></i>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+					
+					<tfoot>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{mobile/fragments :: footer}">
+	</div>
+</body>
+</html>

@@ -25,7 +25,7 @@ public class ServiceProviderValidator extends BaseValidator implements Validator
 		
 		if (obj.getServiceName()!=null){
 			if (!this.lengthRange(obj.getServiceName(), 1, 200)){
-				errors.rejectValue("serviceProviderName", "serviceProvider.serviceProviderName.size");
+				errors.rejectValue("serviceName", "serviceProvider.serviceName.size");
 			}
 		}
 		

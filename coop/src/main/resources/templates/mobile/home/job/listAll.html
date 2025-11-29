@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{mobile/fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+	
+		<h4 class="h4 p-2">Job</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+		<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${job}" method="POST">
+		  	<div class="col-auto">
+		    	<div class="input-group">
+		      		<div class="input-group-text">Search String</div>
+			    	<input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			    	<button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+		    	</div>
+		  	</div>
+			
+		</form>
+				
+		<div class="h6 p-2" th:text="'Total Records: ' + ${totalRecords}"></div>
+		
+		<div class="row p-2">
+			<div class="col-md-12 border border-light rounded-0" th:each="ob,iterator : ${listJobAll}">
+				<div class="card ">
+					<h5 class="card-header bg-success-subtle bg-gradient" th:text="${ob.position}"></h5>
+				  	<div class="card-body">
+				  		<span class="small" th:text="${ob.description}"></span>
+				  		<br/><br/>
+				  		<table class="table table-sm small table-bordered table-striped">								
+							<tbody>
+								<tr>
+									<td class="text-success" th:text="#{job.salary}"></td>
+									<td class="text-wrap text-break" th:text="${ob.salary}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.minimumQualification}"></td>
+									<td class="text-wrap text-break" th:text="${ob.minimumQualification.name}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.firmName}">
+									</td><td class="text-wrap text-break" th:text="${ob.firmName}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.address}">
+									</td><td class="text-wrap text-break" th:text="${ob.address + ', ' + ob.city + ' ' + ob.pin + ' ' + ob.state + ' ' + ob.country}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.contactName}"></td>
+									<td class="text-wrap text-break" th:text="${ob.contactName}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.contactDesignation}"></td>
+									<td class="text-wrap text-break" th:text="${ob.contactDesignation}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.contactPhone}"></td>
+									<td class="text-wrap text-break" th:text="${ob.contactPhone}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.contactEmail}"></td>
+									<td class="text-wrap text-break" th:text="${ob.contactEmail}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.url}"></td>
+									<td class="text-wrap text-break" th:text="${ob.url}"></td>
+								</tr>
+								<tr>
+									<td class="text-success" th:text="#{job.lastDate}"></td>
+									<td class="text-wrap text-break" th:text="${#dates.format(ob.lastDate, 'dd/MM/yyyy')}"></td>
+								</tr>
+								<tr th:if="${ob.fileData != null}">
+									<td class="text-success">Download File: </td>	 
+									<td><a class="nav-link p-2" target="_blank" th:href="@{/home/job/file/{orderId}(orderId=${ob.id})}" title="Download File">
+					          			<i class="bi bi-download"></i> </a>
+					          		</td>
+					          	</tr>
+					    	</tbody>
+					    </table>
+					    
+				   	</div>
+				</div>		
+			</div>
+		</div>
+		
+		<nav class="p-2" aria-label="Page Navigation" th:if="${totalPages > 0}">
+			<ul class="pagination">
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/home/job/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/home/job/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+				<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/home/job/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/home/job/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+			</ul>
+		</nav>
+	</div>
+	
+	<div class="container" th:replace="~{mobile/fragments :: footer}">
+	</div>
+</body>
+</html>

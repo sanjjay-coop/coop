@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{mobile/fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+				
+		<h4 class="h4 p-2">Application for Funding</h4>
+		
+		<div class="alert alert-warning p-2 g-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/mobile/home/funding/addNew}">
+						<i class="bi bi-plus-circle"></i> Application</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<div class="col-12" th:if="${listFunding.empty}">
+				No record to display.
+			</div>
+		
+			<div class="col-12" th:each="ob,iterator : ${listFunding}">
+				<table class="table table-sm small table-bordered table-striped">
+					<tbody>
+						<tr>
+							<td th:text="'S/N'"></td>
+							<td th:text="${iterator.index + 1}"></td>
+						</tr><tr>
+							<td th:text="#{funding.name}"></td>
+		      				<td th:text="${ob.name}"></td>
+						</tr><tr>
+							<td th:text="#{funding.applicationDate}"></td>
+							<td th:text="${#dates.format(ob.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></td>
+						</tr><tr>
+							<td th:text="#{funding.purpose}"></td>
+							<td th:text="${ob.purpose}"></td>
+						</tr><tr>
+							<td th:text="#{funding.status}"></td>
+							<td th:text="${ob.status}"></td>
+						</tr><tr>
+							<td></td>
+							<td>
+								<a class="nav-link" th:href="@{/mobile/home/funding/view/{orderId}(orderId=${ob.id})}" title="View Record">
+							      	<i class="bi bi-folder2-open"></i>
+							    </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+			
+	<div class="container" th:replace="~{mobile/fragments :: footer}">
+	</div>
+</body>
+</html>

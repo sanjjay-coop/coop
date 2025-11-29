@@ -61,75 +61,82 @@
 <body>
 	<div class="container-fluid" th:fragment="header">
 		
-		<div class="row py-2" style="max-height: 150px;">
-			<div class="col-sm-12 my-auto ps-3">
-				<img class="img-fluid" th:src="@{/images/pf-long-logo.png}"/>
+		<div class="row py-1 mx-1" style="max-height: 150px;">
+			<div class="col-12">
+				<img class="img-fluid rounded rounded-2" th:src="@{/images/pf-long-logo.png}"/>
 			</div>
 		</div>
-		<div class="row py-2 m-2 bg-success-subtle bg-gradient rounded-1">
+		
+		<div class="row p-2 m-2 bg-success-subtle bg-gradient rounded-1">
 			<div class="col-3 text-center">
-				<a class="nav-link" th:href="@{/mobile/index}">
-					<i class="bi bi-house" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+				<a class="nav-link small" th:href="@{/mobile/index}">
+					<i class="bi bi-house" style="font-size: 1.2rem; color: cornflowerblue;"></i>
 					<br/><span class="small">Home</span>
 				</a>
 			</div>
 			<div class="col-3 text-center" sec:authorize="hasAnyRole('MEMBER','MANAGER')">
-	   			<a class="nav-link" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/mobile/home}">
-	   				<i class="bi bi-sun" style="font-size: 1.5rem; color: cornflowerblue;"></i>
+	   			<a class="nav-link small" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/mobile/home}" title="Dashboard">
+	   				<i class="bi bi-sun" style="font-size: 1.2rem; color: cornflowerblue;"></i>
 					<br/><span class="small">Dashboard</span>
 	   			</a>
 			</div>
 			<div class="col-3 text-center" sec:authorize="!isAuthenticated()">
-				<a class="nav-link" th:href="@{/mobile/login}">
-					<i class="bi bi-lock" style="font-size: 1.5rem; color: cornflowerblue;"></i>
-					<br/><span class="small">Sign-In</span>
+				<a class="nav-link small" th:href="@{/mobile/login}">
+					<i class="bi bi-lock" style="font-size: 1.2rem; color: cornflowerblue;"></i>
+					<br/><span class="small">SignIn</span>
 				</a>
 			</div>
 			<div class="col-3 text-center" sec:authorize="isAuthenticated()">
-				<a class="nav-link" th:href="@{/mobile/logout}">
-					<i class="bi bi-unlock" style="font-size: 1.5rem; color: cornflowerblue;"></i>
-					<br/><span class="small">Sign-Out</span>
+				<a class="nav-link small" th:href="@{/mobile/logout}">
+					<i class="bi bi-unlock" style="font-size: 1.2rem; color: cornflowerblue;"></i>
+					<br/><span class="small">SignOut</span>
 				</a>
 			</div>
 		</div>
 	</div>
 	
 	<div class="container-fluid" th:fragment="footer">
-		<div class="row py-2 m-2 bg-success-subtle bg-gradient rounded-1">
-			<div class="col-3 text-center">
-				<a class="nav-link" th:href="@{/mobile/open/contacts}">
-					<i class="bi bi-person" style="font-size: 1.5rem; color: cornflowerblue;"></i>
-					<br/><span class="small">Contacts</span>
+		
+		<div class="row p-2">
+			<div th:if="${advert.location == 'mobilefooter'}" class="col-sm-12 text-center p-2" th:each="advert : ${listAdvert}">
+				<div class="text-center" th:utext="${advert.content}"></div>
+			</div>
+		</div>
+		
+		<div class="row p-2 m-2 bg-success-subtle bg-gradient rounded-1">
+		
+			<div class="col-2 text-center">
+				<a class="nav-link" th:href="@{/mobile/open/contacts}" title="Contacts">
+					<i class="bi bi-people" style="font-size: 1.2rem; color: cornflowerblue;"></i>
 				</a>
 			</div>
-			<div class="col-3 text-center">
-				<a class="nav-link" th:href="@{/mobile/open/disclaimer}">
-					<i class="bi bi-journal-text" style="font-size: 1.5rem; color: cornflowerblue;"></i>
-					<br/><span class="small">Disclaimer</span>
+		
+			<div class="col-2 text-center">
+				<a class="nav-link small" th:href="@{/mobile/open/disclaimer}" title="Disclaimer">
+					<i class="bi bi-exclamation-triangle" style="font-size: 1.2rem; color: cornflowerblue;"></i>
 				</a>
 			</div>
-			<div class="col-3 text-center">
-				<a class="nav-link" th:href="@{/mobile/open/privacyPolicy}">
-					<i class="bi bi-file-lock" style="font-size: 1.5rem; color: cornflowerblue;"></i>
-					<br/><span class="small">Privacy Policy</span>
+		
+			<div class="col-2 text-center">
+				<a class="nav-link" th:href="@{/mobile/open/privacyPolicy}" title="Privacy Policy">
+					<i class="bi bi-file-lock" style="font-size: 1.2rem; color: cornflowerblue;"></i>
 				</a>
 			</div>
-			<div class="col-3 text-center">
-				<a class="nav-link" th:href="@{/mobile/open/termsAndConditions}">
-					<i class="bi bi-journal-text" style="font-size: 1.5rem; color: cornflowerblue;"></i>
-					<br/><span class="small">T &amp; C</span>
+		
+			<div class="col-2 text-center">
+				<a class="nav-link" th:href="@{/mobile/open/termsAndConditions}" title="Terms and Conditions">
+					<i class="bi bi-journal-check" style="font-size: 1.2rem; color: cornflowerblue;"></i>
 				</a>
 			</div>
 		</div>
-		<div class="row py-2">
-			<div th:if="${advert.location == 'footer'}" class="col-sm-12 text-center p-2" th:each="advert : ${listAdvert}">
-				<div class="text-center" th:utext="${advert.content}"></div>
-			</div>
+		
+		<div class="row py-1 m-2">
 			<div class="col-sm-12 text-end p-2">
 				<img th:src="@{/images/coop-logo-new.png}" height="25px;">
 				<br/><a class="text-success" href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;" th:text="#{copyright}"></a>
 			</div>
 		</div>
+		
 	</div>
 
 </body>

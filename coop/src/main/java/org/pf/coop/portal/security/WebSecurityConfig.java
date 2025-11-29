@@ -43,6 +43,7 @@ public class WebSecurityConfig {
     	http.securityMatcher("/mobile/**")
     		.csrf(csrf -> csrf.ignoringRequestMatchers(publicUrls))
     		.authorizeHttpRequests(authorize -> authorize
+    				.requestMatchers("/mobile/accessDenied").permitAll()
     				.requestMatchers("/mobile/index").permitAll()
     				.requestMatchers("/mobile/open/**").permitAll()
     				.requestMatchers("/mobile/home/**", "/mobile/profile/**").hasAnyRole("ACCOUNTS", "LIBRARY", "MODERATOR", "MEMBER", "MANAGER")
@@ -50,7 +51,7 @@ public class WebSecurityConfig {
     				.requestMatchers("/mobile/login-success").hasAnyRole("ACCOUNTS", "LIBRARY", "MODERATOR", "MANAGER", "MEMBER")
     				.anyRequest().denyAll()
     				)
-    		.exceptionHandling((exceptionHandling) -> exceptionHandling
+    		.exceptionHandling((exceptions) -> exceptions
     				.accessDeniedPage("/mobile/accessDenied"))
     		.formLogin(form -> form
     				.loginPage("/mobile/login")
@@ -65,12 +66,6 @@ public class WebSecurityConfig {
     				.logoutSuccessUrl("/mobile/login?logout")
     				.logoutRequestMatcher(new AntPathRequestMatcher("/mobile/logout"))
     				.permitAll());
-    				//.invalidateHttpSession(true)
-    				//.logoutUrl("/logout")
-    				//.clearAuthentication(true)
-    				//.deleteCookies("JSESSIONID")
-    				//.logoutRequestMatcher(new AntPathRequestMatcher("/mobile/logout"))
-    				//.logoutSuccessUrl("/mobile/logout-success").permitAll());
 
         return http.build();
     }

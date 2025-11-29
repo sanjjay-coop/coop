@@ -8,54 +8,49 @@
 	</div>
 	
 	<div class="container-fluid">
-		<div class="row px-4 py-2">
+				
+		<h4 class="h4 p-2">Gallery</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-			<div class="col-12">
-				
-				<h4 class="h4 pb-1">Gallery</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${gallery}" method="POST">
-					  <div class="col-auto">
-					    <div class="input-group">
-					      <div class="input-group-text">Search String</div>
-					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
-					      <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
-					    </div>
-					  </div>
-				</form>
-				
-				<div class="h6" th:text="'Total Records: ' + ${totalRecords}"></div>
-				
-				<div class="row pb-3">
-					<div class="col-12 g-3 text-center" th:each="ob,iterator : ${listGallery}">
-						<div class="card h-100">
-						  	<div class="card-body overflow-auto text-center">
-								<a class="pb-2" th:href="@{/mobile/open/gallery/view/{id}(id=${ob.id})}">
-									<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}"  style="height: 250px;"
-										class="rounded rounded-3 img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
-								</a>
-								
-								<div class="p-2x h6" th:text="${ob.title}"></div>
-								
-								<div class="small px-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
-							</div>
-						</div>
+		<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${gallery}" method="POST">
+			  <div class="col-auto">
+			    <div class="input-group">
+			      <div class="input-group-text">Search String</div>
+			      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			      <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+			    </div>
+			  </div>
+		</form>
+		
+		<div class="h6 p-2" th:text="'Total Records: ' + ${totalRecords}"></div>
+		
+		<div class="row p-2">
+			<div class="col-12 text-center pb-2" th:each="ob,iterator : ${listGallery}">
+				<div class="card h-100">
+				  	<div class="card-body overflow-auto text-center">
+						<a class="pb-2" th:href="@{/mobile/open/gallery/view/{id}(id=${ob.id})}">
+							<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}"  style="height: 250px;"
+								class="rounded rounded-3 img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
+						</a>
+						
+						<div class="p-2x h6" th:text="${ob.title}"></div>
+						
+						<div class="small px-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
 					</div>
 				</div>
-				
-				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
-					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/open/gallery/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/open/gallery/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/open/gallery/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/open/gallery/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
-					</ul>
-				</nav>
 			</div>
 		</div>
+		
+		<nav class="p-2" aria-label="Page Navigation" th:if="${totalPages > 0}">
+			<ul class="pagination">
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/open/gallery/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/open/gallery/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+				<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/open/gallery/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/open/gallery/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+			</ul>
+		</nav>
 	</div>
 	
 	<div class="container" th:replace="~{mobile/fragments :: footer}">
