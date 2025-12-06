@@ -56,7 +56,7 @@ public class ArticleSearchController extends BaseController {
 	}
 	
 	@PostMapping({"/list", "/list/*", "/list/*/*" })
-	public String listBusiness(@ModelAttribute Article article, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
+	public String listArticle(@ModelAttribute Article article, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
 		try {
 			

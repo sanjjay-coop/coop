@@ -40,9 +40,7 @@
 					<thead>
 						<tr>
 							<th class="col-sm-1" th:text="'S/N'"></th>
-							<th class="col-sm-2" th:text="#{invitation.email}"></th>
-							<th th:text="#{invitation.name}"></th>
-							<th class="col-sm-2 text-center" th:text="#{invitation.date}"></th>
+							<th class="col-sm-2" th:text="#{invitation.name}"></th>
 							<th style="width: 15px;" th:text="#{invitation.status}"></th>
 						</tr>
 					</thead>
@@ -50,9 +48,11 @@
 					<tbody>
 						<tr th:each="ob,iterator : ${listInvitation}">
 							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
-		      				<td th:text="${ob.email}"></td>
-							<td th:text="${ob.name}"></td>
-							<td class="text-center" th:text="${#dates.format(ob.date, 'dd/MM/yyyy hh:mm:ss')}"></td>
+		      				<td>
+		      					<div th:text="${ob.name}"></div>
+		      					<div th:text="${ob.email}"></div>
+		      					<div th:text="${#dates.format(ob.date, 'dd/MM/yyyy hh:mm:ss')}"></div>
+		      				</td>
 							<td class="text-center"><i th:if="${ob.status == true}" class="bi bi-check2"></i></td>
 						</tr>
 					</tbody>

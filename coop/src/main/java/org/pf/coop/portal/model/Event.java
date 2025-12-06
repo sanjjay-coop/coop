@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.CascadeType;
@@ -44,11 +42,9 @@ public class Event extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
-	@FullTextField
 	@Column(name="f_title", length=500, nullable=false)
 	private String title;
 	
-	@FullTextField
 	@Column(columnDefinition = "TEXT", name="f_description", nullable=false)
 	private String description;
 	
@@ -64,15 +60,12 @@ public class Event extends BaseObject implements Serializable {
 	@Column(name="f_publish", nullable=false)
 	private Boolean publish;
 	
-	@FullTextField
 	@Column(name="f_venue", length=100, nullable=true)
 	private String venue;
 	
-	@KeywordField
 	@Column(name="f_city", length=100, nullable=true)
 	private String city;
 	
-	@FullTextField
 	@Column(name="f_state", length=100, nullable=true)
 	private String state;
 	
@@ -205,8 +198,6 @@ public class Event extends BaseObject implements Serializable {
 		
 		this.setSearchString((title != null ? title + ", " : "")
 				+ (description != null ? description + ", " : "")
-				+ (startDate != null ? startDate + ", " : "")
-				+ (endDate != null ? endDate + ", " : "")
 				+ (venue != null ? venue + ", " : "")
 				+ (city != null ? city + ", " : "")
 				+ (state != null ? state + ", " : ""));
@@ -219,8 +210,6 @@ public class Event extends BaseObject implements Serializable {
 		
 		this.setSearchString((title != null ? title + ", " : "")
 				+ (description != null ? description + ", " : "")
-				+ (startDate != null ? startDate + ", " : "")
-				+ (endDate != null ? endDate + ", " : "")
 				+ (venue != null ? venue + ", " : "")
 				+ (city != null ? city + ", " : "")
 				+ (state != null ? state + ", " : ""));

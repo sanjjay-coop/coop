@@ -2,8 +2,6 @@ package org.pf.coop.portal.model;
 
 import java.io.Serializable;
 
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 import org.pf.coop.common.BaseObject;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,45 +34,36 @@ public class Organization extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
-	@FullTextField
 	@Column(name="f_organization_name", length=200, nullable=false)
 	private String organizationName;
 	
-	@FullTextField
 	@Column(name="f_description", length=2000, nullable=false)
 	private String description;
 	
 	@Column(name="f_address", length=100, nullable=false)
 	private String address;
 	
-	@KeywordField
 	@Column(name="f_city", length=50, nullable=false)
 	private String city;
 	
 	@Column(name="f_pin", length=10, nullable=true)
 	private String pin;
 	
-	@FullTextField
 	@Column(name="f_state", length=50, nullable=true)
 	private String state;
 	
-	@KeywordField
 	@Column(name="f_country", length=50, nullable=true)
 	private String country;
 	
-	@FullTextField
 	@Column(name="f_contact_name", length=50, nullable=true)
 	private String contactName;
 	
-	@KeywordField
 	@Column(name="f_contact_post", length=50, nullable=true)
 	private String contactPost;
 	
-	@KeywordField
 	@Column(name="f_contact_phone", length=20, nullable=true)
 	private String contactPhone;
 	
-	@KeywordField
 	@Column(name="f_contact_email", length=255, nullable=true)
 	private String contactEmail;
 	
@@ -266,8 +255,7 @@ public class Organization extends BaseObject implements Serializable {
 				+ (contactName != null ? contactName + ", " : "")
 				+ (contactPost!= null ? contactPost + ", " : "")
 				+ (contactPhone != null ? contactPhone + ", " : "")
-				+ (contactEmail != null ? contactEmail + ", " : "")
-				+ (url != null ? url + ", " : ""));
+				+ (contactEmail != null ? contactEmail + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setAddDefaults(modifiedBy);
 	}
@@ -282,8 +270,7 @@ public class Organization extends BaseObject implements Serializable {
 				+ (contactName != null ? contactName + ", " : "")
 				+ (contactPost!= null ? contactPost + ", " : "")
 				+ (contactPhone != null ? contactPhone + ", " : "")
-				+ (contactEmail != null ? contactEmail + ", " : "")
-				+ (url != null ? url + ", " : ""));
+				+ (contactEmail != null ? contactEmail + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setUpdateDefaults(modifiedBy);
 	}

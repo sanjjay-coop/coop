@@ -3,6 +3,7 @@ package org.pf.coop.common;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import jakarta.persistence.Column;
@@ -11,7 +12,8 @@ import jakarta.persistence.MappedSuperclass;
 @Indexed
 @MappedSuperclass
 public abstract class BaseObject {
-
+	
+	@FullTextField
 	@Column(columnDefinition = "TEXT", name="f_search_string", nullable=true)
 	private String searchString;
 	

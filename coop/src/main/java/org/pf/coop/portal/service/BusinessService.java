@@ -94,6 +94,7 @@ public class BusinessService {
 		obj.setPin(business.getPin());
 		obj.setState(business.getState());
 		obj.setUrl(business.getUrl());
+		obj.setEnabled(false);
 		
 		obj.setUpdateDefaults(updateBy);
 		obj = businessRepo.save(obj);

@@ -2,9 +2,6 @@ package org.pf.coop.portal.model;
 
 import java.io.Serializable;
 
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -38,49 +35,39 @@ public class ServiceProvider extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
-	@FullTextField
 	@Column(name="f_service_name", length=200, nullable=false)
 	private String serviceName;
 	
-	@FullTextField
 	@Column(name="f_description", length=3000, nullable=false)
 	private String description;
 	
 	@Column(name="f_address", length=100, nullable=false)
 	private String address;
 	
-	@KeywordField
 	@Column(name="f_city", length=50, nullable=false)
 	private String city;
 	
 	@Column(name="f_pin", length=10, nullable=true)
 	private String pin;
 	
-	@FullTextField
 	@Column(name="f_state", length=50, nullable=true)
 	private String state;
 	
-	@KeywordField
 	@Column(name="f_country", length=50, nullable=true)
 	private String country;
 	
-	@FullTextField
 	@Column(name="f_contact_name", length=50, nullable=true)
 	private String contactName;
 	
-	@KeywordField
 	@Column(name="f_contact_phone", length=20, nullable=true)
 	private String contactPhone;
 	
-	@KeywordField
 	@Column(name="f_contact_email", length=255, nullable=true)
 	private String contactEmail;
 	
-	@FullTextField
 	@Column(name="f_keywords", length=500, nullable=true)
 	private String keywords;
 	
-	@IndexedEmbedded
 	@ManyToOne
 	@JoinColumn(name="f_owner", nullable=false)
 	private Member owner;	

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="~{fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid px-5">
+	
+		<div class="row px-4 py-2">
+
+			<div class="col-12">
+								  		
+				<div class="row g-3">
+					<div class="col-md-6 p-5 my-auto">
+						<figure class="text-center my-auto">
+							<blockquote class="blockquote">
+						    	<p th:text="${loginQuotation != null} ? ${loginQuotation.quote}"></p>
+						  	</blockquote>
+						  	<figcaption class="blockquote-footer" th:text="${loginQuotation != null} ? ${loginQuotation.author}">
+						  	</figcaption>
+						</figure>
+					</div>
+					<div class="col-md-6">
+						
+						<div class="p-3 border rounded-2">
+							<div class="h4 pb-3">Login Form</div>
+							
+							<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+							
+							<div class="row pb-3">
+								<div class="col-12">
+									<div class="d-grid gap-2 d-md-block">
+										<a class="btn btn-success btn-sm" role="button" th:href="@{/login}">
+											<i class="bi bi-chevron-double-left"></i> Login with Password</a>
+										<a class="btn btn-success btn-sm" role="button" th:href="@{/join}">
+											<i class="bi bi-folder2-open"></i> No account? Join for free.</a>
+										<a class="btn btn-success btn-sm" role="button" th:href="@{/resetPassword}" sec:authorize="!isAuthenticated()">
+											<i class="bi bi-key"></i> Forgot Password</a>
+									</div>
+								</div>
+							</div>
+							
+							<form class="p-3" name="f" th:action="@{/loginOtp}" th:object="${otpForm}" method="POST">
+								
+								<div class="row g-3">
+									<div class="col-md-11">
+								  		<label for="emailMobile" class="col-sm-3 col-form-label text-success">Email Id</label>
+								    	<input type="text" class="form-control required" th:field="*{emailMobile}" th:placeholder="'Email Id'" >
+								    </div><div class="col-md-7"></div>
+									<div class="col-md-6">
+								    	<button type="submit" class="btn btn-success" onclick="return validate();">Generate OTP</button>
+								    </div>
+								</div>							
+							</form>
+						</div>							
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" th:replace="~{fragments :: footer}">
+	</div>
+	
+	<script type="text/javascript">
+		function validate() {
+		    if (document.f.emailMobile.value == "") {
+		        alert("Email Id is required");
+		        document.f.emailMobile.focus();
+		        return false;
+		    }
+		    return true;
+		}
+	</script>
+</body>
+</html>

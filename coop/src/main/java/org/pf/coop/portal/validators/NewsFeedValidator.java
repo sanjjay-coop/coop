@@ -31,7 +31,7 @@ public class NewsFeedValidator extends BaseValidator implements Validator {
 		}
 		
 		if (obj.getDescription()!=null){
-			if (!this.lengthRange(obj.getDescription(), 1, 200)){
+			if (!this.lengthRange(obj.getDescription(), 1, 500)){
 				errors.rejectValue("description", "newsFeed.description.size");
 			}
 		}

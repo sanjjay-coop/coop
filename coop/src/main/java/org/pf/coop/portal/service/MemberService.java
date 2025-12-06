@@ -126,6 +126,24 @@ public class MemberService {
 		
 		return new TransactionResult(obj, true);
 	}	
+	
+	@Transactional
+	public TransactionResult saveOtp(Member member, String updateBy) {
+		
+		Optional<Member> oe = this.memberRepo.findById(member.getId());
+		
+		if (oe.isEmpty()) return new TransactionResult(false, "No such record found.");
+		
+		Member obj = oe.get();
+		
+		obj.setOtp(member.getOtp());
+		obj.setOtpDate(Calendar.getInstance().getTime());
+		
+		obj.setUpdateDefaults(updateBy);
+		obj = memberRepo.save(obj);
+		
+		return new TransactionResult(obj, true);
+	}	
 
 	@Transactional
 	public TransactionResult updateMemberSelf(Member member, String updateBy) {

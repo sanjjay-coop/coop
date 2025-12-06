@@ -103,6 +103,7 @@ public class JobService {
 		obj.setPosition(job.getPosition());
 		obj.setSalary(job.getSalary());
 		obj.setUrl(job.getUrl());
+		obj.setEnabled(false);
 		
 		if (job.getFile()!=null) {
 			String fileName = StringUtils.cleanPath(job.getFile().getOriginalFilename());

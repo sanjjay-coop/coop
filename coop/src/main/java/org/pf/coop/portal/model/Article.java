@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.jsoup.Jsoup;
 import org.pf.coop.common.BaseObject;
 
@@ -42,11 +40,9 @@ public class Article extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 	
-	@FullTextField
 	@Column(name="f_title", length=500, nullable=false)
 	private String title;
 	
-	@FullTextField
 	@Column(columnDefinition = "TEXT", name="f_content", nullable=false)
 	private String content;
 	
@@ -62,7 +58,6 @@ public class Article extends BaseObject implements Serializable {
 	@Column(name="f_publish", nullable=false)
 	private Boolean publish;
 
-	@FullTextField
 	@Column(name="f_author", length=100, nullable=true)
 	private String author;
 	
@@ -73,7 +68,6 @@ public class Article extends BaseObject implements Serializable {
 	private Date updateDate;
 	
 	@ManyToMany
-	@IndexedEmbedded
 	@JoinTable(
 			name = "tab_article_category",
 			joinColumns = @JoinColumn(name = "article_id"),
@@ -187,7 +181,8 @@ public class Article extends BaseObject implements Serializable {
 	@Override
 	public void setAddDefaults(String modifiedBy) {
 		this.setSearchString((title != null ? title + ", " : "")
-				+ (author != null ? author + ", " : ""));
+				+ (author != null ? author + ", " : "")
+				+ (content != null ? content + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setAddDefaults(modifiedBy);
 	}
@@ -195,7 +190,8 @@ public class Article extends BaseObject implements Serializable {
 	@Override
 	public void setUpdateDefaults(String modifiedBy) {
 		this.setSearchString((title != null ? title + ", " : "")
-				+ (author != null ? author + ", " : ""));
+				+ (author != null ? author + ", " : "")
+				+ (content != null ? content + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setUpdateDefaults(modifiedBy);
 	}
@@ -208,9 +204,6 @@ public class Article extends BaseObject implements Serializable {
 		
 		if (str.length()>500) str = str.substring(0, 500);
 		
-		return str;
-		
-	}
-	
+		return str;	
+	}	
 }
-

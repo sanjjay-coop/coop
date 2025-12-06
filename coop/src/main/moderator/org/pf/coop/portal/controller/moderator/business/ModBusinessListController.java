@@ -49,7 +49,7 @@ public class ModBusinessListController extends ModeratorBaseController {
 			
 			int pageNumber = 0;
 			
-			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "recordUpdateDate"));
 			
 			Page<Business> page;
 			
@@ -120,7 +120,7 @@ public class ModBusinessListController extends ModeratorBaseController {
 				if (pageNumber+1 < totalPages) pageNumber++;
 			}
 			
-			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "id"));
+			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "recordUpdateDate"));
 			
 			Page<Business> page;
 			

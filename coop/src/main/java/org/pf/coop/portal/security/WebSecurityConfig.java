@@ -8,7 +8,6 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -18,11 +17,29 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig {
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private SecurityUserDetailsService securityUserDetailsService;
+	
+	@Autowired
+	private SecurityEmailOtpUserDetailsService securityEmailOtpUserDetailsService;
 
     @Bean
     AuthenticationProvider authProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
+    	
+    	System.out.println("Activated 1st Auth Provider");
+    	
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(securityUserDetailsService);
+
+        provider.setPasswordEncoder(new BCryptPasswordEncoder());
+
+        return provider;
+    }
+    
+    @Bean
+    AuthenticationProvider authOtpProvider() {
+    	
+    	System.out.println("Activated 2nd Auth Provider");
+    	
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(securityEmailOtpUserDetailsService);
 
         provider.setPasswordEncoder(new BCryptPasswordEncoder());
 
@@ -38,13 +55,15 @@ public class WebSecurityConfig {
                 "/api/**"
         };
     	
-    	System.out.println("Mobile Security activated.");
+    	//System.out.println("Mobile Security activated.");
         
     	http.securityMatcher("/mobile/**")
     		.csrf(csrf -> csrf.ignoringRequestMatchers(publicUrls))
     		.authorizeHttpRequests(authorize -> authorize
     				.requestMatchers("/mobile/accessDenied").permitAll()
+    				.requestMatchers("/mobile/article/**").permitAll()
     				.requestMatchers("/mobile/index").permitAll()
+    				.requestMatchers("/mobile/loginOtp").permitAll()
     				.requestMatchers("/mobile/open/**").permitAll()
     				.requestMatchers("/mobile/home/**", "/mobile/profile/**").hasAnyRole("ACCOUNTS", "LIBRARY", "MODERATOR", "MEMBER", "MANAGER")
     				.requestMatchers("/mobile/changeMemberPassword", "/mobile/changePassword").hasAnyRole("ACCOUNTS", "LIBRARY", "MODERATOR", "MANAGER", "MEMBER")
@@ -65,7 +84,9 @@ public class WebSecurityConfig {
     				.logoutUrl("/mobile/logout")
     				.logoutSuccessUrl("/mobile/login?logout")
     				.logoutRequestMatcher(new AntPathRequestMatcher("/mobile/logout"))
-    				.permitAll());
+    				.permitAll())
+    		.authenticationProvider(this.authProvider())
+    		.authenticationProvider(this.authOtpProvider());
 
         return http.build();
     }
@@ -79,7 +100,7 @@ public class WebSecurityConfig {
                 "/api/**"
         };
     	
-    	System.out.println("Normal Security activated.");
+    	//System.out.println("Normal Security activated.");
     	
         http
         	.csrf(csrf -> csrf.ignoringRequestMatchers(publicUrls))
@@ -102,6 +123,7 @@ public class WebSecurityConfig {
             				"/initialize",  
             				"/join", 
             				"/join/**",
+            				"/loginOtp",
             				"/newsFeed/**",
             				"/open/**",
             				"/resetPassword", 
@@ -126,7 +148,9 @@ public class WebSecurityConfig {
             		.clearAuthentication(true)
             		.deleteCookies("JSESSIONID")
             		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            		.logoutSuccessUrl("/logout-success").permitAll());
+            		.logoutSuccessUrl("/logout-success").permitAll())
+    		.authenticationProvider(this.authProvider())
+    		.authenticationProvider(this.authOtpProvider());
 
         return http.build();
     }

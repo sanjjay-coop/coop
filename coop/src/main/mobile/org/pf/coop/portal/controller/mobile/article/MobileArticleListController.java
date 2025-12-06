@@ -1,14 +1,15 @@
-package org.pf.coop.portal.controller.mobile.home.order;
+package org.pf.coop.portal.controller.mobile.article;
 
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.search.engine.search.query.SearchResult;
 import org.hibernate.search.mapper.orm.Search;
 import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.pf.coop.portal.controller.mobile.MobileBaseController;
-import org.pf.coop.portal.model.Order;
-import org.pf.coop.portal.repository.OrderRepo;
+import org.pf.coop.portal.model.Article;
+import org.pf.coop.portal.repository.ArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,8 +28,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/mobile/home/order")
-public class MobileHomeOrderListController extends MobileBaseController {
+@RequestMapping("/mobile/article")
+public class MobileArticleListController extends MobileBaseController {
 
 	@Autowired
 	private EntityManager entityManager;
@@ -38,12 +39,12 @@ public class MobileHomeOrderListController extends MobileBaseController {
 	private long pageNumber = 0;
 	private long totalRecords = 0;
 	private long totalPages = 0;
-	private List<Order> listOrder;
+	private List<Article> listArticle;
 	
 	@Autowired
-	private OrderRepo orderRepo;
+	private ArticleRepo articleRepo;
 	
-	private Boolean validObject(Order obj) {
+	private Boolean validObject(Article obj) {
 		if (obj == null) {			
 			this.errorMessage = "Search string is empty.";
 			return false;
@@ -69,15 +70,15 @@ public class MobileHomeOrderListController extends MobileBaseController {
 	}
 	
 	@PostMapping({"/list", "/list/*", "/list/*/*" })
-	public String listOrder(@ModelAttribute Order order, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
+	public String listArticle(@ModelAttribute Article article, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
 		try {
 			
-			if (!this.validObject(order)) reat.addFlashAttribute("message", this.errorMessage); 
+			if (!this.validObject(article)) reat.addFlashAttribute("message", this.errorMessage); 
 				
-			request.getSession().setAttribute("mobileSearch_order", order);
+			request.getSession().setAttribute("mobileSearch_article", article);
 				
-			return "redirect:/mobile/home/order/list";
+			return "redirect:/mobile/article/list";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e);
 			return "redirect:/mobile/index";
@@ -85,23 +86,23 @@ public class MobileHomeOrderListController extends MobileBaseController {
 	}
 	
 	@GetMapping("/list")
-	public String listOrder(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
+	public String listArticle(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
 		this.pageNumber = 0;
 		
-		Order obj = (Order) request.getSession().getAttribute("mobileSearch_order");
+		Article obj = (Article) request.getSession().getAttribute("mobileSearch_article");
 
-		if (obj == null) { obj = new Order();} // obj was null
+		if (obj == null) { obj = new Article();} // obj was null
 		
-		this.searchOrder(obj);
+		this.searchArticle(obj);
 		
 		model.addAttribute("currentPage", this.pageNumber + 1);
 		model.addAttribute("totalPages", this.totalPages);
 
 		model.addAttribute("totalRecords", this.totalRecords);
 		
-		request.getSession().setAttribute("mobileSearch_order", obj);
-		model.addAttribute("order", obj);
+		request.getSession().setAttribute("mobileSearch_article", obj);
+		model.addAttribute("article", obj);
 		
 		if (pageNumber == 0) model.addAttribute("firstPage", true);
 		else model.addAttribute("firstPage", false);
@@ -112,23 +113,23 @@ public class MobileHomeOrderListController extends MobileBaseController {
 			model.addAttribute("lastPage", false);
 		}
 		
-		request.getSession().setAttribute("listMobileOrder_pageNumber", this.pageNumber);
-		request.getSession().setAttribute("listMobileOrder_totalPages", this.totalPages);
+		request.getSession().setAttribute("listMobileArticle_pageNumber", this.pageNumber);
+		request.getSession().setAttribute("listMobileArticle_totalPages", this.totalPages);
 		
-		model.addAttribute("listOrder", this.listOrder);
+		model.addAttribute("listArticle", this.listArticle);
 		
-		return "mobile/home/order/list";
+		return "mobile/article/list";
 	}
 	
 	@GetMapping("/list/{whichPage}")
-	public String listOrder(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
+	public String listArticle(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			this.pageNumber = (int) request.getSession().getAttribute("listMobileOrder_pageNumber");
-			this.totalPages = (int) request.getSession().getAttribute("listMobileOrder_totalPages");
+			this.pageNumber = (int) request.getSession().getAttribute("listMobileArticle_pageNumber");
+			this.totalPages = (int) request.getSession().getAttribute("listMobileArticle_totalPages");
 			
 			if ("previous".equals(whichPage)) {
-				if (pageNumber == 0) return "redirect:/mobile/home/order/list";
+				if (pageNumber == 0) return "redirect:/mobile/article/list";
 				else {
 					pageNumber--; 
 				}
@@ -140,19 +141,19 @@ public class MobileHomeOrderListController extends MobileBaseController {
 				if (pageNumber+1 < totalPages) pageNumber++;
 			}
 			
-			Order obj = (Order) request.getSession().getAttribute("mobileSearch_order");
+			Article obj = (Article) request.getSession().getAttribute("mobileSearch_article");
 			
-			if (obj == null) { obj = new Order(); }
+			if (obj == null) { obj = new Article(); }
 			
-			this.searchOrder(obj);
+			this.searchArticle(obj);
 			
 			model.addAttribute("currentPage", this.pageNumber + 1);
 			model.addAttribute("totalPages", this.totalPages);
 
 			model.addAttribute("totalRecords", this.totalRecords);
 			
-			request.getSession().setAttribute("mobileSearch_order", obj);
-			model.addAttribute("order", obj);
+			request.getSession().setAttribute("mobileSearch_article", obj);
+			model.addAttribute("article", obj);
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);
@@ -163,19 +164,19 @@ public class MobileHomeOrderListController extends MobileBaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listMobileOrder_pageNumber", this.pageNumber);
-			request.getSession().setAttribute("listMobileOrder_totalPages", this.totalPages);
+			request.getSession().setAttribute("listMobileArticle_pageNumber", this.pageNumber);
+			request.getSession().setAttribute("listMobileArticle_totalPages", this.totalPages);
 			
-			model.addAttribute("listOrder", this.listOrder);
+			model.addAttribute("listArticle", this.listArticle);
 			
-			return "mobile/home/order/list";
+			return "mobile/article/list";
 		
 		} catch(Exception e) {
-			return "redirect:/mobile/home/order/list";
+			return "redirect:/mobile/article/list";
 		}
 	}
 	
-	private void searchOrder(Order obj) {
+	private void searchArticle(Article obj) {
 		
 		if (this.validObject(obj)) {
 			
@@ -183,28 +184,34 @@ public class MobileHomeOrderListController extends MobileBaseController {
 			
 			SearchSession searchSession = Search.session(this.entityManager);
 			
-			SearchResult<Order> result = searchSession.search(Order.class)
+			SearchResult<Article> result = searchSession.search(Article.class)
 					.where(f -> f.bool()
 							.must(f.match().field("searchString").matching(str))
+							.must(f.match().field("publish").matching(true))
+							.must(f.range().field("pubDate").atMost(Calendar.getInstance().getTime()))
+							.must(f.range().field("expDate").greaterThan(Calendar.getInstance().getTime()))
 							)
 					.fetch((int) this.pageNumber, this.resultSize);
 			
 			this.totalRecords = result.total().hitCount();
 			this.totalPages = this.getTotalPages(totalRecords);
 			
-			this.listOrder = result.hits();
+			this.listArticle = result.hits();
 			
 		} else {
 			
-			Pageable pageable = PageRequest.of((int) this.pageNumber, this.resultSize, Sort.by(Sort.Direction.DESC, "recordAddDate"));
+			Pageable pageable = PageRequest.of((int) this.pageNumber, this.resultSize, Sort.by(Sort.Direction.DESC, "pubDate"));
 			
-			Page<Order> page = this.orderRepo.findAll( 
+			Page<Article> page = this.articleRepo.findByPublishAndPubDateLessThanEqualAndExpDateGreaterThanEqual(
+					true,
+					(Calendar.getInstance()).getTime(),
+					(Calendar.getInstance()).getTime(), 
 					pageable);
 			
 			totalRecords = page.getTotalElements();
 			totalPages = page.getTotalPages();
 			
-			this.listOrder = page.getContent();
+			this.listArticle = page.getContent();
 		}
 	}
 }

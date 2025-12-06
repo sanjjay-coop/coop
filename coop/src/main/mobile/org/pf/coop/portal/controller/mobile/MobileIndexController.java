@@ -1,6 +1,7 @@
 package org.pf.coop.portal.controller.mobile;
 
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.List;
 
 import org.pf.coop.portal.model.Article;
@@ -98,27 +99,6 @@ public class MobileIndexController extends MobileBaseController {
 		}
 	}
 	
-	@GetMapping("/article/view/{id}")
-	public String viewArticle(@PathVariable Long id, Model model,
-			RedirectAttributes reat) {
-
-		try {
-			Article article = this.articleRepo.getReferenceById(id);
-			
-			if (article == null) {
-				reat.addFlashAttribute("message", "No such record.");
-				return "redirect:/";
-			}
-	
-			model.addAttribute("article", article);
-			
-			return "article/view";
-		} catch (Exception e) {
-			reat.addFlashAttribute("message", "Record not found.");
-			return "redirect:/";
-		}
-	}
-	
 	@ModelAttribute("countArticle")
 	public long getCountArticle(){
 		return this.articleRepo.count();
@@ -165,5 +145,10 @@ public class MobileIndexController extends MobileBaseController {
 	@ModelAttribute("countTitle")
 	public long getCountTitle(){
 		return this.titleRepo.count();
+	}
+	
+	@ModelAttribute("listArticle")
+	public List<Article> getListArticle(){
+		return (List<Article>) this.articleRepo.listArticleRecent((Calendar.getInstance()).getTime());
 	}
 }

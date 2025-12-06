@@ -187,6 +187,12 @@ public class Member extends BaseObject implements Serializable {
 	@Transient
 	private String searchFor;
 	
+	@Column(name="f_otp", length=255, nullable=true)
+	private String otp;
+	
+	@Column(name="f_otp_date", nullable=true)
+	private Date otpDate;
+	
 	public Long getId() {
 		return id;
 	}
@@ -531,6 +537,22 @@ public class Member extends BaseObject implements Serializable {
 		this.searchFor = searchFor;
 	}
 
+	public String getOtp() {
+		return otp;
+	}
+
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
+
+	public Date getOtpDate() {
+		return otpDate;
+	}
+
+	public void setOtpDate(Date otpDate) {
+		this.otpDate = otpDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [" + (id != null ? "id=" + id + ", " : "")
@@ -627,4 +649,5 @@ public class Member extends BaseObject implements Serializable {
 		// TODO Auto-generated method stub
 		super.setUpdateDefaults(modifiedBy);
 	}
+	
 }

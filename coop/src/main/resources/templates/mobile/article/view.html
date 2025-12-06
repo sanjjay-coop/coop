@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{mobile/fragments :: html_head}">
+</head>
+<body>
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
+		
+	</div>
+	
+	<div class="container-fluid">
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/mobile/article/list/current}">
+						<i class="bi bi-chevron-double-left"></i> To List</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<div class="col-12 p-3 rounded-0">
+				<div class="card h-100">
+					<h5 class="card-header bg-success-subtle bg-gradient ">
+						<i class="bi bi-card-heading"></i>&nbsp;&nbsp;<span th:text="${article.title}"></span>
+					</h5>
+				  	<div class="card-body overflow-auto">
+						<div class="px-3 py-3" th:utext="${article.content}"></div>
+						
+						<div class="small px-3 pt-1 pb-3">
+							<i class="bi bi-person-circle"></i> <span th:text="${article.author}"></span>
+							&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar"></i> <span th:text="${#dates.format(article.updateDate, 'dd-MM-yyyy')}"></span>
+							&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-tags"></i> <span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
+						</div>
+				  	</div>
+				</div>
+				
+			</div>		
+		</div>
+		
+	</div>
+	
+	<div class="container" th:replace="~{mobile/fragments :: footer}">
+	</div>
+</body>
+</html>

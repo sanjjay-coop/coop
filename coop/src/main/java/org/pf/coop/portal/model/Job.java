@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.pf.coop.common.BaseObject;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -94,6 +95,7 @@ public class Job extends BaseObject implements Serializable {
 	@Column(name="f_add_date", nullable=true)
 	private Date addDate;
 	
+	@GenericField
 	@Column(name="f_enabled", nullable=false)
 	private Boolean enabled = false;
 	

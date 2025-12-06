@@ -4,10 +4,11 @@ import java.security.Principal;
 import java.util.Calendar;
 import java.util.List;
 
+import org.hibernate.search.engine.search.query.SearchResult;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.pf.coop.portal.controller.mobile.MobileBaseController;
-import org.pf.coop.portal.model.Article;
 import org.pf.coop.portal.model.Event;
-import org.pf.coop.portal.repository.ArticleRepo;
 import org.pf.coop.portal.repository.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,8 +20,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -28,39 +32,77 @@ import jakarta.servlet.http.HttpServletRequest;
 public class MobileHomeEventListController extends MobileBaseController {
 
 	@Autowired
-	private ArticleRepo articleRepo;
+	private EntityManager entityManager;
+	
+	private String errorMessage;
+	private int resultSize = 10;
+	private long pageNumber = 0;
+	private long totalRecords = 0;
+	private long totalPages = 0;
+	private List<Event> listEvent;
 	
 	@Autowired
 	private EventRepo eventRepo;
 	
-	@ModelAttribute("listArticle")
-	public List<Article> getListArticle(){
-		return (List<Article>) this.articleRepo.listArticleRecent((Calendar.getInstance()).getTime());
+	private Boolean validObject(Event obj) {
+		if (obj == null) {			
+			this.errorMessage = "Search string is empty.";
+			return false;
+		} else {
+			if (obj.getSearchFor()==null) {
+				this.errorMessage = "Search string is empty.";
+				return false;
+			} else {
+				if (obj.getSearchFor().isBlank() || obj.getSearchFor().length()<3) {
+					this.errorMessage = "Search string must be of 3 or more charaters.";
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
-	@ModelAttribute("listEvent")
-	public List<Event> getListEvent(){
-		return (List<Event>) this.eventRepo.listEventRecent((Calendar.getInstance()).getTime());
+	private long getTotalPages(long totalRecords) {
+		long quotient = totalRecords / this.resultSize;
+		long remainder = totalRecords % this.resultSize;
+		if (remainder == 0) return quotient;
+		else return quotient + 1;
+	}
+	
+	@PostMapping({"/list", "/list/*", "/list/*/*" })
+	public String listEvent(@ModelAttribute Event event, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
+		
+		try {
+			
+			if (!this.validObject(event)) reat.addFlashAttribute("message", this.errorMessage); 
+				
+			request.getSession().setAttribute("mobileSearch_event", event);
+				
+			return "redirect:/mobile/home/event/list";
+		} catch (Exception e) {
+			reat.addFlashAttribute("message", e);
+			return "redirect:/mobile/index";
+		}
 	}
 	
 	@GetMapping("/list")
-	public String listEvent(Model model, Principal principal, HttpServletRequest request) {
+	public String listEvent(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		int pageNumber = 0;
+		this.pageNumber = 0;
 		
-		Pageable pageable = PageRequest.of(pageNumber, 10, Sort.by(Sort.Direction.DESC, "startDate"));
+		Event obj = (Event) request.getSession().getAttribute("mobileSearch_event");
+
+		if (obj == null) { obj = new Event();} // obj was null
 		
-		Page<Event> page = this.eventRepo.findByPublishAndEndDateGreaterThanEqual(
-				true,
-				(Calendar.getInstance()).getTime(),
-				pageable);
+		this.searchEvent(obj);
 		
-		int totalPages = page.getTotalPages();
+		model.addAttribute("currentPage", this.pageNumber + 1);
+		model.addAttribute("totalPages", this.totalPages);
+
+		model.addAttribute("totalRecords", this.totalRecords);
 		
-		model.addAttribute("listEvent", page.getContent());
-		
-		model.addAttribute("currentPage", pageNumber + 1);
-		model.addAttribute("totalPages", totalPages);
+		request.getSession().setAttribute("mobileSearch_event", obj);
+		model.addAttribute("event", obj);
 		
 		if (pageNumber == 0) model.addAttribute("firstPage", true);
 		else model.addAttribute("firstPage", false);
@@ -71,8 +113,10 @@ public class MobileHomeEventListController extends MobileBaseController {
 			model.addAttribute("lastPage", false);
 		}
 		
-		request.getSession().setAttribute("listGlobalEvent_pageNumber", pageNumber);
-		request.getSession().setAttribute("listGlobalEvent_totalPages", totalPages);
+		request.getSession().setAttribute("listMobileEvent_pageNumber", this.pageNumber);
+		request.getSession().setAttribute("listMobileEvent_totalPages", this.totalPages);
+		
+		model.addAttribute("listEvent", this.listEvent);
 		
 		return "mobile/home/event/list";
 	}
@@ -81,8 +125,8 @@ public class MobileHomeEventListController extends MobileBaseController {
 	public String listEvent(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			int pageNumber = (int) request.getSession().getAttribute("listGlobalEvent_pageNumber");
-			int totalPages = (int) request.getSession().getAttribute("listGlobalEvent_totalPages");
+			this.pageNumber = (int) request.getSession().getAttribute("listMobileEvent_pageNumber");
+			this.totalPages = (int) request.getSession().getAttribute("listMobileEvent_totalPages");
 			
 			if ("previous".equals(whichPage)) {
 				if (pageNumber == 0) return "redirect:/mobile/home/event/list";
@@ -97,15 +141,19 @@ public class MobileHomeEventListController extends MobileBaseController {
 				if (pageNumber+1 < totalPages) pageNumber++;
 			}
 			
-			Pageable pageable = PageRequest.of(pageNumber, 10, Sort.by(Sort.Direction.DESC, "startDate"));
+			Event obj = (Event) request.getSession().getAttribute("mobileSearch_event");
 			
-			Page<Event> page = this.eventRepo.findByPublishAndEndDateGreaterThanEqual(
-					true,
-					(Calendar.getInstance()).getTime(),
-					pageable);
+			if (obj == null) { obj = new Event(); }
 			
-			model.addAttribute("currentPage", pageNumber + 1);
-			model.addAttribute("totalPages", totalPages);
+			this.searchEvent(obj);
+			
+			model.addAttribute("currentPage", this.pageNumber + 1);
+			model.addAttribute("totalPages", this.totalPages);
+
+			model.addAttribute("totalRecords", this.totalRecords);
+			
+			request.getSession().setAttribute("mobileSearch_event", obj);
+			model.addAttribute("event", obj);
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);
@@ -116,15 +164,52 @@ public class MobileHomeEventListController extends MobileBaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listGlobalEvent_pageNumber", pageNumber);
-			request.getSession().setAttribute("listGlobalEvent_totalPages", totalPages);
+			request.getSession().setAttribute("listMobileEvent_pageNumber", this.pageNumber);
+			request.getSession().setAttribute("listMobileEvent_totalPages", this.totalPages);
 			
-			model.addAttribute("listEvent", page.getContent());
+			model.addAttribute("listEvent", this.listEvent);
 			
 			return "mobile/home/event/list";
 		
 		} catch(Exception e) {
 			return "redirect:/mobile/home/event/list";
+		}
+	}
+	
+	private void searchEvent(Event obj) {
+		
+		if (this.validObject(obj)) {
+			
+			final String str = obj.getSearchFor();
+			
+			SearchSession searchSession = Search.session(this.entityManager);
+			
+			SearchResult<Event> result = searchSession.search(Event.class)
+					.where(f -> f.bool()
+							.must(f.match().field("searchString").matching(str))
+							.must(f.match().field("publish").matching(true))
+							.must(f.range().field("endDate").greaterThan(Calendar.getInstance().getTime()))
+							)
+					.fetch((int) this.pageNumber, this.resultSize);
+			
+			this.totalRecords = result.total().hitCount();
+			this.totalPages = this.getTotalPages(totalRecords);
+			
+			this.listEvent = result.hits();
+			
+		} else {
+			
+			Pageable pageable = PageRequest.of((int) this.pageNumber, this.resultSize, Sort.by(Sort.Direction.DESC, "endDate"));
+			
+			Page<Event> page = this.eventRepo.findByPublishAndEndDateGreaterThanEqual(
+					true,
+					(Calendar.getInstance()).getTime(), 
+					pageable);
+			
+			totalRecords = page.getTotalElements();
+			totalPages = page.getTotalPages();
+			
+			this.listEvent = page.getContent();
 		}
 	}
 }

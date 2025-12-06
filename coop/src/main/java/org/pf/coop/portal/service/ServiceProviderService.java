@@ -89,6 +89,7 @@ public class ServiceProviderService {
 		obj.setOwner(serviceProvider.getOwner());
 		obj.setPin(serviceProvider.getPin());
 		obj.setState(serviceProvider.getState());
+		obj.setEnabled(false);
 		
 		obj.setUpdateDefaults(updateBy);
 		obj = serviceProviderRepo.save(obj);

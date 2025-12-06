@@ -1,7 +1,11 @@
 package org.pf.coop.portal.controller.mobile.home.business;
 
 import java.security.Principal;
+import java.util.List;
 
+import org.hibernate.search.engine.search.query.SearchResult;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.pf.coop.portal.controller.mobile.MobileBaseController;
 import org.pf.coop.portal.model.Business;
 import org.pf.coop.portal.repository.BusinessRepo;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -26,88 +31,101 @@ import jakarta.servlet.http.HttpServletRequest;
 public class MobileHomeBusinessListController extends MobileBaseController {
 
 	@Autowired
+	private EntityManager entityManager;
+	
+	private String errorMessage;
+	private int resultSize = 10;
+	private long pageNumber = 0;
+	private long totalRecords = 0;
+	private long totalPages = 0;
+	private List<Business> listBusiness;
+	
+	@Autowired
 	private BusinessRepo businessRepo;
 	
-	private int resultSize = 10;
-
+	private Boolean validObject(Business obj) {
+		if (obj == null) {			
+			this.errorMessage = "Search string is empty.";
+			return false;
+		} else {
+			if (obj.getSearchFor()==null) {
+				this.errorMessage = "Search string is empty.";
+				return false;
+			} else {
+				if (obj.getSearchFor().isBlank() || obj.getSearchFor().length()<3) {
+					this.errorMessage = "Search string must be of 3 or more charaters.";
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	private long getTotalPages(long totalRecords) {
+		long quotient = totalRecords / this.resultSize;
+		long remainder = totalRecords % this.resultSize;
+		if (remainder == 0) return quotient;
+		else return quotient + 1;
+	}
+	
 	@PostMapping({"/list", "/list/*", "/list/*/*" })
 	public String listBusiness(@ModelAttribute Business business, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
 		try {
 			
-			request.getSession().setAttribute("searchAll_business", business);
+			if (!this.validObject(business)) reat.addFlashAttribute("message", this.errorMessage); 
+				
+			request.getSession().setAttribute("mobileSearch_business", business);
 				
 			return "redirect:/mobile/home/business/all/list";
 		} catch (Exception e) {
 			reat.addFlashAttribute("message", e);
-			return "redirect:/mobile/home";
+			return "redirect:/mobile/index";
 		}
 	}
 	
 	@GetMapping("/list")
 	public String listBusiness(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		try {
-			
-			int pageNumber = 0;
-			
-			Pageable pageable = PageRequest.of(pageNumber, resultSize, Sort.by(Sort.Direction.DESC, "id"));
-			
-			Page<Business> page;
-			
-			Business obj = (Business) request.getSession().getAttribute("searchAll_business");
-			
-			if (obj == null) {
-				page = this.businessRepo.findByEnabled(true, pageable);
-				obj = new Business();
-				obj.setSearchFor("");
-			} else {
-				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
-					page = this.businessRepo.findByEnabled(true, pageable);
-				} else {
-					page = this.businessRepo.findByEnabledAndSearchStringContainingIgnoreCase(true, obj.getSearchFor(), pageable);
-				}
-			}
-			
-			request.getSession().setAttribute("searchAll_business", obj);
-			model.addAttribute("business", obj);
-			
-			int totalPages = page.getTotalPages();
-			
-			model.addAttribute("listBusinessAll", page.getContent());
-			
-			model.addAttribute("currentPage", pageNumber + 1);
-			model.addAttribute("totalPages", totalPages);
-			
-			model.addAttribute("totalRecords", page.getTotalElements());
-			
-			if (pageNumber == 0) model.addAttribute("firstPage", true);
-			else model.addAttribute("firstPage", false);
-			
-			if (pageNumber == (totalPages-1)) {
-				model.addAttribute("lastPage", true);
-			} else {
-				model.addAttribute("lastPage", false);
-			}
-			
-			request.getSession().setAttribute("listBusinessAll_pageNumber", pageNumber);
-			request.getSession().setAttribute("listBusinessAll_totalPages", totalPages);
-			
-			return "mobile/home/business/listAll";
-			
-		} catch(Exception e) {
-			System.out.println("Error Message: " + e);
-			reat.addFlashAttribute("message", e);
-			return "redirect:/mobile/home";
+		this.pageNumber = 0;
+		
+		Business obj = (Business) request.getSession().getAttribute("mobileSearch_business");
+
+		if (obj == null) { obj = new Business();} // obj was null
+		
+		this.searchBusiness(obj);
+		
+		model.addAttribute("currentPage", this.pageNumber + 1);
+		model.addAttribute("totalPages", this.totalPages);
+
+		model.addAttribute("totalRecords", this.totalRecords);
+		
+		request.getSession().setAttribute("mobileSearch_business", obj);
+		model.addAttribute("business", obj);
+		
+		if (pageNumber == 0) model.addAttribute("firstPage", true);
+		else model.addAttribute("firstPage", false);
+		
+		if (pageNumber == (totalPages-1)) {
+			model.addAttribute("lastPage", true);
+		} else {
+			model.addAttribute("lastPage", false);
 		}
+		
+		request.getSession().setAttribute("listMobileBusiness_pageNumber", this.pageNumber);
+		request.getSession().setAttribute("listMobileBusiness_totalPages", this.totalPages);
+		
+		model.addAttribute("listBusiness", this.listBusiness);
+		
+		return "mobile/home/business/listAll";
 	}
 	
 	@GetMapping("/list/{whichPage}")
 	public String listBusiness(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			int pageNumber = (int) request.getSession().getAttribute("listBusinessAll_pageNumber");
-			int totalPages = (int) request.getSession().getAttribute("listBusinessAll_totalPages");
+			this.pageNumber = (int) request.getSession().getAttribute("listMobileBusiness_pageNumber");
+			this.totalPages = (int) request.getSession().getAttribute("listMobileBusiness_totalPages");
 			
 			if ("previous".equals(whichPage)) {
 				if (pageNumber == 0) return "redirect:/mobile/home/business/all/list";
@@ -122,33 +140,19 @@ public class MobileHomeBusinessListController extends MobileBaseController {
 				if (pageNumber+1 < totalPages) pageNumber++;
 			}
 			
-			Pageable pageable = PageRequest.of(pageNumber, resultSize, Sort.by(Sort.Direction.DESC, "id"));
+			Business obj = (Business) request.getSession().getAttribute("mobileSearch_business");
 			
-			Page<Business> page;
+			if (obj == null) { obj = new Business(); }
 			
-			Business obj = (Business) request.getSession().getAttribute("searchAll_business");
+			this.searchBusiness(obj);
 			
-			if (obj == null) {
-				page = this.businessRepo.findByEnabled(true, pageable);
-				obj = new Business();
-				obj.setSearchString("");
-			} else {
-				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
-					page = this.businessRepo.findByEnabled(true, pageable);
-				} else {
-					page = this.businessRepo.findByEnabledAndSearchStringContainingIgnoreCase(true, obj.getSearchFor(), pageable);
-				}
-			}
+			model.addAttribute("currentPage", this.pageNumber + 1);
+			model.addAttribute("totalPages", this.totalPages);
+
+			model.addAttribute("totalRecords", this.totalRecords);
 			
-			totalPages = page.getTotalPages();
-			
-			request.getSession().setAttribute("searchAll_business", obj);
+			request.getSession().setAttribute("mobileSearch_business", obj);
 			model.addAttribute("business", obj);
-			
-			model.addAttribute("currentPage", pageNumber + 1);
-			model.addAttribute("totalPages", totalPages);
-			
-			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);
@@ -159,15 +163,50 @@ public class MobileHomeBusinessListController extends MobileBaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listBusinessAll_pageNumber", pageNumber);
-			request.getSession().setAttribute("listBusinessAll_totalPages", totalPages);
+			request.getSession().setAttribute("listMobileBusiness_pageNumber", this.pageNumber);
+			request.getSession().setAttribute("listMobileBusiness_totalPages", this.totalPages);
 			
-			model.addAttribute("listBusinessAll", page.getContent());
+			model.addAttribute("listBusiness", this.listBusiness);
 			
 			return "mobile/home/business/listAll";
 		
 		} catch(Exception e) {
 			return "redirect:/mobile/home/business/all/list";
+		}
+	}
+	
+	private void searchBusiness(Business obj) {
+		
+		if (this.validObject(obj)) {
+			
+			final String str = obj.getSearchFor();
+			
+			SearchSession searchSession = Search.session(this.entityManager);
+			
+			SearchResult<Business> result = searchSession.search(Business.class)
+					.where(f -> f.bool()
+							.must(f.match().field("searchString").matching(str))
+							.must(f.match().field("enabled").matching(true))
+							)
+					.fetch((int) this.pageNumber, this.resultSize);
+			
+			this.totalRecords = result.total().hitCount();
+			this.totalPages = this.getTotalPages(totalRecords);
+			
+			this.listBusiness = result.hits();
+			
+		} else {
+			
+			Pageable pageable = PageRequest.of((int) this.pageNumber, this.resultSize, Sort.by(Sort.Direction.DESC, "recordAddDate"));
+			
+			Page<Business> page = this.businessRepo.findByEnabled(
+					true, 
+					pageable);
+			
+			totalRecords = page.getTotalElements();
+			totalPages = page.getTotalPages();
+			
+			this.listBusiness = page.getContent();
 		}
 	}
 }

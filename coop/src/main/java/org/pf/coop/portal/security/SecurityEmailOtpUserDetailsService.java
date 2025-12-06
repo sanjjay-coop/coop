@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SecurityUserDetailsService implements UserDetailsService {
+public class SecurityEmailOtpUserDetailsService implements UserDetailsService {
 
 	
 	@Autowired
@@ -30,21 +30,21 @@ public class SecurityUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("Username was empty");
 		}
 		
-		System.out.println("Searching user by Username.");
+		System.out.println("Searching user by Email.");
 		
-		Member member = memberRepo.findByMemIdIgnoreCase(username);
+		Member member = memberRepo.findByEmailIgnoreCase(username);
 		
 		if (member==null) {
 			throw new UsernameNotFoundException("Username was not found");
 		}
 		
+		System.out.println("Member: " + member.getName());
+		
 		for(Role role : member.getRoles()) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(role.getCode()));
 		}
 		
-		return new SecurityUserDetails(member, grantedAuthorities);
+		return new SecurityEmailOtpUserDetails(member, grantedAuthorities);
 	}
 
 }
-
-

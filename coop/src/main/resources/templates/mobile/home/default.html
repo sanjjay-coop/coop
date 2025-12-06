@@ -9,69 +9,99 @@
 	
 	<div class="container-fluid">
 	
-		<h4 class="h4 p-2">My Dashboard</h4>	
+		<h4 class="h4 p-2 text-center">My Dashboard</h4>	
 				
 		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 		
-		<div class="row p-2 g-1 m-1">
+		<div class="row p-2 gap-2 m-1 justify-content-md-center">
 		
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-auto p-1 g-1">
+				
+			</div>
+			
+			<div class="col-auto p-1 g-1">
+				
+			</div>
+			
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/profile}">
 					<i class="bi bi-person-lines-fill" style="font-size: 1.2rem;"></i>
 					<br/> Profile
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/funding/list}">
 			   		<i class="bi bi-currency-rupee" style="font-size: 1.2rem;"></i>
 					<br/>Fund Request
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/business/list}">
 			   		<i class="bi bi-briefcase" style="font-size: 1.2rem;"></i>
 					<br/>My Business
 				</a>
 			</div>
+		</div>
+		
+		<div class="row p-2 gap-2 m-1 justify-content-md-center">
+		
+			<div class="col-auto p-1 g-1">
+				
+			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-auto p-1 g-1">
+				
+			</div>
+			
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/invitation/list}">
 			   		<i class="bi bi-person-raised-hand" style="font-size: 1.2rem;"></i>
 					<br/>My Invitations
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/job/list}">
 			   		<i class="bi bi-person-workspace" style="font-size: 1.2rem;"></i>
 					<br/>My Jobs
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/payments}">
 			   		<i class="bi bi-wallet2" style="font-size: 1.2rem;"></i>
 					<br/>My Payments
 				</a>
 			</div>
+		</div>
+		
+		<div class="row p-2 gap-2 m-1 justify-content-md-center">
+		
+			<div class="col-auto p-1 g-1">
+				
+			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-auto p-1 g-1">
+				
+			</div>
+			
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/serviceProvider/list}">
 			   		<i class="bi bi-cone-striped" style="font-size: 1.2rem;"></i>
 					<br/>My Services
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/order/list}">
 			   		<i class="bi bi-journals" style="font-size: 1.2rem;"></i>
 					<br/>Orders
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-success-subtle">
 				<a class="nav-link text-primary" th:href="@{/mobile/home/reminder/list}">
 			   		<i class="bi bi-bell" style="font-size: 1.2rem;"></i>
 					<br/>Reminders
@@ -79,40 +109,60 @@
 			</div>
 		</div>
 		
-		<h4 class="h4 p-1">Global Options</h4>
+		<h4 class="h4 p-1 text-center">Global Options</h4>
 		
 		
-		<div class="row p-2 g-1 m-1">
+		<div class="row p-2 gap-2 m-1 justify-content-md-center">
+		
+			<div class="col-auto p-1 g-1">
+				
+			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
-				<a class="nav-link text-success" th:href="@{/mobile/home/title/list}">
+			<div class="col-auto p-1 g-1">
+				
+			</div>
+			
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-primary-subtle">
+				<a class="nav-link text-success pt-2" th:href="@{/mobile/home/title/list}">
 			   		<i class="fa-solid fa-book" style="font-size: 1.2rem;"></i>
 					<br/>Books, etc.
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-primary-subtle">
 				<a class="nav-link text-success" th:href="@{/mobile/home/business/all/list}">
 			   		<i class="bi bi-briefcase" style="font-size: 1.2rem;"></i>
 					<br/>Business
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-primary-subtle">
 				<a class="nav-link text-success" th:href="@{/mobile/home/event/list}">
 			   		<i class="bi bi-calendar-event" style="font-size: 1.2rem;"></i>
 					<br/>Events
 				</a>
 			</div>
+		
+		</div>
+		
+		<div class="row p-2 gap-2 m-1 justify-content-md-center">
+		
+			<div class="col-auto p-1 g-1">
+				
+			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-auto p-1 g-1">
+				
+			</div>
+			
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-primary-subtle">
 				<a class="nav-link text-success" th:href="@{/mobile/home/job/all/list}">
 			   		<i class="bi bi-person-workspace" style="font-size: 1.2rem;"></i>
 					<br/>Jobs
 				</a>
 			</div>
 			
-			<div class="col-3 p-1 g-1 text-center small border rounded-3">
+			<div class="col-3 p-1 g-1 text-center small border rounded-3 bg-primary-subtle">
 				<a class="nav-link text-success" th:href="@{/mobile/home/serviceProvider/all/list}">
 			   		<i class="bi bi-cone-striped" style="font-size: 1.2rem;"></i>
 					<br/>Services

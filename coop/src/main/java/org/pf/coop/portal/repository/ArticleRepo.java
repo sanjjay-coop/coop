@@ -59,6 +59,8 @@ public interface ArticleRepo extends JpaRepository<Article, Long>{
 	
 	public Page<Article> findByPublishAndPubDateLessThanEqualAndExpDateGreaterThanEqual(Boolean publish, Date pubDate, Date expDate, Pageable pageable);
 	
+	public Article findByIdAndPublishAndPubDateLessThanEqualAndExpDateGreaterThanEqual(Long id, Boolean publish, Date pubDate, Date expDate);
+	
 	@Query("select distinct art from Article art "
 			+ "join art.categories cat "
 			+ "where "

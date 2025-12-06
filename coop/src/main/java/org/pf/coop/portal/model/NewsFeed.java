@@ -35,7 +35,7 @@ public class NewsFeed extends BaseObject implements Serializable {
 	@Column(name="f_title", length=100, nullable=false)
 	private String title;
 	
-	@Column(name="f_description", length=200, nullable=false)
+	@Column(name="f_description", length=500, nullable=false)
 	private String description;
 	
 	@Column(name="f_url", length=255, nullable=false)
@@ -94,7 +94,7 @@ public class NewsFeed extends BaseObject implements Serializable {
 	@Override
 	public void setAddDefaults(String modifiedBy) {
 		this.setSearchString((title != null ? title + ", " : "")
-				+ (description != null ? "description =" + description + ", " : ""));
+				+ (description != null ? description + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setAddDefaults(modifiedBy);
 	}
@@ -102,7 +102,7 @@ public class NewsFeed extends BaseObject implements Serializable {
 	@Override
 	public void setUpdateDefaults(String modifiedBy) {
 		this.setSearchString((title != null ? title + ", " : "")
-				+ (description != null ? "description =" + description + ", " : ""));
+				+ (description != null ? description + ", " : ""));
 		// TODO Auto-generated method stub
 		super.setUpdateDefaults(modifiedBy);
 	}

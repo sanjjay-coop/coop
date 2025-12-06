@@ -123,4 +123,40 @@ public class EmailService {
 		};
 		new Thread(myrunnable).start();
 	}
+	
+	// Send Email Otp
+
+	private void sendEmailOtpMessage(String email, String otp) {
+
+		SimpleMailMessage message = new SimpleMailMessage();
+
+		Parameters params = parametersService.getParameters();
+		
+		if (params.getMailEnable()) {					
+			message.setFrom(params.getFromEmail());
+			message.setTo(email);
+			message.setSubject("SAATHI - OTP");
+	
+			String msgText = "Email Otp: " + otp
+					+ "\n\n" + params.getEmailSignature();
+	
+			message.setText(msgText);
+	
+			try {
+				emailConfiguration.getJavaMailSender().send(message);
+			} catch (Exception e) {
+				System.out.println("Email Error: " + e.getMessage());
+			}
+		}
+	}
+
+	public void sendEmailOtp(String email, String otp) {
+		Runnable myrunnable = new Runnable() {
+		    @Override
+			public void run() {
+		        sendEmailOtpMessage(email, otp); //Call your function
+		    }
+		};
+		new Thread(myrunnable).start();
+	}
 }

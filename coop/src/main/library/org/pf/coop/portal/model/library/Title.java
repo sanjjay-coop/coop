@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 import org.pf.coop.common.BaseObject;
 
@@ -55,12 +54,10 @@ public class Title extends BaseObject implements Serializable {
 	@Column(name="f_publisher", length=1000, nullable=true)
 	private String publisher;
 	
-	@IndexedEmbedded
 	@ManyToOne
 	@JoinColumn(name="f_library", nullable=false)
 	private Library library;
 	
-	@IndexedEmbedded
 	@ManyToOne
 	@JoinColumn(name="f_title_type", nullable=false)
 	private TitleType titleType;
