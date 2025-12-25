@@ -46,7 +46,7 @@ public class WebSecurityConfig {
         return provider;
     }
 
-    @SuppressWarnings({ "deprecation", "removal" })
+    @SuppressWarnings({ "removal" })
 	@Bean
 	@Order(1)
     SecurityFilterChain filterChainMobile(HttpSecurity http) throws Exception {
@@ -91,7 +91,7 @@ public class WebSecurityConfig {
         return http.build();
     }
 	
-	@SuppressWarnings({ "deprecation", "removal" })
+	@SuppressWarnings({ "removal" })
 	@Bean
 	@Order(2)
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

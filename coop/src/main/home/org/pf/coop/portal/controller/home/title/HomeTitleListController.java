@@ -1,7 +1,11 @@
 package org.pf.coop.portal.controller.home.title;
 
 import java.security.Principal;
+import java.util.List;
 
+import org.hibernate.search.engine.search.query.SearchResult;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.pf.coop.portal.controller.home.HomeBaseController;
 import org.pf.coop.portal.model.library.Title;
 import org.pf.coop.portal.repository.library.TitleRepo;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -26,14 +31,51 @@ import jakarta.servlet.http.HttpServletRequest;
 public class HomeTitleListController extends HomeBaseController {
 	
 	@Autowired
+	private EntityManager entityManager;
+	
+	private String errorMessage;
+	private int resultSize = 20;
+	private long pageNumber = 0;
+	private long totalRecords = 0;
+	private long totalPages = 0;
+	private List<Title> listTitle;
+	
+	@Autowired
 	private TitleRepo titleRepo;
+	
+	private Boolean validObject(Title obj) {
+		if (obj == null) {			
+			this.errorMessage = "Search string is empty.";
+			return false;
+		} else {
+			if (obj.getSearchFor()==null) {
+				this.errorMessage = "Search string is empty.";
+				return false;
+			} else {
+				if (obj.getSearchFor().isBlank() || obj.getSearchFor().length()<3) {
+					this.errorMessage = "Search string must be of 3 or more charaters.";
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	private long getTotalPages(long totalRecords) {
+		long quotient = totalRecords / this.resultSize;
+		long remainder = totalRecords % this.resultSize;
+		if (remainder == 0) return quotient;
+		else return quotient + 1;
+	}
 	
 	@PostMapping({"/list", "/list/*", "/list/*/*" })
 	public String listTitle(@ModelAttribute Title title, Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
 		try {
 			
-			request.getSession().setAttribute("homeSearch_title", title);
+			if (!this.validObject(title)) reat.addFlashAttribute("message", this.errorMessage); 
+				
+			request.getSession().setAttribute("homeSearchAll_title", title);
 				
 			return "redirect:/home/title/list";
 		} catch (Exception e) {
@@ -45,66 +87,45 @@ public class HomeTitleListController extends HomeBaseController {
 	@GetMapping("/list")
 	public String listTitle(Model model, RedirectAttributes reat, Principal principal, HttpServletRequest request) {
 		
-		try {
-			
-			int pageNumber = 0;
-			
-			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "uniformTitle"));
-			
-			Page<Title> page;
-			
-			Title obj = (Title) request.getSession().getAttribute("homeSearch_title");
-			
-			if (obj == null) {
-				page = this.titleRepo.findAll(pageable);
-				obj = new Title();
-				obj.setSearchString("");
-			} else {
-				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
-					page = this.titleRepo.findAll(pageable);
-				} else {
-					page = this.titleRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
-				}
-			}
-			
-			request.getSession().setAttribute("homeSearch_title", obj);
-			model.addAttribute("title", obj);
-			
-			int totalPages = page.getTotalPages();
-			
-			model.addAttribute("listTitle", page.getContent());
-			
-			model.addAttribute("currentPage", pageNumber + 1);
-			model.addAttribute("totalPages", totalPages);
-			model.addAttribute("totalRecords", page.getTotalElements());
-			
-			if (pageNumber == 0) model.addAttribute("firstPage", true);
-			else model.addAttribute("firstPage", false);
-			
-			if (pageNumber == (totalPages-1)) {
-				model.addAttribute("lastPage", true);
-			} else {
-				model.addAttribute("lastPage", false);
-			}
-			
-			request.getSession().setAttribute("listTitleHome_pageNumber", pageNumber);
-			request.getSession().setAttribute("listTitleHome_totalPages", totalPages);
-			
-			return "home/title/list";
-			
-		} catch(Exception e) {
-			System.out.println("Error Message: " + e);
-			reat.addFlashAttribute("message", e);
-			return "redirect:/home";
+		this.pageNumber = 0;
+		
+		Title obj = (Title) request.getSession().getAttribute("homeSearchAll_title");
+
+		if (obj == null) { obj = new Title();} // obj was null
+		
+		this.searchTitle(obj);
+		
+		model.addAttribute("currentPage", this.pageNumber + 1);
+		model.addAttribute("totalPages", this.totalPages);
+
+		model.addAttribute("totalRecords", this.totalRecords);
+		
+		request.getSession().setAttribute("homeSearchAll_title", obj);
+		model.addAttribute("title", obj);
+		
+		if (pageNumber == 0) model.addAttribute("firstPage", true);
+		else model.addAttribute("firstPage", false);
+		
+		if (pageNumber == (totalPages-1)) {
+			model.addAttribute("lastPage", true);
+		} else {
+			model.addAttribute("lastPage", false);
 		}
+		
+		request.getSession().setAttribute("listTitleAll_pageNumber", this.pageNumber);
+		request.getSession().setAttribute("listTitleAll_totalPages", this.totalPages);
+		
+		model.addAttribute("listTitle", this.listTitle);
+		
+		return "home/title/list";
 	}
 	
 	@GetMapping("/list/{whichPage}")
 	public String listTitle(@PathVariable String whichPage, Model model, Principal principal, HttpServletRequest request) {
 		
 		try {
-			int pageNumber = (int) request.getSession().getAttribute("listTitleHome_pageNumber");
-			int totalPages = (int) request.getSession().getAttribute("listTitleHome_totalPages");
+			this.pageNumber = (int) request.getSession().getAttribute("listTitleAll_pageNumber");
+			this.totalPages = (int) request.getSession().getAttribute("listTitleAll_totalPages");
 			
 			if ("previous".equals(whichPage)) {
 				if (pageNumber == 0) return "redirect:/home/title/list";
@@ -119,32 +140,19 @@ public class HomeTitleListController extends HomeBaseController {
 				if (pageNumber+1 < totalPages) pageNumber++;
 			}
 			
-			Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "uniformTitle"));
+			Title obj = (Title) request.getSession().getAttribute("homeSearchAll_title");
 			
-			Page<Title> page;
+			if (obj == null) { obj = new Title(); }
 			
-			Title obj = (Title) request.getSession().getAttribute("homeSearch_title");
+			this.searchTitle(obj);
 			
-			if (obj == null) {
-				page = this.titleRepo.findAll(pageable);
-				obj = new Title();
-				obj.setSearchString("");
-			} else {
-				if (obj.getSearchFor()==null || obj.getSearchFor().isBlank()) {
-					page = this.titleRepo.findAll(pageable);
-				} else {
-					page = this.titleRepo.findBySearchStringContainingIgnoreCase(obj.getSearchFor(), pageable);
-				}
-			}
+			model.addAttribute("currentPage", this.pageNumber + 1);
+			model.addAttribute("totalPages", this.totalPages);
+
+			model.addAttribute("totalRecords", this.totalRecords);
 			
-			totalPages = page.getTotalPages();
-			
-			request.getSession().setAttribute("homeSearch_title", obj);
+			request.getSession().setAttribute("homeSearchAll_title", obj);
 			model.addAttribute("title", obj);
-			
-			model.addAttribute("currentPage", pageNumber + 1);
-			model.addAttribute("totalPages", totalPages);
-			model.addAttribute("totalRecords", page.getTotalElements());
 			
 			if (pageNumber == 0) model.addAttribute("firstPage", true);
 			else model.addAttribute("firstPage", false);
@@ -155,15 +163,48 @@ public class HomeTitleListController extends HomeBaseController {
 				model.addAttribute("lastPage", false);
 			}
 			
-			request.getSession().setAttribute("listTitleHome_pageNumber", pageNumber);
-			request.getSession().setAttribute("listTitleHome_totalPages", totalPages);
+			request.getSession().setAttribute("listTitleAll_pageNumber", this.pageNumber);
+			request.getSession().setAttribute("listTitleAll_totalPages", this.totalPages);
 			
-			model.addAttribute("listTitle", page.getContent());
+			model.addAttribute("listTitle", this.listTitle);
 			
 			return "home/title/list";
 		
 		} catch(Exception e) {
 			return "redirect:/home/title/list";
+		}
+	}
+	
+	private void searchTitle(Title obj) {
+		
+		if (this.validObject(obj)) {
+			
+			final String str = obj.getSearchFor();
+			
+			SearchSession searchSession = Search.session(this.entityManager);
+			
+			SearchResult<Title> result = searchSession.search(Title.class)
+					.where(f -> f.bool()
+							.must(f.match().field("searchString").matching(str))
+							)
+					.fetch((int) this.pageNumber, this.resultSize);
+			
+			this.totalRecords = result.total().hitCount();
+			this.totalPages = this.getTotalPages(totalRecords);
+			
+			this.listTitle = result.hits();
+			
+		} else {
+			
+			Pageable pageable = PageRequest.of((int) this.pageNumber, this.resultSize, Sort.by(Sort.Direction.ASC, "uniformTitle"));
+			
+			Page<Title> page = this.titleRepo.findAll( 
+					pageable);
+			
+			totalRecords = page.getTotalElements();
+			totalPages = page.getTotalPages();
+			
+			this.listTitle = page.getContent();
 		}
 	}
 }

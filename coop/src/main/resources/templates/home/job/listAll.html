@@ -31,7 +31,7 @@
 
 				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<div class="row py-2">
-					<div class="col-6 my-2" th:each="ob,iterator : ${listJobAll}">
+					<div class="col-6 my-2" th:each="ob,iterator : ${listJob}">
 						<div class="card h-100">
 							<h5 class="card-header bg-success-subtle bg-gradient" th:text="${ob.position}"></h5>
 						  	<div class="card-body">

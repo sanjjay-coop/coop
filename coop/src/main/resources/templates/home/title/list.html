@@ -44,7 +44,7 @@
 					
 					<tbody>
 						<tr th:each="ob,iterator : ${listTitle}">
-        					<td th:text="${iterator.index + 1}"></td>
+        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
         					<td th:text="${ob.accessionNumber}"></td>
 							<td th:text="${ob.uniformTitle}"></td>
 							<td th:text="${ob.authors}"></td>
