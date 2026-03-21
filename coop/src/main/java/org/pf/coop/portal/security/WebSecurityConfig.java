@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -46,7 +45,6 @@ public class WebSecurityConfig {
         return provider;
     }
 
-    @SuppressWarnings({ "removal" })
 	@Bean
 	@Order(1)
     SecurityFilterChain filterChainMobile(HttpSecurity http) throws Exception {
@@ -83,7 +81,7 @@ public class WebSecurityConfig {
     				.deleteCookies("JSESSIONID")
     				.logoutUrl("/mobile/logout")
     				.logoutSuccessUrl("/mobile/login?logout")
-    				.logoutRequestMatcher(new AntPathRequestMatcher("/mobile/logout"))
+    				//.logoutRequestMatcher(new AntPathRequestMatcher("/mobile/logout"))
     				.permitAll())
     		.authenticationProvider(this.authProvider())
     		.authenticationProvider(this.authOtpProvider());
@@ -91,7 +89,6 @@ public class WebSecurityConfig {
         return http.build();
     }
 	
-	@SuppressWarnings({ "removal" })
 	@Bean
 	@Order(2)
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -143,11 +140,13 @@ public class WebSecurityConfig {
             .formLogin(login -> login
             		.loginPage("/login").permitAll()
             		.defaultSuccessUrl("/home", true))
-            .logout(logout -> logout.invalidateHttpSession(true)
+            .logout(logout -> logout
+            		.invalidateHttpSession(true)
             		//.logoutUrl("/logout")
             		.clearAuthentication(true)
             		.deleteCookies("JSESSIONID")
-            		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            		//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            		.logoutUrl("/logout")
             		.logoutSuccessUrl("/logout-success").permitAll())
     		.authenticationProvider(this.authProvider())
     		.authenticationProvider(this.authOtpProvider());

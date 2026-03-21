@@ -2,6 +2,8 @@ package org.pf.coop.portal.model.library;
 
 import java.io.Serializable;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 import org.pf.coop.common.BaseObject;
 
 import jakarta.persistence.Column;
@@ -32,24 +34,30 @@ public class Library extends BaseObject implements Serializable {
 		allocationSize=1)
 	private Long id;
 
+	@KeywordField
 	@Column(name="f_short_name", length=10, nullable=false, unique=true)
 	private String shortName;
 
+	@FullTextField
 	@Column(name="f_name", length=200, nullable=false, unique=true)
 	private String name;
 	
+	@FullTextField
 	@Column(name="f_address", length=100, nullable=true)
 	private String address;
 
+	@FullTextField
 	@Column(name="f_city", length=50, nullable=true)
 	private String city;
 
 	@Column(name="f_pin", length=50, nullable=true)
 	private String pin;
 	
+	@FullTextField
 	@Column(name="f_state", length=50, nullable=true)
 	private String state;
 
+	@FullTextField
 	@Column(name="f_country", length=50, nullable=true)
 	private String country;
 

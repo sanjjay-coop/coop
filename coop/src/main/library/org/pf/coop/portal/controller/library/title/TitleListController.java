@@ -166,9 +166,4 @@ public class TitleListController extends LibraryBaseController {
 			return "redirect:/library/title/list";
 		}
 	}
-	
-	@ModelAttribute("viewLeftMenu")
-	public String viewLeftMenu() {
-		return "title";
-	}
 }

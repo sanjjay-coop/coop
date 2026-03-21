@@ -33,11 +33,11 @@
 								<div class="row pb-3">
 									<div class="col-12">
 										<div class="d-grid gap-2 d-md-block">
-											<a class="btn btn-success btn-sm" role="button" th:href="@{/loginOtp}">
+											<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/loginOtp}">
 												<i class="bi bi-123"></i> Login with OTP</a>
-											<a class="btn btn-success btn-sm" role="button" th:href="@{/join}">
+											<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/join}">
 												<i class="bi bi-folder2-open"></i> No account? Join for free.</a>
-											<a class="btn btn-success btn-sm" role="button" th:href="@{/resetPassword}" sec:authorize="!isAuthenticated()">
+											<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/resetPassword}" sec:authorize="!isAuthenticated()">
 												<i class="bi bi-key"></i> Forgot Password</a>
 										</div>
 									</div>

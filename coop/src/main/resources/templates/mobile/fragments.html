@@ -4,14 +4,14 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title th:text="${params?.header}"></title>
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/css/all.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/jquery-ui.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/7.0.1/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/1.14.1/jquery-ui.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css}">
 		
-	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-	<script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+	<script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/5.3.8/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/webjars/jquery-ui/1.14.1/jquery-ui.min.js}"></script>
 	
 	<link type="text/css" rel="stylesheet" th:href="@{/assets/lightGallery/dist/css/lightgallery-bundle.min.css}" />
 
@@ -87,7 +87,7 @@
 				</a>
 			</div>
 			<div class="col-3 text-center" sec:authorize="isAuthenticated()">
-				<a class="nav-link small" th:href="@{/mobile/logout}">
+				<a class="nav-link small" href="#" onclick="event.preventDefault(); document.getElementById('mobileLogoutForm').submit();">
 					<i class="bi bi-unlock" style="font-size: 1.2rem; color: cornflowerblue;"></i>
 					<br/><span class="small">SignOut</span>
 				</a>
@@ -137,6 +137,8 @@
 			</div>
 		</div>
 		
+		<form id="mobileLogoutForm" th:action="@{/mobile/logout}" method="POST" style="display: none;"></form>
+
 	</div>
 
 </body>

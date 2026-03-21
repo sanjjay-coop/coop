@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.9</version>
+		<version>4.0.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.pf</groupId>
@@ -172,7 +172,7 @@
         <dependency>
             <groupId>org.hibernate.search</groupId>
             <artifactId>hibernate-search-bom</artifactId>
-            <version>7.2.4.Final</version>
+            <version>8.2.1.Final</version>
             <type>pom</type>
         </dependency>
         <!--
@@ -182,13 +182,13 @@
 	    <dependency>
 	       <groupId>org.hibernate.search</groupId>
 	       <artifactId>hibernate-search-mapper-orm</artifactId>
-	       <version>7.2.4.Final</version>
+	       <version>8.2.1.Final</version>
 	    </dependency>
 	    
 	    <dependency>
 	       <groupId>org.hibernate.search</groupId>
 	       <artifactId>hibernate-search-backend-lucene</artifactId>
-	       <version>7.2.4.Final</version>
+	       <version>8.2.1.Final</version>
 	    </dependency>
 	    
 	    <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->

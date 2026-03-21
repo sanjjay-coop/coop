@@ -168,7 +168,6 @@ public class Title extends BaseObject implements Serializable {
 
 	@Override
 	public void setUpdateDefaults(String modifiedBy) {
-		// TODO Auto-generated method stub
 		this.setSearchString((accessionNumber != null ? accessionNumber + ", " : "")
 				+ (uniformTitle != null ? uniformTitle + ", " : "")
 				+ (publisher != null ? publisher + ", " : "")
