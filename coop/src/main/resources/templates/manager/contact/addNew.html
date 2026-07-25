@@ -3,74 +3,72 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
-
-			<div class="col-12">
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Contact (Add New)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${contact}" method="POST">
+		<h4 class="h4 p-2">Contact (Add New)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${contact}" method="POST">
 
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.name}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{contact.name}" autofocus >
-					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.designation}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{designation}" th:placeholder="#{contact.designation}">
-					  		<ul><li class="cooperror" th:errors="*{designation}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.address}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{contact.address}">
-					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.email}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{contact.email}">
-					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.phone}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{phone}" th:placeholder="#{contact.phone}">
-					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{contact.about}"></label>
-						<div class="col-sm-10">
-				    		<textarea class="widgEditor form-control" rows="5" th:field="*{about}" th:placeholder="#{article.about}"></textarea>
-							<ul><li class="cooperror" th:errors="*{about}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-						</div>
-					</div>
-				</form>
-				
-				<br/>
-				
-				<h4 class="h4 pb-3">Contact (List All)</h4>
-				
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{contact.name}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{contact.name}" autofocus >
+			  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{contact.designation}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{designation}" th:placeholder="#{contact.designation}">
+			  		<ul><li class="cooperror" th:errors="*{designation}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{contact.address}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{contact.address}">
+			  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{contact.email}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{contact.email}">
+			  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{contact.phone}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{phone}" th:placeholder="#{contact.phone}">
+			  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{contact.about}"></label>
+				<div class="col-sm-10">
+		    		<textarea class="widgEditor form-control" rows="5" th:field="*{about}" th:placeholder="#{article.about}"></textarea>
+					<ul><li class="cooperror" th:errors="*{about}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</div>
+			</div>
+		</form>
+		
+		<br/>
+		
+		<h4 class="h4 p-2">Contact (List All)</h4>
+		
+		<div class="row p-2">
+			<div class="col-12">
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -88,22 +86,22 @@
 					
 					<tbody>
 						<tr th:each="ob,iterator : ${listContact}">
-        					<td th:text="${iterator.index + 1}"></td>
-        					<td th:text="${ob.name}"></td>
+	       					<td th:text="${iterator.index + 1}"></td>
+	       					<td th:text="${ob.name}"></td>
 							<td th:text="${ob.designation}"></td>
-        					<td th:text="${ob.address}"></td>
+	       					<td th:text="${ob.address}"></td>
 							<td th:text="${ob.email}"></td>
 							<td th:text="${ob.phone}"></td>
-        					<td>
-        						<a class="nav-link" th:href="@{/manager/contact/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+	       					<td>
+	       						<a class="nav-link" th:href="@{/manager/contact/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
 						          	<i class="bi bi-vector-pen"></i>
 						        </a>
-        					</td>
-        					<td>
+	       					</td>
+	       					<td>
 		        				<a class="nav-link" th:href="@{/manager/contact/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
 						          	<i class="bi bi-trash-fill"></i>
 						        </a>
-        					</td>
+	       					</td>
 						</tr>
 					</tbody>
 				</table>
@@ -111,13 +109,13 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#about').summernote({height: 200});
 		});
     </script>
+    
 </body>
 </html>

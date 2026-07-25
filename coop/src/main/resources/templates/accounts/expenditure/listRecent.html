@@ -3,19 +3,18 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Expenditure (Last 50 Payments)</h4>
+		<h4 class="h4 p-2">Expenditure (Last 50 Payments)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-								
+		<div class="row p-2">		
+			<div class="col-12 p-2">
+			
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -34,23 +33,23 @@
 					
 					<tbody>
 						<tr th:each="ob : ${listExpenditure}">
-        					<td th:text="${ob.id}"></td>
+		      					<td th:text="${ob.id}"></td>
 							<td class="text-end" th:text="${#dates.format(ob.transactionDate, 'dd/MM/yyyy')}"></td>
 							<td class="text-end" th:text="${ob.amount}"></td>
-        					<td th:text="${ob.towards}"></td>
-        					<td th:text="${ob.narration}"></td>
+		      					<td th:text="${ob.towards}"></td>
+		      					<td th:text="${ob.narration}"></td>
 							<td th:text="${ob.voucherInvoiceNumber}"></td>
 							<td th:text="${ob.paidTo}"></td>
-        					<td>
-        						<a th:if="${ob.direct}" class="nav-link" th:href="@{/accounts/expenditure/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+		      					<td>
+		      						<a th:if="${ob.direct}" class="nav-link" th:href="@{/accounts/expenditure/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
 						          	<i class="bi bi-vector-pen"></i>
 						        </a>
-        					</td>
-        					<td>
+		      					</td>
+		      					<td>
 		        				<a th:if="${ob.direct}" class="nav-link" th:href="@{/accounts/expenditure/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
 						          	<i class="bi bi-trash-fill"></i>
 						        </a>
-        					</td>
+		      					</td>
 						</tr>
 					</tbody>
 				</table>
@@ -58,7 +57,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

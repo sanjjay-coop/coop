@@ -3,101 +3,95 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
 			
+		<h4 class="h4 p-2">Organization (Details)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+		<div class="row p-2">
 			<div class="col-12">
-			
-				<h4 class="h4 pb-3">Organization (Details)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/organization/list/current}">
+						<i class="bi bi-chevron-double-left"></i> To List</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/organization/edit/{orderId}(orderId=${organization.id})}" >
+						<i class="bi bi-pen"></i> Edit Record</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/organization/delete/{orderId}(orderId=${organization.id})}" onclick="return confirm('Are you sure?')">
+						<i class="bi bi-trash-fill"></i> Delete Record</a>
+				</div>
+			</div>
+		</div>
 
-				<div class="row pb-3">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/organization/list/current}">
-								<i class="bi bi-chevron-double-left"></i> To List</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/organization/edit/{orderId}(orderId=${organization.id})}" >
-								<i class="bi bi-pen"></i> Edit Record</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/organization/delete/{orderId}(orderId=${organization.id})}" onclick="return confirm('Are you sure?')">
-								<i class="bi bi-trash-fill"></i> Delete Record</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.organizationName}"></label>
-			    	<div class="col-sm-10">
-						<span class="form-control border-light" th:text="${organization.organizationName}"></span>
-			    	</div>
-			    </div>
-			    
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.description}"></label>
-					<div class="col-sm-10">
-						<span class="form-control border-light" th:text="${organization.description}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.address}"></label>
-					<div class="col-sm-10">
-						<span class="form-control border-light" th:text="${organization.address}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.city}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${organization.city}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.pin}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${organization.pin}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.state}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${organization.state}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.country}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${organization.country}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.contactName}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${organization.contactName}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.contactPhone}"></label>
-					<div class="col-sm-2">
-						<span class="form-control border-light" th:text="${organization.contactPhone}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.contactEmail}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${organization.contactEmail}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-success" th:text="#{organization.url}"></label>
-					<div class="col-sm-4">
-						<span class="form-control border-light" th:text="${organization.url}"></span>
-					</div>
-				</div>
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.organizationName}"></label>
+	    	<div class="col-sm-10">
+				<span class="form-control border-light" th:text="${organization.organizationName}"></span>
+	    	</div>
+	    </div>
+	    
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.description}"></label>
+			<div class="col-sm-10">
+				<span class="form-control border-light" th:text="${organization.description}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.address}"></label>
+			<div class="col-sm-10">
+				<span class="form-control border-light" th:text="${organization.address}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.city}"></label>
+			<div class="col-sm-4">
+				<span class="form-control border-light" th:text="${organization.city}"></span>
+			</div>
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.pin}"></label>
+			<div class="col-sm-4">
+				<span class="form-control border-light" th:text="${organization.pin}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.state}"></label>
+			<div class="col-sm-4">
+				<span class="form-control border-light" th:text="${organization.state}"></span>
+			</div>
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.country}"></label>
+			<div class="col-sm-4">
+				<span class="form-control border-light" th:text="${organization.country}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.contactName}"></label>
+			<div class="col-sm-4">
+				<span class="form-control border-light" th:text="${organization.contactName}"></span>
+			</div>
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.contactPhone}"></label>
+			<div class="col-sm-2">
+				<span class="form-control border-light" th:text="${organization.contactPhone}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.contactEmail}"></label>
+			<div class="col-sm-4">
+				<span class="form-control border-light" th:text="${organization.contactEmail}"></span>
+			</div>
+			<label class="col-sm-2 col-form-label text-success" th:text="#{organization.url}"></label>
+			<div class="col-sm-4">
+				<span class="form-control border-light" th:text="${organization.url}"></span>
 			</div>
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

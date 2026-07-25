@@ -3,97 +3,91 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
 			
+		<h4 class="h4 p-2">Matrimonial (View Details)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+		<div class="row p-2">
 			<div class="col-12">
-			
-				<h4 class="h4 pb-3">Matrimonial (View Details)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<div class="row pb-3">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-						<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/matrimonial/list/current}">Back to List</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/matrimonial/disable/{orderId}(orderId=${matrimonial.id})}" th:if="${matrimonial.enabled}">Disable</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/matrimonial/enable/{orderId}(orderId=${matrimonial.id})}" th:unless="${matrimonial.enabled}">Enable</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/matrimonial/delete/{orderId}(orderId=${matrimonial.id})}" onclick="return confirm('Are you sure?')">Delete Record</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="row g-3">
-					<div class="col-md-12">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.description}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.description}"></span>
-				   	</div>
-					<div class="col-md-4">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.age}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.age}"></span>
-				   	</div>
-					<div class="col-md-4">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.education}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.educationLevel.name}"></span>
-				   	</div>
-					<div class="col-md-4">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.occupation}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.occupation.name}"></span>
-				   	</div>
-					<div class="col-md-6">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.mobile}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.mobile}"></span>
-				   	</div>
-					<div class="col-md-6">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.email}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.email}"></span>
-				   	</div>
-					<div class="col-md-6">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.lookingFor}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.lookingFor}"></span>
-				   	</div>
-					<div class="col-md-12">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expDescription}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.expDescription}"></span>
-				   	</div>
-					<div class="col-md-4">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expEducation}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.expEducationLevel.name}"></span>
-				   	</div>
-					<div class="col-md-4">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expOccupation}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.expOccupation.name}"></span>
-				   	</div>
-					<div class="col-md-2">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expMinAge}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.expMinAge}"></span>
-				   	</div>
-					<div class="col-md-2">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expMaxAge}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.expMaxAge}"></span>
-				   	</div>
-					<div class="col-md-6">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.enabled}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.enabled}"></span>
-				   	</div>
-					<div class="col-md-6">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.addDate}"></label>
-				   		<span class="form-control border-light" th:text="${#dates.format(matrimonial.addDate, 'dd/MM/yyyy')}"></span>
-				   	</div>
-					<div class="col-md-12">
-				   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.owner}"></label>
-				   		<span class="form-control border-light" th:text="${matrimonial.owner.name}"></span>
-				   	</div>
+				<div class="d-grid gap-2 d-md-block">
+				<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/matrimonial/list/current}">Back to List</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/matrimonial/disable/{orderId}(orderId=${matrimonial.id})}" th:if="${matrimonial.enabled}">Disable</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/matrimonial/enable/{orderId}(orderId=${matrimonial.id})}" th:unless="${matrimonial.enabled}">Enable</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/matrimonial/delete/{orderId}(orderId=${matrimonial.id})}" onclick="return confirm('Are you sure?')">Delete Record</a>
 				</div>
 			</div>
 		</div>
+
+		<div class="row g-3">
+			<div class="col-md-12">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.description}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.description}"></span>
+		   	</div>
+			<div class="col-md-4">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.age}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.age}"></span>
+		   	</div>
+			<div class="col-md-4">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.education}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.educationLevel.name}"></span>
+		   	</div>
+			<div class="col-md-4">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.occupation}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.occupation.name}"></span>
+		   	</div>
+			<div class="col-md-6">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.mobile}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.mobile}"></span>
+		   	</div>
+			<div class="col-md-6">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.email}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.email}"></span>
+		   	</div>
+			<div class="col-md-6">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.lookingFor}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.lookingFor}"></span>
+		   	</div>
+			<div class="col-md-12">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expDescription}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.expDescription}"></span>
+		   	</div>
+			<div class="col-md-4">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expEducation}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.expEducationLevel.name}"></span>
+		   	</div>
+			<div class="col-md-4">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expOccupation}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.expOccupation.name}"></span>
+		   	</div>
+			<div class="col-md-2">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expMinAge}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.expMinAge}"></span>
+		   	</div>
+			<div class="col-md-2">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.expMaxAge}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.expMaxAge}"></span>
+		   	</div>
+			<div class="col-md-6">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.enabled}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.enabled}"></span>
+		   	</div>
+			<div class="col-md-6">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.addDate}"></label>
+		   		<span class="form-control border-light" th:text="${#dates.format(matrimonial.addDate, 'dd/MM/yyyy')}"></span>
+		   	</div>
+			<div class="col-md-12">
+		   		<label class="col-sm-2 col-form-label text-success" th:text="#{matrimonial.owner}"></label>
+		   		<span class="form-control border-light" th:text="${matrimonial.owner.name}"></span>
+		   	</div>
+		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

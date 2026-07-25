@@ -3,62 +3,58 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
 				
-				<h4 class="h4 pb-3" th:text="${'Articles (Category: ' + category.name + ')' }"></h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		<h4 class="h6 p-2" th:text="${'Articles (Category: ' + category.name + ') (Total No.: ' + totalRecords + ')' }"></h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>	
+		
+		<div class="row p-2">
+			
+			<div class="col-12" th:each="article : ${listArticle}">
 					
-				<div class="h6 pb-2" th:text="'Total Records: ' + ${totalRecords}"></div>		
+				<div class="h2 py-2" th:text="${article.title}"></div>
 				
-				<div class="row p-2">
-					
-					<div class="col-md-12 p-2 my-1 bg-white rounded-3 border border-light-subtle" th:each="article : ${listArticle}">
-						<div class="h5 text-success pb-2 px-4 pt-2 rounded-2 bg-success-subtle bg-gradient">
-							<i class="bi bi-card-heading"></i>&nbsp;&nbsp;<span th:text="${article.title}"></span>
-						</div>
-						<div class="px-3 py-3" th:utext="${article.content}"></div>
-						
-						<div class="small px-3 pt-1 pb-3">
-							<i class="bi bi-person-circle"></i> <span th:text="${article.author}"></span>
-							&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar"></i> <span th:text="${#dates.format(article.updateDate, 'dd-MM-yyyy')}"></span>
-							&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-tags"></i> <span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
-						</div>
-					</div>
+				<div class="p-3" th:utext="${article.content}"></div>
 				
+				<div class="small p-2 bg-white rounded-3 border border-light-subtle">
+					<i class="bi bi-person-circle"></i> <span th:text="${article.author}"></span>
+					&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar"></i> <span th:text="${#dates.format(article.updateDate, 'dd-MM-yyyy')}"></span>
+					&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-tags"></i> <span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
 				</div>
-						
-				<nav aria-label="Page Navigation">
-					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}">
-							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}(categoryId=${category.id})}"><i class="bi bi-chevron-bar-left"></i></a>
-						</li>
-						<li class="page-item" th:if="${!firstPage}">
-							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/previous(categoryId=${category.id})}"><i class="bi bi-chevron-left"></i></a>
-						</li>
-						<li class="page-item">
-							<a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a>
-						</li>
-						<li class="page-item" th:if="${!lastPage}">
-							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/next(categoryId=${category.id})}"><i class="bi bi-chevron-right"></i></a>
-						</li>
-						<li class="page-item" th:if="${!lastPage}">
-							<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/last(categoryId=${category.id})}"><i class="bi bi-chevron-bar-right"></i></a>
-						</li>
-					</ul>
-				</nav>
+				
 			</div>
+			
+			<div class="pb-3"></div>
+			
+			<nav aria-label="Page Navigation">
+				<ul class="pagination">
+					<li class="page-item" th:if="${!firstPage}">
+						<a class="page-link text-success" th:href="@{/article/blog/{categoryId}(categoryId=${category.id})}"><i class="bi bi-chevron-bar-left"></i></a>
+					</li>
+					<li class="page-item" th:if="${!firstPage}">
+						<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/previous(categoryId=${category.id})}"><i class="bi bi-chevron-left"></i></a>
+					</li>
+					<li class="page-item">
+						<a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a>
+					</li>
+					<li class="page-item" th:if="${!lastPage}">
+						<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/next(categoryId=${category.id})}"><i class="bi bi-chevron-right"></i></a>
+					</li>
+					<li class="page-item" th:if="${!lastPage}">
+						<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/last(categoryId=${category.id})}"><i class="bi bi-chevron-bar-right"></i></a>
+					</li>
+				</ul>
+			</nav>
+		
 		</div>
+				
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}">	</div>
+	
 </body>
 </html>

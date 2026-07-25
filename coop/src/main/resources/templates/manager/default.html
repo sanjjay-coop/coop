@@ -3,195 +3,196 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
 				
-				<h4 class="h4 pb-3">Manager Dashboard</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<div class="row p-3 g-3" >
-				
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/advert/list}">
-					   		<i class="bi bi-tv" style="font-size: 1.7rem;"></i>
-							<br/>Advertisements
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/category/addNew}">
-						   	<i class="bi bi-card-list" style="font-size: 1.7rem;"></i>
-							<br/>Article Category
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/article/list}">
-						   	<i class="bi bi-card-text" style="font-size: 1.7rem;"></i>
-							<br/>Articles
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/caste/list}">
-						   	<i class="bi bi-box" style="font-size: 1.7rem;"></i>
-							<br/>Caste
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/contact/addNew}">
-						   	<i class="bi bi-file-person" style="font-size: 1.7rem;"></i>
-							<br/>Contacts
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/educationLevel/addNew}">
-					 	  	<i class="bi bi-stack" style="font-size: 1.7rem;"></i>
-							<br/>Education Level
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 text-center">
-						<a class="nav-link" th:href="@{/manager/eventType/addNew}">
-						   	<i class="bi bi-calendar-event-fill" style="font-size: 1.7rem;"></i>
-							<br/>Event Types
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/event/list}">
-						   	<i class="bi bi-calendar-event" style="font-size: 1.7rem;"></i>
-						   	<br/>Events
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/gender/addNew}">
-					   		<img width="25px" th:src="@{/images/gender.png}" alt="Gender"/>
-							<br/>Gender
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/language/addNew}">
-						   	<img width="25px" th:src="@{/images/language.png}" alt="Language"/>
-							<br/>Language
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/maritalStatus/addNew}">
-						   	<img width="25px" th:src="@{/images/marital-status.png}" alt="Marital Status"/>
-							<br/>Marital Status
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/memberGroup/list}">
-						   	<i class="bi bi-people-fill" style="font-size: 1.7rem;"></i>
-							<br/>Member Groups
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/role/addNew}">
-						   	<i class="bi bi-shield" style="font-size: 1.7rem;"></i>
-							<br/>Member Roles
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/memberType/addNew}">
-						   	<i class="bi bi-person-lines-fill" style="font-size: 1.7rem;"></i>
-							<br/>Member Types
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/member/list}">
-						   	<i class="bi bi-person-fill" style="font-size: 1.7rem;"></i>
-							<br/>Members
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/menuItem/list}">
-					   		<img width="25px" th:src="@{/images/menuItem.png}" alt="List Menu Items"/>
-							<br/>Menu Items
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/messageText/addNew}">
-					   		<i class="bi bi-chat-right-text" style="font-size: 1.7rem;"></i>
-							<br/>Message Text
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/occupation/addNew}">
-						   	<img width="25px" th:src="@{/images/occupation.png}" alt="Occupation"/>
-							<br/>Occupation
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/orderCategory/list}">
-						   	<i class="bi bi-tag" style="font-size: 1.7rem;"></i>
-							<br/>Order Category
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/parameters}">
-						   	<i class="bi bi-gear-fill" style="font-size: 1.7rem;"></i>
-							<br/>Parameters
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/salutation/addNew}">
-					 	  	<i class="bi bi-award" style="font-size: 1.7rem;"></i>
-							<br/>Salutation
-						</a>
-					</div>
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/tribe/list}">
-						   	<i class="bi bi-heart-arrow" style="font-size: 1.7rem;"></i>
-							<br/>Tribe
-						</a>
-					</div>
-					
-					<!-- 
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/member/search}">
-						   	<img width="25px" th:src="@{/images/member-search.png}" alt="Search Members"/>
-							<br/>Search Members
-						</a>
-					</div>
-					 -->
-					
-					<div class="col-md-2 py-2 small text-center">
-						<a class="nav-link" th:href="@{/manager/siteLogo}">
-					   		<img width="25px" th:src="@{/images/site-logo.jpg}" alt="Site logo"/><br/>Site Logo
-						</a>
-					</div>
-				</div>
+		<h4 class="h4 p-2">Manager Dashboard</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2 g-3" >
+		
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/advert/list}">
+			   		<i class="bi bi-tv" style="font-size: 1.7rem;"></i>
+					<br/>Advertisements
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/category/addNew}">
+				   	<i class="bi bi-card-list" style="font-size: 1.7rem;"></i>
+					<br/>Article Category
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/article/list}">
+				   	<i class="bi bi-card-text" style="font-size: 1.7rem;"></i>
+					<br/>Articles
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/caste/list}">
+				   	<i class="bi bi-box" style="font-size: 1.7rem;"></i>
+					<br/>Caste
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/contact/addNew}">
+				   	<i class="bi bi-file-person" style="font-size: 1.7rem;"></i>
+					<br/>Contacts
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/educationLevel/addNew}">
+			 	  	<i class="bi bi-stack" style="font-size: 1.7rem;"></i>
+					<br/>Education Level
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 text-center">
+				<a class="nav-link" th:href="@{/manager/eventType/addNew}">
+				   	<i class="bi bi-calendar-event-fill" style="font-size: 1.7rem;"></i>
+					<br/>Event Types
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/event/list}">
+				   	<i class="bi bi-calendar-event" style="font-size: 1.7rem;"></i>
+				   	<br/>Events
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/gender/addNew}">
+			   		<img width="25px" th:src="@{/images/gender.png}" alt="Gender"/>
+					<br/>Gender
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/language/addNew}">
+				   	<img width="25px" th:src="@{/images/language.png}" alt="Language"/>
+					<br/>Language
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/maritalStatus/addNew}">
+				   	<img width="25px" th:src="@{/images/marital-status.png}" alt="Marital Status"/>
+					<br/>Marital Status
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/memberGroup/list}">
+				   	<i class="bi bi-people-fill" style="font-size: 1.7rem;"></i>
+					<br/>Member Groups
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/role/addNew}">
+				   	<i class="bi bi-shield" style="font-size: 1.7rem;"></i>
+					<br/>Member Roles
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/memberType/addNew}">
+				   	<i class="bi bi-person-lines-fill" style="font-size: 1.7rem;"></i>
+					<br/>Member Types
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/member/list}">
+				   	<i class="bi bi-person-fill" style="font-size: 1.7rem;"></i>
+					<br/>Members
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/menuItem/list}">
+			   		<img width="25px" th:src="@{/images/menuItem.png}" alt="List Menu Items"/>
+					<br/>Menu Items
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/messageText/addNew}">
+			   		<i class="bi bi-chat-right-text" style="font-size: 1.7rem;"></i>
+					<br/>Message Text
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/module/list}">
+			   		<i class="bi bi-boxes" style="font-size: 1.7rem;"></i>
+					<br/>Modules
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/occupation/addNew}">
+				   	<img width="25px" th:src="@{/images/occupation.png}" alt="Occupation"/>
+					<br/>Occupation
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/orderCategory/list}">
+				   	<i class="bi bi-tag" style="font-size: 1.7rem;"></i>
+					<br/>Order Category
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/parameters}">
+				   	<i class="bi bi-gear-fill" style="font-size: 1.7rem;"></i>
+					<br/>Parameters
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/salutation/addNew}">
+			 	  	<i class="bi bi-award" style="font-size: 1.7rem;"></i>
+					<br/>Salutation
+				</a>
+			</div>
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/tribe/list}">
+				   	<i class="bi bi-heart-arrow" style="font-size: 1.7rem;"></i>
+					<br/>Tribe
+				</a>
+			</div>
+			
+			<!-- 
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/member/search}">
+				   	<img width="25px" th:src="@{/images/member-search.png}" alt="Search Members"/>
+					<br/>Search Members
+				</a>
+			</div>
+			 -->
+			
+			<div class="col-md-2 py-2 small text-center">
+				<a class="nav-link" th:href="@{/manager/siteLogo}">
+			   		<img width="25px" th:src="@{/images/site-logo.jpg}" alt="Site logo"/><br/>Site Logo
+				</a>
 			</div>
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

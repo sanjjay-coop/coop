@@ -27,7 +27,7 @@
 				
 			<input type="hidden" class="form-control" th:field="*{id}">
 		
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.serviceName}"></label>
 		    	<div class="col-sm-10">
 		    		<input type="text" class="form-control required" th:field="*{serviceName}" th:placeholder="#{serviceProvider.serviceName}" autofocus >
@@ -35,7 +35,7 @@
 		    	</div>
 		    </div>
 		    
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.description}"></label>
 		    	<div class="col-sm-10">
 		    		<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{serviceProvider.description}"></textarea>
@@ -43,7 +43,7 @@
 		    	</div>
 		    </div>
 		    
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.address}"></label>
 		    	<div class="col-sm-10">
 		    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{serviceProvider.address}">
@@ -51,7 +51,7 @@
 		    	</div>
 		    </div>
 		    
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.city}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{serviceProvider.city}">
@@ -64,7 +64,7 @@
 				</div>
 			</div>
 			
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.state}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{serviceProvider.state}">
@@ -77,7 +77,7 @@
 				</div>
 			</div>
 			
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactName}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{contactName}" th:placeholder="#{serviceProvider.contactName}">
@@ -90,7 +90,7 @@
 		    	</div>
 		    </div>
 		    
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactEmail}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{contactEmail}" th:placeholder="#{serviceProvider.contactEmail}">
@@ -98,7 +98,7 @@
 		    	</div>
 		    </div>
 		    
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.keywords}"></label>
 		    	<div class="col-sm-10">
 		    		<textarea class="form-control" rows="5" th:field="*{keywords}" th:placeholder="#{serviceProvider.keywords}"></textarea>
@@ -106,7 +106,7 @@
 		    	</div>
 		    </div>
 		    
-			<div class="row mb-2">
+			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
 					<button type="submit" class="btn btn-success">Submit</button>
 		    	</div>

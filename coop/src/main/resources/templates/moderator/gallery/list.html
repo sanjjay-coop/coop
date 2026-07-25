@@ -3,76 +3,72 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
 	<div class="container-fluid">
-		<div class="row px-4 py-2">
+				
+		<h4 class="h4 p-2">Gallery</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
+		<div class="row p-2">
 			<div class="col-12">
-				
-				<h4 class="h4 pb-3">Gallery</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<div class="row pb-3">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/gallery/addNew}"><i class="bi bi-plus-circle"></i> Gallery</a>
-						</div>
-					</div>
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/gallery/addNew}"><i class="bi bi-plus-circle"></i> Gallery</a>
 				</div>
+			</div>
+		</div>
 
-				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${gallery}" method="POST">
-					  <div class="col-auto">
-					    <div class="input-group">
-					      <div class="input-group-text">Search String</div>
-					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
-					    </div>
-					  </div>
-					
-					  <div class="col-auto">
-					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
-					  </div>
-				</form>
-				
-				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
-				
-				<div class="row pb-3">
-					<div class="col-3 g-3 text-center" th:each="ob,iterator : ${listGallery}">
-						<div class="card h-100">
-						  	<div class="card-body overflow-auto text-center">
-								<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}" style="max-height: 250px;"
-										class="border rounded rounded-3 img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
-								
-								<div class="p-2 h5" th:text="${ob.title}"></div>
-								
-								<div class="small pb-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
-								
-								<div class="row">
-									<div class="col-9 text-center"></div>
-									<div class="col-1 text-center">
-										<a class="nav-link" th:href="@{/moderator/gallery/view/{orderId}(orderId=${ob.id})}" title="View Record">
-								          	<i class="bi bi-folder2-open"></i>
-								        </a>
-									</div>
-									<div class="col-1 text-center">
-										<a class="nav-link" th:href="@{/moderator/gallery/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-								          	<i class="bi bi-vector-pen"></i>
-								        </a>
-									</div>
-									<div class="col-1 text-center">
-										<a class="nav-link" th:href="@{/moderator/gallery/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-								          	<i class="bi bi-trash-fill"></i>
-								        </a>
-									</div>
-								</div>
+		<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${gallery}" method="POST">
+			  <div class="col-auto">
+			    <div class="input-group">
+			      <div class="input-group-text">Search String</div>
+			      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			    </div>
+			  </div>
+			
+			  <div class="col-auto">
+			    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+			  </div>
+		</form>
+		
+		<div class="h6 p-2" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
+		
+		<div class="row p-2">
+			<div class="col-3 text-center py-2" th:each="ob,iterator : ${listGallery}">
+				<div class="card h-100">
+				  	<div class="card-body overflow-auto text-center">
+						<img th:src="@{/open/gallery/download/{id}(id=${ob.id})}" style="max-height: 250px;"
+								class="img-fluid" th:alt="${ob.fileName}" th:title="${ob.fileName}" />
+						
+						<div class="p-2 h5" th:text="${ob.title}"></div>
+						
+						<div class="small pb-2" th:text="${#dates.format(ob.date, 'dd-MM-yyyy')}"></div>
+						
+						<div class="row">
+							<div class="col-9 text-center"></div>
+							<div class="col-1 text-center">
+								<a class="nav-link" th:href="@{/moderator/gallery/view/{orderId}(orderId=${ob.id})}" title="View Record">
+						          	<i class="bi bi-folder2-open"></i>
+						        </a>
+							</div>
+							<div class="col-1 text-center">
+								<a class="nav-link" th:href="@{/moderator/gallery/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+						          	<i class="bi bi-vector-pen"></i>
+						        </a>
+							</div>
+							<div class="col-1 text-center">
+								<a class="nav-link" th:href="@{/moderator/gallery/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+						          	<i class="bi bi-trash-fill"></i>
+						        </a>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+			</div>
+		
+			<div class="col-12">
 				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/gallery/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
@@ -86,7 +82,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

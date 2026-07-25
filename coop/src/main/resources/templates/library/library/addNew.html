@@ -3,144 +3,140 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
-
-			<div class="col-12">
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Library (Add New)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${library}" method="POST">
+		<h4 class="h4 p-2">Library (Add New)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${library}" method="POST">
 
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.shortName}"></label>
-					   	<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{shortName}" th:placeholder="#{library.shortName}" autofocus >
-					    	<ul><li class="cooperror" th:errors="*{shortName}" /></ul>
-					    </div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.name}"></label>
-				    	<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{library.name}" >
-				      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
-				    	</div>
-				    </div>
-				    
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.address}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{address}" th:placeholder="#{library.address}" >
-					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.city}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{city}" th:placeholder="#{library.city}" >
-					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.pin}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{library.pin}" >
-					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.state}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{library.state}" >
-					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.country}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{library.country}" >
-					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.mobile}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{mobile}" th:placeholder="#{library.mobile}" >
-					  		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.phone}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{phone}" th:placeholder="#{library.phone}" >
-					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.email}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{email}" th:placeholder="#{library.email}" >
-					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-				    	</div>
-				  	</div>
-				</form>
-
-				<br/>
-
-				<h4 class="h4 pb-3">Library (List All)</h4>
-
-				<table class="table table-sm small table-bordered table-striped">
-
-					<thead>
-						<tr>
-							<th class="col-sm-1" th:text="'S/N'"></th>
-							<th class="col-sm-1" th:text="#{library.shortName}"></th>
-							<th th:text="#{library.name}"></th>
-							<th class="col-sm-2" th:text="#{library.email}"></th>
-							<th class="col-sm-3" th:text="#{library.address}"></th>
-							<th class="col-sm-1" th:text="#{library.phone}"></th>
-							<th class="col-sm-1" th:text="#{library.mobile}"></th>
-							<th style="width: 15px;"></th>
-							<th style="width: 15px;"></th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<tr th:each="ob,iterator : ${listLibrary}">
-							<td th:text="${iterator.index + 1}"></td>
-        					<td th:text="${ob.shortName}"></td>
-							<td th:text="${ob.name}"></td>
-							<td th:text="${ob.email}"></td>
-							<td th:text="${ob.address + ', ' + ob.city + ' ' + ob.pin + ' ' + ob.state + ' ' + ob.country}"></td>
-							<td th:text="${ob.phone}"></td>
-							<td th:text="${ob.mobile}"></td>
-							<td>
-								<a class="nav-link" th:href="@{/library/library/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-						          	<i class="bi bi-vector-pen"></i>
-						        </a>
-							</td>
-							<td>
-								<a class="nav-link" th:href="@{/library/library/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-						          	<i class="bi bi-trash-fill"></i>
-						        </a>
-							</td>
-						</tr>
-					</tbody>
-					
-					<tfoot>
-						
-					</tfoot>
-				</table>
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.shortName}"></label>
+			   	<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{shortName}" th:placeholder="#{library.shortName}" autofocus >
+			    	<ul><li class="cooperror" th:errors="*{shortName}" /></ul>
+			    </div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.name}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{library.name}" >
+		      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.address}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{address}" th:placeholder="#{library.address}" >
+			  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.city}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{city}" th:placeholder="#{library.city}" >
+			  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+				</div>
 			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.pin}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{library.pin}" >
+			  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.state}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{library.state}" >
+			  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.country}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{library.country}" >
+			  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.mobile}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{mobile}" th:placeholder="#{library.mobile}" >
+			  		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.phone}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{phone}" th:placeholder="#{library.phone}" >
+			  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.email}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{email}" th:placeholder="#{library.email}" >
+			  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+		    	</div>
+		  	</div>
+		</form>
+
+		<br/>
+
+		<h4 class="h4 p-2">Library (List All)</h4>
+
+		<div class="row p-2">
+			<table class="table table-sm small table-bordered table-striped">
+
+				<thead>
+					<tr>
+						<th class="col-sm-1" th:text="'S/N'"></th>
+						<th class="col-sm-1" th:text="#{library.shortName}"></th>
+						<th th:text="#{library.name}"></th>
+						<th class="col-sm-2" th:text="#{library.email}"></th>
+						<th class="col-sm-3" th:text="#{library.address}"></th>
+						<th class="col-sm-1" th:text="#{library.phone}"></th>
+						<th class="col-sm-1" th:text="#{library.mobile}"></th>
+						<th style="width: 15px;"></th>
+						<th style="width: 15px;"></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="ob,iterator : ${listLibrary}">
+						<td th:text="${iterator.index + 1}"></td>
+       					<td th:text="${ob.shortName}"></td>
+						<td th:text="${ob.name}"></td>
+						<td th:text="${ob.email}"></td>
+						<td th:text="${ob.address + ', ' + ob.city + ' ' + ob.pin + ' ' + ob.state + ' ' + ob.country}"></td>
+						<td th:text="${ob.phone}"></td>
+						<td th:text="${ob.mobile}"></td>
+						<td>
+							<a class="nav-link" th:href="@{/library/library/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+					          	<i class="bi bi-vector-pen"></i>
+					        </a>
+						</td>
+						<td>
+							<a class="nav-link" th:href="@{/library/library/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+					          	<i class="bi bi-trash-fill"></i>
+					        </a>
+						</td>
+					</tr>
+				</tbody>
+				
+				<tfoot>
+					
+				</tfoot>
+			</table>
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

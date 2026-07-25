@@ -3,29 +3,24 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
+				
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
 			<div class="col-12">
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<div class="card p-1">
-					<h5 class="card-header bg-success-subtle bg-gradient" th:text="#{parameters.privacyPolicy}"></h5>
-				  	<div class="card-body">
-						<p th:utext="${params.privacyPolicy}"></p>
-				  	</div>
-				</div>
+				<div class="h4 pb-2" th:text="#{parameters.privacyPolicy}"></div>
+			  	<div>
+					<p th:utext="${params.privacyPolicy}"></p>
+			  	</div>
 			</div>
-			
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

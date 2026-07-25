@@ -24,7 +24,7 @@
 		
 		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${reminder}" method="POST">
 
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{reminder.title}"></label>
 		    	<div class="col-sm-10">
 		    		<input type="text" class="form-control" th:field="*{title}" th:placeholder="#{reminder.title}" autofocus >
@@ -32,7 +32,7 @@
 		    	</div>
 		    </div>
 		    
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{reminder.description}"></label>
 		    	<div class="col-sm-10">
 		    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{reminder.description}"></textarea>
@@ -40,7 +40,7 @@
 		    	</div>
 		    </div>
 		    
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{reminder.remDate}"></label>
 		    	<div class="col-sm-2">
 		    		<input type="date" class="form-control" th:field="*{remDate}" th:placeholder="#{reminder.remDate}">
@@ -60,7 +60,7 @@
 				</div>
 			</div>
 			
-			<div class="row mb-2">
+			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
 					<button type="submit" class="btn btn-success">Submit</button>
 		    	</div>

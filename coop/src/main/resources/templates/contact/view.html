@@ -3,36 +3,30 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
 				
-				<h4 class="h4 pb-3">Contacts</h4>
-				
-				<div class="row g-3">
-					<div class="col-sm-6 pb-2" th:each="contact,iterator : ${listContact}">
-						<div class="card h-100">
-							<h5 class="card-header text-center bg-gradient bg-success-subtle" th:text="${contact.name}" ></h5>
-						  	<div class="card-body text-center">
-						  		<div class="h6 m-3" th:text="${contact.designation}"></div>	
-						  		<div class="small pb-1" th:text="'Address: ' + ${contact.address}"></div>	
-						  		<div class="small pb-1" th:text="'Email: ' + ${contact.email}"></div>	
-						  		<div class="small pb-3" th:text="'Phone: ' + ${contact.phone}"></div>	
-						  		<div class="text-success" th:utext="${contact.about}"></div>			  		
-						  	</div>
-						</div>
-					</div>
+		<h4 class="h4 p-2">Contacts</h4>
+		
+		<div class="row g-3">
+			<div class="col-sm-6 pb-2" th:each="contact,iterator : ${listContact}">
+				<div class="card h-100">
+					<h5 class="card-header text-center bg-gradient bg-success-subtle" th:text="${contact.name}" ></h5>
+				  	<div class="card-body text-center">
+				  		<div class="h6 m-3" th:text="${contact.designation}"></div>	
+				  		<div class="small pb-1" th:text="'Address: ' + ${contact.address}"></div>	
+				  		<div class="small pb-1" th:text="'Email: ' + ${contact.email}"></div>	
+				  		<div class="small pb-3" th:text="'Phone: ' + ${contact.phone}"></div>	
+				  		<div class="text-success" th:utext="${contact.about}"></div>			  		
+				  	</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

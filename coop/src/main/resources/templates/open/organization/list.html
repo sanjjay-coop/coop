@@ -3,45 +3,43 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
-			<div class="col-12">
+	<div class="container-fluid">
 				
-				<h4 class="h4 pb-3">Other Similar Organizations</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		<h4 class="h4 p-2">Other Similar Organization</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+	
+		<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${organization}" method="POST">
+			  <div class="col-auto">
+			    <div class="input-group">
+			      <div class="input-group-text">Search String</div>
+			      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			    </div>
+			  </div>
 			
-				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${organization}" method="POST">
-					  <div class="col-auto">
-					    <div class="input-group">
-					      <div class="input-group-text">Search String</div>
-					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
-					    </div>
-					  </div>
-					
-					  <div class="col-auto">
-					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
-					  </div>
-				</form>
-				
-				<div class="row py-2">
-					<div class="col-4 my-2" th:each="ob,iterator : ${listOrganization}">
-						<div class="card h-100">
-							<h5 class="card-header bg-success-subtle bg-gradient" th:text="${ob.organizationName}"></h5>
-						  	<div class="card-body text-center">
-						  		<img th:if="${ob.fileData != null}" class="rounded mx-auto d-block text-center pb-3" style="width: 200px;" th:src="@{/open/organization/photo/{orderId}(orderId=${ob.id})}"/>
-						  		<div th:text="${ob.description}"></div>
-						  		<br/><div th:text="'Address: ' + ${ob.address} + ', ' + ${ob.city} + ', ' + ${ob.pin} + ', ' + ${ob.state} + ', ' + ${ob.country}"></div>
-						  		<br/><div th:text="'Contact: ' + ${ob.contactName} + ', ' + ${ob.contactPhone} + ', ' + ${ob.contactEmail}"></div>
-						  		<br/><a class="text-decoration-none" target="_blank" th:href="${ob.url}" th:text="'URL: ' + ${ob.url}"></a>
-						  	</div>
-						</div>
-					</div>
+			  <div class="col-auto">
+			    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+			  </div>
+		</form>
+		
+		<div class="row p-2">
+			<div class="col-4 my-2" th:each="ob,iterator : ${listOrganization}">
+				<div class="card h-100">
+					<h5 class="card-header bg-success-subtle bg-gradient" th:text="${ob.organizationName}"></h5>
+				  	<div class="card-body text-center">
+				  		<img th:if="${ob.fileData != null}" class="rounded mx-auto d-block text-center pb-3" style="width: 200px;" th:src="@{/open/organization/photo/{orderId}(orderId=${ob.id})}"/>
+				  		<div th:text="${ob.description}"></div>
+				  		<br/><div th:text="'Address: ' + ${ob.address} + ', ' + ${ob.city} + ', ' + ${ob.pin} + ', ' + ${ob.state} + ', ' + ${ob.country}"></div>
+				  		<br/><div th:text="'Contact: ' + ${ob.contactName} + ', ' + ${ob.contactPhone} + ', ' + ${ob.contactEmail}"></div>
+				  		<br/><a class="text-decoration-none" target="_blank" th:href="${ob.url}" th:text="'URL: ' + ${ob.url}"></a>
+				  	</div>
 				</div>
+			</div>
+		
+			<div class="col-12">
 				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/open/organization/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
@@ -55,7 +53,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

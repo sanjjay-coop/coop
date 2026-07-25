@@ -3,9 +3,8 @@
 <head th:replace="~{mobile/fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{mobile/fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{mobile/fragments :: header}"></div>
 	
 	<div class="container-fluid">
 			
@@ -14,6 +13,7 @@
 		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 		
 		<div class="row p-2">
+		
 			<div class="col-12">
 			
 				Sorry! You do not have access to the resource. Contact System Administrator.
@@ -22,8 +22,7 @@
 		
 	</div>
 	
-	<div class="container" th:replace="~{mobile/fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{mobile/fragments :: footer}"></div>
 	
 </body>
 </html>

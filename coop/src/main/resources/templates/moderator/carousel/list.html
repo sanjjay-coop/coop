@@ -3,29 +3,28 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
+					
+		<h4 class="h4 p-2">Carousel (Photos)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
+		<div class="row p-2">
 			<div class="col-12">
-				
-				<h4 class="h4 pb-3">Carousel (Photos)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<div class="row pb-3">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/carousel/addNew}">
-								<i class="bi bi-plus-circle"></i> Carousel Photo</a>
-						</div>
-					</div>
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/carousel/addNew}">
+						<i class="bi bi-plus-circle"></i> Carousel Photo</a>
 				</div>
-				
-				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
+			</div>
+		</div>
+		
+		<div class="h6 p-2" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
+		
+		<div class="row p-2">
+			<div class="col-12">
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -41,18 +40,18 @@
 					
 					<tbody>
 						<tr th:each="ob,iterator : ${listCarousel}">
-        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
-        					<td th:text="${ob.title}"></td>
+	       					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+	       					<td th:text="${ob.title}"></td>
 							<td th:text="${ob.description}"></td>
-        					<td class="text-center" th:text="${#dates.format(ob.pubEndDate, 'dd/MM/yyyy')}"></td>
-        					<td>
-        						<img width="100px" th:src="@{/carousel/download/{orderId}(orderId=${ob.id})}"/>
-        					</td>
-        					<td>
+	       					<td class="text-center" th:text="${#dates.format(ob.pubEndDate, 'dd/MM/yyyy')}"></td>
+	       					<td>
+	       						<img width="100px" th:src="@{/carousel/download/{orderId}(orderId=${ob.id})}"/>
+	       					</td>
+	       					<td>
 		        				<a class="nav-link" th:href="@{/moderator/carousel/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
 						          	<i class="bi bi-trash-fill"></i>
 						        </a>
-        					</td>
+	       					</td>
 						</tr>
 					</tbody>
 				</table>
@@ -69,7 +68,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

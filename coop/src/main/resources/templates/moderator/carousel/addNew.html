@@ -3,67 +3,61 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
-
-			<div class="col-12">
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Carousel (Add New)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<div class="row pb-3">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/carousel/list/current}">
-								<i class="bi bi-chevron-double-left"></i> Back to List</a>
-						</div>
-					</div>
+		<h4 class="h4 p-2">Carousel (Add New)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/carousel/list/current}">
+						<i class="bi bi-chevron-double-left"></i> Back to List</a>
 				</div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${carousel}" method="POST" enctype="multipart/form-data">
-
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{carousel.title}"></label>
-						<div class="col-sm-10">
-				    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{carousel.title}" autofocus >
-							<ul><li class="cooperror" th:errors="*{title}" /></ul>
-						</div>
-					</div>
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{carousel.description}"></label>
-						<div class="col-sm-10">
-				    		<input type="text" class="form-control required" th:field="*{description}" th:placeholder="#{carousel.description}">
-							<ul><li class="cooperror" th:errors="*{description}" /></ul>
-						</div>
-					</div>
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{carousel.pubEndDate}"></label>
-						<div class="col-sm-4">
-				    		<input type="date" class="form-control required" th:field="*{pubEndDate}" th:placeholder="#{carousel.pubEndDate}">
-							<ul><li class="cooperror" th:errors="*{pubEndDate}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{carousel.file}"></label>
-						<div class="col-sm-4">
-				    		<input type="file" class="form-control required" th:field="*{file}" th:placeholder="#{carousel.file}">
-							<ul><li class="cooperror" th:errors="*{file}" /></ul>
-						</div>
-					</div>
-					<div class="row mb-2">
-						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-						</div>
-					</div>
-				</form>
 			</div>
 		</div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${carousel}" method="POST" enctype="multipart/form-data">
+
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{carousel.title}"></label>
+				<div class="col-sm-10">
+		    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{carousel.title}" autofocus >
+					<ul><li class="cooperror" th:errors="*{title}" /></ul>
+				</div>
+			</div>
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{carousel.description}"></label>
+				<div class="col-sm-10">
+		    		<input type="text" class="form-control required" th:field="*{description}" th:placeholder="#{carousel.description}">
+					<ul><li class="cooperror" th:errors="*{description}" /></ul>
+				</div>
+			</div>
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{carousel.pubEndDate}"></label>
+				<div class="col-sm-4">
+		    		<input type="date" class="form-control required" th:field="*{pubEndDate}" th:placeholder="#{carousel.pubEndDate}">
+					<ul><li class="cooperror" th:errors="*{pubEndDate}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{carousel.file}"></label>
+				<div class="col-sm-4">
+		    		<input type="file" class="form-control required" th:field="*{file}" th:placeholder="#{carousel.file}">
+					<ul><li class="cooperror" th:errors="*{file}" /></ul>
+				</div>
+			</div>
+			<div class="row p-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</div>
+			</div>
+		</form>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>	
 </html>

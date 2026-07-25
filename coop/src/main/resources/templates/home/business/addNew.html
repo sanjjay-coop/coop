@@ -3,126 +3,120 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Business (Add New)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<div class="row pb-2">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/home/business/list/current}">
-								<i class="bi bi-chevron-double-left"></i> Back to List
-							</a>
-						</div>
-					</div>
+		<h4 class="h4 p-2">Business (Add New)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/home/business/list/current}">
+						<i class="bi bi-chevron-double-left"></i> Back to List
+					</a>
 				</div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${business}" method="POST">
-				
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.businessName}"></label>
-				    	<div class="col-sm-10">
-				    		<input type="text" class="form-control required" th:field="*{businessName}" th:placeholder="#{business.businessName}" autofocus >
-				      		<ul><li class="cooperror" th:errors="*{businessName}" /></ul>
-				    	</div>
-				    </div>
-				    
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.description}"></label>
-				    	<div class="col-sm-10">
-				    		<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{business.description}"></textarea>
-				      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
-				    	</div>
-				    </div>
-				    
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.address}"></label>
-				    	<div class="col-sm-10">
-				    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{business.address}">
-				      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
-				    	</div>
-				    </div>
-				    
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.city}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{business.city}">
-					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.pin}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{business.pin}">
-					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.state}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{business.state}">
-					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.country}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{business.country}">
-					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactName}"></label>
-				    	<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{contactName}" th:placeholder="#{business.contactName}">
-				      		<ul><li class="cooperror" th:errors="*{contactName}" /></ul>
-				    	</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactPhone}"></label>
-				    	<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{contactPhone}" th:placeholder="#{business.contactPhone}">
-				      		<ul><li class="cooperror" th:errors="*{contactPhone}" /></ul>
-				    	</div>
-				    </div>
-				    
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactEmail}"></label>
-				    	<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{contactEmail}" th:placeholder="#{business.contactEmail}">
-				      		<ul><li class="cooperror" th:errors="*{contactEmail}" /></ul>
-				    	</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.url}"></label>
-				    	<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{business.url}">
-				      		<ul><li class="cooperror" th:errors="*{url}" /></ul>
-				    	</div>
-				    </div>
-				    
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{business.keywords}"></label>
-				    	<div class="col-sm-10">
-				    		<textarea class="form-control" rows="5" th:field="*{keywords}" th:placeholder="#{business.keywords}"></textarea>
-				      		<ul><li class="cooperror" th:errors="*{keywords}" /></ul>
-				    	</div>
-				    </div>
-				    
-					<div class="row mb-2">
-						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-				    	</div>
-				  	</div>
-				</form>
 			</div>
 		</div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${business}" method="POST">
+		
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.businessName}"></label>
+		    	<div class="col-sm-10">
+		    		<input type="text" class="form-control required" th:field="*{businessName}" th:placeholder="#{business.businessName}" autofocus >
+		      		<ul><li class="cooperror" th:errors="*{businessName}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.description}"></label>
+		    	<div class="col-sm-10">
+		    		<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{business.description}"></textarea>
+		      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.address}"></label>
+		    	<div class="col-sm-10">
+		    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{business.address}">
+		      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.city}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{business.city}">
+			  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.pin}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{business.pin}">
+			  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.state}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{business.state}">
+			  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.country}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{business.country}">
+			  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactName}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{contactName}" th:placeholder="#{business.contactName}">
+		      		<ul><li class="cooperror" th:errors="*{contactName}" /></ul>
+		    	</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactPhone}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{contactPhone}" th:placeholder="#{business.contactPhone}">
+		      		<ul><li class="cooperror" th:errors="*{contactPhone}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactEmail}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{contactEmail}" th:placeholder="#{business.contactEmail}">
+		      		<ul><li class="cooperror" th:errors="*{contactEmail}" /></ul>
+		    	</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.url}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{business.url}">
+		      		<ul><li class="cooperror" th:errors="*{url}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{business.keywords}"></label>
+		    	<div class="col-sm-10">
+		    		<textarea class="form-control" rows="5" th:field="*{keywords}" th:placeholder="#{business.keywords}"></textarea>
+		      		<ul><li class="cooperror" th:errors="*{keywords}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row p-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+		    	</div>
+		  	</div>
+		</form>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

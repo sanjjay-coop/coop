@@ -3,70 +3,71 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
 				
-				<h4 class="h4 pb-3">Articles (All Categories)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<form class="row g-3 align-items-center py-3"  th:action="@{/article/search/list}" th:object="${article}" method="POST">
-					  <div class="col-auto">
-					    <div class="input-group">
-					      <div class="input-group-text">Search String</div>
-					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
-					    </div>
-					  </div>
-					
-					  <div class="col-auto">
-					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
-					  </div>
-				</form>
-				
-				<div class="row p-2">
-					<div class="h6 pb-2" th:text="'Total Records: ' + ${totalRecords}"></div>		
-					
-					<div class="col-md-4 p-2 my-1 bg-white rounded-3 border border-light-subtle" th:each="article : ${listArticle}">
-						<div class="h5 text-success pb-2 px-4 pt-2 rounded-2 bg-success-subtle bg-gradient">
-							<a class="nav-link" th:href="@{/article/view/{id}(id=${article.id})}">
-								<i class="bi bi-card-heading"></i>&nbsp;&nbsp;<span th:text="${article.title}"></span>
-							</a>
-						</div>
-						<div class="px-3 py-3" th:utext="${article.excerpt} + ' ...'"></div>
-						<div class="small px-3 pt-1 pb-1 text-end">
-							<a th:href="@{/article/view/{id}(id=${article.id})}">
-								view-full-article
-							</a>
-						</div>
-						<div class="small px-3 pt-1 pb-3">
-							<i class="bi bi-person-circle"></i> <span th:text="${article.author}"></span>
-							&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar"></i> <span th:text="${#dates.format(article.updateDate, 'dd-MM-yyyy')}"></span>
-							&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-tags"></i> <span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
-						</div>
-					</div>
-				
+		<h4 class="h4 p-2">Articles (All Categories)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<form class="row g-3 align-items-center p-2"  th:action="@{/article/search/list}" th:object="${article}" method="POST">
+			  <div class="col-auto">
+			    <div class="input-group">
+			      <div class="input-group-text">Search String</div>
+			      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			    </div>
+			  </div>
+			
+			  <div class="col-auto">
+			    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+			  </div>
+		</form>
+		
+		<div class="row p-2">
+			
+			<div class="h6 p-2" th:text="'Total Records: ' + ${totalRecords}"></div>	
+			
+			<div class="col-sm-6 p-2 rounded-0" th:each="article : ${listArticle}">
+			
+				<div class="h4">
+					<a class="nav-link" th:href="@{/article/view/{id}(id=${article.id})}">
+						<i class="bi bi-card-heading"></i>&nbsp;&nbsp;<span th:text="${article.title}"></span>
+					</a>
 				</div>
 				
-				<nav aria-label="Page Navigation">
-					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/article/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/article/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/article/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/article/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
-					</ul>
-				</nav>
+			  	<div class="overflow-auto">
+					<div class="px-2 py-2" th:utext="${article.excerpt} + ' ...'"></div>
+					<div class="small px-2 pt-1 pb-1 text-end">
+						<a th:href="@{/article/view/{id}(id=${article.id})}">
+							view-full-article
+						</a>
+					</div>
+					<div class="small px-2 pt-1 pb-2">
+						<i class="bi bi-person-circle"></i> <span th:text="${article.author}"></span>
+						&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar"></i> <span th:text="${#dates.format(article.updateDate, 'dd-MM-yyyy')}"></span>
+						&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-tags"></i> <span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
+					</div>
+			  	</div>
 			</div>
+			
+		</div>
+		
+		<div class="row p-2">
+			<nav aria-label="Page Navigation">
+				<ul class="pagination">
+					<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/article/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+					<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/article/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+					<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+					<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/article/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+					<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/article/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+				</ul>
+			</nav>
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

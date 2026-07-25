@@ -3,33 +3,32 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Title (Search Result)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${title}" method="POST">
-					  <div class="col-auto">
-					    <div class="input-group">
-					      <div class="input-group-text">Search String</div>
-					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
-					    </div>
-					  </div>
-					
-					  <div class="col-auto">
-					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
-					  </div>
-				</form>
-				
-				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
+		<h4 class="h4 p-2">Title (Search Result)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${title}" method="POST">
+			  <div class="col-auto">
+			    <div class="input-group">
+			      <div class="input-group-text">Search String</div>
+			      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			    </div>
+			  </div>
+			
+			  <div class="col-auto">
+			    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+			  </div>
+		</form>
+		
+		<div class="h5 p-2" th:text="'Total Records: ' + ${totalRecords}"></div>
+		
+		<div class="row p-2">
+			<div class="col-12">
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -44,8 +43,8 @@
 					
 					<tbody>
 						<tr th:each="ob,iterator : ${listTitle}">
-        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
-        					<td th:text="${ob.accessionNumber}"></td>
+	       					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+	       					<td th:text="${ob.accessionNumber}"></td>
 							<td th:text="${ob.uniformTitle}"></td>
 							<td th:text="${ob.authors}"></td>
 							<td>
@@ -69,7 +68,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

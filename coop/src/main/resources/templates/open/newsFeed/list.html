@@ -3,44 +3,41 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
+				
+		<h4 class="h4 p-2">News Feeds</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+		<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${newsFeed}" method="POST">
+			  <div class="col-auto">
+			    <div class="input-group">
+			      <div class="input-group-text">Search String</div>
+			      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			    </div>
+			  </div>
+			
+			  <div class="col-auto">
+			    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+			  </div>
+		</form>
+
+		<div class="h6 p-2" th:text="'Total Records: ' + ${totalRecords}"></div>	
+					
+		<div class="row p-2" style="font-size: 12px;">
+			<div class="col-md-4 p-2 border border-light rounded-0" style="max-height: 500px;" th:each="obj : ${listNewsFeed}">
+				<div class="text-center p-2 g-2 m-2 border border-light rounded-1">
+					<div class="text-success h5" >
+						<a class="text-decoration-none" target="_blank" th:href="${obj.url}" th:text="${obj.title}"></a>
+					</div>							
+					<small class="text-secondary" th:utext="${obj.description}"></small>
+				</div>
+			</div>
 
 			<div class="col-12">
-				
-				<h4 class="h4 pb-3">News Feeds</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${newsFeed}" method="POST">
-					  <div class="col-auto">
-					    <div class="input-group">
-					      <div class="input-group-text">Search String</div>
-					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
-					    </div>
-					  </div>
-					
-					  <div class="col-auto">
-					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
-					  </div>
-				</form>
-
-				<div class="h6 pb-3" th:text="'Total Records: ' + ${totalRecords}"></div>				
-				<div class="row pb-2" style="font-size: 12px;">
-					<div class="col-md-4 p-2 border border-light rounded-0" style="max-height: 500px;" th:each="obj : ${listNewsFeed}">
-						<div class="text-center p-2 g-2 m-2 border border-light rounded-1">
-							<div class="text-success h5" >
-								<a class="text-decoration-none" target="_blank" th:href="${obj.url}" th:text="${obj.title}"></a>
-							</div>							
-							<small class="text-secondary" th:utext="${obj.description}"></small>
-						</div>
-					</div>
-				</div>
-
 				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
 					<ul class="pagination">
 						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/newsFeed/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
@@ -54,7 +51,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

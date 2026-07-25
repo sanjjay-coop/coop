@@ -3,33 +3,32 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
+		
+		<h4 class="h4 p-2">Sponsorship Applications</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
+		<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${sponsorshipApplication}" method="POST">
+			  <div class="col-auto">
+			    <div class="input-group">
+			      <div class="input-group-text">Search String</div>
+			      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
+			    </div>
+			  </div>
+			
+			  <div class="col-auto">
+			    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
+			  </div>
+		</form>
+		
+		<div class="h6 p-2" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
+		
+		<div class="row p-2">
 			<div class="col-12">
-				
-				<h4 class="h4 pb-3">Sponsorship Applications</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${sponsorshipApplication}" method="POST">
-					  <div class="col-auto">
-					    <div class="input-group">
-					      <div class="input-group-text">Search String</div>
-					      <input type="text" class="form-control" th:field="*{searchFor}" placeholder="Search for...">
-					    </div>
-					  </div>
-					
-					  <div class="col-auto">
-					    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
-					  </div>
-				</form>
-				
-				<div class="h6" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -45,19 +44,19 @@
 					
 					<tbody>
 						<tr th:each="ob,iterator : ${listSponsorshipApplication}">
-        					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
-        					<td th:utext="${ob.name 
+	       					<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+	       					<td th:utext="${ob.name 
 								+ '<br/>' + ob.address + ', ' + ob.city + ', ' + ob.state + ', ' + ob.country
 								+ '<br/>Email: ' + ob.email
 								+ '<br/>Mobile: ' + ob.mobile}"></td>
 							<td th:text="${ob.reasonsForApplication}"></td>
 							<td class="text-center" th:text="${#dates.format(ob.applicationDate, 'dd/MM/yyyy')}"></td>
-        					<td th:text="${ob.sponsorship.title}"></td>
-        					<td>
-        						<a class="nav-link" th:href="@{/moderator/sponsorshipApplication/view/{orderId}(orderId=${ob.id})}" title="View Record">
+	       					<td th:text="${ob.sponsorship.title}"></td>
+	       					<td>
+	       						<a class="nav-link" th:href="@{/moderator/sponsorshipApplication/view/{orderId}(orderId=${ob.id})}" title="View Record">
 						          	<i class="bi bi-folder2-open"></i>
 						        </a>
-        					</td>
+	       					</td>
 						</tr>
 					</tbody>
 				</table>
@@ -74,7 +73,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

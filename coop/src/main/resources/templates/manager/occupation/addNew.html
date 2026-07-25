@@ -3,40 +3,36 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
-
-			<div class="col-12">
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Occupation (Add New)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${occupation}" method="POST">
+		<h4 class="h4 p-2">Occupation (Add New)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${occupation}" method="POST">
 
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{occupation.name}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{occupation.name}" autofocus >
-					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-						</div>
-					</div>
-				</form>
-				
-				<br/>
-				
-				<h4 class="h4 pb-3">Occupation (List All)</h4>
-				
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{occupation.name}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{occupation.name}" autofocus >
+			  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</div>
+			</div>
+		</form>
+		
+		<h4 class="h4 p-2">Occupation (List All)</h4>
+		
+		<div class="row p-2">
+			<div class="col-12">
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -50,18 +46,18 @@
 					
 					<tbody>
 						<tr th:each="ob,iterator : ${listOccupation}">
-        					<td th:text="${iterator.index + 1}"></td>
-        					<td th:text="${ob.name}"></td>
-        					<td>
-        						<a class="nav-link" th:href="@{/manager/occupation/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+	       					<td th:text="${iterator.index + 1}"></td>
+	       					<td th:text="${ob.name}"></td>
+	       					<td>
+	       						<a class="nav-link" th:href="@{/manager/occupation/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
 						          	<i class="bi bi-vector-pen"></i>
 						        </a>
-        					</td>
-        					<td>
+	       					</td>
+	       					<td>
 		        				<a class="nav-link" th:href="@{/manager/occupation/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
 						          	<i class="bi bi-trash-fill"></i>
 						        </a>
-        					</td>
+	       					</td>
 						</tr>
 					</tbody>
 				</table>
@@ -69,7 +65,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

@@ -3,109 +3,103 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
-
-			<div class="col-12">
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Library (Edit)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<div class="row pb-2">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/library/title/addNew}">
-								<i class="bi bi-plus-circle"></i> Add Library
-							</a>
-						</div>
-					</div>
+		<h4 class="h4 p-2">Library (Edit)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/library/title/addNew}">
+						<i class="bi bi-plus-circle"></i> Add Library
+					</a>
 				</div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${library}" method="POST">
-
-					<input type="hidden" class="form-control" th:field="*{id}">
-
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.shortName}"></label>
-					   	<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{shortName}" th:placeholder="#{library.shortName}" autofocus >
-					    	<ul><li class="cooperror" th:errors="*{shortName}" /></ul>
-					    </div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.name}"></label>
-				    	<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{library.name}" >
-				      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
-				    	</div>
-				    </div>
-				    
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.address}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{address}" th:placeholder="#{library.address}" >
-					  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.city}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{city}" th:placeholder="#{library.city}" >
-					  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.pin}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{library.pin}" >
-					  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.state}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{library.state}" >
-					  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.country}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{library.country}" >
-					  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.mobile}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{mobile}" th:placeholder="#{library.mobile}" >
-					  		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.phone}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{phone}" th:placeholder="#{library.phone}" >
-					  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{library.email}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control" th:field="*{email}" th:placeholder="#{library.email}" >
-					  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-				    	</div>
-				  	</div>
-				</form>
 			</div>
 		</div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${library}" method="POST">
+
+			<input type="hidden" class="form-control" th:field="*{id}">
+
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.shortName}"></label>
+			   	<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{shortName}" th:placeholder="#{library.shortName}" autofocus >
+			    	<ul><li class="cooperror" th:errors="*{shortName}" /></ul>
+			    </div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.name}"></label>
+		    	<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{library.name}" >
+		      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+		    	</div>
+		    </div>
+		    
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.address}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{address}" th:placeholder="#{library.address}" >
+			  		<ul><li class="cooperror" th:errors="*{address}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.city}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{city}" th:placeholder="#{library.city}" >
+			  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.pin}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{library.pin}" >
+			  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.state}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{library.state}" >
+			  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.country}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{library.country}" >
+			  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.mobile}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{mobile}" th:placeholder="#{library.mobile}" >
+			  		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.phone}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{phone}" th:placeholder="#{library.phone}" >
+			  		<ul><li class="cooperror" th:errors="*{phone}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{library.email}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control" th:field="*{email}" th:placeholder="#{library.email}" >
+			  		<ul><li class="cooperror" th:errors="*{email}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+		    	</div>
+		  	</div>
+		</form>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

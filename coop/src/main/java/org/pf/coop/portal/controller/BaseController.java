@@ -2,6 +2,7 @@ package org.pf.coop.portal.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import org.pf.coop.common.YesNo;
@@ -10,6 +11,7 @@ import org.pf.coop.portal.model.MenuItem;
 import org.pf.coop.portal.model.Parameters;
 import org.pf.coop.portal.repository.AdvertRepo;
 import org.pf.coop.portal.repository.MenuItemRepo;
+import org.pf.coop.portal.repository.ModuleRepo;
 import org.pf.coop.portal.service.ParametersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -67,5 +69,19 @@ public class BaseController {
 	@ModelAttribute("params")
 	public Parameters getParameters() {
 		return paramsService.getParameters();
+	}
+	
+	@Autowired
+	ModuleRepo moduleRepo;
+	
+	@ModelAttribute("moduleStatus")
+	public HashMap<String, Boolean> getModuleStatus(){
+		HashMap<String, Boolean> moduleMap = new HashMap<String, Boolean>();
+		List<org.pf.coop.portal.model.Module> listModule = this.moduleRepo.findAll();
+		for(org.pf.coop.portal.model.Module module : listModule) {
+			moduleMap.put(module.getName(), module.getEnabled());
+		}
+		
+		return moduleMap;
 	}
 }

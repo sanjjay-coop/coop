@@ -3,31 +3,25 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
-				
-				<h4 class="h4 pb-3">Contacts</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				<br/><br/>
-				<div th:each="ob,iterator : ${listContact}">
-        			<h4 class="h4 pb-3" th:text="${ob.name}"></h4>
-        			<p th:text="${ob.designation}"></p>
-        			<p th:text="${ob.address}"></p>
-        			<p th:text="${ob.email}"></p>
-        			<p th:text="${ob.phone}"></p>
-				</div>
-			</div>
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
+					
+		<h4 class="h4 p-2">Contacts</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		<br/><br/>
+		<div th:each="ob,iterator : ${listContact}">
+      			<h4 class="h4 pb-3" th:text="${ob.name}"></h4>
+      			<p th:text="${ob.designation}"></p>
+      			<p th:text="${ob.address}"></p>
+      			<p th:text="${ob.email}"></p>
+      			<p th:text="${ob.phone}"></p>
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

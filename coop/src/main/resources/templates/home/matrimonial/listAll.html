@@ -3,53 +3,47 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
+				
+		<h4 class="h4 p-2">Matrimonials</h4>
 		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
-			<div class="col-12">
-				
-				<h4 class="h4 pb-3">Matrimonials</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<div class="card p-1" th:each="ob,iterator : ${listMatrimonialAll}">
-					<h5 class="card-header bg-success-subtle bg-gradient" th:text="${ob.lookingFor}"></h5>
-				  	<div class="card-body">
-						<label style="font-weight: bold;" th:text="#{matrimonial.expDescription}" ></label> : <span th:text="${ob.expDescription}"></span> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.expEducation}" ></label> : <span th:text="${ob.expEducationLevel.name}"></span> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.expOccupation}" ></label> : <span th:text="${ob.expOccupation.name}"></span> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.expMinAge}" ></label> : <span th:text="${ob.expMinAge}"></span> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.expMaxAge}" ></label> : <span th:text="${ob.expMaxAge}"></span> 
-						<br/><br/>
-						<label style="font-weight: bold;">Applicant Details</label>
-						<br/>
-						<label style="font-weight: bold;" th:text="#{matrimonial.description}" ></label> : <span th:text="${ob.description}"></span>
-						<label style="font-weight: bold;" th:text="#{matrimonial.age}" ></label> : <span th:text="${ob.age}"></span>
-						<label style="font-weight: bold;" th:text="#{matrimonial.education}" ></label> : <span th:text="${ob.educationLevel.name}"></span> 
-						<label style="font-weight: bold;" th:text="#{matrimonial.occupation}" ></label> : <span th:text="${ob.occupation.name}"></span>
-						<label style="font-weight: bold;" th:text="#{matrimonial.mobile}" ></label> : <span th:text="${ob.mobile}"></span>
-						<label style="font-weight: bold;" th:text="#{matrimonial.email}" ></label> : <span th:text="${ob.email}"></span>
-				  	</div>
-				</div>
+		<div class="card p-2" th:each="ob,iterator : ${listMatrimonialAll}">
+			<h5 class="card-header bg-success-subtle bg-gradient" th:text="${ob.lookingFor}"></h5>
+		  	<div class="card-body">
+				<label style="font-weight: bold;" th:text="#{matrimonial.expDescription}" ></label> : <span th:text="${ob.expDescription}"></span> 
+				<label style="font-weight: bold;" th:text="#{matrimonial.expEducation}" ></label> : <span th:text="${ob.expEducationLevel.name}"></span> 
+				<label style="font-weight: bold;" th:text="#{matrimonial.expOccupation}" ></label> : <span th:text="${ob.expOccupation.name}"></span> 
+				<label style="font-weight: bold;" th:text="#{matrimonial.expMinAge}" ></label> : <span th:text="${ob.expMinAge}"></span> 
+				<label style="font-weight: bold;" th:text="#{matrimonial.expMaxAge}" ></label> : <span th:text="${ob.expMaxAge}"></span> 
+				<br/><br/>
+				<label style="font-weight: bold;">Applicant Details</label>
 				<br/>
-				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
-					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/matrimonial/all/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/matrimonial/all/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/matrimonial/all/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/matrimonial/all/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
-					</ul>
-				</nav>
-			</div>
+				<label style="font-weight: bold;" th:text="#{matrimonial.description}" ></label> : <span th:text="${ob.description}"></span>
+				<label style="font-weight: bold;" th:text="#{matrimonial.age}" ></label> : <span th:text="${ob.age}"></span>
+				<label style="font-weight: bold;" th:text="#{matrimonial.education}" ></label> : <span th:text="${ob.educationLevel.name}"></span> 
+				<label style="font-weight: bold;" th:text="#{matrimonial.occupation}" ></label> : <span th:text="${ob.occupation.name}"></span>
+				<label style="font-weight: bold;" th:text="#{matrimonial.mobile}" ></label> : <span th:text="${ob.mobile}"></span>
+				<label style="font-weight: bold;" th:text="#{matrimonial.email}" ></label> : <span th:text="${ob.email}"></span>
+		  	</div>
 		</div>
+		<br/>
+		<nav class="p-2" aria-label="Page Navigation" th:if="${totalPages > 0}">
+			<ul class="pagination">
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/matrimonial/all/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/home/matrimonial/all/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+				<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/matrimonial/all/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/home/matrimonial/all/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+			</ul>
+		</nav>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

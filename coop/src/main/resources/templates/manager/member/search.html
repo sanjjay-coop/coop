@@ -3,37 +3,31 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
-	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
 
-			<div class="col-12">
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
+	
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Search Member</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${simpleSearchForm}" method="POST">
+		<h4 class="h4 p-2">Search Member</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${simpleSearchForm}" method="POST">
 
-					<div class="row g-3">
-						<div class="col-md-6">
-				    		<label class="col-sm-2 col-form-label text-success" th:text="#{ssf.searchString}"></label>
-				    		<input type="text" class="form-control required" th:field="*{searchString}" th:placeholder="#{ssf.searchString}" autofocus >
-				      		<ul><li class="cooperror" th:errors="*{searchString}" /></ul>
-				    	</div><div class="col-md-6"></div>
-						<div class="col-md-6">
-							<button type="submit" class="btn btn-success">Submit</button>
-				    	</div>
-				  	</div>
-				</form>
-			</div>
-		</div>
+			<div class="row g-3">
+				<div class="col-md-6">
+		    		<label class="col-sm-2 col-form-label text-success" th:text="#{ssf.searchString}"></label>
+		    		<input type="text" class="form-control required" th:field="*{searchString}" th:placeholder="#{ssf.searchString}" autofocus >
+		      		<ul><li class="cooperror" th:errors="*{searchString}" /></ul>
+		    	</div><div class="col-md-6"></div>
+				<div class="col-md-6">
+					<button type="submit" class="btn btn-success">Submit</button>
+		    	</div>
+		  	</div>
+		</form>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

@@ -3,67 +3,62 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
+	
+		<h4 class="h4 p-2">Event (Details)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
 
+		<div class="row p-2">
 			<div class="col-12">
-				<h4 class="h4 pb-3">Event (Details)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<div class="row pb-3">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/list/current}">
-								<i class="bi bi-chevron-double-left"></i> To Event List</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/edit/{orderId}(orderId=${event.id})}">
-								<i class="bi bi-pen"></i> Edit Event</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/eventUpdate/addNew/{orderId}(orderId=${event.id})}">
-								<i class="bi bi-plus-circle"></i> Add Update</a>
-						</div>
-					</div>
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/list/current}">
+						<i class="bi bi-chevron-double-left"></i> To Event List</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/edit/{orderId}(orderId=${event.id})}">
+						<i class="bi bi-pen"></i> Edit Event</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/eventUpdate/addNew/{orderId}(orderId=${event.id})}">
+						<i class="bi bi-plus-circle"></i> Add Update</a>
 				</div>
-								
-				<div class="row pb-3">
-					<div class="col-12 text-center">
-						<h4 class="bg-light p-2 border bg-success-subtle bg-gradient rounded rounded-1" th:text="${event.title}"></h4>
-						<span th:utext="${event.description}" style="text-wrap: wrap;"></span>
-						<div class="py-2" style="font-size: small;">
-							<b>Event Type: </b>
-							<span th:text="${event.eventType.name}"></span>
-							<b> Start Date: </b>
-							<span th:text="${#dates.format(event.startDate, 'dd/MM/yyyy')}"></span>
-							<b> End Date: </b>
-							<span th:text="${#dates.format(event.endDate, 'dd/MM/yyyy')}"></span>
-						</div>
-						<div class="py-2" style="font-size: small;">
-							<b> Venue: </b>
-							<span th:text="${event.venue}"></span>
-							<b> City: </b>
-							<span th:text="${event.city}"></span>
-							<b> State: </b>
-							<span th:text="${event.state}"></span>
-						</div>
-					</div>
+			</div>
+		</div>
+						
+		<div class="row p-2">
+			<div class="col-12 text-center">
+				<h4 class="bg-light p-2 border bg-success-subtle bg-gradient rounded rounded-1" th:text="${event.title}"></h4>
+				<span th:utext="${event.description}" style="text-wrap: wrap;"></span>
+				<div class="py-2" style="font-size: small;">
+					<b>Event Type: </b>
+					<span th:text="${event.eventType.name}"></span>
+					<b> Start Date: </b>
+					<span th:text="${#dates.format(event.startDate, 'dd/MM/yyyy')}"></span>
+					<b> End Date: </b>
+					<span th:text="${#dates.format(event.endDate, 'dd/MM/yyyy')}"></span>
 				</div>
-				<div class="row pb-3 text-center">
-					<div class="col-sm-3 py-3" th:each="eventUpdate : ${event.updates}" style="margin: 10px; padding: 10px; border:aliceblue solid 1px; border-radius: 10px;">
-						<div class="p-2" th:utext="${eventUpdate.description}" style="text-wrap: wrap;"></div>
-						<div class="p-2" style="font-size: small;" th:utext="'<b>Last Update:</b> ' + ${#dates.format(eventUpdate.updateDate, 'dd/MM/yyyy HH:mm:ss')}"></div>
-						<a class="nav-link text-small p-2" th:href="@{/manager/eventUpdate/delete/{orderId}(orderId=${eventUpdate.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-							<i class="bi bi-trash-fill"></i>
-						</a>
-					</div>
+				<div class="py-2" style="font-size: small;">
+					<b> Venue: </b>
+					<span th:text="${event.venue}"></span>
+					<b> City: </b>
+					<span th:text="${event.city}"></span>
+					<b> State: </b>
+					<span th:text="${event.state}"></span>
 				</div>
+			</div>
+		</div>
+		<div class="row pb-3 text-center">
+			<div class="col-sm-3 py-3" th:each="eventUpdate : ${event.updates}" style="margin: 10px; padding: 10px; border:aliceblue solid 1px; border-radius: 10px;">
+				<div class="p-2" th:utext="${eventUpdate.description}" style="text-wrap: wrap;"></div>
+				<div class="p-2" style="font-size: small;" th:utext="'<b>Last Update:</b> ' + ${#dates.format(eventUpdate.updateDate, 'dd/MM/yyyy HH:mm:ss')}"></div>
+				<a class="nav-link text-small p-2" th:href="@{/manager/eventUpdate/delete/{orderId}(orderId=${eventUpdate.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+					<i class="bi bi-trash-fill"></i>
+				</a>
 			</div>
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

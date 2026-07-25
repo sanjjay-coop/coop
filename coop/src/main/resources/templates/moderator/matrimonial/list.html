@@ -3,20 +3,20 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
+				
+		<h4 class="h4 p-2">Matrimonial</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		
+		<div class="h6 p-2" th:text="'Total Records: ' + ${totalRecords}"></div>
+		
+		<div class="row p-2">
 			<div class="col-12">
-				
-				<h4 class="h4 pb-3">Matrimonial</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				
-				<div class="h5" th:text="'Total Records: ' + ${totalRecords}"></div>
 				<table class="table table-sm small table-bordered table-striped">
 				
 					<thead>
@@ -32,10 +32,10 @@
 					
 					<tbody>
 						<tr th:each="ob,iterator : ${listMatrimonial}">
-        					<td th:text="${ob.lookingFor}"></td>
-        					<td th:text="${ob.description}"></td>
-        					<td th:text="${ob.mobile}"></td>
-        					<td th:text="${ob.email}"></td>
+	       					<td th:text="${ob.lookingFor}"></td>
+	       					<td th:text="${ob.description}"></td>
+	       					<td th:text="${ob.mobile}"></td>
+	       					<td th:text="${ob.email}"></td>
 							<td th:text="${ob.owner.name}"></td>							
 							<td>
 								<a class="nav-link" th:href="@{/moderator/matrimonial/view/{orderId}(orderId=${ob.id})}">
@@ -58,7 +58,7 @@
 		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

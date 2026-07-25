@@ -3,51 +3,45 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
-
-			<div class="col-12">
+	<div class="container-fluid">
 			
-				<h4 class="h4 pb-3">Tribe (Edit)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-				
-				<div class="row pb-2">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/tribe/list/current}">
-								<i class="bi bi-chevron-double-left"></i> To List
-							</a>
-						</div>
-					</div>
+		<h4 class="h4 p-2">Tribe (Edit)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+		
+		<div class="row p-2">
+			<div class="col-12">
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/tribe/list/current}">
+						<i class="bi bi-chevron-double-left"></i> To List
+					</a>
 				</div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${tribe}" method="POST">
-				
-					<input type="hidden" class="form-control" th:field="*{id}">
-
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{tribe.name}"></label>
-						<div class="col-sm-4">
-				    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{tribe.name}" autofocus />
-					  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
-						</div>
-					</div>
-					<div class="row mb-2">
-						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-						</div>
-					</div>
-				</form>
 			</div>
 		</div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${tribe}" method="POST">
+		
+			<input type="hidden" class="form-control" th:field="*{id}">
+
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{tribe.name}"></label>
+				<div class="col-sm-4">
+		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{tribe.name}" autofocus />
+			  		<ul><li class="cooperror" th:errors="*{name}" /></ul>
+				</div>
+			</div>
+			<div class="row p-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+				</div>
+			</div>
+		</form>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

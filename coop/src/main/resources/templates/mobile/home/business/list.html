@@ -43,7 +43,7 @@
 						          <i class="bi bi-trash-fill"></i>
 						    </a>
 						</div>
-						<form class="row g-3 align-items-center py-3"  th:action= "${servletRequest.requestURI}" th:object="${business}" method="POST" enctype="multipart/form-data">
+						<form class="row g-3 align-items-center p-2"  th:action= "${servletRequest.requestURI}" th:object="${business}" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="id" th:value="${ob.id}"/>
 							  <div class="col-auto">
 							    <div class="input-group">

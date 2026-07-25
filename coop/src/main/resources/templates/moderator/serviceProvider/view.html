@@ -3,117 +3,111 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
 			
+		<h4 class="h4 p-2">Service Provider (Details)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>
+
+		<div class="row p-2">
 			<div class="col-12">
-			
-				<h4 class="h4 pb-3">Service Provider (Details)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>
-
-				<div class="row pb-3">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/serviceProvider/list/current}">
-								<i class="bi bi-chevron-double-left"></i> Back to List</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/serviceProvider/disable/{orderId}(orderId=${serviceProvider.id})}" onclick="return confirm('Are you sure?')" th:if="${serviceProvider.enabled}">
-								<i class="bi bi-x-circle"></i> Disable</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/serviceProvider/enable/{orderId}(orderId=${serviceProvider.id})}" onclick="return confirm('Are you sure?')" th:unless="${serviceProvider.enabled}">
-								<i class="bi bi-check-circle"></i> Enable</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/serviceProvider/delete/{orderId}(orderId=${serviceProvider.id})}" onclick="return confirm('Are you sure?')">
-								<i class="bi bi-trash-fill"></i> Delete Record</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.serviceName}"></label>
-			    	<div class="col-sm-10">
-				    	<span class="form-control border-light" th:text="${serviceProvider.serviceName}"></span>
-			    	</div>
-			    </div>
-			    
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.description}"></label>
-					<div class="col-sm-10">
-				    	<span class="form-control border-light" th:text="${serviceProvider.description}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.address}"></label>
-					<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.address}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.city}"></label>
-					<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.city}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.pin}"></label>
-					<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.pin}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.state}"></label>
-					<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.state}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.country}"></label>
-					<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.country}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactName}"></label>
-					<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.contactName}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactPhone}"></label>
-					<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.contactPhone}"></span>
-					</div>
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactEmail}"></label>
-					<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.contactEmail}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.keywords}"></label>
-					<div class="col-sm-10">
-				    	<span class="form-control border-light" th:text="${serviceProvider.keywords}"></span>
-					</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.enabled}"></label>
-				   	<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.enabled}"></span>
-				   	</div>
-				</div>
-				
-				<div class="row mb-2">
-					<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.owner}"></label>
-				   	<div class="col-sm-4">
-				    	<span class="form-control border-light" th:text="${serviceProvider.owner.name}"></span>
-				   	</div>
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/serviceProvider/list/current}">
+						<i class="bi bi-chevron-double-left"></i> Back to List</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/serviceProvider/disable/{orderId}(orderId=${serviceProvider.id})}" onclick="return confirm('Are you sure?')" th:if="${serviceProvider.enabled}">
+						<i class="bi bi-x-circle"></i> Disable</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/serviceProvider/enable/{orderId}(orderId=${serviceProvider.id})}" onclick="return confirm('Are you sure?')" th:unless="${serviceProvider.enabled}">
+						<i class="bi bi-check-circle"></i> Enable</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/serviceProvider/delete/{orderId}(orderId=${serviceProvider.id})}" onclick="return confirm('Are you sure?')">
+						<i class="bi bi-trash-fill"></i> Delete Record</a>
 				</div>
 			</div>
 		</div>
+
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.serviceName}"></label>
+	    	<div class="col-sm-10">
+		    	<span class="form-control border-light" th:text="${serviceProvider.serviceName}"></span>
+	    	</div>
+	    </div>
+	    
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.description}"></label>
+			<div class="col-sm-10">
+		    	<span class="form-control border-light" th:text="${serviceProvider.description}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.address}"></label>
+			<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.address}"></span>
+			</div>
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.city}"></label>
+			<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.city}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.pin}"></label>
+			<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.pin}"></span>
+			</div>
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.state}"></label>
+			<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.state}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.country}"></label>
+			<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.country}"></span>
+			</div>
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactName}"></label>
+			<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.contactName}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactPhone}"></label>
+			<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.contactPhone}"></span>
+			</div>
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.contactEmail}"></label>
+			<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.contactEmail}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.keywords}"></label>
+			<div class="col-sm-10">
+		    	<span class="form-control border-light" th:text="${serviceProvider.keywords}"></span>
+			</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.enabled}"></label>
+		   	<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.enabled}"></span>
+		   	</div>
+		</div>
+		
+		<div class="row p-2">
+			<label class="col-sm-2 col-form-label text-success" th:text="#{serviceProvider.owner}"></label>
+		   	<div class="col-sm-4">
+		    	<span class="form-control border-light" th:text="${serviceProvider.owner.name}"></span>
+		   	</div>
+		</div>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

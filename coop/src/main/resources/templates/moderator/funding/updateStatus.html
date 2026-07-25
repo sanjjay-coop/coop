@@ -3,153 +3,146 @@
 <head th:replace="~{fragments :: html_head}">
 </head>
 <body>
-	<div class="container text-center" th:replace="~{fragments :: header}">
-		
-	</div>
+	<div class="container text-center" th:replace="~{fragments :: header}"></div>
 	
-	<div class="container-fluid px-5">
-		<div class="row px-4 py-2">
+	<div class="container-fluid">
 			
+		<h4 class="h4 p-2">Funding Application (Update Status)</h4>
+		
+		<div class="alert alert-warning p-2" role="alert" th:text="${message}" th:if="${message != null }"></div>				
+		
+		<div class="row p-2">
 			<div class="col-12">
-			
-				<h4 class="h4 pb-3">Funding Application (Update Status)</h4>
-				
-				<div class="alert alert-warning" role="alert" th:text="${message}" th:if="${message != null }"></div>				
-				
-				<div class="row pb-3">
-					<div class="col-12">
-						<div class="d-grid gap-2 d-md-block">
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/funding/list/current}">
-								<i class="bi bi-chevron-double-left"></i> To List
-							</a>
-							<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/funding/view/{orderId}(orderId=${funding.id})}" title="View Record">
-							   	<i class="bi bi-folder2-open"></i> View Record
-							</a>
-						</div>
-					</div>
+				<div class="d-grid gap-2 d-md-block">
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/funding/list/current}">
+						<i class="bi bi-chevron-double-left"></i> To List
+					</a>
+					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/funding/view/{orderId}(orderId=${funding.id})}" title="View Record">
+					   	<i class="bi bi-folder2-open"></i> View Record
+					</a>
 				</div>
-				
-				<form th:action= "${servletRequest.requestURI}" th:object="${funding}" method="POST">
-								
-					<input type="hidden" class="form-control" th:field="*{id}">
-
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.name}"></label>
-						<div class="col-sm-10">
-				    		<span class="form-control border-light" th:text="${funding.name}"></span>
-							<input type="hidden" class="form-control" th:field="*{name}">
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.address}"></label>
-						<div class="col-sm-10">
-				    		<span class="form-control border-light" th:text="${funding.address}"></span>
-							<input type="hidden" class="form-control" th:field="*{address}">
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.city}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${funding.city}"></span>
-							<input type="hidden" class="form-control" th:field="*{city}">
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.pin}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${funding.pin}"></span>
-							<input type="hidden" class="form-control" th:field="*{pin}">
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.state}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${funding.state}"></span>
-							<input type="hidden" class="form-control" th:field="*{state}">
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.country}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${funding.country}"></span>
-							<input type="hidden" class="form-control" th:field="*{country}">
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.email}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${funding.email}"></span>
-							<input type="hidden" class="form-control" th:field="*{email}">
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.mobile}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${funding.mobile}"></span>
-							<input type="hidden" class="form-control" th:field="*{mobile}">
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.amountRequested}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${funding.amountRequested}"></span>
-							<input type="hidden" class="form-control" th:field="*{amountRequested}">
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.purpose}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${funding.purpose}"></span>
-							<input type="hidden" class="form-control" th:field="*{purpose}">
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.applicationDate}"></label>
-						<div class="col-sm-4">
-				    		<span class="form-control border-light" th:text="${#dates.format(funding.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></span>
-							<input type="hidden" class="form-control" th:field="*{applicationDate}">
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.amountSanctioned}"></label>
-						<div class="col-sm-2">
-				    		<input type="text" class="form-control required amount" th:field="*{amountSanctioned}" th:placeholder="#{funding.amountSanctioned}">
-							<ul><li class="cooperror" th:errors="*{amountSanctioned}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.sanctionDate}"></label>
-						<div class="col-sm-2">
-				    		<input type="date" class="form-control required" th:field="*{sanctionDate}" th:placeholder="#{funding.sanctionDate}">
-							<ul><li class="cooperror" th:errors="*{sanctionDate}" /></ul>
-						</div>
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.status}"></label>
-						<div class="col-sm-2">
-				    		<select class="form-select" th:field="*{status}">
-								<option value="APPROVED" label="APPROVED" />
-								<option value="NOT APPROVED" label="NOT APPROVED" />
-								<option value="RECEIVED" label="RECEIVED" />
-							</select>
-							<ul><li class="cooperror" th:errors="*{status}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<label class="col-sm-2 col-form-label text-success" th:text="#{funding.remarks}"></label>
-						<div class="col-sm-10">
-				    		<textarea class="form-control required" rows="5" th:field="*{remarks}" th:placeholder="#{funding.remarks}"></textarea>
-					  		<ul><li class="cooperror" th:errors="*{remarks}" /></ul>
-						</div>
-					</div>
-					
-					<div class="row mb-2">
-						<div class="offset-sm-2 col-sm-2">
-							<button type="submit" class="btn btn-success">Submit</button>
-					   	</div>
-					</div>
-				</form>
 			</div>
 		</div>
+		
+		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${funding}" method="POST">
+						
+			<input type="hidden" class="form-control" th:field="*{id}">
+
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.name}"></label>
+				<div class="col-sm-10">
+		    		<span class="form-control border-light" th:text="${funding.name}"></span>
+					<input type="hidden" class="form-control" th:field="*{name}">
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.address}"></label>
+				<div class="col-sm-10">
+		    		<span class="form-control border-light" th:text="${funding.address}"></span>
+					<input type="hidden" class="form-control" th:field="*{address}">
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.city}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${funding.city}"></span>
+					<input type="hidden" class="form-control" th:field="*{city}">
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.pin}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${funding.pin}"></span>
+					<input type="hidden" class="form-control" th:field="*{pin}">
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.state}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${funding.state}"></span>
+					<input type="hidden" class="form-control" th:field="*{state}">
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.country}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${funding.country}"></span>
+					<input type="hidden" class="form-control" th:field="*{country}">
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.email}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${funding.email}"></span>
+					<input type="hidden" class="form-control" th:field="*{email}">
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.mobile}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${funding.mobile}"></span>
+					<input type="hidden" class="form-control" th:field="*{mobile}">
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.amountRequested}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${funding.amountRequested}"></span>
+					<input type="hidden" class="form-control" th:field="*{amountRequested}">
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.purpose}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${funding.purpose}"></span>
+					<input type="hidden" class="form-control" th:field="*{purpose}">
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.applicationDate}"></label>
+				<div class="col-sm-4">
+		    		<span class="form-control border-light" th:text="${#dates.format(funding.applicationDate, 'dd/MM/yyyy hh:mm:ss')}"></span>
+					<input type="hidden" class="form-control" th:field="*{applicationDate}">
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.amountSanctioned}"></label>
+				<div class="col-sm-2">
+		    		<input type="text" class="form-control required amount" th:field="*{amountSanctioned}" th:placeholder="#{funding.amountSanctioned}">
+					<ul><li class="cooperror" th:errors="*{amountSanctioned}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.sanctionDate}"></label>
+				<div class="col-sm-2">
+		    		<input type="date" class="form-control required" th:field="*{sanctionDate}" th:placeholder="#{funding.sanctionDate}">
+					<ul><li class="cooperror" th:errors="*{sanctionDate}" /></ul>
+				</div>
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.status}"></label>
+				<div class="col-sm-2">
+		    		<select class="form-select" th:field="*{status}">
+						<option value="APPROVED" label="APPROVED" />
+						<option value="NOT APPROVED" label="NOT APPROVED" />
+						<option value="RECEIVED" label="RECEIVED" />
+					</select>
+					<ul><li class="cooperror" th:errors="*{status}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.remarks}"></label>
+				<div class="col-sm-10">
+		    		<textarea class="form-control required" rows="5" th:field="*{remarks}" th:placeholder="#{funding.remarks}"></textarea>
+			  		<ul><li class="cooperror" th:errors="*{remarks}" /></ul>
+				</div>
+			</div>
+			
+			<div class="row p-2">
+				<div class="offset-sm-2 col-sm-2">
+					<button type="submit" class="btn btn-success">Submit</button>
+			   	</div>
+			</div>
+		</form>
 	</div>
 	
-	<div class="container" th:replace="~{fragments :: footer}">
-	</div>
+	<div class="container" th:replace="~{fragments :: footer}"></div>
+	
 </body>
 </html>

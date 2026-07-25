@@ -33,28 +33,28 @@
 						th:text="'Acc. No.: ' + ${title.accessionNumber} + ' [' + ${title.titleType.name} + ']'">News Feed</h6>
 				  	<div class="card-body overflow-auto">
 						
-						<div class="row mb-2">
+						<div class="row p-2">
 							<label class="col-sm-2 col-form-label text-success" th:text="#{title.uniformTitle}"></label>
 							<div class="col-sm-10">
 								<span class="form-control border-light" th:text="${title.uniformTitle}"></span>
 							</div>
 						</div>
 						
-						<div class="row mb-2">
+						<div class="row p-2">
 							<label class="col-sm-2 col-form-label text-success" th:text="#{title.authors}"></label>
 							<div class="col-sm-10">
 								<span class="form-control border-light" th:text="${title.authors}"></span>
 							</div>
 						</div>
 						
-						<div class="row mb-2">
+						<div class="row p-2">
 							<label class="col-sm-2 col-form-label text-success" th:text="#{title.library}"></label>
 							<div class="col-sm-4">
 								<span class="form-control border-light" th:text="${title.library.name + ' [' + title.library.shortName + ']'}"></span>
 							</div>
 						</div>
 						
-						<div class="row mb-2">
+						<div class="row p-2">
 							<label class="col-sm-2 col-form-label text-success" th:text="#{title.summary}"></label>
 							<div class="col-sm-10">
 								<span class="form-control border-light" th:utext="${title.summary}"></span>

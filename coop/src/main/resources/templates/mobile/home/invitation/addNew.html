@@ -25,7 +25,7 @@
 		
 		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${invitation}" method="POST">
 
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{invitation.name}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{invitation.name}" autofocus >
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 			
-			<div class="row mb-2">
+			<div class="row p-2">
 				<label class="col-sm-2 col-form-label text-success" th:text="#{invitation.email}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{invitation.email}" >
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			
-			<div class="row mb-2">
+			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
 					<button type="submit" class="btn btn-success">Submit</button>
 		    	</div>

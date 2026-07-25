@@ -89,7 +89,7 @@
 										Photo Gallery
 									</a>
 								</li>			
-								<li class="nav-item small"  th:classappend="${viewLeftMenu == 'organizations'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+								<li class="nav-item small"  th:classappend="${viewLeftMenu == 'organizations'} ? 'bg-primary bg-opacity-10 rounded-2'" th:if="${moduleStatus.get('mod_business')==true}">
 									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/open/organization/list}">
 										<i class="bi bi-gem"></i>
 										Similar Organization
@@ -140,7 +140,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg bg-success bg-opacity-10 bg-gradient rounded-1">
-					<div class="container-fluid px-5">
+					<div class="container-fluid">
 				    	<div id="navbarSupportedContentMenu">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				      			<li class="nav-item small">
@@ -258,7 +258,7 @@
 		</div>
 	</div>
 	
-	<div class="container-fluid px-5">
+	<div class="container-fluid">
 	
 	</div>
 	
@@ -266,7 +266,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg bg-success bg-opacity-10 bg-gradient rounded-1">
-					<div class="container-fluid px-5">
+					<div class="container-fluid">
 				    	<div id="navbarSupportedContent2">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				      			
@@ -305,12 +305,12 @@
 				<div class="text-center" th:utext="${advert.content}"></div>
 			</div>
 			<div class="col-sm-12 text-end p-2">
-				<img th:src="@{/images/coop-logo-new.png}" height="25px;">
+				<img th:src="@{/siteLogo}" alt="Site logo" height="25px"/>
 				<br/><a class="text-success" href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;" th:text="#{copyright}"></a>
 			</div>
 		</div>
 		
-		<form id="logoutForm" th:action="@{/logout}" method="POST" style="display: none;"></form>
+		<form id="logoutForm" th:action="@{/logout}" method="POST" style="display: none;" sec:authorize="isAuthenticated()"></form>
 	</div>
 
 </body>
