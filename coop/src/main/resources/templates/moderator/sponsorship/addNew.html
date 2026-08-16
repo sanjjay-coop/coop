@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/moderator/sponsorship/list/current}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/moderator/sponsorship/list/current}">
 						<i class="bi bi-chevron-double-left"></i> To List</a>
 				</div>
 			</div>
@@ -24,15 +24,15 @@
 		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${sponsorship}" method="POST">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{sponsorship.title}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.title}"></label>
 				<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{sponsorship.title}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{title}" th:placeholder="#{sponsorship.title}" autofocus >
 					<ul><li class="cooperror" th:errors="*{title}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{sponsorship.description}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.description}"></label>
 				<div class="col-sm-10">
 		    		<textarea class="widgEditor form-control" rows="5" th:field="*{description}" th:placeholder="#{sponsorship.description}"></textarea>
 					<ul><li class="cooperror" th:errors="*{description}" /></ul>
@@ -40,28 +40,28 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{sponsorship.pubDate}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.pubDate}"></label>
 				<div class="col-sm-2">
-		    		<input type="date" class="form-control required" th:field="*{pubDate}" th:placeholder="#{sponsorship.pubDate}">
+		    		<input type="date" class="form-control bg-info-subtle" th:field="*{pubDate}" th:placeholder="#{sponsorship.pubDate}">
 					<ul><li class="cooperror" th:errors="*{pubDate}" /></ul>
 				</div>
 	
-				<label class="col-sm-2 col-form-label text-success" th:text="#{sponsorship.expDate}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.expDate}"></label>
 				<div class="col-sm-2">
-		    		<input type="date" class="form-control required" th:field="*{expDate}" th:placeholder="#{sponsorship.expDate}">
+		    		<input type="date" class="form-control bg-info-subtle" th:field="*{expDate}" th:placeholder="#{sponsorship.expDate}">
 					<ul><li class="cooperror" th:errors="*{expDate}" /></ul>
 				</div>
 				
-				<label class="col-sm-2 col-form-label text-success" th:text="#{sponsorship.lastDate}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{sponsorship.lastDate}"></label>
 				<div class="col-sm-2">
-		    		<input type="date" class="form-control required" th:field="*{lastDate}" th:placeholder="#{sponsorship.lastDate}">
+		    		<input type="date" class="form-control bg-info-subtle" th:field="*{lastDate}" th:placeholder="#{sponsorship.lastDate}">
 					<ul><li class="cooperror" th:errors="*{lastDate}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</form>

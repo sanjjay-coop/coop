@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.pf.coop.common.BaseObject;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Lob;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -53,6 +55,19 @@ public class Contact extends BaseObject implements Serializable {
 	@FullTextField
 	@Column(columnDefinition = "TEXT", name="f_about", nullable=true)
 	private String about;
+	
+	@Column(name="f_file_name", length=255, nullable=true)
+	private String fileName;
+	
+	@Column(name="f_file_type", length=255, nullable=true)
+	private String fileType;
+	
+	@Lob
+    @Column(name = "f_photo")
+	private byte[] fileData;
+	
+	@Transient
+	private MultipartFile file;
 	
 	@Transient
 	private String searchFor;
@@ -119,6 +134,38 @@ public class Contact extends BaseObject implements Serializable {
 
 	public void setAbout(String about) {
 		this.about = about;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
+	public byte[] getFileData() {
+		return fileData;
+	}
+
+	public void setFileData(byte[] fileData) {
+		this.fileData = fileData;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 	public String getSearchFor() {

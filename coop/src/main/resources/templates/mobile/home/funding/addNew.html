@@ -18,35 +18,35 @@
 			<div class="row p-2">
 				<div class="col-12">
 					<div class="d-grid gap-2 d-md-block">
-						<a class="btn btn-success btn-sm" role="button" th:href="@{/mobile/home/funding/list}">
+						<a class="btn btn-primary btn-sm" role="button" th:href="@{/mobile/home/funding/list}">
 							<i class="bi bi-chevron-double-left"></i> Back to List</a>
 					</div>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.name}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.name}"></label>
 				<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{funding.name}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{name}" th:placeholder="#{funding.name}">
 		  			<ul><li class="cooperror" th:errors="*{name}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.address}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.address}"></label>
 		    	<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{funding.address}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{address}" th:placeholder="#{funding.address}">
 		      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.city}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.city}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{funding.city}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{city}" th:placeholder="#{funding.city}">
 			  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.pin}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.pin}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{funding.pin}">
 			  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
@@ -54,50 +54,50 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.state}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.state}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{state}" th:placeholder="#{funding.state}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{state}" th:placeholder="#{funding.state}">
 			  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.country}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.country}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{country}" th:placeholder="#{funding.country}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{country}" th:placeholder="#{funding.country}">
 			  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.email}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.email}"></label>
 		    	<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{funding.email}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{email}" th:placeholder="#{funding.email}">
 		      		<ul><li class="cooperror" th:errors="*{email}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.mobile}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.mobile}"></label>
 		    	<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{mobile}" th:placeholder="#{funding.mobile}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{mobile}" th:placeholder="#{funding.mobile}">
 		      		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.amountRequested}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.amountRequested}"></label>
 		    	<div class="col-sm-4">
-		    		<input type="text" class="form-control required amount" th:field="*{amountRequested}" th:placeholder="#{funding.amountRequested}">
+		    		<input type="text" class="form-control bg-info-subtle amount" th:field="*{amountRequested}" th:placeholder="#{funding.amountRequested}">
 		      		<ul><li class="cooperror" th:errors="*{amountRequested}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{funding.purpose}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{funding.purpose}"></label>
 				<div class="col-sm-10">
-		    		<textarea class="form-control required" rows="5" th:field="*{purpose}" th:placeholder="#{funding.purpose}"></textarea>
+		    		<textarea class="form-control bg-info-subtle" rows="5" th:field="*{purpose}" th:placeholder="#{funding.purpose}"></textarea>
 			  		<ul><li class="cooperror" th:errors="*{purpose}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		</form>

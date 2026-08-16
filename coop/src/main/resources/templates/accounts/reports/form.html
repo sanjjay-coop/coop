@@ -15,7 +15,7 @@
 		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${reportForm}" method="POST">
 					  	
 		  	<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{reportForm.startDate}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{reportForm.startDate}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="date" class="form-control" th:field="*{startDate}" th:placeholder="#{reportForm.startDate}">
 		      		<ul><li class="cooperror" th:errors="*{startDate}" /></ul>
@@ -23,7 +23,7 @@
 			</div>
 		  	
 		  	<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{reportForm.endDate}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{reportForm.endDate}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="date" class="form-control" th:field="*{endDate}" th:placeholder="#{reportForm.endDate}">
 		      		<ul><li class="cooperror" th:errors="*{endDate}" /></ul>
@@ -31,9 +31,9 @@
 			</div>
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{reportForm.reportType}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{reportForm.reportType}"></label>
 				<div class="col-sm-4">
-		    		<select class="form-select required" th:field="*{reportType}">
+		    		<select class="form-selectbg-info-subtle" th:field="*{reportType}">
 						<option value="HTML" th:text="HTML" />
 						<option value="EXCEL" th:text="EXCEL" />
 					</select>
@@ -43,7 +43,7 @@
 							  	
 		  	<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		  	

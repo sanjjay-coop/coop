@@ -1,5 +1,6 @@
 package org.pf.coop.portal.service;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.pf.coop.portal.repository.AuditRepo;
 import org.pf.coop.portal.repository.ContactRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import jakarta.transaction.Transactional;
 
@@ -35,7 +37,15 @@ public class ContactService {
 	}
 	
 	@Transactional
-	public TransactionResult addContact(Contact obj, String updateBy) {
+	public TransactionResult addContact(Contact obj, String updateBy)  throws IOException {
+		
+		
+		if (obj.getFile()!=null && !obj.getFile().isEmpty()) {
+			
+			obj.setFileName(StringUtils.cleanPath(obj.getFile().getOriginalFilename()));
+			obj.setFileType(obj.getFile().getContentType());
+			obj.setFileData(obj.getFile().getBytes());
+		}		
 		
 		obj.setAddDefaults(updateBy);
 		
@@ -67,7 +77,7 @@ public class ContactService {
 	
 
 	@Transactional
-	public TransactionResult updateContact(Contact contact, String updateBy) {
+	public TransactionResult updateContact(Contact contact, String updateBy) throws IOException {
 		
 		Optional<Contact> oe = this.contactRepo.findById(contact.getId());
 		
@@ -82,6 +92,13 @@ public class ContactService {
 		obj.setName(contact.getName());
 		obj.setPhone(contact.getPhone());
 		obj.setAbout(contact.getAbout());
+		
+		if (contact.getFile()!=null && !contact.getFile().isEmpty()) {
+			
+			obj.setFileName(StringUtils.cleanPath(contact.getFile().getOriginalFilename()));
+			obj.setFileType(contact.getFile().getContentType());
+			obj.setFileData(contact.getFile().getBytes());
+		}	
 		
 		obj.setUpdateDefaults(updateBy);
 		

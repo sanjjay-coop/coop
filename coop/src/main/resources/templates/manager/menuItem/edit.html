@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/menuItem/list/current}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/menuItem/list/current}">
 						<i class="bi bi-chevron-double-left"></i> Back to List
 					</a>
 				</div>
@@ -27,14 +27,14 @@
 			<input type="hidden" class="form-control" th:field="*{id}">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.title}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.title}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{title}" th:placeholder="#{menuItem.title}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{title}" th:placeholder="#{menuItem.title}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{title}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.location}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.location}"></label>
 				<div class="col-sm-4">
-		    		<select class="form-select required" th:field="*{location}">
+		    		<select class="form-selectbg-info-subtle" th:field="*{location}">
 						<option th:value="left" th:text="left" />
 						<option th:value="top" th:text="top" />
 					</select>
@@ -43,15 +43,15 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.itemType}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.itemType}"></label>
 				<div class="col-sm-4">
-		    		<select class="form-select required" th:field="*{itemType}">
+		    		<select class="form-selectbg-info-subtle" th:field="*{itemType}">
 						<option th:value="category" th:text="Category" />
 						<option th:value="url" th:text="URL" />
 					</select>
 					<ul><li class="cooperror" th:errors="*{itemType}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.category}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.category}"></label>
 				<div class="col-sm-4">
 		    		<select class="form-select" th:field="*{category}">
 						<option th:each="p : ${listCategory}" th:value="${p.id}" th:text="${p.name}" />
@@ -61,7 +61,7 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.url}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.url}"></label>
 				<div class="col-sm-10">
 		    		<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{menuItem.url}" >
 			  		<ul><li class="cooperror" th:errors="*{url}" /></ul>
@@ -69,12 +69,12 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.icon}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.icon}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{icon}" th:placeholder="#{menuItem.icon}" >
 			  		<ul><li class="cooperror" th:errors="*{icon}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{menuItem.newPage}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{menuItem.newPage}"></label>
 				<div class="col-sm-4">
 		    		<select class="form-select" th:field="*{newPage}">
 						<option th:value="0" th:text="FALSE" />
@@ -86,7 +86,7 @@
 			
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</form>

@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/caste/addNew}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/caste/addNew}">
 						<i class="bi bi-plus-circle"></i> Caste</a>
 				</div>
 			</div>
@@ -34,50 +34,49 @@
 			    <button type="submit" class="btn btn-sm btn-secondary">Submit</button>
 			  </div>
 		</form>
+	
+		<div class="h6 p-2" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
+	
+		<div class="row p-2">
+			<div class="col-12">
+				<table class="table table-sm small table-bordered table-striped">
 		
-	</div>
-	
-	<div class="h6 p-2" th:utext="'<b>Total Records:</b> ' + ${totalRecords}"></div>
-	
-	<div class="row p-2">
-		<div class="col-12">
-			<table class="table table-sm small table-bordered table-striped">
-	
-				<thead>
-					<tr>
-						<th class="col-sm-1" th:text="'S/N'"></th>
-						<th th:text="#{caste.name}"></th>
-						<th style="width: 15px;"></th>
-						<th style="width: 15px;"></th>
-					</tr>
-				</thead>
-				
-				<tbody>
-					<tr th:each="ob,iterator : ${listCaste}">
-						<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
-	      					<td th:text="${ob.name}"></td>
-						<td>
-							<a class="nav-link" th:href="@{/manager/caste/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
-					          	<i class="bi bi-vector-pen"></i>
-					        </a>
-						</td>
-						<td>
-							<a class="nav-link" th:href="@{/manager/caste/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
-					          	<i class="bi bi-trash-fill"></i>
-					        </a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
-				<ul class="pagination">
-					<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/manager/caste/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-					<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/manager/caste/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-					<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-					<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/manager/caste/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-					<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/manager/caste/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
-				</ul>
-			</nav>
+					<thead>
+						<tr>
+							<th class="col-sm-1" th:text="'S/N'"></th>
+							<th th:text="#{caste.name}"></th>
+							<th style="width: 15px;"></th>
+							<th style="width: 15px;"></th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="ob,iterator : ${listCaste}">
+							<td th:text="${20 * (currentPage - 1) + iterator.index + 1}"></td>
+		      					<td th:text="${ob.name}"></td>
+							<td>
+								<a class="nav-link" th:href="@{/manager/caste/edit/{orderId}(orderId=${ob.id})}" title="Edit Record">
+						          	<i class="bi bi-vector-pen"></i>
+						        </a>
+							</td>
+							<td>
+								<a class="nav-link" th:href="@{/manager/caste/delete/{orderId}(orderId=${ob.id})}" onclick="return confirm('Are you sure?')" title="Delete Record">
+						          	<i class="bi bi-trash-fill"></i>
+						        </a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
+					<ul class="pagination">
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/manager/caste/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/manager/caste/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-primary" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/manager/caste/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/manager/caste/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
 	</div>
 	

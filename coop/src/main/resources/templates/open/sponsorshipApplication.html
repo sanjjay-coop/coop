@@ -31,19 +31,19 @@
 			<div class="row p-2">
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.name}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{sponsorshipApplication.name}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{name}" th:placeholder="#{sponsorshipApplication.name}">
 		      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 		    	</div>
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.address}"></label>
 		    	<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{sponsorshipApplication.address}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{address}" th:placeholder="#{sponsorshipApplication.address}">
 		      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
 		    	</div>
 			</div>
 			<div class="row p-2">
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.city}"></label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{sponsorshipApplication.city}">
+					<input type="text" class="form-control bg-info-subtle" th:field="*{city}" th:placeholder="#{sponsorshipApplication.city}">
 			  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
 				</div>
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.pin}"></label>
@@ -55,44 +55,44 @@
 			<div class="row p-2">
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.state}"></label>
 				<div class="col-sm-4">	
-					<input type="text" class="form-control required" th:field="*{state}" th:placeholder="#{sponsorshipApplication.state}">
+					<input type="text" class="form-control bg-info-subtle" th:field="*{state}" th:placeholder="#{sponsorshipApplication.state}">
 			  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
 				</div>
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.country}"></label>
 				<div class="col-sm-4">	
-					<input type="text" class="form-control required" th:field="*{country}" th:placeholder="#{sponsorshipApplication.country}">
+					<input type="text" class="form-control bg-info-subtle" th:field="*{country}" th:placeholder="#{sponsorshipApplication.country}">
 			  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
 				</div>
 			</div>
 			<div class="row p-2">
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.reasonsForApplication}"></label>
 				<div class="col-sm-10">	
-					<textarea class="form-control required" rows="5" th:field="*{reasonsForApplication}" th:placeholder="#{sponsorshipApplication.reasonsForApplication}"></textarea>
+					<textarea class="form-control bg-info-subtle" rows="5" th:field="*{reasonsForApplication}" th:placeholder="#{sponsorshipApplication.reasonsForApplication}"></textarea>
 					<ul><li class="cooperror" th:errors="*{reasonsForApplication}" /></ul>
 				</div>
 			</div>
 			<div class="row p-2">
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.educationAndExperience}"></label>
 				<div class="col-sm-10">	
-					<textarea class="form-control required" rows="5" th:field="*{educationAndExperience}" th:placeholder="#{sponsorshipApplication.educationAndExperience}"></textarea>
+					<textarea class="form-control bg-info-subtle" rows="5" th:field="*{educationAndExperience}" th:placeholder="#{sponsorshipApplication.educationAndExperience}"></textarea>
 					<ul><li class="cooperror" th:errors="*{educationAndExperience}" /></ul>
 				</div>
 			</div>
 			<div class="row p-2">
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.mobile}"></label>
 		    	<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{mobile}" th:placeholder="#{sponsorshipApplication.mobile}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{mobile}" th:placeholder="#{sponsorshipApplication.mobile}">
 		      		<ul><li class="cooperror" th:errors="*{mobile}" /></ul>
 		    	</div>
 				<label class="col-sm-2 form-label text-success" th:text="#{sponsorshipApplication.email}"></label>
 		    	<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{email}" th:placeholder="#{sponsorshipApplication.email}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{email}" th:placeholder="#{sponsorshipApplication.email}">
 		      		<ul><li class="cooperror" th:errors="*{email}" /></ul>
 		    	</div>
 			</div>
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 		  	</div>
 		</form>

@@ -29,7 +29,7 @@
 			<div class="h6 pb-2" th:text="'Total Records: ' + ${totalRecords}"></div>		
 			
 			<div class="col-md-12 p-2 my-1 bg-white rounded-3 border border-light-subtle" th:each="article : ${listArticle}">
-				<div class="h5 text-success pb-2 px-4 pt-2 rounded-2 bg-success-subtle bg-gradient">
+				<div class="h5 text-success pb-2 px-4 pt-2 rounded-2 bg-primary-subtle bg-gradient">
 					<a class="nav-link" th:href="@{/article/view/{id}(id=${article.id})}">
 						<i class="bi bi-card-heading"></i>&nbsp;&nbsp;<span th:text="${article.title}"></span>
 					</a>
@@ -47,11 +47,11 @@
 		
 		<nav aria-label="Page Navigation">
 			<ul class="pagination">
-				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/article/search/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/article/search/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-				<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/article/search/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/article/search/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/article/search/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/article/search/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+				<li class="page-item"><a class="page-link text-primary" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/article/search/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/article/search/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 			</ul>
 		</nav>
 	</div>

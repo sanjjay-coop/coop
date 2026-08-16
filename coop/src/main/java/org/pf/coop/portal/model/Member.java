@@ -183,6 +183,9 @@ public class Member extends BaseObject implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="f_occupation", nullable=true)
 	private Occupation occupation;
+	
+	@Column(name="f_theme", length=100, nullable=true)
+	private String theme;
 
 	@Transient
 	private String searchFor;
@@ -527,6 +530,14 @@ public class Member extends BaseObject implements Serializable {
 
 	public void setOccupation(Occupation occupation) {
 		this.occupation = occupation;
+	}
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 
 	public String getSearchFor() {

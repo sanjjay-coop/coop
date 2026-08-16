@@ -15,20 +15,27 @@
 		<form class="p-2" th:action="${servletRequest.requestURI}" th:object="${parameters}" method="POST">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.siteUrl}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.siteUrl}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{siteUrl}" th:placeholder="#{parameters.siteUrl}" autofocus >
 		      		<ul><li class="cooperror" th:errors="*{siteUrl}" /></ul>
 		    	</div>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.hideFooterLogo}"></label>
+		    	<div class="col-sm-2">
+		    		<select class="form-select" th:field="*{hideFooterLogo}">
+			            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
+			        </select>
+			        <ul><li class="cooperror" th:errors="*{hideFooterLogo}" /></ul>
+		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.header}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.header}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{header}" th:placeholder="#{parameters.header}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{header}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.subHeader}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.subHeader}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{subHeader}" th:placeholder="#{parameters.subHeader}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{subHeader}" /></ul>
@@ -36,12 +43,12 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.fromEmail}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.fromEmail}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{fromEmail}" th:placeholder="#{parameters.fromEmail}">
 		      		<ul><li class="cooperror" th:errors="*{fromEmail}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.emailSignature}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.emailSignature}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{emailSignature}" th:placeholder="#{parameters.emailSignature}">
 		      		<ul><li class="cooperror" th:errors="*{emailSignature}" /></ul>
@@ -49,19 +56,19 @@
 		    </div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailEnable}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailEnable}"></label>
 		    	<div class="col-sm-2">
 		    		<select class="form-select" th:field="*{mailEnable}">
 			            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 			        </select>
 			        <ul><li class="cooperror" th:errors="*{mailEnable}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailHost}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailHost}"></label>
 		    	<div class="col-sm-2">
 		    		<input type="text" class="form-control" th:field="*{mailHost}" th:placeholder="#{parameters.mailHost}">
 		      		<ul><li class="cooperror" th:errors="*{mailHost}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailPort}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailPort}"></label>
 		    	<div class="col-sm-2">
 		    		<input type="text" class="form-control" th:field="*{mailPort}" th:placeholder="#{parameters.mailPort}">
 		      		<ul><li class="cooperror" th:errors="*{mailPort}" /></ul>
@@ -69,17 +76,17 @@
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailTransportProtocol}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailTransportProtocol}"></label>
 		    	<div class="col-sm-2">
 		    		<input type="text" class="form-control" th:field="*{mailTransportProtocol}" th:placeholder="#{parameters.mailTransportProtocol}">
 		      		<ul><li class="cooperror" th:errors="*{mailTransportProtocol}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailSmtpPort}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailSmtpPort}"></label>
 		    	<div class="col-sm-2">
 		    		<input type="text" class="form-control" th:field="*{mailSmtpPort}" th:placeholder="#{parameters.mailSmtpPort}">
 		      		<ul><li class="cooperror" th:errors="*{mailSmtpPort}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailSmtpAuth}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailSmtpAuth}"></label>
 		    	<div class="col-sm-2">
 		    		<select class="form-select" th:field="*{mailSmtpAuth}">
 			            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
@@ -89,21 +96,21 @@
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailSmtpStarttlsEnable}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailSmtpStarttlsEnable}"></label>
 		    	<div class="col-sm-2">
 		    		<select class="form-select" th:field="*{mailSmtpStarttlsEnable}">
 			            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 			        </select>
 			        <ul><li class="cooperror" th:errors="*{mailSmtpStarttlsEnable}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailSmtpStarttlsRequired}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailSmtpStarttlsRequired}"></label>
 		    	<div class="col-sm-2">
 		    		<select class="form-select" th:field="*{mailSmtpStarttlsRequired}">
 			            <option th:each="p : ${listYesNo}" th:value="${p.value}" th:text="${p.label}" />
 			        </select>
 			        <ul><li class="cooperror" th:errors="*{mailSmtpStarttlsRequired}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailUsername}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailUsername}"></label>
 				<div class="col-sm-2">
 		    		<input type="text" class="form-control" th:field="*{mailUsername}" th:placeholder="#{parameters.mailUsername}">
 					<ul><li class="cooperror" th:errors="*{mailUsername}" /></ul>
@@ -111,17 +118,17 @@
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.mailPassword}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.mailPassword}"></label>
 				<div class="col-sm-2">
 		    		<input type="text" class="form-control" th:field="*{mailPassword}" th:placeholder="#{parameters.mailPassword}">
 					<ul><li class="cooperror" th:errors="*{mailPassword}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.emailDayLimit}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.emailDayLimit}"></label>
 				<div class="col-sm-2">
 		    		<input type="text" class="form-control" th:field="*{emailDayLimit}" th:placeholder="#{parameters.emailDayLimit}">
 					<ul><li class="cooperror" th:errors="*{emailDayLimit}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.dataDirectory}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.dataDirectory}"></label>
 				<div class="col-sm-2">
 		    		<input type="text" class="form-control" th:field="*{dataDirectory}" th:placeholder="#{parameters.dataDirectory}">
 					<ul><li class="cooperror" th:errors="*{dataDirectory}" /></ul>
@@ -129,7 +136,7 @@
 			</div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.privacyPolicy}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.privacyPolicy}"></label>
 				<div class="col-sm-10">
 		    		<textarea class="widgEditor form-control" rows="5" th:field="*{privacyPolicy}" th:placeholder="#{parameters.privacyPolicy}"></textarea>
 					<ul><li class="cooperror" th:errors="*{privacyPolicy}" /></ul>
@@ -137,7 +144,7 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.disclaimer}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.disclaimer}"></label>
 				<div class="col-sm-10">
 		    		<textarea class="widgEditor form-control" rows="5" th:field="*{disclaimer}" th:placeholder="#{parameters.disclaimer}"></textarea>
 					<ul><li class="cooperror" th:errors="*{disclaimer}" /></ul>
@@ -145,7 +152,7 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{parameters.termsAndConditions}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{parameters.termsAndConditions}"></label>
 				<div class="col-sm-10">
 		    		<textarea class="widgEditor form-control" rows="5" th:field="*{termsAndConditions}" th:placeholder="#{parameters.termsAndConditions}"></textarea>
 					<ul><li class="cooperror" th:errors="*{termsAndConditions}" /></ul>
@@ -154,7 +161,7 @@
 			
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		</form>

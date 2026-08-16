@@ -89,6 +89,9 @@ public class Parameters extends BaseObject implements Serializable {
 	
 	@Column(name = "f_email_day_limit", nullable=true)
 	private Integer emailDayLimit;
+	
+	@Column(name = "f_hide_footer_logo")
+	private Boolean hideFooterLogo;
 
 	public Long getId() {
 		return id;
@@ -256,6 +259,14 @@ public class Parameters extends BaseObject implements Serializable {
 
 	public void setEmailDayLimit(Integer emailDayLimit) {
 		this.emailDayLimit = emailDayLimit;
+	}
+
+	public Boolean getHideFooterLogo() {
+		return hideFooterLogo;
+	}
+
+	public void setHideFooterLogo(Boolean hideFooterLogo) {
+		this.hideFooterLogo = hideFooterLogo;
 	}
 
 	@Override

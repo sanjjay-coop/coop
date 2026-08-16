@@ -1,5 +1,6 @@
 package org.pf.coop.portal.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -7,9 +8,11 @@ import java.util.List;
 
 import org.pf.coop.common.YesNo;
 import org.pf.coop.portal.model.Advert;
+import org.pf.coop.portal.model.Member;
 import org.pf.coop.portal.model.MenuItem;
 import org.pf.coop.portal.model.Parameters;
 import org.pf.coop.portal.repository.AdvertRepo;
+import org.pf.coop.portal.repository.MemberRepo;
 import org.pf.coop.portal.repository.MenuItemRepo;
 import org.pf.coop.portal.repository.ModuleRepo;
 import org.pf.coop.portal.service.ParametersService;
@@ -83,5 +86,19 @@ public class BaseController {
 		}
 		
 		return moduleMap;
+	}
+	
+	@Autowired
+	private MemberRepo memberRepo;
+	
+	@ModelAttribute("colorTheme")
+	public String getColorTheme(Principal principal) {
+		
+		if (principal == null) return "";
+		
+		Member member = this.memberRepo.findByMemIdIgnoreCase(principal.getName());
+		
+		if (member == null) return "";
+		else return member.getTheme();
 	}
 }

@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/7.0.1/css/all.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/jquery-ui/1.14.1/jquery-ui.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{'/assets/css/bootstrap.' + ${colorTheme} + '.min.css'}">
 		
 	<script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/5.3.8/js/bootstrap.bundle.min.js}"></script>
@@ -62,59 +63,64 @@
 			background-color: #F5F5F5;
 		}
 	</style>
+	
+	<th:block th:if="${advert.location == 'head'}" th:each="advert : ${listAdvert}">
+		<th:block th:utext="${advert.content}"></th:block>	
+	</th:block>
+	
 </head>
 <body>
 	<div class="container-fluid" th:fragment="header">
 		<div class="row p-2">
 			<div class="col-12">
-				<nav class="navbar navbar-expand-lg bg-success bg-opacity-10 bg-gradient rounded-1">
+				<nav class="navbar navbar-expand-lg bg-primary bg-opacity-10 bg-gradient rounded-1">
 					<div class="container-fluid px-5  justify-content-end">
 				    	<div id="navbarTopMenu">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">		
 								<li class="nav-item small"  th:classappend="${viewLeftMenu == 'document'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/open/document/list}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/open/document/list}">
 										<i class="bi bi-file-arrow-down"></i>
 										Download Forms/Documents
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'holidays'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/holiday/list}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/holiday/list}">
 										<i class="bi bi-bicycle"></i>
 										Holidays
 									</a>
 								</li>		
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'gallery'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/open/gallery/list}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/open/gallery/list}">
 										<i class="bi bi-images"></i>
 										Photo Gallery
 									</a>
 								</li>			
 								<li class="nav-item small"  th:classappend="${viewLeftMenu == 'organizations'} ? 'bg-primary bg-opacity-10 rounded-2'" th:if="${moduleStatus.get('mod_business')==true}">
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/open/organization/list}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/open/organization/list}">
 										<i class="bi bi-gem"></i>
 										Similar Organization
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'sponsorship'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/open/sponsorship/list}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/open/sponsorship/list}">
 										<i class="bi bi-trophy"></i>
 										Sponsorship
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'events'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/event/list}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/event/list}">
 										<i class="bi bi-alarm"></i>
 										Upcoming Events
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'help'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a target="_blank" class="nav-link small ms-2 me-2 text-nowrap" href="https://www.youtube.com/@PrivrajakaFoundation-m1x">
+									<a target="_blank" class="nav-link small ms-2 me-2 text-nowrap text-primary" href="https://www.youtube.com/@PrivrajakaFoundation-m1x">
 										<i class="bi bi-question-diamond"></i>
 										Help Documents
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'help'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a target="_blank" class="nav-link small ms-2 me-2" href="https://www.youtube.com/@PrivrajakaFoundation-m1x">
+									<a target="_blank" class="nav-link small ms-2 me-2 text-nowrap text-primary" href="https://www.youtube.com/@PrivrajakaFoundation-m1x">
 										<i class="bi bi-youtube"></i>
 									</a>
 								</li>
@@ -125,13 +131,13 @@
 			</div>
 		</div>
 		
-		<div class="row p-2" style="max-height: 150px;">
+		<div class="row p-2" >
 			<div class="col-sm-1">
-				<img th:src="@{/siteLogo}" alt="Site logo" class="img-fluid rounded rounded-3" style="min-width: 125px;"/>
+				<img th:src="@{/siteLogo}" alt="Site logo" class="img-fluid rounded rounded-3"/>
 			</div>
-			<div class="my-auto ps-5" th:classappend="${#lists.isEmpty(listAdvert)} ? 'col-sm-11' : 'col-sm-5'">
-				<div class="h2 text-success" th:text="${params?.header}"></div>
-				<div class="h6 text-success" th:text="${params?.subHeader}"></div>
+			<div class="my-auto ps-3" th:classappend="${#lists.isEmpty(listAdvert)} ? 'col-sm-11' : 'col-sm-5'">
+				<div class="h3 text-primary" th:text="${params?.header}"></div>
+				<div class="h6 text-secondary" th:text="${params?.subHeader}"></div>
 			</div>
 			<div class="col-sm-6 text-end" th:if="${advert.location == 'top'}" th:each="advert : ${listAdvert}">
 				<div th:utext="${advert.content}"></div>	
@@ -139,113 +145,113 @@
 		</div>
 		<div class="row p-2">
 			<div class="col-12">
-				<nav class="navbar navbar-expand-lg bg-success bg-opacity-10 bg-gradient rounded-1">
+				<nav class="navbar navbar-expand-lg bg-primary bg-opacity-10 bg-gradient rounded-1">
 					<div class="container-fluid">
 				    	<div id="navbarSupportedContentMenu">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				      			<li class="nav-item small">
-				          			<a class="nav-link small ms-2 me-2" th:href="@{/}" th:classappend="${viewLeftMenu == 'home'} ? 'bg-primary bg-opacity-10 rounded-2'" >
+				          			<a class="nav-link small ms-2 me-2 text-primary" th:href="@{/}" th:classappend="${viewLeftMenu == 'home'} ? 'bg-primary bg-opacity-10 rounded-2'" >
 				          				<i class="bi bi-house"></i>
 				          				Home
 				          			</a>
 				        		</li>
 				        		<li class="nav-item small" sec:authorize="hasAnyRole('MEMBER','MANAGER')" th:classappend="${viewLeftMenu == 'dashboard'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-				          			<a class="nav-link small ms-2 me-2 text-nowrap" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/home}">
+				          			<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:classappend="${viewLeftMenu == 'home'} ? active" th:href="@{/home}">
 				          				<i class="bi bi-sun"></i>
 				          				My Dashboard
 				          			</a>
 				        		</li>
 								<li class="nav-item small" th:each="ob,iterator : ${listMenuItemTop}" th:classappend="${viewLeftMenu == 'topmenu'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:if="${ob.itemType == 'url' and !ob.newPage}" th:href="${ob.url}" >
 										<i th:class="${ob.icon}"></i>
 										<th:block th:text="${ob.title}"></th:block>
 									</a>
-									<a class="nav-link small ms-2 me-2 text-nowrap" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" target="_blank" th:if="${ob.itemType == 'url' and ob.newPage}" th:href="${ob.url}">
 										<i th:class="${ob.icon}"></i>
 										<th:block th:text="${ob.title}"></th:block>
 									</a>
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:if="${ob.itemType == 'category' and !ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
 										<i th:class="${ob.icon}"></i>
 										<th:block th:text="${ob.title}"></th:block>
 									</a>
-									<a class="nav-link small ms-2 me-2 text-nowrap" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" target="_blank" th:if="${ob.itemType == 'category' and ob.newPage}" th:href="@{/category/blog/{orderId}(orderId=${ob.id})}">
 										<i th:class="${ob.icon}"></i>
 										<th:block th:text="${ob.title}"></th:block>
 									</a>
 								</li>
 								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('ACCOUNTS','MANAGER')" th:classappend="${viewLeftMenu == 'accounts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small dropdown-toggle ms-2 me-2 text-nowrap" th:href="@{/accounts}" role="button" data-bs-toggle="dropdown">
+									<a class="nav-link small dropdown-toggle ms-2 me-2 text-nowrap text-primary" th:href="@{/accounts}" role="button" data-bs-toggle="dropdown">
 										<i class="bi bi-book-half"></i>
 										Accounts
 									</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" th:href="@{/accounts/income/addNew}">Income</a></li>
-										<li><a class="dropdown-item" th:href="@{/accounts/expenditure/addNew}">Expenditure</a></li>
-									  	<li><a class="dropdown-item" th:href="@{/accounts/headOfAccount/addNew}">Head of Account</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/accounts/income/addNew}">Income</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/accounts/expenditure/addNew}">Expenditure</a></li>
+									  	<li><a class="dropdown-item text-secondary" th:href="@{/accounts/headOfAccount/addNew}">Head of Account</a></li>
 										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" th:href="@{/accounts/income/listRecent}">Last 50 Receipts</a></li>
-										<li><a class="dropdown-item" th:href="@{/accounts/expenditure/listRecent}">Last 50 Payments</a></li>
-										<li><a class="dropdown-item" th:href="@{/accounts/reports}">Reports</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/accounts/income/listRecent}">Last 50 Receipts</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/accounts/expenditure/listRecent}">Last 50 Payments</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/accounts/reports}">Reports</a></li>
 									</ul>
 								</li>
 								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('LIBRARY','MANAGER')" th:classappend="${viewLeftMenu == 'library'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small dropdown-toggle ms-2 me-2 text-nowrap" th:classappend="${viewLeftMenu == 'library'} ? active" th:href="@{/library}" role="button" data-bs-toggle="dropdown">
+									<a class="nav-link small dropdown-toggle ms-2 me-2 text-nowrap text-primary" th:classappend="${viewLeftMenu == 'library'} ? active" th:href="@{/library}" role="button" data-bs-toggle="dropdown">
 										<i class="bi bi-collection"></i>
 										Library
 									</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" th:href="@{/library/title/addNew}">Add Title</a></li>
-										<li><a class="dropdown-item" th:href="@{/library/titleType/addNew}">Title Type</a></li>
-									  	<li><a class="dropdown-item" th:href="@{/library/library/addNew}">Library</a></li>
-										<li><a class="dropdown-item" th:href="@{/library/title/list}">Search Title</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/library/title/addNew}">Add Title</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/library/titleType/addNew}">Title Type</a></li>
+									  	<li><a class="dropdown-item text-secondary" th:href="@{/library/library/addNew}">Library</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/library/title/list}">Search Title</a></li>
 									</ul>
 								</li>
 								<li class="nav-item small dropdown" sec:authorize="hasAnyRole('MODERATOR','MANAGER')" th:classappend="${viewLeftMenu == 'moderator'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small dropdown-toggle ms-2 me-2 text-nowrap" th:classappend="${viewLeftMenu == 'moderator'} ? active" th:href="@{/moderator}" role="button" data-bs-toggle="dropdown">
+									<a class="nav-link small dropdown-toggle ms-2 me-2 text-nowrap text-primary" th:classappend="${viewLeftMenu == 'moderator'} ? active" th:href="@{/moderator}" role="button" data-bs-toggle="dropdown">
 										<i class="fa-regular fa-handshake"></i>
 										Moderator
 									</a>
 									<ul class="dropdown-menu" style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
-										<li><a class="dropdown-item" th:href="@{/moderator/indexes/build}">Build Indexes</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/bulkEmail/list}">Bulk Message</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/business/list}">Business</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/carousel/list}">Carousel</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/document/list}">Documents</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/gallery/list}">Gallery</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/funding/list}">Funding Appl.</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/holiday/list}">Holiday</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/invitation/list}">Invitation</a></li>
-									  	<li><a class="dropdown-item" th:href="@{/moderator/job/list}">Job</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/memberApplication/list}">Member Application</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/newsFeed/list}">News Feed</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/order/list}">Orders</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/organization/list}">Organization</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/quotation/list}">Quotation</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/serviceProvider/list}">Service Providers</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/sponsorship/list}">Sponsorship</a></li>
-										<li><a class="dropdown-item" th:href="@{/moderator/sponsorshipApplication/list}">Sponsorship Applications</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/indexes/build}">Build Indexes</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/bulkEmail/list}">Bulk Message</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/business/list}">Business</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/carousel/list}">Carousel</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/document/list}">Documents</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/gallery/list}">Gallery</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/funding/list}">Funding Appl.</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/holiday/list}">Holiday</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/invitation/list}">Invitation</a></li>
+									  	<li><a class="dropdown-item text-secondary" th:href="@{/moderator/job/list}">Job</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/memberApplication/list}">Member Application</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/newsFeed/list}">News Feed</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/order/list}">Orders</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/organization/list}">Organization</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/quotation/list}">Quotation</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/serviceProvider/list}">Service Providers</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/sponsorship/list}">Sponsorship</a></li>
+										<li><a class="dropdown-item text-secondary" th:href="@{/moderator/sponsorshipApplication/list}">Sponsorship Applications</a></li>
 									</ul>
 								</li>
 				      			<li class="nav-item small" sec:authorize="hasRole('MANAGER')" th:classappend="${viewLeftMenu == 'manager'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-				          			<a class="nav-link small ms-2 me-2 text-nowrap" th:classappend="${viewLeftMenu == 'manager'} ? active" th:href="@{/manager}">
+				          			<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:classappend="${viewLeftMenu == 'manager'} ? active" th:href="@{/manager}">
 				          				<i class="bi bi-people-fill"></i>
 				          				Manager
 				          			</a>
 				        		</li>
 								<li class="nav-item small" sec:authorize="!isAuthenticated()" th:classappend="${viewLeftMenu == 'join'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/join}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/join}">
 										<i class="bi bi-person"></i>
 										Join as Member
 									</a>
 								</li>
 				      			<li class="nav-item small" sec:authorize="!isAuthenticated()">
-				          			<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/login}">
+				          			<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/login}">
 				          				<i class="bi bi-lock"></i>
 				          				Sign-In
 				          			</a>
 				        		</li>
 								<li class="nav-item small" sec:authorize="isAuthenticated()">
-									<a class="nav-link small ms-2 me-2 text-nowrap" href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
 										<i class="bi bi-unlock"></i>
 										Sign-Out
 									</a>
@@ -265,31 +271,31 @@
 	<div class="container-fluid" th:fragment="footer">
 		<div class="row p-2">
 			<div class="col-12">
-				<nav class="navbar navbar-expand-lg bg-success bg-opacity-10 bg-gradient rounded-1">
+				<nav class="navbar navbar-expand-lg bg-primary bg-opacity-10 bg-gradient rounded-1">
 					<div class="container-fluid">
 				    	<div id="navbarSupportedContent2">
 				      		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				      			
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'contacts'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/contacts}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/contacts}">
 										<i class="bi bi-envelope"></i>
 										Contacts
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'privacy'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/open/privacyPolicy}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/open/privacyPolicy}">
 										<i class="bi bi-file-lock"></i>
 										Privacy Policy
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'terms'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/open/termsAndConditions}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/open/termsAndConditions}">
 										<i class="bi bi-journal-text"></i>
 										Terms &amp; Conditions
 									</a>
 								</li>
 								<li class="nav-item small" th:classappend="${viewLeftMenu == 'disclaimer'} ? 'bg-primary bg-opacity-10 rounded-2'" >
-									<a class="nav-link small ms-2 me-2 text-nowrap" th:href="@{/open/disclaimer}">
+									<a class="nav-link small ms-2 me-2 text-nowrap text-primary" th:href="@{/open/disclaimer}">
 										<i class="bi bi-patch-exclamation"></i>
 										Disclaimer
 									</a>
@@ -304,9 +310,8 @@
 			<div th:if="${advert.location == 'footer'}" class="col-sm-4 text-center p-2" th:each="advert : ${listAdvert}">
 				<div class="text-center" th:utext="${advert.content}"></div>
 			</div>
-			<div class="col-sm-12 text-end p-2">
-				<img th:src="@{/siteLogo}" alt="Site logo" height="25px"/>
-				<br/><a class="text-success" href="https://parivrajaka.in/category/coop/" target="_blank" style="font-size: 10px;" th:text="#{copyright}"></a>
+			<div class="col-sm-12 text-end p-2" th:if="${params.hideFooterLogo == false}">
+				<a class="nav-link text-primary" href="https://parivrajaka.in/category/coop/" target="_blank"><span th:text="#{copyright}"></span> <img class="rounded rounded-2 p-1" th:src="@{/images/pf-long-logo.png}" alt="Site logo" height="50px"/></a>
 			</div>
 		</div>
 		

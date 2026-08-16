@@ -117,6 +117,7 @@ public class MemberService {
 		obj.setSubStartDate(member.getSubStartDate());
 		obj.setRoles(member.getRoles());	
 		obj.setMaritalStatus(member.getMaritalStatus());
+		obj.setTheme(member.getTheme());
 		
 		obj.setUpdateDefaults(updateBy);
 		obj = memberRepo.save(obj);
@@ -181,6 +182,8 @@ public class MemberService {
 		obj.setResCountry(member.getResCountry());
 		obj.setResPin(member.getResPin());
 		obj.setResState(member.getResState());
+		
+		obj.setTheme(member.getTheme());
 		
 		obj.setUpdateDefaults(updateBy);
 		obj = memberRepo.save(obj);

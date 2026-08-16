@@ -16,26 +16,26 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/mobile/open/gallery/list/current}"><i class="bi bi-chevron-double-left"></i> To List</a>
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/mobile/open/gallery/list/current}"><i class="bi bi-chevron-double-left"></i> To List</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="row p-2">
-			<label class="col-sm-2 col-form-label text-success" th:text="#{gallery.title}"></label>
+			<label class="col-sm-2 col-form-label text-primary" th:text="#{gallery.title}"></label>
 			<div class="col-sm-10">
 				<span class="form-control border-light" th:text="${gallery.title}"></span>
 			</div>
 		</div>
 		<div class="row p-2">
-			<label class="col-sm-2 col-form-label text-success" th:text="#{gallery.description}"></label>
+			<label class="col-sm-2 col-form-label text-primary" th:text="#{gallery.description}"></label>
 			<div class="col-sm-10">
 				<span class="form-control border-light" th:utext="${gallery.description}"></span>
 			</div>
 		</div>
 
 		<div class="row p-2">
-			<label class="col-sm-2 col-form-label text-success" th:text="#{gallery.date}"></label>
+			<label class="col-sm-2 col-form-label text-primary" th:text="#{gallery.date}"></label>
 			<div class="col-sm-10">
 				<span class="form-control border-light" th:text="${#dates.format(gallery.date, 'dd-MM-yyyy')}"></span>
 			</div>

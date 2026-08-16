@@ -73,11 +73,11 @@
 				</table>
 				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
 					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/job/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/moderator/job/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/moderator/job/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/moderator/job/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/moderator/job/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/moderator/job/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-primary" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/moderator/job/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/moderator/job/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 					</ul>
 				</nav>
 			</div>

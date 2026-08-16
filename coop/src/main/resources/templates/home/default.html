@@ -15,25 +15,25 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/profile}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/profile}">
 						<i class="bi bi-person-lines-fill"></i> Profile</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/funding/list}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/funding/list}">
 						<i class="bi bi-currency-rupee"></i> Fund Requests</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/business/list}" th:if="${moduleStatus.get('mod_business')==true}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/business/list}" th:if="${moduleStatus.get('mod_business')==true}">
 						<i class="bi bi-briefcase"></i> My Businesses</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/invitation/list}" th:if="${moduleStatus.get('mod_invitation')==true}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/invitation/list}" th:if="${moduleStatus.get('mod_invitation')==true}">
 						<i class="bi bi-person-raised-hand"></i> My Invitations</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/job/list}" th:if="${moduleStatus.get('mod_job')==true}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/job/list}" th:if="${moduleStatus.get('mod_job')==true}">
 						<i class="bi bi-person-workspace"></i> My Jobs</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/payments}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/payments}">
 						<i class="bi bi-wallet2"></i> My Payments</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/serviceProvider/list}" th:if="${moduleStatus.get('mod_service')==true}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/serviceProvider/list}" th:if="${moduleStatus.get('mod_service')==true}">
 						<i class="bi bi-cone-striped"></i> My Services</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/order/list}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/order/list}">
 						<i class="bi bi-journals"></i> Orders</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/reminder/list}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/reminder/list}">
 						<i class="bi bi-bell"></i> Reminders</a>
-					<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/home/changePassword}">
+					<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/home/changePassword}">
 						<i class="bi bi-key"></i> Change Password</a>
 				</div>
 			</div>
@@ -44,34 +44,14 @@
 		</div>
 		
 		<div class="row p-2" style="font-size: 12px;">
-		
-			<!--  
-			<div class="col-4 pb-2">
-				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient">Latest Articles</h5>
-				  	<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" th:each="ob,iterator : ${listArticle}">
-								<a th:href="@{/article/view/{orderId}(orderId=${ob.id})}" th:text="${ob.title}"></a>
-							</li>
-						</ul>
-				  	</div>
-				  	<div class="card-footer bg-success-subtle bg-gradient">
-				  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/article/list}">List Articles</a>
-				  	</div>
-				</div>
-			</div>
-			-->
 			
 			<div class="col-4 pb-2">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient">Recent Books / Documents</h5>
+					<h5 class="card-header">Recent Books / Documents</h5>
 				  	<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" th:each="ob,iterator : ${listTitle}" th:text="${ob.uniformTitle+ ', ' + ob.authors}"></li>
-						</ul>
+						<div class="pb-1" th:each="ob,iterator : ${listTitle}" th:text="${'-> ' + ob.uniformTitle+ ', ' + ob.authors}"></div>
 				  	</div>
-				  	<div class="card-footer bg-success-subtle bg-gradient">
+				  	<div class="card-footer">
 						<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/title/list}">Search Titles</a>
 					</div>
 				</div>
@@ -79,15 +59,13 @@
 			
 			<div class="col-4 pb-2">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient">Latest Events</h5>
+					<h5 class="card-header">Latest Events</h5>
 				  	<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" th:each="ob,iterator : ${listEvent}">
-								<a th:href="@{/event/view/{orderId}(orderId=${ob.id})}" th:text="${ob.title + ', Start Date: ' + #dates.format(ob.startDate, 'dd/MM/yyyy') + ', End Date: ' + #dates.format(ob.endDate, 'dd/MM/yyyy')}"></a>
-							</li>
-						</ul>
+						<div class="pb-1" th:each="ob,iterator : ${listEvent}">
+							<a th:href="@{/event/view/{orderId}(orderId=${ob.id})}" th:text="${'-> ' + ob.title + ', Start Date: ' + #dates.format(ob.startDate, 'dd/MM/yyyy') + ', End Date: ' + #dates.format(ob.endDate, 'dd/MM/yyyy')}"></a>
+						</div>
 				  	</div>
-				  	<div class="card-footer bg-success-subtle bg-gradient">
+				  	<div class="card-footer">
 				  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/event/list}">List Events</a>
 				  	</div>
 				</div>
@@ -95,13 +73,11 @@
 			
 			<div class="col-4 pb-2" th:if="${moduleStatus.get('mod_business')==true}">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient">Recent Businesses</h5>
+					<h5 class="card-header">Recent Businesses</h5>
 				  	<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" th:each="ob,iterator : ${listBusiness}" th:text="${ob.businessName + ', ' + ob.city}"></li>
-						</ul>
+						<div class="pb-1" th:each="ob,iterator : ${listBusiness}" th:text="${'-> ' + ob.businessName + ', ' + ob.city}"></div>
 				  	</div>
-				  	<div class="card-footer bg-success-subtle bg-gradient">
+				  	<div class="card-footer">
 						<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/business/all/list}">List All Businesses</a>
 					</div>
 				</div>
@@ -109,15 +85,13 @@
 			
 			<div class="col-4 pb-2">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient">Latest Members</h5>
+					<h5 class="card-header">Latest Members</h5>
 				  	<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" th:each="ob,iterator : ${listMember}">
-								<a th:href="@{/home/member/view/{orderId}(orderId=${ob.id})}" th:text="${ob.name + ', ' + ob.resCity + ', ' + ob.resState}"></a>
-							</li>
-						</ul>
+						<div class="pb-1" th:each="ob,iterator : ${listMember}">
+							<a th:href="@{/home/member/view/{orderId}(orderId=${ob.id})}" th:text="${'-> ' + ob.name + ', ' + ob.resCity + ', ' + ob.resState}"></a>
+						</div>
 				  	</div>
-				  	<div class="card-footer bg-success-subtle bg-gradient">
+				  	<div class="card-footer">
 						<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/member/list}">Search Member</a>
 				  	</div>
 				</div>
@@ -125,13 +99,11 @@
 			
 			<div class="col-4 pb-2" th:if="${moduleStatus.get('mod_job')==true}">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient">Recent Jobs / Vacancies</h5>
+					<h5 class="card-header">Recent Jobs / Vacancies</h5>
 				  	<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" th:each="ob,iterator : ${listJob}" th:text="${ob.position + ', ' + ob.city}"></li>
-						</ul>
+						<div class="pb-1" th:each="ob,iterator : ${listJob}" th:text="${'-> ' + ob.position + ', ' + ob.city}"></div>
 				  	</div>
-				  	<div class="card-footer bg-success-subtle bg-gradient">
+				  	<div class="card-footer">
 						<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/job/all/list}">List All Jobs / Vacancies</a>
 					</div>
 				</div>
@@ -139,13 +111,11 @@
 			  
 			<div class="col-4 pb-2" th:if="${moduleStatus.get('mod_service')==true}">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient">Recent Service Providers</h5>
+					<h5 class="card-header">Recent Service Providers</h5>
 				  	<div class="card-body">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" th:each="ob,iterator : ${listServiceProvider}" th:text="${ob.serviceName + ', ' + ob.city}"></li>
-						</ul>
+						<div class="pb-1" th:each="ob,iterator : ${listServiceProvider}" th:text="${'-> ' + ob.serviceName + ', ' + ob.city}"></div>
 				  	</div>
-				  	<div class="card-footer bg-success-subtle bg-gradient">
+				  	<div class="card-footer">
 				  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/home/serviceProvider/all/list}">List Service Providers</a>
 				  	</div>
 				</div>

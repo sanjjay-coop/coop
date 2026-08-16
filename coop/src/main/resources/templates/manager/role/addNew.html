@@ -15,25 +15,25 @@
 		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${role}" method="POST">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{role.code}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{role.code}"></label>
 				<div class="col-sm-2">
-		    		<input type="text" class="form-control required" th:field="*{code}" th:placeholder="#{role.code}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{code}" th:placeholder="#{role.code}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{code}" /></ul>
 				</div>
 				
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{role.description}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{role.description}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{description}" th:placeholder="#{role.description}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{description}" th:placeholder="#{role.description}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</form>

@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/salutation/addNew}"><i class="bi bi-chevron-double-left"></i> to List</a>
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/salutation/addNew}"><i class="bi bi-chevron-double-left"></i> to List</a>
 				</div>
 			</div>
 		</div>
@@ -25,16 +25,16 @@
 			<input type="hidden" class="form-control" th:field="*{id}">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{salutation.name}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{salutation.name}"></label>
 		    	<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{salutation.name}" autofocus />
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{name}" th:placeholder="#{salutation.name}" autofocus />
 		      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		</form>

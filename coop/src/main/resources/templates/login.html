@@ -28,11 +28,11 @@
 					<div class="row p-2">
 						<div class="col-12">
 							<div class="d-grid gap-2 d-md-block">
-								<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/loginOtp}">
+								<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/loginOtp}">
 									<i class="bi bi-123"></i> Login with OTP</a>
-								<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/join}">
+								<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/join}">
 									<i class="bi bi-folder2-open"></i> No account? Join for free.</a>
-								<a class="btn btn-success btn-sm mb-2" role="button" th:href="@{/resetPassword}" sec:authorize="!isAuthenticated()">
+								<a class="btn btn-primary btn-sm mb-2" role="button" th:href="@{/resetPassword}" sec:authorize="!isAuthenticated()">
 									<i class="bi bi-key"></i> Forgot Password</a>
 							</div>
 						</div>
@@ -42,15 +42,15 @@
 						
 						<div class="row g-3">
 							<div class="col-md-11">
-						  		<label for="username" class="col-sm-3 col-form-label text-success">User ID</label>
-						    	<input type="text" class="form-control required" id="username" name="username" placeholder="Username" autofocus >
+						  		<label for="username" class="col-sm-3 col-form-label text-primary">User ID</label>
+						    	<input type="text" class="form-control bg-info-subtle" id="username" name="username" placeholder="Username" autofocus >
 						    </div><div class="col-md-7"></div>
 							<div class="col-md-11">
-						    	<label for="password" class="col-sm-3 col-form-label text-success">Password</label>
-						    	<input type="password" class="form-control required" id="password" name="password" placeholder="Password">
+						    	<label for="password" class="col-sm-3 col-form-label text-primary">Password</label>
+						    	<input type="password" class="form-control bg-info-subtle" id="password" name="password" placeholder="Password">
 						    </div><div class="col-md-7"></div>
 							<div class="col-md-6">
-						    	<button type="submit" class="btn btn-success" onclick="return validate();">Sign-In</button>
+						    	<button type="submit" class="btn btn-primary" onclick="return validate();">Sign-In</button>
 						    </div>
 						</div>
 					
@@ -68,17 +68,17 @@
 	<script type="text/javascript">
 		function validate() {
 		    if (document.f.username.value == "" && document.f.password.value == "") {
-		        alert("Username and password are required");
+		        alert("Username and password arebg-info-subtle");
 		        document.f.username.focus();
 		        return false;
 		    }
 		    if (document.f.username.value == "") {
-		        alert("Username is required");
+		        alert("Username isbg-info-subtle");
 		        document.f.username.focus();
 		        return false;
 		    }
 		    if (document.f.password.value == "") {
-				alert("Password is required");
+				alert("Password isbg-info-subtle");
 				document.f.password.focus();
 		        return false;
 		    }

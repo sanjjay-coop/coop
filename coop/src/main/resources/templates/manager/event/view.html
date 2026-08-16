@@ -15,11 +15,11 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/list/current}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/list/current}">
 						<i class="bi bi-chevron-double-left"></i> To Event List</a>
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/edit/{orderId}(orderId=${event.id})}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/edit/{orderId}(orderId=${event.id})}">
 						<i class="bi bi-pen"></i> Edit Event</a>
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/eventUpdate/addNew/{orderId}(orderId=${event.id})}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/eventUpdate/addNew/{orderId}(orderId=${event.id})}">
 						<i class="bi bi-plus-circle"></i> Add Update</a>
 				</div>
 			</div>
@@ -27,7 +27,7 @@
 						
 		<div class="row p-2">
 			<div class="col-12 text-center">
-				<h4 class="bg-light p-2 border bg-success-subtle bg-gradient rounded rounded-1" th:text="${event.title}"></h4>
+				<h4 class="bg-light p-2 border bg-primary-subtle bg-gradient rounded rounded-1" th:text="${event.title}"></h4>
 				<span th:utext="${event.description}" style="text-wrap: wrap;"></span>
 				<div class="py-2" style="font-size: small;">
 					<b>Event Type: </b>

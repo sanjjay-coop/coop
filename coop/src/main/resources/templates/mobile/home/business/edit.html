@@ -16,7 +16,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/mobile/home/business/list/current}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/mobile/home/business/list/current}">
 						<i class="bi bi-chevron-double-left"></i> Back to List
 					</a>
 				</div>
@@ -28,36 +28,36 @@
 			<input type="hidden" class="form-control" th:field="*{id}">
 		
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.businessName}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.businessName}"></label>
 		    	<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{businessName}" th:placeholder="#{business.businessName}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{businessName}" th:placeholder="#{business.businessName}" autofocus >
 		      		<ul><li class="cooperror" th:errors="*{businessName}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.description}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.description}"></label>
 		    	<div class="col-sm-10">
-		    		<textarea class="form-control required" rows="5" th:field="*{description}" th:placeholder="#{business.description}"></textarea>
+		    		<textarea class="form-control bg-info-subtle" rows="5" th:field="*{description}" th:placeholder="#{business.description}"></textarea>
 		      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.address}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.address}"></label>
 		    	<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{address}" th:placeholder="#{business.address}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{address}" th:placeholder="#{business.address}">
 		      		<ul><li class="cooperror" th:errors="*{address}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.city}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.city}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{city}" th:placeholder="#{business.city}">
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{city}" th:placeholder="#{business.city}">
 			  		<ul><li class="cooperror" th:errors="*{city}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.pin}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.pin}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{pin}" th:placeholder="#{business.pin}">
 			  		<ul><li class="cooperror" th:errors="*{pin}" /></ul>
@@ -65,12 +65,12 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.state}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.state}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{state}" th:placeholder="#{business.state}">
 			  		<ul><li class="cooperror" th:errors="*{state}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.country}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.country}"></label>
 				<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{country}" th:placeholder="#{business.country}">
 			  		<ul><li class="cooperror" th:errors="*{country}" /></ul>
@@ -78,12 +78,12 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactName}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.contactName}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{contactName}" th:placeholder="#{business.contactName}">
 		      		<ul><li class="cooperror" th:errors="*{contactName}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactPhone}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.contactPhone}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{contactPhone}" th:placeholder="#{business.contactPhone}">
 		      		<ul><li class="cooperror" th:errors="*{contactPhone}" /></ul>
@@ -91,12 +91,12 @@
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.contactEmail}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.contactEmail}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{contactEmail}" th:placeholder="#{business.contactEmail}">
 		      		<ul><li class="cooperror" th:errors="*{contactEmail}" /></ul>
 		    	</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.url}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.url}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="text" class="form-control" th:field="*{url}" th:placeholder="#{business.url}">
 		      		<ul><li class="cooperror" th:errors="*{url}" /></ul>
@@ -104,7 +104,7 @@
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{business.keywords}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{business.keywords}"></label>
 		    	<div class="col-sm-10">
 		    		<textarea class="form-control" rows="5" th:field="*{keywords}" th:placeholder="#{business.keywords}"></textarea>
 		      		<ul><li class="cooperror" th:errors="*{keywords}" /></ul>
@@ -113,7 +113,7 @@
 		    
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		</form>

@@ -30,13 +30,13 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="card pb-3" th:each="sponsorship : ${listSponsorship}">
-					<h5 class="card-header bg-success-subtle bg-gradient" th:text="${sponsorship.title}" th:classappend="${sponsorship.lastDate.after(#dates.createNow())} ? 'bg-success-subtle' : 'bg-warning-subtle'"></h5>
+					<h5 class="card-header bg-primary-subtle bg-gradient" th:text="${sponsorship.title}" th:classappend="${sponsorship.lastDate.after(#dates.createNow())} ? 'bg-primary-subtle' : 'bg-warning-subtle'"></h5>
 				  	<div class="card-body">
 						<p th:utext="${sponsorship.description}"></p>
 						<div style="font-size: small;">
 							<b th:text="#{sponsorship.lastDate}"></b>
 							<span th:text="${': ' + #dates.format(sponsorship.lastDate, 'dd/MM/yyyy')}"></span>
-							<a class="btn btn-success btn-sm" role="button" th:if="${sponsorship.lastDate.after(#dates.createNow())}" th:href="@{/open/sponsorship/apply/{orderId}(orderId=${sponsorship.id})}">Apply Now</a>
+							<a class="btn btn-primary btn-sm" role="button" th:if="${sponsorship.lastDate.after(#dates.createNow())}" th:href="@{/open/sponsorship/apply/{orderId}(orderId=${sponsorship.id})}">Apply Now</a>
 						</div>
 				  	</div>
 				</div>
@@ -45,11 +45,11 @@
 			<div class="col-12">
 				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
 					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/open/sponsorship/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/open/sponsorship/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/open/sponsorship/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/open/sponsorship/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/open/sponsorship/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/open/sponsorship/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-primary" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/open/sponsorship/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/open/sponsorship/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 					</ul>
 				</nav>
 			</div>

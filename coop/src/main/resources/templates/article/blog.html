@@ -16,15 +16,15 @@
 			
 			<div class="col-12" th:each="article : ${listArticle}">
 					
-				<div class="h2 py-2" th:text="${article.title}"></div>
+				<div class="h3 py-2 fw-bold text-primary text-center" th:text="${article.title}"></div>
 				
-				<div class="p-3" th:utext="${article.content}"></div>
-				
-				<div class="small p-2 bg-white rounded-3 border border-light-subtle">
+				<div class="small p-2 text-center">
 					<i class="bi bi-person-circle"></i> <span th:text="${article.author}"></span>
 					&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-calendar"></i> <span th:text="${#dates.format(article.updateDate, 'dd-MM-yyyy')}"></span>
 					&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-tags"></i> <span th:each="cat : ${article.categories}" th:text="${cat.name + ', '}"></span>
 				</div>
+				
+				<div class="p-2" style="text-align: justify;" th:utext="${article.content}"></div>
 				
 			</div>
 			
@@ -33,19 +33,19 @@
 			<nav aria-label="Page Navigation">
 				<ul class="pagination">
 					<li class="page-item" th:if="${!firstPage}">
-						<a class="page-link text-success" th:href="@{/article/blog/{categoryId}(categoryId=${category.id})}"><i class="bi bi-chevron-bar-left"></i></a>
+						<a class="page-link text-primary" th:href="@{/article/blog/{categoryId}(categoryId=${category.id})}"><i class="bi bi-chevron-bar-left"></i></a>
 					</li>
 					<li class="page-item" th:if="${!firstPage}">
-						<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/previous(categoryId=${category.id})}"><i class="bi bi-chevron-left"></i></a>
+						<a class="page-link text-primary" th:href="@{/article/blog/{categoryId}/previous(categoryId=${category.id})}"><i class="bi bi-chevron-left"></i></a>
 					</li>
 					<li class="page-item">
-						<a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a>
+						<a class="page-link text-primary" th:text="${currentPage + '... of ...' + totalPages}"></a>
 					</li>
 					<li class="page-item" th:if="${!lastPage}">
-						<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/next(categoryId=${category.id})}"><i class="bi bi-chevron-right"></i></a>
+						<a class="page-link text-primary" th:href="@{/article/blog/{categoryId}/next(categoryId=${category.id})}"><i class="bi bi-chevron-right"></i></a>
 					</li>
 					<li class="page-item" th:if="${!lastPage}">
-						<a class="page-link text-success" th:href="@{/article/blog/{categoryId}/last(categoryId=${category.id})}"><i class="bi bi-chevron-bar-right"></i></a>
+						<a class="page-link text-primary" th:href="@{/article/blog/{categoryId}/last(categoryId=${category.id})}"><i class="bi bi-chevron-bar-right"></i></a>
 					</li>
 				</ul>
 			</nav>

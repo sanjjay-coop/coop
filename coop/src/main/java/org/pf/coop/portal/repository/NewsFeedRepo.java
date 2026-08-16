@@ -13,7 +13,7 @@ public interface NewsFeedRepo extends JpaRepository<NewsFeed, Long>{
 	@Query("select o "
 			+ "from NewsFeed o "
 			+ "order by o.id desc "
-			+ "limit 10")
+			+ "limit 4")
 	public List<NewsFeed> listNewsFeedRecent();
 	
 	Page<NewsFeed> findBySearchStringContainingIgnoreCase(String searchString, Pageable pageable);

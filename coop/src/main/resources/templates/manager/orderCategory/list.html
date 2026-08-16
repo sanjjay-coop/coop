@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/orderCategory/addNew}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/orderCategory/addNew}">
 						<i class="bi bi-plus-circle"></i> Order Category</a>
 				</div>
 			</div>
@@ -69,11 +69,11 @@
 				</table>
 				<nav aria-label="Page Navigation" th:if="${totalPages > 0}">
 					<ul class="pagination">
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/manager/orderCategory/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/manager/orderCategory/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-						<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/manager/orderCategory/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/manager/orderCategory/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/manager/orderCategory/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/manager/orderCategory/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+						<li class="page-item"><a class="page-link text-primary" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/manager/orderCategory/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/manager/orderCategory/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 					</ul>
 				</nav>
 			</div>

@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/event/view/{orderId}(orderId=${eventUpdate.event.id})}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/event/view/{orderId}(orderId=${eventUpdate.event.id})}">
 						<i class="bi bi-folder2-open"></i>&nbsp; Back to Event
 					</a>
 				</div>
@@ -27,14 +27,14 @@
 			<input type="hidden" class="form-control" th:field="*{event}">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{event}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{event}"></label>
 		    	<div class="col-sm-10">
 		    		<span class="form-control border-light" th:text="${eventUpdate.event.title}"></span>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{eventUpdate.description}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{eventUpdate.description}"></label>
 		    	<div class="col-sm-10">
 		    		<textarea class="form-control" rows="5" th:field="*{description}" th:placeholder="#{event.description}"></textarea>
 		      		<ul><li class="cooperror" th:errors="*{description}" /></ul>
@@ -42,7 +42,7 @@
 			</div>
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		</form>

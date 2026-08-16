@@ -15,9 +15,9 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/library/title/list/current}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/list/current}">
 						<i class="bi bi-chevron-double-left"></i> To Search List</a>
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/library/title/view/{orderId}(orderId=${title.id})}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/library/title/view/{orderId}(orderId=${title.id})}">
 						<i class="bi bi-folder2-open"></i> View Title</a>
 				</div>
 			</div>
@@ -28,14 +28,14 @@
 			<input type="hidden" class="form-control" th:field="*{id}">
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{title.accessionNumber}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{title.accessionNumber}"></label>
 			   	<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{accessionNumber}" th:placeholder="#{title.accessionNumber}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{accessionNumber}" th:placeholder="#{title.accessionNumber}" autofocus >
 			    	<ul><li class="cooperror" th:errors="*{accessionNumber}" /></ul>
 			    </div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{title.titleType}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{title.titleType}"></label>
 				<div class="col-sm-4">
-		    		<select class="form-select required" th:field="*{titleType}">
+		    		<select class="form-selectbg-info-subtle" th:field="*{titleType}">
 						<option th:each="p : ${listTitleType}" th:value="${p.id}" th:text="${p.name}" />
 					</select>
 					<ul><li class="cooperror" th:errors="*{titleType}" /></ul>
@@ -43,9 +43,9 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{title.library}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{title.library}"></label>
 				<div class="col-sm-4">
-		    		<select class="form-select required" th:field="*{library}">
+		    		<select class="form-selectbg-info-subtle" th:field="*{library}">
 						<option th:each="p : ${listLibrary}" th:value="${p.id}" th:text="${p.name + ' [' + p.shortName + ']'}" />
 					</select>
 					<ul><li class="cooperror" th:errors="*{library}" /></ul>
@@ -53,23 +53,23 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{title.uniformTitle}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{title.uniformTitle}"></label>
 		      	<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{uniformTitle}" th:placeholder="#{title.uniformTitle}" >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{uniformTitle}" th:placeholder="#{title.uniformTitle}" >
 		      		<ul><li class="cooperror" th:errors="*{uniformTitle}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{title.authors}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{title.authors}"></label>
 			  	<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{authors}" th:placeholder="#{title.authors}" >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{authors}" th:placeholder="#{title.authors}" >
 			  		<ul><li class="cooperror" th:errors="*{authors}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{title.publisher}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{title.publisher}"></label>
 			  	<div class="col-sm-10">
 		    		<input type="text" class="form-control" th:field="*{publisher}" th:placeholder="#{title.publisher}" >
 			  		<ul><li class="cooperror" th:errors="*{publisher}" /></ul>
@@ -77,7 +77,7 @@
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{title.summary}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{title.summary}"></label>
 		      	<div class="col-sm-10">
 		    		<textarea class="form-control" th:field="*{summary}" th:placeholder="#{title.summary}"></textarea>
 		      		<ul><li class="cooperror" th:errors="*{summary}" /></ul>
@@ -86,7 +86,7 @@
 			
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		</form>

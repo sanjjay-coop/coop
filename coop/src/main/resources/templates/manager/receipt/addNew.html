@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/member/view/{orderId}(orderId=${receipt.member.id})}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/member/view/{orderId}(orderId=${receipt.member.id})}">
 						<i class="bi bi-chevron-double-left"></i> Back to Member View
 					</a>
 				</div>
@@ -27,44 +27,44 @@
 		  	<input type="hidden" class="form-control" th:field="*{member}">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{member.memId}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{member.memId}"></label>
 			    <div class="col-sm-4">
 		    		<span class="form-control border-light" th:text="${receipt.member.memId}"></span>
 			    </div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{member.name}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{member.name}"></label>
 				<div class="col-sm-4">
 		    		<span class="form-control border-light" th:text="${receipt.member.name}"></span>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{receipt.receiptDate}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{receipt.receiptDate}"></label>
 				<div class="col-sm-4">
 		    		<input type="date" class="form-control" th:field="*{receiptDate}" th:placeholder="#{receipt.receiptDate}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{receiptDate}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{receipt.amount}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{receipt.amount}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required amount" th:field="*{amount}" th:placeholder="#{receipt.amount}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle amount" th:field="*{amount}" th:placeholder="#{receipt.amount}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{amount}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{receipt.receiptNumber}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{receipt.receiptNumber}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{receiptNumber}" th:placeholder="#{receipt.receiptNumber}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{receiptNumber}" th:placeholder="#{receipt.receiptNumber}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{receiptNumber}" /></ul>
 				</div>
-				<label class="col-sm-2 col-form-label text-success" th:text="#{receipt.details}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{receipt.details}"></label>
 				<div class="col-sm-4">
-		    		<input type="text" class="form-control required" th:field="*{details}" th:placeholder="#{receipt.details}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{details}" th:placeholder="#{receipt.details}" autofocus >
 			  		<ul><li class="cooperror" th:errors="*{details}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{receipt.file}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{receipt.file}"></label>
 		    	<div class="col-sm-4">
 		    		<input type="file" class="form-control" th:field="*{file}" th:placeholder="#{receipt.file}" autofocus >
 		      		<ul><li class="cooperror" th:errors="*{file}" /></ul>
@@ -73,7 +73,7 @@
 		    
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		</form>

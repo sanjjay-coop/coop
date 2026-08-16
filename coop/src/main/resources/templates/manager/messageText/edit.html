@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/messageText/addNew}"><i class="bi bi-chevron-double-left"></i> To List</a>
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/messageText/addNew}"><i class="bi bi-chevron-double-left"></i> To List</a>
 				</div>
 			</div>
 		</div>
@@ -25,32 +25,32 @@
 			<input type="hidden" class="form-control" th:field="*{id}">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{messageText.messageFor}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{messageText.messageFor}"></label>
 				<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{messageFor}" th:placeholder="#{messageText.messageFor}" autofocus />
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{messageFor}" th:placeholder="#{messageText.messageFor}" autofocus />
 			  		<ul><li class="cooperror" th:errors="*{messageFor}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{messageText.subject}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{messageText.subject}"></label>
 				<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{subject}" th:placeholder="#{messageText.subject}" />
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{subject}" th:placeholder="#{messageText.subject}" />
 			  		<ul><li class="cooperror" th:errors="*{subject}" /></ul>
 				</div>
 			</div>
 			
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{messageText.content}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{messageText.content}"></label>
 			   	<div class="col-sm-10">
-		    		<textarea class="form-control required" rows="10" th:field="*{content}" th:placeholder="#{messageText.content}"></textarea>
+		    		<textarea class="form-control bg-info-subtle" rows="10" th:field="*{content}" th:placeholder="#{messageText.content}"></textarea>
 					<ul><li class="cooperror" th:errors="*{content}" /></ul>
 			   	</div>
 			</div>
 			
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</form>

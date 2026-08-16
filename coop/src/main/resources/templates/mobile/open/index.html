@@ -14,7 +14,7 @@
 		<div class="row p-2">
 			<div class="col-md-12 px-3 -pb-2 border border-light rounded-0">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient ">News Feed</h5>
+					<h5 class="card-header bg-primary-subtle bg-gradient ">News Feed</h5>
 				  	<div class="card-body overflow-auto">
 						<div class="text-center p-2 g-2 m-2 border border-light rounded-1" th:each="obj : ${listNewsFeedHome}">
 							<div class="text-success h5" >
@@ -23,7 +23,7 @@
 							<small class="text-secondary" th:utext="${obj.description}"></small>
 						</div>
 				  	</div>
-				  	<div class="card-footer bg-success-subtle bg-gradient ">
+				  	<div class="card-footer bg-primary-subtle bg-gradient ">
 				  		<a class="btn btn-secondary btn-sm" role="button" th:href="@{/mobile/open/newsFeed/list}">News Feed Archive</a>
 				  	</div>
 				</div>
@@ -53,7 +53,7 @@
 		<div class="row p-2">
 			<div class="col-12 px-3 pb-2 rounded-0">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient ">Summary</h5>
+					<h5 class="card-header bg-primary-subtle bg-gradient ">Summary</h5>
 				  	<div class="card-body overflow-auto">
 				  		<table class="table table-sm small table-bordered table-striped">								
 							<tbody>
@@ -87,7 +87,7 @@
 		
 			<div class="col-12 px-3 pb-2 rounded-0" th:each="article : ${listArticle}">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient ">
+					<h5 class="card-header bg-primary-subtle bg-gradient ">
 						<a class="nav-link" th:href="@{/article/view/{id}(id=${article.id})}">
 							<i class="bi bi-card-heading"></i>&nbsp;&nbsp;<span th:text="${article.title}"></span>
 						</a>
@@ -111,7 +111,7 @@
 				
 			<div th:if="${countArticle >= 6}" class="col-12 text-end pt-2">
 				<a class="nav-link" th:href="@{/mobile/article/list}">
-					<button type="submit" class="btn btn-success" style="height: 30px; font-size: 12px;">More Articles</button>
+					<button type="submit" class="btn btn-primary" style="height: 30px; font-size: 12px;">More Articles</button>
 				</a>
 			</div>
 		

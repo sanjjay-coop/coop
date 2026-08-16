@@ -15,7 +15,7 @@
 		<div class="row p-2">
 			<div class="col-12">
 				<div class="d-grid gap-2 d-md-block">
-					<a class="btn btn-success btn-sm" role="button" th:href="@{/manager/module/list/current}">
+					<a class="btn btn-primary btn-sm" role="button" th:href="@{/manager/module/list/current}">
 						<i class="bi bi-chevron-double-left"></i> Back to List
 					</a>
 				</div>
@@ -25,15 +25,15 @@
 		<form class="p-2" th:action= "${servletRequest.requestURI}" th:object="${module}" method="POST">
 
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{module.name}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{module.name}"></label>
 		    	<div class="col-sm-10">
-		    		<input type="text" class="form-control required" th:field="*{name}" th:placeholder="#{module.name}" autofocus >
+		    		<input type="text" class="form-control bg-info-subtle" th:field="*{name}" th:placeholder="#{module.name}" autofocus >
 		      		<ul><li class="cooperror" th:errors="*{name}" /></ul>
 		    	</div>
 		    </div>
 		    
 			<div class="row p-2">
-				<label class="col-sm-2 col-form-label text-success" th:text="#{module.enabled}"></label>
+				<label class="col-sm-2 col-form-label text-primary" th:text="#{module.enabled}"></label>
 				<div class="col-sm-4">
 		    		<select class="form-select" th:field="*{enabled}">
 						<option value="0" label="FALSE" />
@@ -45,7 +45,7 @@
 		    
 			<div class="row p-2">
 				<div class="offset-sm-2 col-sm-2">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 		  	</div>
 		</form>

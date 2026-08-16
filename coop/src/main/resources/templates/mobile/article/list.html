@@ -28,7 +28,7 @@
 		
 			<div class="col-12 px-3 pb-2 rounded-0" th:each="article : ${listArticle}">
 				<div class="card h-100">
-					<h5 class="card-header bg-success-subtle bg-gradient ">
+					<h5 class="card-header bg-primary-subtle bg-gradient ">
 						<a class="nav-link" th:href="@{/article/view/{id}(id=${article.id})}">
 							<i class="bi bi-card-heading"></i>&nbsp;&nbsp;<span th:text="${article.title}"></span>
 						</a>
@@ -54,11 +54,11 @@
 		
 		<nav class="px-2"aria-label="Page Navigation" th:if="${totalRecords > 0}">
 			<ul class="pagination">
-				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/article/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
-				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-success" th:href="@{/mobile/article/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
-				<li class="page-item"><a class="page-link text-success" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
-				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/article/list/next}"><i class="bi bi-chevron-right"></i></a></li>
-				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-success" th:href="@{/mobile/article/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/mobile/article/list}"><i class="bi bi-chevron-bar-left"></i></a></li>
+				<li class="page-item" th:if="${!firstPage}"><a class="page-link text-primary" th:href="@{/mobile/article/list/previous}"><i class="bi bi-chevron-left"></i></a></li>
+				<li class="page-item"><a class="page-link text-primary" th:text="${currentPage + '... of ...' + totalPages}"></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/mobile/article/list/next}"><i class="bi bi-chevron-right"></i></a></li>
+				<li class="page-item" th:if="${!lastPage}"><a class="page-link text-primary" th:href="@{/mobile/article/list/last}"><i class="bi bi-chevron-bar-right"></i></a></li>
 			</ul>
 		</nav>
 	</div>
