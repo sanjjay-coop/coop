@@ -105,6 +105,7 @@ public class WebSecurityConfig {
             		//.dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
             		.requestMatchers(
             				"/",
+            				"/ads.txt",
             				"/article/**",
             				"/assets/**",
             				"/acceptInvitation/**",
